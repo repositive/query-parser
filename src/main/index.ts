@@ -6,24 +6,11 @@ export function toBoolString(query): string {
    3. Concatenate leafs using the root's operator.
    */
 
-  const key = Object.keys(query)[0]; // Only has one key
-  if (query.hasOwnProperty(key)) {
+  // Query object only has one key
+  const key = Object.keys(query)[0]; // Unvalidated objects might break this.
+  if (!key.startsWith('$')) {
     /*
-     Case 1: Child is node with children
-     */
-    if (key.startsWith('$')) {
-      const operator = key.slice(1).toUpperCase();
-      const children = query[key];
-      let result = [];
-      for (let i = 0; i < children.length; i++) {
-        result.push(toBoolString(children[i]));
-      }
-      const temp = result.join(` ${operator} `);
-      if (operator === 'NOT') return `${operator} ${temp}`;
-      return "(" + temp + ")";
-    }
-    /*
-     Case 2: Child is leaf node
+     Case 1: Child is leaf node
      */
     // Deal with white space and add predicate for non-text searches.
     const value = /\s+/.test(query[key]) ? `"${query[key]}"` : query[key];
@@ -32,4 +19,15 @@ export function toBoolString(query): string {
     }
     return `${key}:${value}`;
   }
+
+  /*
+   Case 2: Child is node with children
+   */
+  const operator = key.slice(1).toUpperCase();
+  let result = [];
+  for (let child of query[key]) {
+    result.push(toBoolString(child));
+  }
+  if (operator === 'NOT') return `${operator} ${result}`;
+  return "(" + result.join(` ${operator} `) + ")";
 }
