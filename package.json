@@ -7,8 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "start": "nodemon --watch src --watch package.json -e ts,json -q -x 'rm -fr dist && echo \"\\n============\\nCOMPILING...\\n============\\n\\n\" && tsc --outDir dist || return 0 && node dist/worksheet.js'",
-    "test": "echo 'no test suite defined' && exit 1"
+    "start": "nodemon --watch src --watch package.json -e ts,json -q -x 'rm -fr dist && echo \"\\n============\\nCOMPILING...\\n============\\n\\n\" && tsc --outDir dist || return 0 && node dist/main/cli.js'",
+    "test": "nodemon --watch src --watch package.json -e ts,json -q -x 'rm -fr dist && echo \"\\n============\\nCOMPILING...\\n============\\n\\n\" && tsc --outDir dist || return 0 && node dist/test/tests.js'"
   },
   "author": "",
   "license": "ISC",
