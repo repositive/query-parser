@@ -3,7 +3,7 @@
  */
 
 import * as test from 'tape';
-import * as queryalizer from '../main/index';
+import { toBoolString } from '../main/index';
 
 const input1 = {
   $and: [
@@ -16,9 +16,124 @@ const input1 = {
   ]
 };
 
-test('serialize', function (t) {
-  t.plan(1);
 
-  const result = queryalizer(input1);
+test('Should return string', function (t) {
+  t.plan(1);
+  const result = toBoolString(input1);
   t.equal(typeof result, 'string');
+});
+
+test('Should handle simple AND and OR', function (t) {
+  t.plan(1);
+  const result = toBoolString(input1);
+  t.equal(result, '(cancer AND assay:X AND (collection:Y OR collection:Z))');
+});
+
+const onlyNOT = {
+  $not: [
+    {text: 'cancer'}
+  ]
+};
+
+const ANDNOT = {
+  $and: [
+    {text: 'cancer'},
+    {$not: [
+      {text: 'glaucoma'}
+    ]}
+  ]
+};
+
+test('Should handle simple queries', function (t) {
+  t.plan(2);
+  t.equal(toBoolString(onlyNOT), 'NOT cancer');
+  t.equal(toBoolString(ANDNOT), '(cancer AND NOT glaucoma)');
+});
+
+
+const withNOT = {
+  $and: [
+    {text: 'cancer'},
+    {
+      $not: [{
+        text: 'breast'
+      }]
+    },
+    {assay: 'X'},
+    {$or: [
+      {collection: 'Y'},
+      {collection: 'Z'}
+    ]}
+  ]
+};
+
+const nestedNOT = {
+  $and: [
+    {text: 'glaucoma'},
+    {$not: [
+      {$or: [
+        {assay: 'X'},
+        {assay: 'Y'}
+      ]}
+    ]},
+    {collection: 'X'}
+  ]
+};
+
+test('Should handle nested NOT', function (t) {
+  t.plan(2);
+  t.equal(toBoolString(withNOT), '(cancer AND NOT breast AND assay:X AND (collection:Y OR collection:Z))');
+  t.equal(toBoolString(nestedNOT), '(glaucoma AND NOT (assay:X OR assay:Y) AND collection:X)');
+});
+
+const deepNestedNOT = {
+  $and: [
+    {text: 'glaucoma'},
+    {$not: [
+      {$or: [
+        {assay: 'X'},
+        {assay: 'Y'},
+        {$and:[
+          {access: 'O'},
+          {type: 'D'}
+        ]}
+      ]}
+    ]},
+    {$or: [
+      {collection: 'X'},
+      {collection: 'Z'}
+    ]}
+  ]
+};
+
+test('Should handle nested AND and NOTs', function (t) {
+  t.plan(1);
+  t.equal(toBoolString(deepNestedNOT), '(glaucoma AND NOT (assay:X OR assay:Y OR (access:O AND type:D))' +
+    ' AND (collection:X OR collection:Z))');
+});
+
+const whiteSpace = {
+  $and: [
+    {text: 'breast cancer'},
+    {$not: [
+      {$or: [
+        {assay: 'RNA Seq'},
+        {assay: 'Y'},
+        {$and:[
+          {access: 'O'},
+          {type: 'D'}
+        ]}
+      ]}
+    ]},
+    {$or: [
+      {collection: 'X'},
+      {collection: 'Z'}
+    ]}
+  ]
+};
+
+test('Should deal with whitespace', function (t) {
+  t.plan(1);
+  t.equal(toBoolString(whiteSpace), '("breast cancer" AND NOT (assay:"RNA Seq" OR assay:Y OR (access:O AND type:D))' +
+    ' AND (collection:X OR collection:Z))');
 });
