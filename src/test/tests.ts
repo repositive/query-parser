@@ -3,8 +3,8 @@
  */
 
 import * as test from 'tape';
-import { toBoolString } from '../main/index';
-import { toElasticQuery } from '../main/index';
+import { toBoolString } from '../main/serializers/string';
+import { toElasticQuery } from '../main/serializers/elastic-2.4';
 
 
 /*
