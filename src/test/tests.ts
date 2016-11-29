@@ -246,7 +246,7 @@ test('ES - Should create object', function (t) {
 
 test('ES - should create correct object', function (t) {
   t.plan(1);
-  t.deepEqual(toElasticQuery(ESInput), ES1);
+  t.equal(JSON.stringify(toElasticQuery(ESInput)), JSON.stringify(ES1));
 });
 
 
