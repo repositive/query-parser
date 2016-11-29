@@ -4,7 +4,14 @@
 
 import * as test from 'tape';
 import { toBoolString } from '../main/index';
+import { toElasticQuery } from '../main/index';
 
+
+/*
+ ############################################################################
+ ###################            String serializer         ###################
+ ############################################################################
+ */
 const input1 = {
   $and: [
     {text: 'cancer'},
@@ -137,3 +144,110 @@ test('Should deal with whitespace', function (t) {
   t.equal(toBoolString(whiteSpace), '("breast cancer" AND NOT (assay:"RNA Seq" OR assay:Y OR (access:O AND type:D))' +
     ' AND (collection:X OR collection:Z))');
 });
+
+/*
+ ############################################################################
+ ###################       Elasticsearch serializer       ###################
+ ############################################################################
+ */
+
+const ES1 = {
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "_all": "breast cancer"
+          }
+        },
+        {
+          "bool": {
+            "must_not": [
+              {
+                "bool": {
+                  "should": [
+                    {
+                      "match": {
+                        "assay": "RNA-Seq"
+                      }
+                    },
+                    {
+                      "match": {
+                        "assay": "RNA-seq"
+                      }
+                    },
+                    {
+                      "bool": {
+                        "must": [
+                          {
+                            "match": {
+                              "access": "Open"
+                            }
+                          },
+                          {
+                            "match": {
+                              "properties.tissue": "breast"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "bool": {
+            "should": [
+              {
+                "match": {
+                  "collection": "ceeb70df-5c88-4aed-ba8a-a44386a89b5e"
+                }
+              },
+              {
+                "match": {
+                  "collection": "e853a7f3-eed6-4942-a823-b5164820e4a2"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+};
+
+const ESInput = {
+  $and: [
+    {text: 'breast cancer'},
+    {$not: [
+      {$or: [
+        {assay: 'RNA-Seq'},
+        {assay: 'RNA-seq'},
+        {$and:[
+          {access: 'Open'},
+          {"properties.tissue": 'breast'}
+        ]}
+      ]}
+    ]},
+    {$or: [
+      {collection: 'ceeb70df-5c88-4aed-ba8a-a44386a89b5e'},
+      {collection: 'e853a7f3-eed6-4942-a823-b5164820e4a2'}
+    ]}
+  ]
+};
+
+test('ES - Should create object', function (t) {
+  t.plan(1);
+  t.equal(typeof toElasticQuery(whiteSpace), 'object');
+});
+
+test('ES - should create correct object', function (t) {
+  t.plan(1);
+  t.deepEqual(toElasticQuery(ESInput), ES1);
+});
+
+
+
