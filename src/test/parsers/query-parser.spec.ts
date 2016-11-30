@@ -13,7 +13,7 @@ test('extract quoted of simple string', t => {
   t.plan(1);
   const result = extractQuoted('"test"');
   t.deepEqual(result, [{type: 'term', position: 0, term: 'test'}]);
-})
+});
 
 test('extract multiple quoted entries from string', t => {
   t.plan(1);
@@ -22,8 +22,17 @@ test('extract multiple quoted entries from string', t => {
   t.deepEqual(result, [
     {type: 'term', position: 0, term: '1'},
     {type: 'term', position: 6, term: '2'}
-  ])
-})
+  ]);
+});
+
+test('extract single quoted with spaces', t => {
+  t.plan(1);
+  const result = extractQuoted('"hello world"');
+
+  t.deepEquals(result, [
+    {type: 'term', position: 0, term: 'hello world'}
+  ]);
+});
 
 test.skip('should parse a simple query with multiple values', (t) => {
   t.plan(2);
