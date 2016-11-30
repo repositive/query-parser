@@ -2,7 +2,7 @@ export interface BooleanOperator {
   operator: 'AND' | 'OR' | 'NOT';
 }
 
-export function isBooleanOperator(o: any) {
+export function isBooleanOperator(o: any): o is BooleanOperator {
   return typeof o === 'object' &&
     typeof o.operator === 'string' &&
     ['AND', 'OR', 'NOT'].indexOf(o.operator) !== -1
@@ -27,6 +27,8 @@ export function isFilter(o: any): o is Filter {
     typeof o.text === 'string' &&
     typeof o.predicate === 'string';
 }
+
+export type SearchNode = Term | BooleanOperator | Filter;
 
 export interface BTree<T> {
   value: T;
