@@ -4,7 +4,7 @@ export interface BinaryOperator {
 
 function isBinaryOperator(o: any) {
   return typeof o === 'object' &&
-    typeof o.operator === string &&
+    typeof o.operator === 'string' &&
     ['AND', 'OR', 'NOT'].indexOf(o.operator) !== -1
 }
 
