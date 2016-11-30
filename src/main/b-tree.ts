@@ -1,4 +1,4 @@
-export interface BinaryOperator {
+export interface BooleanOperator {
   operator: 'AND' | 'OR' | 'NOT';
 }
 
