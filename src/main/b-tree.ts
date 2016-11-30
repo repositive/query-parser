@@ -23,8 +23,9 @@ export interface Filter {
 }
 
 export function isFilter(o: any): o is Filter {
-  return isTerm(o) &&
-    typeof o.predicate === 'string'
+  return typeof o === 'object' &&
+    typeof o.text === 'string' &&
+    typeof o.predicate === 'string';
 }
 
 export interface BTree<T> {
