@@ -1,21 +1,30 @@
-export function toElasticQuery(query): any {
-  const ESQuery = {
-    query: {
-      bool: {}
-    }
+export function toElasticQuery(query) {
+
+  const ops = {
+    $and: 'must', // AND
+    $or: 'should', // OR
+    $not: 'must_not' // NOT
   };
 
-
-  function build(query) {
-    // Add every term not under NOT to 'must' term
+  function build(query): any {
     const key = Object.keys(query)[0];
+    // Leaf node
     if (!key.startsWith('$')) {
-      // Leaf node
-      // const value =
-
+      const field = key === 'text' ? '_all' : key;
+      return { match: { [field]: query[key] } };
     }
 
-    // Every NOT term to must_not
-
+    // Node with children
+    let children = [];
+    for (let child of query[key]) {
+      children.push(build(child));
+    }
+    return {
+      bool: {
+        [ops[key]]: children
+      }
+    };
   }
+
+  return { query: build(query) };
 }
