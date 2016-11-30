@@ -6,6 +6,13 @@ services:
     working_dir: /opt
     volumes:
      - .:/opt
-     - /opt/node_modules
+    environment:
+      TERM: dumb
+  test:
+    command: /bin/sh -c "npm i && npm run test"
+    image: node
+    working_dir: /opt
+    volumes:
+     - .:/opt
     environment:
       TERM: dumb

@@ -17,5 +17,9 @@
     "nodemon": "latest",
     "tape": "^4.6.3",
     "typescript": "latest"
+  },
+  "dependencies": {
+    "@types/ramda": "0.0.2",
+    "ramda": "^0.22.1"
   }
 }
