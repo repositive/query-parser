@@ -15,6 +15,12 @@ test('extract quoted of simple string', t => {
   t.deepEqual([{type: 'term', from: 0, to: 6, term: 'test'}], result);
 });
 
+test('concat to previous extracted items', t => {
+  t.plan(1);
+  const result = extractQuoted('not match', [{type: 'term', from: 0, to: 6, term: 'test'}]);
+  t.deepEqual([{type: 'term', from: 0, to: 6, term: 'test'}], result);
+})
+
 test('extract multiple quoted entries from string', t => {
   t.plan(3);
   const str = '"1" n "2"';

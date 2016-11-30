@@ -1,4 +1,4 @@
-import {head, tail as _tail} from 'ramda';
+import {head, tail as _tail, concat} from 'ramda';
 import {Token} from './base-parser';
 
 const tail:any = _tail;
@@ -34,7 +34,7 @@ function extractQuotedWords(input: string, acc: string[] = []) {
 export default function extractQuoted(input: string, acc: Token[] = []) {
   const words = extractQuotedWords(input);
 
-  return words.map((w):Token => {
+  return concat(acc, words.map((w):Token => {
     const from = input.indexOf(w);
     return {
       type: 'term',
@@ -42,5 +42,5 @@ export default function extractQuoted(input: string, acc: Token[] = []) {
       to: from + w.length,
       term: w.replace(/\"/g,'')
     }
-  })
+  }));
 }
