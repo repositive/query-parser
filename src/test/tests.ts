@@ -5,6 +5,7 @@
 import * as test from 'tape';
 import { toBoolString } from '../main/serializers/string';
 import { toElasticQuery } from '../main/serializers/elastic-2.4';
+import {BTree} from "../main/b-tree";
 
 
 /*
@@ -12,138 +13,166 @@ import { toElasticQuery } from '../main/serializers/elastic-2.4';
  ###################            String serializer         ###################
  ############################################################################
  */
-const input1 = {
-  $and: [
-    {text: 'cancer'},
-    {assay: 'X'},
-    {$or: [
-      {collection: 'Y'},
-      {collection: 'Z'}
-    ]}
-  ]
+// const input1 = {
+//   $and: [
+//     {text: 'cancer'},
+//     {assay: 'X'},
+//     {$or: [
+//       {collection: 'Y'},
+//       {collection: 'Z'}
+//     ]}
+//   ]
+// };
+const simpleTree1:BTree = {
+  value: {
+    text: 'cancer'
+  }
 };
+
+const simpleTree2:BTree = {
+  value: {
+    operator: 'AND'
+  },
+  left: {
+    value: {
+      text: 'cancer'
+    }
+  },
+  right: {
+    value: {
+      text: 'RNA-Seq',
+      predicate: 'assay'
+    }
+  }
+};
+
 
 
 test('Should return string', function (t) {
   t.plan(1);
-  const result = toBoolString(input1);
+  const result = toBoolString(simpleTree1);
   t.equal(typeof result, 'string');
 });
 
-test('Should handle simple AND and OR', function (t) {
+test('Single text terms', function (t) {
   t.plan(1);
-  const result = toBoolString(input1);
-  t.equal(result, '(cancer AND assay:X AND (collection:Y OR collection:Z))');
+  t.equal(toBoolString(simpleTree1), 'cancer');
 });
 
-const onlyNOT = {
-  $not: [
-    {text: 'cancer'}
-  ]
-};
-
-const ANDNOT = {
-  $and: [
-    {text: 'cancer'},
-    {$not: [
-      {text: 'glaucoma'}
-    ]}
-  ]
-};
-
-test('Should handle simple queries', function (t) {
-  t.plan(2);
-  t.equal(toBoolString(onlyNOT), 'NOT cancer');
-  t.equal(toBoolString(ANDNOT), '(cancer AND NOT glaucoma)');
-});
-
-
-const withNOT = {
-  $and: [
-    {text: 'cancer'},
-    {
-      $not: [{
-        text: 'breast'
-      }]
-    },
-    {assay: 'X'},
-    {$or: [
-      {collection: 'Y'},
-      {collection: 'Z'}
-    ]}
-  ]
-};
-
-const nestedNOT = {
-  $and: [
-    {text: 'glaucoma'},
-    {$not: [
-      {$or: [
-        {assay: 'X'},
-        {assay: 'Y'}
-      ]}
-    ]},
-    {collection: 'X'}
-  ]
-};
-
-test('Should handle nested NOT', function (t) {
-  t.plan(2);
-  t.equal(toBoolString(withNOT), '(cancer AND NOT breast AND assay:X AND (collection:Y OR collection:Z))');
-  t.equal(toBoolString(nestedNOT), '(glaucoma AND NOT (assay:X OR assay:Y) AND collection:X)');
-});
-
-const deepNestedNOT = {
-  $and: [
-    {text: 'glaucoma'},
-    {$not: [
-      {$or: [
-        {assay: 'X'},
-        {assay: 'Y'},
-        {$and:[
-          {access: 'O'},
-          {type: 'D'}
-        ]}
-      ]}
-    ]},
-    {$or: [
-      {collection: 'X'},
-      {collection: 'Z'}
-    ]}
-  ]
-};
-
-test('Should handle nested AND and NOTs', function (t) {
-  t.plan(1);
-  t.equal(toBoolString(deepNestedNOT), '(glaucoma AND NOT (assay:X OR assay:Y OR (access:O AND type:D))' +
-    ' AND (collection:X OR collection:Z))');
-});
-
-const whiteSpace = {
-  $and: [
-    {text: 'breast cancer'},
-    {$not: [
-      {$or: [
-        {assay: 'RNA Seq'},
-        {assay: 'Y'},
-        {$and:[
-          {access: 'O'},
-          {type: 'D'}
-        ]}
-      ]}
-    ]},
-    {$or: [
-      {collection: 'X'},
-      {collection: 'Z'}
-    ]}
-  ]
-};
-
-test('Should deal with whitespace', function (t) {
-  t.plan(1);
-  t.equal(toBoolString(whiteSpace), '("breast cancer" AND NOT (assay:"RNA Seq" OR assay:Y OR (access:O AND type:D))' +
-    ' AND (collection:X OR collection:Z))');
-});
+// test('Should handle simple AND and OR', function (t) {
+//   t.plan(1);
+//   const result = toBoolString(input1);
+//   t.equal(result, '(cancer AND assay:X AND (collection:Y OR collection:Z))');
+// });
+//
+// const onlyNOT = {
+//   $not: [
+//     {text: 'cancer'}
+//   ]
+// };
+//
+// const ANDNOT = {
+//   $and: [
+//     {text: 'cancer'},
+//     {$not: [
+//       {text: 'glaucoma'}
+//     ]}
+//   ]
+// };
+//
+// test('Should handle simple queries', function (t) {
+//   t.plan(2);
+//   t.equal(toBoolString(onlyNOT), 'NOT cancer');
+//   t.equal(toBoolString(ANDNOT), '(cancer AND NOT glaucoma)');
+// });
+//
+//
+// const withNOT = {
+//   $and: [
+//     {text: 'cancer'},
+//     {
+//       $not: [{
+//         text: 'breast'
+//       }]
+//     },
+//     {assay: 'X'},
+//     {$or: [
+//       {collection: 'Y'},
+//       {collection: 'Z'}
+//     ]}
+//   ]
+// };
+//
+// const nestedNOT = {
+//   $and: [
+//     {text: 'glaucoma'},
+//     {$not: [
+//       {$or: [
+//         {assay: 'X'},
+//         {assay: 'Y'}
+//       ]}
+//     ]},
+//     {collection: 'X'}
+//   ]
+// };
+//
+// test('Should handle nested NOT', function (t) {
+//   t.plan(2);
+//   t.equal(toBoolString(withNOT), '(cancer AND NOT breast AND assay:X AND (collection:Y OR collection:Z))');
+//   t.equal(toBoolString(nestedNOT), '(glaucoma AND NOT (assay:X OR assay:Y) AND collection:X)');
+// });
+//
+// const deepNestedNOT = {
+//   $and: [
+//     {text: 'glaucoma'},
+//     {$not: [
+//       {$or: [
+//         {assay: 'X'},
+//         {assay: 'Y'},
+//         {$and:[
+//           {access: 'O'},
+//           {type: 'D'}
+//         ]}
+//       ]}
+//     ]},
+//     {$or: [
+//       {collection: 'X'},
+//       {collection: 'Z'}
+//     ]}
+//   ]
+// };
+//
+// test('Should handle nested AND and NOTs', function (t) {
+//   t.plan(1);
+//   t.equal(toBoolString(deepNestedNOT), '(glaucoma AND NOT (assay:X OR assay:Y OR (access:O AND type:D))' +
+//     ' AND (collection:X OR collection:Z))');
+// });
+//
+// const whiteSpace = {
+//   $and: [
+//     {text: 'breast cancer'},
+//     {$not: [
+//       {$or: [
+//         {assay: 'RNA Seq'},
+//         {assay: 'Y'},
+//         {$and:[
+//           {access: 'O'},
+//           {type: 'D'}
+//         ]}
+//       ]}
+//     ]},
+//     {$or: [
+//       {collection: 'X'},
+//       {collection: 'Z'}
+//     ]}
+//   ]
+// };
+//
+// test('Should deal with whitespace', function (t) {
+//   t.plan(1);
+//   t.equal(toBoolString(whiteSpace), '("breast cancer" AND NOT (assay:"RNA Seq" OR assay:Y OR (access:O AND type:D))' +
+//     ' AND (collection:X OR collection:Z))');
+// });
 
 /*
  ############################################################################
@@ -239,10 +268,10 @@ const ESInput = {
   ]
 };
 
-test('ES - Should create object', function (t) {
-  t.plan(1);
-  t.equal(typeof toElasticQuery(whiteSpace), 'object');
-});
+// test('ES - Should create object', function (t) {
+//   t.plan(1);
+//   t.equal(typeof toElasticQuery(whiteSpace), 'object');
+// });
 
 test('ES - should create correct object', function (t) {
   t.plan(1);
