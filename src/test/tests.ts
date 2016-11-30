@@ -4,25 +4,15 @@
 
 import * as test from 'tape';
 import { toBoolString } from '../main/serializers/string';
-import { toElasticQuery } from '../main/serializers/elastic-2.4';
+import { toElasticQuery } from '../main/serializers/elastic';
 import {BTree, Term, BooleanOperator, Filter, SearchNode} from "../main/b-tree";
-
 
 /*
  ############################################################################
  ###################            String serializer         ###################
  ############################################################################
  */
-// const input1 = {
-//   $and: [
-//     {text: 'cancer'},
-//     {assay: 'X'},
-//     {$or: [
-//       {collection: 'Y'},
-//       {collection: 'Z'}
-//     ]}
-//   ]
-// };
+
 const simpleTree1:BTree<SearchNode> = {
   value: {
     text: 'cancer'
@@ -45,7 +35,6 @@ const simpleTree2:BTree<SearchNode> = {
     }
   }
 };
-
 
 
 test('Should return string', function (t) {
@@ -116,121 +105,6 @@ test('Nested NOT and Boolean terms', function (t) {
 });
 
 
-// test('Should handle simple AND and OR', function (t) {
-//   t.plan(1);
-//   const result = toBoolString(input1);
-//   t.equal(result, '(cancer AND assay:X AND (collection:Y OR collection:Z))');
-// });
-//
-// const onlyNOT = {
-//   $not: [
-//     {text: 'cancer'}
-//   ]
-// };
-//
-// const ANDNOT = {
-//   $and: [
-//     {text: 'cancer'},
-//     {$not: [
-//       {text: 'glaucoma'}
-//     ]}
-//   ]
-// };
-//
-// test('Should handle simple queries', function (t) {
-//   t.plan(2);
-//   t.equal(toBoolString(onlyNOT), 'NOT cancer');
-//   t.equal(toBoolString(ANDNOT), '(cancer AND NOT glaucoma)');
-// });
-//
-//
-// const withNOT = {
-//   $and: [
-//     {text: 'cancer'},
-//     {
-//       $not: [{
-//         text: 'breast'
-//       }]
-//     },
-//     {assay: 'X'},
-//     {$or: [
-//       {collection: 'Y'},
-//       {collection: 'Z'}
-//     ]}
-//   ]
-// };
-//
-// const nestedNOT = {
-//   $and: [
-//     {text: 'glaucoma'},
-//     {$not: [
-//       {$or: [
-//         {assay: 'X'},
-//         {assay: 'Y'}
-//       ]}
-//     ]},
-//     {collection: 'X'}
-//   ]
-// };
-//
-// test('Should handle nested NOT', function (t) {
-//   t.plan(2);
-//   t.equal(toBoolString(withNOT), '(cancer AND NOT breast AND assay:X AND (collection:Y OR collection:Z))');
-//   t.equal(toBoolString(nestedNOT), '(glaucoma AND NOT (assay:X OR assay:Y) AND collection:X)');
-// });
-//
-// const deepNestedNOT = {
-//   $and: [
-//     {text: 'glaucoma'},
-//     {$not: [
-//       {$or: [
-//         {assay: 'X'},
-//         {assay: 'Y'},
-//         {$and:[
-//           {access: 'O'},
-//           {type: 'D'}
-//         ]}
-//       ]}
-//     ]},
-//     {$or: [
-//       {collection: 'X'},
-//       {collection: 'Z'}
-//     ]}
-//   ]
-// };
-//
-// test('Should handle nested AND and NOTs', function (t) {
-//   t.plan(1);
-//   t.equal(toBoolString(deepNestedNOT), '(glaucoma AND NOT (assay:X OR assay:Y OR (access:O AND type:D))' +
-//     ' AND (collection:X OR collection:Z))');
-// });
-//
-// const whiteSpace = {
-//   $and: [
-//     {text: 'breast cancer'},
-//     {$not: [
-//       {$or: [
-//         {assay: 'RNA Seq'},
-//         {assay: 'Y'},
-//         {$and:[
-//           {access: 'O'},
-//           {type: 'D'}
-//         ]}
-//       ]}
-//     ]},
-//     {$or: [
-//       {collection: 'X'},
-//       {collection: 'Z'}
-//     ]}
-//   ]
-// };
-//
-// test('Should deal with whitespace', function (t) {
-//   t.plan(1);
-//   t.equal(toBoolString(whiteSpace), '("breast cancer" AND NOT (assay:"RNA Seq" OR assay:Y OR (access:O AND type:D))' +
-//     ' AND (collection:X OR collection:Z))');
-// });
-
 /*
  ############################################################################
  ###################       Elasticsearch serializer       ###################
@@ -258,21 +132,27 @@ const ES1 = {
                       }
                     },
                     {
-                      "match": {
-                        "assay": "RNA-seq"
-                      }
-                    },
-                    {
                       "bool": {
-                        "must": [
+                        "should": [
                           {
                             "match": {
-                              "access": "Open"
+                              "assay": "RNA-seq"
                             }
                           },
                           {
-                            "match": {
-                              "properties.tissue": "breast"
+                            "bool": {
+                              "must": [
+                                {
+                                  "match": {
+                                    "access": "Open"
+                                  }
+                                },
+                                {
+                                  "match": {
+                                    "properties.tissue": "breast"
+                                  }
+                                }
+                              ]
                             }
                           }
                         ]
@@ -283,57 +163,76 @@ const ES1 = {
               }
             ]
           }
-        },
-        {
-          "bool": {
-            "should": [
-              {
-                "match": {
-                  "collection": "ceeb70df-5c88-4aed-ba8a-a44386a89b5e"
-                }
-              },
-              {
-                "match": {
-                  "collection": "e853a7f3-eed6-4942-a823-b5164820e4a2"
-                }
-              }
-            ]
-          }
         }
       ]
     }
   }
 };
 
-const ESInput = {
-  $and: [
-    {text: 'breast cancer'},
-    {$not: [
-      {$or: [
-        {assay: 'RNA-Seq'},
-        {assay: 'RNA-seq'},
-        {$and:[
-          {access: 'Open'},
-          {"properties.tissue": 'breast'}
-        ]}
-      ]}
-    ]},
-    {$or: [
-      {collection: 'ceeb70df-5c88-4aed-ba8a-a44386a89b5e'},
-      {collection: 'e853a7f3-eed6-4942-a823-b5164820e4a2'}
-    ]}
-  ]
+
+const str = '("breast cancer" AND NOT (assay:RNA-Seq OR (assay:RNA-seq OR (access:Open AND properties.tissue:breast))))';
+
+const complexTree:BTree<SearchNode> = {
+  value: {
+    operator: 'AND'
+  },
+  left: {
+    value: {
+      text: 'breast cancer'
+    }
+  },
+  right: {
+    value: {
+      operator: 'NOT'
+    },
+    right: {
+      value: {
+        operator: 'OR'
+      },
+      left: {
+        value: {
+          predicate: 'assay',
+          text: 'RNA-Seq'
+        }
+      },
+      right: {
+        value: {
+          operator: 'OR'
+        },
+        left: {
+          value: {
+            predicate: 'assay',
+            text: 'RNA-seq'
+          }
+        },
+        right: {
+          value: {
+            operator: 'AND'
+          },
+          left: {
+            value: {
+              predicate: 'access',
+              text: 'Open'
+            }
+          },
+          right: {
+            value: {
+              predicate: 'properties.tissue',
+              text: 'breast'
+            }
+          }
+        }
+      }
+    }
+  }
 };
 
-// test('ES - Should create object', function (t) {
-//   t.plan(1);
-//   t.equal(typeof toElasticQuery(whiteSpace), 'object');
-// });
+test('String - Complex Tree', function (t) {
+  t.plan(1);
+  t.equal(toBoolString(complexTree), str);
+});
 
 test('ES - should create correct object', function (t) {
   t.plan(1);
-  t.equal(JSON.stringify(toElasticQuery(ESInput)), JSON.stringify(ES1));
+  t.equal(JSON.stringify(toElasticQuery(complexTree)), JSON.stringify(ES1));
 });
-
-
-
