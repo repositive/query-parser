@@ -5,7 +5,7 @@
 import * as test from 'tape';
 import { toBoolString } from '../main/serializers/string';
 import { toElasticQuery } from '../main/serializers/elastic-2.4';
-import {BTree} from "../main/b-tree";
+import {BTree, Term, BooleanOperator, Filter, SearchNode} from "../main/b-tree";
 
 
 /*
@@ -23,13 +23,13 @@ import {BTree} from "../main/b-tree";
 //     ]}
 //   ]
 // };
-const simpleTree1:BTree = {
+const simpleTree1:BTree<SearchNode> = {
   value: {
     text: 'cancer'
   }
 };
 
-const simpleTree2:BTree = {
+const simpleTree2:BTree<SearchNode> = {
   value: {
     operator: 'AND'
   },
@@ -58,6 +58,63 @@ test('Single text terms', function (t) {
   t.plan(1);
   t.equal(toBoolString(simpleTree1), 'cancer');
 });
+
+test('Simple boolean terms', function (t) {
+  t.plan(1);
+  t.equal(toBoolString(simpleTree2), '(cancer AND assay:RNA-Seq)');
+});
+
+
+const tree1:BTree<SearchNode> = {
+  value: {
+    operator: 'AND'
+  },
+  left: {
+    value: {
+      text: 'glaucoma'
+    }
+  },
+  right: {
+    value: {
+      operator: 'AND'
+    },
+    left: {
+      value: {
+        operator: 'NOT'
+      },
+      right: {
+        value: {
+          operator: 'OR'
+        },
+        left: {
+          value: {
+            predicate: 'assay',
+            text: 'X'
+          }
+        },
+        right: {
+          value: {
+            predicate: 'assay',
+            text: 'Y'
+          }
+        }
+      }
+    },
+    right: {
+      value: {
+        predicate: 'collection',
+        text: 'X'
+      }
+    }
+  }
+};
+
+
+test('Nested NOT and Boolean terms', function (t) {
+  t.plan(1);
+  t.equal(toBoolString(tree1), '(glaucoma AND (NOT (assay:X OR assay:Y) AND collection:X))');
+});
+
 
 // test('Should handle simple AND and OR', function (t) {
 //   t.plan(1);
