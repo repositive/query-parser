@@ -1,6 +1,7 @@
 export interface Token {
   type: 'bo' | 'term' | 'filter';
-  position: number;
+  from: number;
+  to: number;
   term: string;
 }
 

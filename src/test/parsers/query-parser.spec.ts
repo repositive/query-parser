@@ -6,32 +6,39 @@ import extractQuoted from '../../main/parsers/extract-quoted';
 test('should parse a simple query',(t) => {
   t.plan(1);
   const result = parse('cancer');
-  t.deepEqual(result, {value: { text: 'cancer'}});
+  t.deepEqual({value: { text: 'cancer'}}, result);
 });
 
 test('extract quoted of simple string', t => {
   t.plan(1);
   const result = extractQuoted('"test"');
-  t.deepEqual(result, [{type: 'term', position: 0, term: 'test'}]);
+  t.deepEqual([{type: 'term', from: 0, to: 6, term: 'test'}], result);
 });
 
 test('extract multiple quoted entries from string', t => {
-  t.plan(1);
-  const result = extractQuoted('"1" n "2"');
+  t.plan(3);
+  const str = '"1" n "2"';
+  const result = extractQuoted(str);
 
-  t.deepEqual(result, [
-    {type: 'term', position: 0, term: '1'},
-    {type: 'term', position: 6, term: '2'}
-  ]);
+  t.deepEqual([
+    {type: 'term', from: 0, to: 3, term: '1'},
+    {type: 'term', from: 6, to: 9, term: '2'}
+  ], result);
+
+  t.deepEqual('"1"', str.substring(result[0].from, result[0].to));
+  t.deepEqual('"2"', str.substring(result[1].from, result[1].to));
 });
 
 test('extract single quoted with spaces', t => {
-  t.plan(1);
-  const result = extractQuoted('"hello world"');
+  t.plan(2);
+  const str = '"hello world"'
+  const result = extractQuoted(str);
 
-  t.deepEquals(result, [
-    {type: 'term', position: 0, term: 'hello world'}
-  ]);
+  t.deepEquals([
+    {type: 'term', from: 0, to: 13, term: 'hello world'}
+  ], result);
+
+  t.deepEquals(str, str.substring(result[0].from, result[0].to));
 });
 
 test.skip('should parse a simple query with multiple values', (t) => {

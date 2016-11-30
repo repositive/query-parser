@@ -35,9 +35,11 @@ export default function extractQuoted(input: string, acc: Token[] = []) {
   const words = extractQuotedWords(input);
 
   return words.map((w):Token => {
+    const from = input.indexOf(w);
     return {
       type: 'term',
-      position: input.indexOf(w),
+      from: from,
+      to: from + w.length,
       term: w.replace(/\"/g,'')
     }
   })
