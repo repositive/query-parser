@@ -2,7 +2,7 @@ export interface BinaryOperator {
   operator: 'AND' | 'OR' | 'NOT';
 }
 
-function isBinaryOperator(o: any) {
+export function isBooleanOperator(o: any) {
   return typeof o === 'object' &&
     typeof o.operator === 'string' &&
     ['AND', 'OR', 'NOT'].indexOf(o.operator) !== -1
