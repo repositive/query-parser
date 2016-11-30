@@ -3,8 +3,8 @@
  */
 
 import * as test from 'tape';
-import { toBoolString } from '../main/index';
-import { toElasticQuery } from '../main/index';
+import { toBoolString } from '../main/serializers/string';
+import { toElasticQuery } from '../main/serializers/elastic-2.4';
 
 require('./parsers/query-parser.spec')
 /*
@@ -246,7 +246,7 @@ test.skip('ES - Should create object', function (t) {
 
 test.skip('ES - should create correct object', function (t) {
   t.plan(1);
-  t.deepEqual(toElasticQuery(ESInput), ES1);
+  t.equal(JSON.stringify(toElasticQuery(ESInput)), JSON.stringify(ES1));
 });
 
 
