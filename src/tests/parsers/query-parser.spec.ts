@@ -200,3 +200,17 @@ test('predicate parsing should be robust to stray colons', function (t) {
   result = extractPredicates('cancer : ');
   t.deepEquals(result, []);
 });
+
+test('predicate parser should add results to accumulator', function (t) {
+  t.plan(1);
+  const result = extractPredicates('cancer', [
+    {type: 'filter', from: 13, to: 28, term: 'RNA-Seq', predicate: 'assay'},
+    {type: 'filter', from: 29, to: 42, term: 'RNA-seq', predicate: 'assay'},
+    {type: 'filter', from: 43, to: 76, term: 'Whole Genome Sequencing', predicate: 'assay'}
+  ]);
+  t.deepEquals(result, [
+    {type: 'filter', from: 13, to: 28, term: 'RNA-Seq', predicate: 'assay'},
+    {type: 'filter', from: 29, to: 42, term: 'RNA-seq', predicate: 'assay'},
+    {type: 'filter', from: 43, to: 76, term: 'Whole Genome Sequencing', predicate: 'assay'}
+  ]);
+});

@@ -1,11 +1,12 @@
 import {Token} from "./base-parser";
+import {concat} from 'ramda';
 /**
  * Created by dennis on 01/12/2016.
  */
 
 export default function extractPredicates(input:string, acc: Token[] = []): Token[] {
   const matches = input.match(/\s*(\S+)\s?:\s?((\".*\")|(\S+))\s*/g);
-  if (!matches) return [];
+  if (!matches) return acc;
   let tokens:Token[] = [];
   for (let m of matches) {
     const str = m.trim();
@@ -18,5 +19,5 @@ export default function extractPredicates(input:string, acc: Token[] = []): Toke
       predicate: temp[0].trim()
     });
   }
-  return tokens;
+  return concat(acc, tokens);
 }
