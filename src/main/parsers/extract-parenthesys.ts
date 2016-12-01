@@ -1,16 +1,15 @@
-import {head, tail as _tail, concat, reverse as _reverse} from 'ramda';
+import {head, tail as _tail, concat} from 'ramda';
 import {Token} from './base-parser';
 
-const reverse: any = _reverse;
 const tail: any = _tail;
 
 function extractParenthesysContent(input: string, acc: string = ''): string {
   const h = head(input);
-  if (h === ''){
+  if (h === '') {
     throw new Error(`No closing parenthesys in ${input}`);
   }
   else if (h === ')') {
-    
+
     console.log(acc);
     return acc;
   }

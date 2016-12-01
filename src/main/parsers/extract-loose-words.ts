@@ -9,6 +9,6 @@ export default function extractLooseWords(input: string, acc: Token[] = []): Tok
       from: from,
       to: from + w.length,
       term: w
-    }
+    };
   }));
 }

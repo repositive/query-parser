@@ -10,7 +10,7 @@ export function isToken(o: any): o is Token {
     [ 'bo'
     , 'term'
     , 'filter'
-    ].indexOf(o.type) !== -1
+    ].indexOf(o.type) !== -1;
 }
 
 export type Parser = (input: string, acc: Token[]) => Token[];
