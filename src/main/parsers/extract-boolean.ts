@@ -1,35 +1,21 @@
-import {Token} from "./base-parser";
+import {concat} from 'ramda';
+import {Token} from './base-parser';
 
-export default function extractBoolean(input:string): Token[] {
-  function explicit(input) {
+export default function extractExplicitBoolean(input: string, tokens: Token[] = []): Token[] {
 
+  const match = input.match(/ AND | OR | NOT /);
+  if (match) {
+    const from = match.index;
+    const to = from + match[0].length;
+    const newTokens = concat(tokens, <Token[]> [{
+      type: 'bo',
+      from: from,
+      to: to,
+      term: input.substring(from + 1, to - 1)
+    }]);
+    return extractExplicitBoolean(input.substring(to), newTokens);
   }
-  //
-  // const matches = input.match(/\s(AND|OR|NOT)\s/g);
-  //
-  // let splits = input.split(/\sAND\s/g);
-  // const operator = 'AND';
-  // let froms = [];
-  // let tos = [];
-  // let index = 0;
-  // splits.forEach(s => {
-  //   index += s.length;
-  //   froms.push(index);
-  //   let to = index + operator.length;
-  //   tos.push(to);
-  // });
-  //
-  // console.log(froms, tos);
-  //
-  //
-  // console.log(splits);
-
-  // matches.map(m => {
-  //   return <Token> {
-  //     type: 'bo',
-  //     from: input.indexOf(m)
-  //   }
-  // });
-  
-  return [];
+  else {
+    return tokens;
+  }
 }

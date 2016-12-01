@@ -6,7 +6,7 @@ import extractQuoted from '../../main/parsers/extract-quoted';
 import extractParenthesys from '../../main/parsers/extract-parenthesys';
 import extractLooseWords from '../../main/parsers/extract-loose-words';
 import extractPredicates from '../../main/parsers/extract-predicates';
-import extractBoolean from "../../main/parsers/extract-boolean";
+import extractBoolean from '../../main/parsers/extract-boolean';
 
 test('should parse a simple query', (t) => {
   t.plan(1);
@@ -228,7 +228,6 @@ test('predicate parser should add results to accumulator', function (t) {
   ]);
 });
 
-
 test('tokenStripper - basic usage', t => {
   t.plan(1);
   const str = 'test';
@@ -278,6 +277,20 @@ test('tokenizer - extract tokens from simple strng', t => {
 test('boolean parser', t => {
   t.plan(1);
   const input = 'glaucoma AND ';
-  const result = [{ type: 'bo', from: 9, to: 12, term: 'AND'}];
+  const result = [{ type: 'bo', from: 8, to: 13, term: 'AND'}];
+  t.deepEqual(extractBoolean(input), result);
+});
+
+test('boolean parser OR', t => {
+  t.plan(1);
+  const input = 'one OR another';
+  const result = [{ type: 'bo', from: 3, to: 7, term: 'OR'}];
+  t.deepEqual(extractBoolean(input), result);
+});
+
+test('boolean parser NOT', t => {
+  t.plan(1);
+  const input = 'one NOT another';
+  const result = [{ type: 'bo', from: 3, to: 8, term: 'NOT'}];
   t.deepEqual(extractBoolean(input), result);
 });
