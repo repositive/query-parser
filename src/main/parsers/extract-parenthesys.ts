@@ -45,8 +45,8 @@ export default function extractParenthesys(input: string, acc: Token[] = []): To
     return <Token> {
       type: 'group',
       from: from,
-      to: from + g.length + 1,
+      to: from + g.length + 2,
       term: g
-    }
+    };
   }));
 }

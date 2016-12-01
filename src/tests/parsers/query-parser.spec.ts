@@ -29,23 +29,24 @@ test('parenthesys concat results to acc', t => {
 });
 
 test('extract simple parenthesys', t => {
-  t.plan(1);
+  t.plan(2);
   const result = extractParenthesys('(1)');
-  t.deepEqual(result, [{type: 'group', from: 0, to: 2, term: '1'}]);
+  t.deepEqual(result, [{type: 'group', from: 0, to: 3, term: '1'}]);
+  t.equal('(1)'.substring(result[0].from, result[0].to), '(1)');
 });
 
 test('extract only group', t => {
   t.plan(1);
   const result =  extractParenthesys('one two (group here)');
-  t.deepEqual(result, [{type: 'group', from: 8, to: 19, term: 'group here'}]);
+  t.deepEqual(result, [{type: 'group', from: 8, to: 20, term: 'group here'}]);
 });
 
 test('extract multiple groups', t => {
   t.plan(1);
   const result = extractParenthesys('(one) (two)');
   t.deepEqual(result, [
-    {type: 'group', from: 0, to: 4, term: 'one'},
-    {type: 'group', from: 6, to: 10, term: 'two'}
+    {type: 'group', from: 0, to: 5, term: 'one'},
+    {type: 'group', from: 6, to: 11, term: 'two'}
   ]);
 });
 
@@ -53,7 +54,7 @@ test('extract super-group of embedded', t => {
   t.plan(1);
   const result = extractParenthesys('(one OR (two AND three))');
   t.deepEqual(result, [
-    {type: 'group', from: 0, to: 23, term: 'one OR (two AND three)'}
+    {type: 'group', from: 0, to: 24, term: 'one OR (two AND three)'}
   ]);
 });
 
@@ -267,14 +268,6 @@ test('tokenStripper - strip with nothing', t => {
   t.deepEqual(result, [{from: 0, to: 3, term: 'one'}]);
 });
 
-test('tokenizer - extract tokens from simple strng', t => {
-  t.plan(1);
-  const str = 'test';
-  const tokens = [{type: 'term', from: 0, to: 4, term: 'test'}];
-  const result = tokenizer(str);
-  t.deepEqual(result, tokens);
-});
-
 test('boolean parser', t => {
   t.plan(1);
   const input = 'glaucoma AND ';
@@ -329,4 +322,60 @@ test('boolean parser implicit double', t => {
   const input = ' a ';
   const result = [{type: 'bo', from: 0, to: 1, term: 'AND'}, {type: 'bo', from: 2, to: 3, term: 'AND'}];
   t.deepEqual(extractIBoolean(input), result);
+});
+
+test('tokenizer - extract tokens from simple strng', t => {
+  t.plan(1);
+  const str = 'test';
+  const tokens = [{type: 'term', from: 0, to: 4, term: 'test'}];
+  const result = tokenizer(str);
+  t.deepEqual(result, tokens);
+});
+
+test('tokenizer - extract tokens from group string', t => {
+  t.plan(1);
+  const str = '(one OR two)';
+  const tokens = [
+    {type: 'group', from: 0, to: 12, term: 'one OR two'}
+  ];
+  const result = tokenizer(str);
+  t.deepEqual(result, tokens);
+});
+
+test('tokenizer - extract tokens from simple explicit boolean', t => {
+  t.plan(1);
+  const str = 'one AND two';
+  const tokens = [
+    {type: 'term', from: 0, to: 3, term: 'one'},
+    {type: 'bo', from: 3, to: 8, term: 'AND'},
+    {type: 'term', from: 8, to: 11, term: 'two'}
+  ];
+  const result = tokenizer(str);
+  t.deepEqual(result, tokens);
+});
+
+test('tokenizer - extract tokens from simple implicit boolean', t => {
+  t.plan(1);
+  const str = 'one two';
+  const tokens = [
+    {type: 'term', from: 0, to: 3, term: 'one'},
+    {type: 'bo', from: 3, to: 4, term: 'AND'},
+    {type: 'term', from: 4, to: 7, term: 'two'}
+  ];
+  const result = tokenizer(str);
+  t.deepEqual(result, tokens);
+});
+
+test('tokenizer - extract tokens from all parsers', t => {
+  t.plan(1);
+  const str = 'one "two" NOT (group)';
+  const tokens = [
+    {type: 'term', from: 0, to: 3, term: 'one'},
+    {type: 'bo', from: 3, to: 4, term: 'AND'},
+    {type: 'term', from: 4, to: 9, term: 'two'},
+    {type: 'bo', from: 9, to: 14, term: 'NOT'},
+    {type: 'group', from: 14, to: 21, term: 'group'}
+  ];
+  const result = tokenizer(str);
+  t.deepEqual(result, tokens);
 });

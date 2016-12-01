@@ -28,17 +28,19 @@ interface StringRange extends Range {
 }
 
 function isContained(container: Range, contained: Range) {
-  return container.from <= contained.from && container.to >= container.to;
+  return container.from <= contained.from && container.to >= contained.to;
 }
 
 function rangeSplitter(input: Range[], split: Range[]): Range[] {
 
   const s = head(split);
-
   if (s) {
     const newInput = flatten(input.map(r => {
       if (isContained(r, s)) {
         return [{from: r.from, to: s.from}, {from: s.to, to: r.to}].filter(rng => rng.from !== rng.to);
+      }
+      else {
+        return [];
       }
     }));
     return rangeSplitter(newInput, tail(split));
@@ -65,9 +67,12 @@ export function tokenStripper(input: string, tokens: Token[]): StringRange[] {
 }
 
 export function tokenizer(input: string): Token[] {
+
   return parsers.reduce(
     (tokens, p) => {
       const ranges = tokenStripper(input, tokens);
+      console.log(ranges);
+      console.log(`parser: ${p.name}`);
       return flatten(concat(tokens, ranges.map(r => {
         const newTokens = p(r.term);
         return newTokens.map((t: Token) => {
@@ -78,7 +83,9 @@ export function tokenizer(input: string): Token[] {
       })));
     },
     []
-  );
+  ).sort((a, b) => {
+    return a.from - b.from;
+  });
 }
 
 export function parseString(input: string, defOperator= 'AND'): BTree<SearchNode> {
