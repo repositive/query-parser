@@ -6,7 +6,7 @@ import extractQuoted from '../../main/parsers/extract-quoted';
 import extractParenthesys from '../../main/parsers/extract-parenthesys';
 import extractLooseWords from '../../main/parsers/extract-loose-words';
 import extractPredicates from '../../main/parsers/extract-predicates';
-import extractBoolean from '../../main/parsers/extract-boolean';
+import extractBoolean from '../../main/parsers/extract-explicit-boolean';
 
 test('should parse a simple query', (t) => {
   t.plan(1);

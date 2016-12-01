@@ -5,12 +5,15 @@ import {Token} from './base-parser';
 import extractParenthesys from './extract-parenthesys';
 import extractPredicates from './extract-predicates';
 import extractLooseWords from './extract-loose-words';
+import extractExplicitBoolean from './extract-explicit-boolean';
 import extractQuoted from './extract-quoted';
+
 
 const parsers = [
   extractParenthesys,
   extractPredicates,
   extractQuoted,
+  extractExplicitBoolean,
   extractLooseWords
 ];
 
