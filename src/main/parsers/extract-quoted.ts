@@ -1,14 +1,14 @@
 import {head, tail as _tail, concat} from 'ramda';
 import {Token} from './base-parser';
 
-const tail:any = _tail;
+const tail: any = _tail;
 
 function extractQuotedWord(input: string, acc: string = ''): string {
   const h = head(input);
   if (h === '') {
-    throw new Error(`No closing quote in ${acc}`)
+    throw new Error(`No closing quote in ${acc}`);
   }
-  else if(h === '"') {
+  else if (h === '"') {
     return acc;
   }
   else {
@@ -34,13 +34,13 @@ function extractQuotedWords(input: string, acc: string[] = []) {
 export default function extractQuoted(input: string, acc: Token[] = []) {
   const words = extractQuotedWords(input);
 
-  return concat(acc, words.map((w):Token => {
+  return concat(acc, words.map((w): Token => {
     const from = input.indexOf(w);
     return {
       type: 'term',
       from: from,
       to: from + w.length,
-      term: w.replace(/\"/g,'')
-    }
+      term: w.replace(/\"/g, '')
+    };
   }));
 }
