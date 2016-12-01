@@ -1,13 +1,13 @@
 
 import * as test from 'tape';
 import {Token} from '../../main/parsers/base-parser';
-import {parseString as parse} from '../../main/parsers/query-parser';
+import {tokenStripper, tokenizer, parseString as parse} from '../../main/parsers/query-parser';
 import extractQuoted from '../../main/parsers/extract-quoted';
 import extractParenthesys from '../../main/parsers/extract-parenthesys';
 import extractLooseWords from '../../main/parsers/extract-loose-words';
 import extractPredicates from '../../main/parsers/extract-predicates';
 
-test('should parse a simple query',(t) => {
+test('should parse a simple query', (t) => {
   t.plan(1);
   const result = parse('cancer');
   t.deepEqual({value: { text: 'cancer'}}, result);
@@ -78,10 +78,13 @@ test('extract multiple quoted entries from string', t => {
   const str = '"1" n "2"';
   const result = extractQuoted(str);
 
-  t.deepEqual([
-    {type: 'term', from: 0, to: 3, term: '1'},
-    {type: 'term', from: 6, to: 9, term: '2'}
-  ], result);
+  t.deepEqual(
+    [
+      {type: 'term', from: 0, to: 3, term: '1'},
+      {type: 'term', from: 6, to: 9, term: '2'}
+    ],
+    result
+  );
 
   t.deepEqual('"1"', str.substring(result[0].from, result[0].to));
   t.deepEqual('"2"', str.substring(result[1].from, result[1].to));
@@ -92,9 +95,12 @@ test('extract single quoted with spaces', t => {
   const str = '"hello world"';
   const result = extractQuoted(str);
 
-  t.deepEquals([
-    {type: 'term', from: 0, to: 13, term: 'hello world'}
-  ], result);
+  t.deepEquals(
+    [
+      {type: 'term', from: 0, to: 13, term: 'hello world'}
+    ],
+    result
+  );
 
   t.deepEquals(str, str.substring(result[0].from, result[0].to));
 });
@@ -159,10 +165,13 @@ test('parse multiple predicates', function (t) {
 test('parse with spaces around colon', function (t) {
   t.plan(1);
   const result = extractPredicates('glioblastoma assay : RNA-Seq assay:RNA-seq');
-  t.deepEquals(result, [
-    {type: 'filter', from: 13, to: 28, term: 'RNA-Seq', predicate: 'assay'},
-    {type: 'filter', from: 29, to: 42, term: 'RNA-seq', predicate: 'assay'}
-  ])
+  t.deepEquals(
+    result,
+    [
+      {type: 'filter', from: 13, to: 28, term: 'RNA-Seq', predicate: 'assay'},
+      {type: 'filter', from: 29, to: 42, term: 'RNA-seq', predicate: 'assay'}
+    ]
+  );
 });
 
 test('predicate parsing should support quoted terms', function (t) {
@@ -172,11 +181,14 @@ test('predicate parsing should support quoted terms', function (t) {
     {type: 'filter', from: 0, to: 31, term: 'Whole Genome Sequencing', predicate: 'assay'}
   ]);
   result = extractPredicates('glioblastoma assay : RNA-Seq assay:RNA-seq assay : "Whole Genome Sequencing" AND');
-  t.deepEquals(result, [
-    {type: 'filter', from: 13, to: 28, term: 'RNA-Seq', predicate: 'assay'},
-    {type: 'filter', from: 29, to: 42, term: 'RNA-seq', predicate: 'assay'},
-    {type: 'filter', from: 43, to: 76, term: 'Whole Genome Sequencing', predicate: 'assay'}
-  ])
+  t.deepEquals(
+    result,
+    [
+      {type: 'filter', from: 13, to: 28, term: 'RNA-Seq', predicate: 'assay'},
+      {type: 'filter', from: 29, to: 42, term: 'RNA-seq', predicate: 'assay'},
+      {type: 'filter', from: 43, to: 76, term: 'Whole Genome Sequencing', predicate: 'assay'}
+    ]
+  );
 });
 
 test('predicate parsing should be robust to empty strings', function (t) {
@@ -213,4 +225,51 @@ test('predicate parser should add results to accumulator', function (t) {
     {type: 'filter', from: 29, to: 42, term: 'RNA-seq', predicate: 'assay'},
     {type: 'filter', from: 43, to: 76, term: 'Whole Genome Sequencing', predicate: 'assay'}
   ]);
+});
+
+
+test('tokenStripper - basic usage', t => {
+  t.plan(1);
+  const str = 'test';
+  const tokens = <Token[]>[{type: 'term', from: 0, to: 4, term: 'test'}];
+  const result = tokenStripper(str, tokens);
+  t.deepEqual(result, []);
+});
+
+test('tokenStripper - multiple tokens', t => {
+  t.plan(1);
+  const str = '"quoted here" AND (group)';
+  const tokens = <Token[]> [
+    {type: 'term', from: 0, to: 13, term: 'quoted here'},
+    {type: 'group', from: 18, to: 25, term: 'group'}
+  ];
+  const result = tokenStripper(str, tokens);
+  t.deepEqual(result, [{ from: 13, to: 18, term: ' AND '}]);
+});
+
+test('tokenStripper - multiple tokens and nothing left', t => {
+  t.plan(1);
+  const str = 'one two';
+  const tokens = <Token[]> [
+    {type: 'term', from: 0, to: 3, term: 'one'},
+    {type: 'term', from: 4, to: 7, term: 'two'}
+  ];
+  const result = tokenStripper(str, tokens);
+  t.deepEqual(result, [{ from: 3, to: 4, term: ' '}]);
+});
+
+test('tokenStripper - strip with nothing', t => {
+  t.plan(1);
+  const str = 'one';
+  const tokens = [];
+  const result = tokenStripper(str, tokens);
+  t.deepEqual(result, [{from: 0, to: 3, term: 'one'}]);
+});
+
+test('tokenizer - extract tokens from simple strng', t => {
+  t.plan(1);
+  const str = 'test';
+  const tokens = [{type: 'term', from: 0, to: 4, term: 'test'}];
+  const result = tokenizer(str);
+  t.deepEqual(result, tokens);
 });
