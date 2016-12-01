@@ -1,12 +1,62 @@
 
 import * as test from 'tape';
+import {Token} from '../../main/parsers/base-parser';
 import {parseString as parse} from '../../main/parsers/query-parser';
 import extractQuoted from '../../main/parsers/extract-quoted';
+import extractParenthesys from '../../main/parsers/extract-parenthesys';
 
 test('should parse a simple query',(t) => {
   t.plan(1);
   const result = parse('cancer');
   t.deepEqual({value: { text: 'cancer'}}, result);
+});
+
+test('parenthesys does not extract other stuff', t => {
+  t.plan(1);
+  const result = extractParenthesys('this is not "extracted"');
+  t.deepEqual([], result);
+})
+
+test('parenthesys concat results to acc', t => {
+  t.plan(1);
+  const output: Token = {type: 'term', from: 0, to: 4, term: 'test'};
+  const result = extractParenthesys('no match here', [output]);
+  t.deepEqual(result, [output]);
+})
+
+test('extract simple parenthesys', t => {
+  t.plan(1);
+  const result = extractParenthesys('(1)');
+  t.deepEqual(result, [{type: 'group', from: 0, to: 2, term: '1'}]);
+});
+
+test('extract only group', t => {
+  t.plan(1);
+  const result =  extractParenthesys('one two (group here)');
+  t.deepEqual(result, [{type: 'group', from: 8, to: 19, term: 'group here'}]);
+});
+
+test('extract multiple groups', t => {
+  t.plan(1);
+  const result = extractParenthesys('(one) (two)');
+  t.deepEqual(result, [
+    {type: 'group', from: 0, to: 4, term: 'one'},
+    {type: 'group', from: 6, to: 10, term: 'two'}
+  ]);
+})
+
+test('extract super-group of embedded', t => {
+  t.plan(1);
+  const result = extractParenthesys('(one OR (two AND three))');
+  t.deepEqual(result, [
+    {type: 'group', from: 0, to: 23, term: 'one OR (two AND three)'}
+  ]);
+});
+
+test('quotes does not extract other stuff', t => {
+  t.plan(1);
+  const result = extractQuoted('this is (not extracted)');
+  t.deepEqual([], result);
 });
 
 test('extract quoted of simple string', t => {
