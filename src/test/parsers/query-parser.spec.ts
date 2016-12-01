@@ -143,7 +143,7 @@ test('parse predicates from longer string', function (t) {
   ]);
   result = extractPredicates('cancer AND assay:RNA-Seq AND ');
   t.deepEquals(result, [
-    {type: 'predicate', from: 12, to: 25, term: 'RNA-Seq', predicate: 'assay'}
+    {type: 'predicate', from: 11, to: 24, term: 'RNA-Seq', predicate: 'assay'}
   ]);
 });
 
@@ -151,7 +151,52 @@ test('parse multiple predicates', function (t) {
   t.plan(1);
   const result = extractPredicates('glioblastoma assay:RNA-Seq assay:RNA-seq');
   t.deepEquals(result, [
-    {type: 'predicate', from: 16, to: 29, term: 'RNA-Seq', predicate: 'assay'},
-    {type: 'predicate', from: 31, to: 44, term: 'RNA-seq', predicate: 'assay'}
+    {type: 'predicate', from: 13, to: 26, term: 'RNA-Seq', predicate: 'assay'},
+    {type: 'predicate', from: 27, to: 40, term: 'RNA-seq', predicate: 'assay'}
   ]);
+});
+
+test('parse with spaces around colon', function (t) {
+  t.plan(1);
+  const result = extractPredicates('glioblastoma assay : RNA-Seq assay:RNA-seq');
+  t.deepEquals(result, [
+    {type: 'predicate', from: 13, to: 28, term: 'RNA-Seq', predicate: 'assay'},
+    {type: 'predicate', from: 29, to: 42, term: 'RNA-seq', predicate: 'assay'}
+  ])
+});
+
+test('predicate parsing should support quoted terms', function (t) {
+  t.plan(2);
+  let result = extractPredicates('assay:"Whole Genome Sequencing"');
+  t.deepEquals(result, [
+    {type: 'predicate', from: 0, to: 31, term: 'Whole Genome Sequencing', predicate: 'assay'}
+  ]);
+  result = extractPredicates('glioblastoma assay : RNA-Seq assay:RNA-seq assay : "Whole Genome Sequencing" AND');
+  t.deepEquals(result, [
+    {type: 'predicate', from: 13, to: 28, term: 'RNA-Seq', predicate: 'assay'},
+    {type: 'predicate', from: 29, to: 42, term: 'RNA-seq', predicate: 'assay'},
+    {type: 'predicate', from: 43, to: 76, term: 'Whole Genome Sequencing', predicate: 'assay'}
+  ])
+});
+
+test('predicate parsing should be robust to empty strings', function (t) {
+  t.plan(1);
+  const result = extractPredicates('');
+  t.deepEquals(result, []);
+});
+
+test('predicate parsing should be robust to regular tokens', function (t) {
+  t.plan(1);
+  const result = extractPredicates('cancer');
+  t.deepEquals(result, []);
+});
+
+test('predicate parsing should be robust to stray colons', function (t) {
+  t.plan(3);
+  let result = extractPredicates('cancer:');
+  t.deepEquals(result, []);
+  result = extractPredicates('cancer :');
+  t.deepEquals(result, []);
+  result = extractPredicates('cancer : ');
+  t.deepEquals(result, []);
 });
