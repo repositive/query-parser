@@ -4,6 +4,7 @@ import {Token} from '../../main/parsers/base-parser';
 import {parseString as parse} from '../../main/parsers/query-parser';
 import extractQuoted from '../../main/parsers/extract-quoted';
 import extractParenthesys from '../../main/parsers/extract-parenthesys';
+import extractLooseWords from '../../main/parsers/extract-loose-words';
 
 test('should parse a simple query',(t) => {
   t.plan(1);
@@ -97,35 +98,30 @@ test('extract single quoted with spaces', t => {
   t.deepEquals(str, str.substring(result[0].from, result[0].to));
 });
 
-test.skip('should parse a simple query with multiple values', (t) => {
-  t.plan(2);
-  const result1 = parse('simple query');
-  t.deepEqual(result1, {$and: [{text: 'simple'}, {text: 'query'}]});
-
-  const result2 = parse('another simple query');
-  t.deepEqual(result2, {$and: [{text: 'another'}, {text: 'simple'}, {text: 'query'}]});
+test('parse loose words of empty', t => {
+  t.plan(1);
+  const result = extractLooseWords('');
+  t.deepEquals(result, []);
 });
 
-
-test.skip('should parse a match exactly simple query', (t) => {
+test('parse loose words concats the accumulated tokens', t => {
   t.plan(1);
-  const result = parse('"simple query"')
-  t.deepEqual(result, {$and: [{text: 'simple query'}]});
+  const acc = <Token[]> [{type: 'term', from: 0, to: 4, term: 'test'}]
+  const result = extractLooseWords('', acc);
+  t.deepEquals(result, acc);
+})
+
+test('parse loose words simple', t => {
+  t.plan(1);
+  const result =  extractLooseWords('test');
+  t.deepEquals(result, [{type: 'term', from: 0, to: 4, term: 'test'}]);
 });
 
-test.skip('should parse a match exactly multiple times', (t) => {
+test('parse loose words multiple', t => {
   t.plan(1);
-  const result = parse('"first match" "second match"');
-  t.deepEqual(result, {$and: [{text: 'first match'}, {text: 'second match'}]});
-});
-
-test.skip('should parse a exact match with loose interpolated', (t) => {
-  t.plan(1);
-  const result = parse('"first match" second match "third match"');
-  t.deepEqual(result, {$and: [
-    {text: 'first match'},
-    {text: 'third match'},
-    {text: 'second'},
-    {text: 'match'}
-  ]});
+  const result =  extractLooseWords('hello world');
+  t.deepEquals(result, [
+    {type: 'term', from: 0, to: 5, term: 'hello'},
+    {type: 'term', from: 6, to: 11, term: 'world'}
+  ]);
 });
