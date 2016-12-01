@@ -16,14 +16,14 @@ test('parenthesys does not extract other stuff', t => {
   t.plan(1);
   const result = extractParenthesys('this is not "extracted"');
   t.deepEqual([], result);
-})
+});
 
 test('parenthesys concat results to acc', t => {
   t.plan(1);
   const output: Token = {type: 'term', from: 0, to: 4, term: 'test'};
   const result = extractParenthesys('no match here', [output]);
   t.deepEqual(result, [output]);
-})
+});
 
 test('extract simple parenthesys', t => {
   t.plan(1);
@@ -44,7 +44,7 @@ test('extract multiple groups', t => {
     {type: 'group', from: 0, to: 4, term: 'one'},
     {type: 'group', from: 6, to: 10, term: 'two'}
   ]);
-})
+});
 
 test('extract super-group of embedded', t => {
   t.plan(1);
@@ -70,7 +70,7 @@ test('concat to previous extracted items', t => {
   t.plan(1);
   const result = extractQuoted('not match', [{type: 'term', from: 0, to: 6, term: 'test'}]);
   t.deepEqual([{type: 'term', from: 0, to: 6, term: 'test'}], result);
-})
+});
 
 test('extract multiple quoted entries from string', t => {
   t.plan(3);
@@ -88,7 +88,7 @@ test('extract multiple quoted entries from string', t => {
 
 test('extract single quoted with spaces', t => {
   t.plan(2);
-  const str = '"hello world"'
+  const str = '"hello world"';
   const result = extractQuoted(str);
 
   t.deepEquals([
@@ -109,7 +109,7 @@ test('parse loose words concats the accumulated tokens', t => {
   const acc = <Token[]> [{type: 'term', from: 0, to: 4, term: 'test'}]
   const result = extractLooseWords('', acc);
   t.deepEquals(result, acc);
-})
+});
 
 test('parse loose words simple', t => {
   t.plan(1);
