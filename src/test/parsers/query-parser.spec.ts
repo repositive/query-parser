@@ -107,7 +107,7 @@ test('parse loose words of empty', t => {
 
 test('parse loose words concats the accumulated tokens', t => {
   t.plan(1);
-  const acc = <Token[]> [{type: 'term', from: 0, to: 4, term: 'test'}]
+  const acc = <Token[]> [{type: 'term', from: 0, to: 4, term: 'test'}];
   const result = extractLooseWords('', acc);
   t.deepEquals(result, acc);
 });
