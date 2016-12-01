@@ -5,7 +5,6 @@ import {Token} from "./base-parser";
 
 export default function extractPredicates(input:string, acc: Token[] = []): Token[] {
   const matches = input.match(/\s*(\S+)\s?:\s?((\".*\")|(\S+))\s*/g);
-  console.log(matches);
   if (!matches) return [];
   let tokens:Token[] = [];
   for (let m of matches) {
