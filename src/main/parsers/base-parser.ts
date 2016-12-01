@@ -1,5 +1,5 @@
 export interface Token {
-  type: 'bo' | 'term' | 'filter' | 'group' | 'predicate';
+  type: 'bo' | 'term' | 'filter' | 'group';
   from: number;
   to: number;
   term: string;
@@ -10,8 +10,7 @@ export function isToken(o: any): o is Token {
   return typeof o === 'object' &&
     [ 'bo',
       'term',
-      'filter',
-      'predicate'
+      'filter'
     ].indexOf(o.type) !== -1
 }
 

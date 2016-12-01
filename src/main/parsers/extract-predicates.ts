@@ -11,7 +11,7 @@ export default function extractPredicates(input:string, acc: Token[] = []): Toke
     const str = m.trim();
     const temp = str.split(':');
     tokens.push({
-      type: 'predicate',
+      type: 'filter',
       from: input.indexOf(str),
       to: input.indexOf(str) + str.length,
       term: temp[1].trim().replace(/\"/g, ''),

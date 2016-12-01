@@ -131,7 +131,7 @@ test('parse simple predicates', function (t) {
   t.plan(1);
   const result = extractPredicates('hello:world');
   t.deepEquals(result, [
-    {type: 'predicate', from: 0, to: 11, term: 'world', predicate: 'hello'}
+    {type: 'filter', from: 0, to: 11, term: 'world', predicate: 'hello'}
   ]);
 });
 
@@ -139,11 +139,11 @@ test('parse predicates from longer string', function (t) {
   t.plan(2);
   let result = extractPredicates('assay:RNA-Seq cancer');
   t.deepEquals(result, [
-    {type: 'predicate', from: 0, to: 13, term: 'RNA-Seq', predicate: 'assay'}
+    {type: 'filter', from: 0, to: 13, term: 'RNA-Seq', predicate: 'assay'}
   ]);
   result = extractPredicates('cancer AND assay:RNA-Seq AND ');
   t.deepEquals(result, [
-    {type: 'predicate', from: 11, to: 24, term: 'RNA-Seq', predicate: 'assay'}
+    {type: 'filter', from: 11, to: 24, term: 'RNA-Seq', predicate: 'assay'}
   ]);
 });
 
@@ -151,8 +151,8 @@ test('parse multiple predicates', function (t) {
   t.plan(1);
   const result = extractPredicates('glioblastoma assay:RNA-Seq assay:RNA-seq');
   t.deepEquals(result, [
-    {type: 'predicate', from: 13, to: 26, term: 'RNA-Seq', predicate: 'assay'},
-    {type: 'predicate', from: 27, to: 40, term: 'RNA-seq', predicate: 'assay'}
+    {type: 'filter', from: 13, to: 26, term: 'RNA-Seq', predicate: 'assay'},
+    {type: 'filter', from: 27, to: 40, term: 'RNA-seq', predicate: 'assay'}
   ]);
 });
 
@@ -160,8 +160,8 @@ test('parse with spaces around colon', function (t) {
   t.plan(1);
   const result = extractPredicates('glioblastoma assay : RNA-Seq assay:RNA-seq');
   t.deepEquals(result, [
-    {type: 'predicate', from: 13, to: 28, term: 'RNA-Seq', predicate: 'assay'},
-    {type: 'predicate', from: 29, to: 42, term: 'RNA-seq', predicate: 'assay'}
+    {type: 'filter', from: 13, to: 28, term: 'RNA-Seq', predicate: 'assay'},
+    {type: 'filter', from: 29, to: 42, term: 'RNA-seq', predicate: 'assay'}
   ])
 });
 
@@ -169,13 +169,13 @@ test('predicate parsing should support quoted terms', function (t) {
   t.plan(2);
   let result = extractPredicates('assay:"Whole Genome Sequencing"');
   t.deepEquals(result, [
-    {type: 'predicate', from: 0, to: 31, term: 'Whole Genome Sequencing', predicate: 'assay'}
+    {type: 'filter', from: 0, to: 31, term: 'Whole Genome Sequencing', predicate: 'assay'}
   ]);
   result = extractPredicates('glioblastoma assay : RNA-Seq assay:RNA-seq assay : "Whole Genome Sequencing" AND');
   t.deepEquals(result, [
-    {type: 'predicate', from: 13, to: 28, term: 'RNA-Seq', predicate: 'assay'},
-    {type: 'predicate', from: 29, to: 42, term: 'RNA-seq', predicate: 'assay'},
-    {type: 'predicate', from: 43, to: 76, term: 'Whole Genome Sequencing', predicate: 'assay'}
+    {type: 'filter', from: 13, to: 28, term: 'RNA-Seq', predicate: 'assay'},
+    {type: 'filter', from: 29, to: 42, term: 'RNA-seq', predicate: 'assay'},
+    {type: 'filter', from: 43, to: 76, term: 'Whole Genome Sequencing', predicate: 'assay'}
   ])
 });
 
