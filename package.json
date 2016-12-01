@@ -9,7 +9,7 @@
   "scripts": {
     "setup": "npm i && rm -fr dist && tsc",
     "start": "nodemon --watch src --watch package.json -e ts,json -q -x 'rm -fr dist && echo \"\\n============\\nCOMPILING...\\n============\\n\\n\" && tsc --outDir dist || return 0 && node dist/main/cli.js'",
-    "test": "nodemon --watch src --watch package.json -e ts,json -q -x 'rm -fr dist && echo \"\\n============\\nCOMPILING...\\n============\\n\\n\" && tsc --outDir dist || return 0 && node dist/test/tests.js'"
+    "test": "nodemon --watch src --watch package.json -e ts,json -q -x 'rm -fr dist && echo \"\\n============\\nCOMPILING...\\n============\\n\\n\" && tsc --outDir dist || return 0 && tape \"dist/tests/**/*.js\"'"
   },
   "author": "",
   "license": "ISC",

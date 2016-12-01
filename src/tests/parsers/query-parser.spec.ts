@@ -5,6 +5,7 @@ import {parseString as parse} from '../../main/parsers/query-parser';
 import extractQuoted from '../../main/parsers/extract-quoted';
 import extractParenthesys from '../../main/parsers/extract-parenthesys';
 import extractLooseWords from '../../main/parsers/extract-loose-words';
+import extractPredicates from '../../main/parsers/extract-predicates';
 
 test('should parse a simple query',(t) => {
   t.plan(1);
@@ -16,14 +17,14 @@ test('parenthesys does not extract other stuff', t => {
   t.plan(1);
   const result = extractParenthesys('this is not "extracted"');
   t.deepEqual([], result);
-})
+});
 
 test('parenthesys concat results to acc', t => {
   t.plan(1);
   const output: Token = {type: 'term', from: 0, to: 4, term: 'test'};
   const result = extractParenthesys('no match here', [output]);
   t.deepEqual(result, [output]);
-})
+});
 
 test('extract simple parenthesys', t => {
   t.plan(1);
@@ -44,7 +45,7 @@ test('extract multiple groups', t => {
     {type: 'group', from: 0, to: 4, term: 'one'},
     {type: 'group', from: 6, to: 10, term: 'two'}
   ]);
-})
+});
 
 test('extract super-group of embedded', t => {
   t.plan(1);
@@ -70,7 +71,7 @@ test('concat to previous extracted items', t => {
   t.plan(1);
   const result = extractQuoted('not match', [{type: 'term', from: 0, to: 6, term: 'test'}]);
   t.deepEqual([{type: 'term', from: 0, to: 6, term: 'test'}], result);
-})
+});
 
 test('extract multiple quoted entries from string', t => {
   t.plan(3);
@@ -88,7 +89,7 @@ test('extract multiple quoted entries from string', t => {
 
 test('extract single quoted with spaces', t => {
   t.plan(2);
-  const str = '"hello world"'
+  const str = '"hello world"';
   const result = extractQuoted(str);
 
   t.deepEquals([
@@ -106,10 +107,10 @@ test('parse loose words of empty', t => {
 
 test('parse loose words concats the accumulated tokens', t => {
   t.plan(1);
-  const acc = <Token[]> [{type: 'term', from: 0, to: 4, term: 'test'}]
+  const acc = <Token[]> [{type: 'term', from: 0, to: 4, term: 'test'}];
   const result = extractLooseWords('', acc);
   t.deepEquals(result, acc);
-})
+});
 
 test('parse loose words simple', t => {
   t.plan(1);
@@ -124,4 +125,78 @@ test('parse loose words multiple', t => {
     {type: 'term', from: 0, to: 5, term: 'hello'},
     {type: 'term', from: 6, to: 11, term: 'world'}
   ]);
+});
+
+test('parse simple predicates', function (t) {
+  t.plan(1);
+  const result = extractPredicates('hello:world');
+  t.deepEquals(result, [
+    {type: 'filter', from: 0, to: 11, term: 'world', predicate: 'hello'}
+  ]);
+});
+
+test('parse predicates from longer string', function (t) {
+  t.plan(2);
+  let result = extractPredicates('assay:RNA-Seq cancer');
+  t.deepEquals(result, [
+    {type: 'filter', from: 0, to: 13, term: 'RNA-Seq', predicate: 'assay'}
+  ]);
+  result = extractPredicates('cancer AND assay:RNA-Seq AND ');
+  t.deepEquals(result, [
+    {type: 'filter', from: 11, to: 24, term: 'RNA-Seq', predicate: 'assay'}
+  ]);
+});
+
+test('parse multiple predicates', function (t) {
+  t.plan(1);
+  const result = extractPredicates('glioblastoma assay:RNA-Seq assay:RNA-seq');
+  t.deepEquals(result, [
+    {type: 'filter', from: 13, to: 26, term: 'RNA-Seq', predicate: 'assay'},
+    {type: 'filter', from: 27, to: 40, term: 'RNA-seq', predicate: 'assay'}
+  ]);
+});
+
+test('parse with spaces around colon', function (t) {
+  t.plan(1);
+  const result = extractPredicates('glioblastoma assay : RNA-Seq assay:RNA-seq');
+  t.deepEquals(result, [
+    {type: 'filter', from: 13, to: 28, term: 'RNA-Seq', predicate: 'assay'},
+    {type: 'filter', from: 29, to: 42, term: 'RNA-seq', predicate: 'assay'}
+  ])
+});
+
+test('predicate parsing should support quoted terms', function (t) {
+  t.plan(2);
+  let result = extractPredicates('assay:"Whole Genome Sequencing"');
+  t.deepEquals(result, [
+    {type: 'filter', from: 0, to: 31, term: 'Whole Genome Sequencing', predicate: 'assay'}
+  ]);
+  result = extractPredicates('glioblastoma assay : RNA-Seq assay:RNA-seq assay : "Whole Genome Sequencing" AND');
+  t.deepEquals(result, [
+    {type: 'filter', from: 13, to: 28, term: 'RNA-Seq', predicate: 'assay'},
+    {type: 'filter', from: 29, to: 42, term: 'RNA-seq', predicate: 'assay'},
+    {type: 'filter', from: 43, to: 76, term: 'Whole Genome Sequencing', predicate: 'assay'}
+  ])
+});
+
+test('predicate parsing should be robust to empty strings', function (t) {
+  t.plan(1);
+  const result = extractPredicates('');
+  t.deepEquals(result, []);
+});
+
+test('predicate parsing should be robust to regular tokens', function (t) {
+  t.plan(1);
+  const result = extractPredicates('cancer');
+  t.deepEquals(result, []);
+});
+
+test('predicate parsing should be robust to stray colons', function (t) {
+  t.plan(3);
+  let result = extractPredicates('cancer:');
+  t.deepEquals(result, []);
+  result = extractPredicates('cancer :');
+  t.deepEquals(result, []);
+  result = extractPredicates('cancer : ');
+  t.deepEquals(result, []);
 });
