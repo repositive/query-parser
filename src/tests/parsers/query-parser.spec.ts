@@ -6,6 +6,7 @@ import extractQuoted from '../../main/parsers/extract-quoted';
 import extractParenthesys from '../../main/parsers/extract-parenthesys';
 import extractLooseWords from '../../main/parsers/extract-loose-words';
 import extractPredicates from '../../main/parsers/extract-predicates';
+import extractBoolean from "../../main/parsers/extract-boolean";
 
 test('should parse a simple query', (t) => {
   t.plan(1);
@@ -272,4 +273,11 @@ test('tokenizer - extract tokens from simple strng', t => {
   const tokens = [{type: 'term', from: 0, to: 4, term: 'test'}];
   const result = tokenizer(str);
   t.deepEqual(result, tokens);
+});
+
+test('boolean parser', t => {
+  t.plan(1);
+  const input = 'glaucoma AND ';
+  const result = [{ type: 'bo', from: 9, to: 12, term: 'AND'}];
+  t.deepEqual(extractBoolean(input), result);
 });

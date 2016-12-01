@@ -10,8 +10,8 @@ import extractQuoted from './extract-quoted';
 const parsers = [
   extractParenthesys,
   extractPredicates,
-  extractLooseWords,
-  extractQuoted
+  extractQuoted,
+  extractLooseWords
 ];
 
 interface Range {
@@ -50,11 +50,6 @@ export function tokenStripper(input: string, tokens: Token[]): StringRange[] {
 
   const ranges = rangeSplitter([inputRange], tokens);
 
-  console.log('BATCH START');
-  console.log(inputRange);
-  console.log(tokens);
-  console.log(ranges);
-  console.log('BATCH END');
   return ranges.map(r => {
     const str = input.substring(r.from, r.to);
     return {
