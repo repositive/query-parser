@@ -10,7 +10,6 @@ function extractParenthesysContent(input: string, acc: string = ''): string {
   }
   else if (h === ')') {
 
-    console.log(acc);
     return acc;
   }
   else if (h === '(') {

@@ -40,15 +40,12 @@ function rangeSplitter(input: Range[], split: Range[]): Range[] {
         return [{from: r.from, to: s.from}, {from: s.to, to: r.to}].filter(rng => rng.from !== rng.to);
       }
       else {
-        console.log(`${JSON.stringify(s)} does not fit in ${JSON.stringify(r)}`);
         return [r];
       }
     });
     return rangeSplitter(flatten(newInput), tail(split));
   }
   else {
-    console.log('RESULT');
-    console.log(input);
     return input;
   }
 }
