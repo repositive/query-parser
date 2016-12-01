@@ -5,6 +5,7 @@ import {parseString as parse} from '../../main/parsers/query-parser';
 import extractQuoted from '../../main/parsers/extract-quoted';
 import extractParenthesys from '../../main/parsers/extract-parenthesys';
 import extractLooseWords from '../../main/parsers/extract-loose-words';
+import extractPredicates from '../../main/parsers/extract-predicates';
 
 test('should parse a simple query',(t) => {
   t.plan(1);
@@ -123,5 +124,34 @@ test('parse loose words multiple', t => {
   t.deepEquals(result, [
     {type: 'term', from: 0, to: 5, term: 'hello'},
     {type: 'term', from: 6, to: 11, term: 'world'}
+  ]);
+});
+
+test('parse simple predicates', function (t) {
+  t.plan(1);
+  const result = extractPredicates('hello:world');
+  t.deepEquals(result, [
+    {type: 'predicate', from: 0, to: 11, term: 'world', predicate: 'hello'}
+  ]);
+});
+
+test('parse predicates from longer string', function (t) {
+  t.plan(2);
+  let result = extractPredicates('assay:RNA-Seq cancer');
+  t.deepEquals(result, [
+    {type: 'predicate', from: 0, to: 13, term: 'RNA-Seq', predicate: 'assay'}
+  ]);
+  result = extractPredicates('cancer AND assay:RNA-Seq AND ');
+  t.deepEquals(result, [
+    {type: 'predicate', from: 12, to: 25, term: 'RNA-Seq', predicate: 'assay'}
+  ]);
+});
+
+test('parse multiple predicates', function (t) {
+  t.plan(1);
+  const result = extractPredicates('glioblastoma assay:RNA-Seq assay:RNA-seq');
+  t.deepEquals(result, [
+    {type: 'predicate', from: 16, to: 29, term: 'RNA-Seq', predicate: 'assay'},
+    {type: 'predicate', from: 31, to: 44, term: 'RNA-seq', predicate: 'assay'}
   ]);
 });
