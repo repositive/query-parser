@@ -1,7 +1,7 @@
 
 import * as test from 'tape';
 import {Token} from '../../main/parsers/base-parser';
-import {parseString as parse} from '../../main/parsers/query-parser';
+import {tokenStripper, parseString as parse} from '../../main/parsers/query-parser';
 import extractQuoted from '../../main/parsers/extract-quoted';
 import extractParenthesys from '../../main/parsers/extract-parenthesys';
 import extractLooseWords from '../../main/parsers/extract-loose-words';
@@ -10,6 +10,36 @@ test('should parse a simple query', (t) => {
   t.plan(1);
   const result = parse('cancer');
   t.deepEqual({value: { text: 'cancer'}}, result);
+});
+
+test('tokenStripper - basic usage', t => {
+  t.plan(1);
+  const str = 'test';
+  const tokens = <Token[]>[{type: 'term', from: 0, to: 4, term: 'test'}];
+  const result = tokenStripper(str, tokens);
+  t.deepEqual(result, []);
+});
+
+test('tokenStripper - multiple tokens', t => {
+  t.plan(1);
+  const str = '"quoted here" AND (group)';
+  const tokens = <Token[]> [
+    {type: 'term', from: 0, to: 13, term: 'quoted here'},
+    {type: 'group', from: 18, to: 25, term: 'group'}
+  ];
+  const result = tokenStripper(str, tokens);
+  t.deepEqual(result, [' AND ']);
+});
+
+test('tokenStripper - multiple tokens and nothing left', t => {
+  t.plan(1);
+  const str = 'one two';
+  const tokens = <Token[]> [
+    {type: 'term', from: 0, to: 3, term: 'one'},
+    {type: 'term', from: 4, to: 7, term: 'two'}
+  ];
+  const result = tokenStripper(str, tokens);
+  t.deepEqual(result, []);
 });
 
 test('parenthesys does not extract other stuff', t => {
