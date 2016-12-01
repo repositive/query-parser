@@ -254,10 +254,23 @@ test('tokenStripper - multiple tokens and nothing left', t => {
   const str = 'one two';
   const tokens = <Token[]> [
     {type: 'term', from: 0, to: 3, term: 'one'},
+    {type: 'bo', from: 3, to: 4, term: 'AND'},
     {type: 'term', from: 4, to: 7, term: 'two'}
   ];
   const result = tokenStripper(str, tokens);
-  t.deepEqual(result, [{ from: 3, to: 4, term: ' '}]);
+  t.deepEqual(result, []);
+});
+
+test('tokenStripper - multiple tokens and stuff left', t => {
+  t.plan(1);
+  const str = 'one two tree four';
+  const tokens = <Token[]> [
+    {type: 'term', from: 0, to: 3, term: 'one'},
+    {type: 'term', from: 4, to: 7, term: 'two'},
+    {type: 'term', from: 8, to: 12, term: 'three'}
+  ];
+  const result = tokenStripper(str, tokens);
+  t.deepEqual(result, [{ from: 3, to: 4, term: ' '}, {from: 7, to: 8, term: ' '}, {from: 12, to: 17, term: ' four'}]);
 });
 
 test('tokenStripper - strip with nothing', t => {
@@ -366,7 +379,7 @@ test('tokenizer - extract tokens from simple implicit boolean', t => {
   t.deepEqual(result, tokens);
 });
 
-test('tokenizer - extract tokens from all parsers', t => {
+test.skip('tokenizer - extract tokens from all parsers', t => {
   t.plan(1);
   const str = 'one "two" NOT (group)';
   const tokens = [

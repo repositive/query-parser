@@ -35,17 +35,20 @@ function rangeSplitter(input: Range[], split: Range[]): Range[] {
 
   const s = head(split);
   if (s) {
-    const newInput = flatten(input.map(r => {
+    const newInput = input.map(r => {
       if (isContained(r, s)) {
         return [{from: r.from, to: s.from}, {from: s.to, to: r.to}].filter(rng => rng.from !== rng.to);
       }
       else {
-        return [];
+        console.log(`${JSON.stringify(s)} does not fit in ${JSON.stringify(r)}`);
+        return [r];
       }
-    }));
-    return rangeSplitter(newInput, tail(split));
+    });
+    return rangeSplitter(flatten(newInput), tail(split));
   }
   else {
+    console.log('RESULT');
+    console.log(input);
     return input;
   }
 }
@@ -71,8 +74,6 @@ export function tokenizer(input: string): Token[] {
   return parsers.reduce(
     (tokens, p) => {
       const ranges = tokenStripper(input, tokens);
-      console.log(ranges);
-      console.log(`parser: ${p.name}`);
       return flatten(concat(tokens, ranges.map(r => {
         const newTokens = p(r.term);
         return newTokens.map((t: Token) => {
