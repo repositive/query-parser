@@ -379,7 +379,7 @@ test('tokenizer - extract tokens from simple implicit boolean', t => {
   t.deepEqual(result, tokens);
 });
 
-test.skip('tokenizer - extract tokens from all parsers', t => {
+test('tokenizer - extract tokens from all parsers', t => {
   t.plan(1);
   const str = 'one "two" NOT (group)';
   const tokens = [
