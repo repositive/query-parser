@@ -227,7 +227,6 @@ test('predicate parser should add results to accumulator', function (t) {
   ]);
 });
 
-
 test('tokenStripper - basic usage', t => {
   t.plan(1);
   const str = 'test';
