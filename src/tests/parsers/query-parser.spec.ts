@@ -7,6 +7,7 @@ import extractParenthesys from '../../main/parsers/extract-parenthesys';
 import extractLooseWords from '../../main/parsers/extract-loose-words';
 import extractPredicates from '../../main/parsers/extract-predicates';
 import extractBoolean from '../../main/parsers/extract-explicit-boolean';
+import extractIBoolean from '../../main/parsers/extract-implicit-boolean';
 
 test('should parse a simple query', (t) => {
   t.plan(1);
@@ -293,4 +294,39 @@ test('boolean parser NOT', t => {
   const input = 'one NOT another';
   const result = [{ type: 'bo', from: 3, to: 8, term: 'NOT'}];
   t.deepEqual(extractBoolean(input), result);
+});
+
+test('boolean parser multiple', t => {
+  t.plan(1);
+  const input = 'one AND another OR these';
+  const result = [{ type: 'bo', from: 3, to: 8, term: 'AND'}, {type: 'bo', from: 15, to: 19, term: 'OR' }];
+  t.deepEqual(extractBoolean(input), result);
+});
+
+test('boolean parser implicit simple', t => {
+  t.plan(1);
+  const input = ' ';
+  const result = [{type: 'bo', from: 0, to: 1, term: 'AND'}];
+  t.deepEqual(extractIBoolean(input), result);
+});
+
+test('boolean parser implicit multiple spaces', t => {
+  t.plan(1);
+  const input = '   ';
+  const result = [{type: 'bo', from: 0, to: 1, term: 'AND'}];
+  t.deepEqual(extractIBoolean(input), result);
+});
+
+test('boolean parser implicit sandwitch', t => {
+  t.plan(1);
+  const input = 'a b';
+  const result = [{type: 'bo', from: 1, to: 2, term: 'AND'}];
+  t.deepEqual(extractIBoolean(input), result);
+});
+
+test('boolean parser implicit double', t => {
+  t.plan(1);
+  const input = ' a ';
+  const result = [{type: 'bo', from: 0, to: 1, term: 'AND'}, {type: 'bo', from: 2, to: 3, term: 'AND'}];
+  t.deepEqual(extractIBoolean(input), result);
 });

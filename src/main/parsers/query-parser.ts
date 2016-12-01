@@ -6,14 +6,15 @@ import extractParenthesys from './extract-parenthesys';
 import extractPredicates from './extract-predicates';
 import extractLooseWords from './extract-loose-words';
 import extractExplicitBoolean from './extract-explicit-boolean';
+import extractImplicitBoolean from './extract-implicit-boolean';
 import extractQuoted from './extract-quoted';
-
 
 const parsers = [
   extractParenthesys,
   extractPredicates,
   extractQuoted,
   extractExplicitBoolean,
+  extractImplicitBoolean,
   extractLooseWords
 ];
 
@@ -69,7 +70,7 @@ export function tokenizer(input: string): Token[] {
       const ranges = tokenStripper(input, tokens);
       return flatten(concat(tokens, ranges.map(r => {
         const newTokens = p(r.term);
-        return newTokens.map((t:Token) => {
+        return newTokens.map((t: Token) => {
           t.from += r.from;
           t.to += r.from;
           return t;
