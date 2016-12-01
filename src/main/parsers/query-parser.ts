@@ -71,9 +71,9 @@ export function tokenizer(input: string): Token[] {
       const ranges = tokenStripper(input, tokens);
       return flatten(concat(tokens, ranges.map(r => {
         const newTokens = p(r.term);
-        return newTokens.map(t => {
-          t.from = t.from + r.from;
-          t.to = t.to + r.from;
+        return newTokens.map((t:Token) => {
+          t.from += r.from;
+          t.to += r.from;
           return t;
         });
       })));
