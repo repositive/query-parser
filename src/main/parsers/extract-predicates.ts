@@ -5,19 +5,21 @@ import {concat} from 'ramda';
  */
 
 export default function extractPredicates(input:string, acc: Token[] = []): Token[] {
+
   const matches = input.match(/\s*(\S+)\s?:\s?((\".*\")|(\S+))\s*/g);
   if (!matches) return acc;
-  let tokens:Token[] = [];
-  for (let m of matches) {
+
+  const extract = m => {
     const str = m.trim();
     const temp = str.split(':');
-    tokens.push({
+    return <Token> {
       type: 'filter',
       from: input.indexOf(str),
       to: input.indexOf(str) + str.length,
       term: temp[1].trim().replace(/\"/g, ''),
       predicate: temp[0].trim()
-    });
-  }
-  return concat(acc, tokens);
+    };
+  };
+
+  return concat(acc, matches.map(extract));
 }
