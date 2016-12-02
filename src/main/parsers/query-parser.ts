@@ -1,5 +1,5 @@
 import {head, tail, flatten, concat} from 'ramda';
-import {BTree, SearchNode} from '../b-tree';
+import {BTree, SearchNode, BooleanOperator} from '../b-tree';
 import {Token} from './base-parser';
 
 import extractParenthesys from './extract-parenthesys';
@@ -86,6 +86,32 @@ export function tokenizer(input: string): Token[] {
   });
 }
 
-export function parseString(input: string, defOperator= 'AND'): BTree<SearchNode> {
-  return {value: {text: 'cancer'}};
+export function treeBuilder(tokens: Token[], tree: BTree<SearchNode> = null): BTree<SearchNode> {
+  const f = <Token> head(tokens);
+  if (f) {
+
+    const remaining = tail(tokens);
+    if (f.type === 'term') {
+      return treeBuilder(remaining, {value: {text: f.term}});
+    }
+    else if (f.type === 'bo') {
+      const nextTerm = head(remaining);
+      return treeBuilder(tail(remaining), {
+        value: <BooleanOperator> {operator: f.term},
+        right: treeBuilder([nextTerm]),
+        left: tree
+      });
+    }
+    else if (f.type === 'group') {
+      return treeBuilder(remaining, parseString(f.term));
+    }
+  }
+  else {
+    return tree;
+  }
+}
+
+export function parseString(input: string): BTree<SearchNode> {
+  const tokens = tokenizer(input);
+  return treeBuilder(tokens);
 }
