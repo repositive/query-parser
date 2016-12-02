@@ -1,4 +1,4 @@
-import {BTree, SearchNode, isFilter, isTerm, isBooleanOperator} from "../b-tree";
+import {BTree, SearchNode, isFilter, isTerm, isBooleanOperator} from "../b-tree/index";
 /**
  * Created by dennis on 30/11/2016.
  */
