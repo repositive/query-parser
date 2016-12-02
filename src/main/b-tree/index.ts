@@ -1,7 +1,7 @@
 
 export interface Operator {
   operator: string;
-};
+}
 
 export interface BooleanOperator extends Operator {
   operator: 'AND' | 'OR' | 'NOT';
