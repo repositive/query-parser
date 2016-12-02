@@ -28,6 +28,31 @@ test('should parse explicit bo', (t) => {
   t.deepEqual(result, {value: {operator: 'AND'}, left: {value: { text: 'cancer'}}, right: {value: {text: 'brain'}}});
 });
 
+test('should parse explicit bo', (t) => {
+  t.plan(1);
+  const result = parse('cancer NOT brain');
+  t.deepEqual(result, {
+    value: {
+      operator: 'AND'
+    },
+    left: {
+      value: {
+        text: 'cancer'
+      }
+    },
+    right: {
+      value: {
+        operator: 'NOT'
+      },
+      right: {
+        value: {
+          text: 'brain'
+        }
+      }
+    }
+  });
+});
+
 test('should parse predicates', (t) => {
   t.plan(1);
   const result = parse('tissue:brain');
