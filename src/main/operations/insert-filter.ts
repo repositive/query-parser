@@ -31,13 +31,13 @@ export function insertFilter(predicate: string, term: string, tree: BTree<Search
       value: {
         operator: 'AND'
       },
-      left: {
+      left: tree,
+      right: {
         value: {
           predicate: predicate,
           text: term
         }
-      },
-      right: tree
+      }
     }
   }
 }
