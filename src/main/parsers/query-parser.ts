@@ -1,5 +1,5 @@
 import {head, tail, flatten, concat} from 'ramda';
-import {BTree, SearchNode} from '../b-tree';
+import {BTree, SearchNode} from '../b-tree/index';
 import {Token} from './base-parser';
 
 import extractParenthesys from './extract-parenthesys';

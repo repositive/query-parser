@@ -1,6 +1,6 @@
 import * as test from 'tape';
 import {toBoolString} from "../../main/serializers/string-serializer";
-import {BTree, SearchNode} from "../../main/b-tree";
+import {BTree, SearchNode} from "../../main/b-tree/index";
 
 /*
  ############################################################################

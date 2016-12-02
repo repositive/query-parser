@@ -1,6 +1,6 @@
 import * as test from 'tape';
 import {toElasticQuery} from "../../main/serializers/elastic-seralizer";
-import {BTree, SearchNode} from "../../main/b-tree";
+import {BTree, SearchNode} from "../../main/b-tree/index";
 
 
 /*
