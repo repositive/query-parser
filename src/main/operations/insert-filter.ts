@@ -1,5 +1,5 @@
 import {BTree, SearchNode} from '../b-tree/index';
-import {fold, map} from './utils'
+import {fold, map} from '../b-tree/functions'
 
 
 export function filterExists(predicate: string, term: string, tree: BTree<SearchNode>): Boolean {
