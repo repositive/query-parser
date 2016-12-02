@@ -1,5 +1,5 @@
 export interface Token {
-  type: 'bo' | 'term' | 'filter' | 'group';
+  type: 'bo' | 'not' | 'term' | 'filter' | 'group';
   from: number;
   to: number;
   term: string;
