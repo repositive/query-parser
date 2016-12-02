@@ -289,10 +289,17 @@ test('extract starting NOT', t => {
   t.deepEqual(extractNOT(input), result);
 });
 
-test('extract implicit AND NOT', t => {
+test('extract NOT from implicit AND NOT', t => {
   t.plan(1);
   const input = 'a NOT glaucoma';
   const result = [{ type: 'not', from: 2, to: 6, term: 'NOT'}];
+  t.deepEqual(extractNOT(input), result);
+});
+
+test('extract NOT from explicit AND NOT', t => {
+  t.plan(1);
+  const input = 'a AND NOT something';
+  const result = [{ type: 'not', from: 6, to: 10, term: 'NOT' }];
   t.deepEqual(extractNOT(input), result);
 });
 
