@@ -3,7 +3,7 @@ import {Token} from './base-parser';
 
 export default function extractExplicitBoolean(input: string, tokens: Token[] = [], i: number = 0): Token[] {
 
-  const match = input.match(/ AND | OR | NOT /);
+  const match = input.match(/ AND | OR /);
   if (match) {
     const from = match.index;
     const to = from + match[0].length;

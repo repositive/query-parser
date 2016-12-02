@@ -6,6 +6,7 @@ import extractQuoted from '../../main/parsers/extract-quoted';
 import extractParenthesys from '../../main/parsers/extract-parenthesys';
 import extractLooseWords from '../../main/parsers/extract-loose-words';
 import extractPredicates from '../../main/parsers/extract-predicates';
+import extractNOT from '../../main/parsers/extract-NOT';
 import extractBoolean from '../../main/parsers/extract-explicit-boolean';
 import extractIBoolean from '../../main/parsers/extract-implicit-boolean';
 
@@ -281,6 +282,27 @@ test('tokenStripper - strip with nothing', t => {
   t.deepEqual(result, [{from: 0, to: 3, term: 'one'}]);
 });
 
+test('extract starting NOT', t => {
+  t.plan(1);
+  const input = 'NOT glaucoma';
+  const result = [{ type: 'not', from: 0, to: 4, term: 'NOT'}];
+  t.deepEqual(extractNOT(input), result);
+});
+
+test('extract NOT from implicit AND NOT', t => {
+  t.plan(1);
+  const input = 'a NOT glaucoma';
+  const result = [{ type: 'not', from: 2, to: 6, term: 'NOT'}];
+  t.deepEqual(extractNOT(input), result);
+});
+
+test('extract NOT from explicit AND NOT', t => {
+  t.plan(1);
+  const input = 'a AND NOT something';
+  const result = [{ type: 'not', from: 6, to: 10, term: 'NOT' }];
+  t.deepEqual(extractNOT(input), result);
+});
+
 test('boolean parser', t => {
   t.plan(1);
   const input = 'glaucoma AND ';
@@ -292,13 +314,6 @@ test('boolean parser OR', t => {
   t.plan(1);
   const input = 'one OR another';
   const result = [{ type: 'bo', from: 3, to: 7, term: 'OR'}];
-  t.deepEqual(extractBoolean(input), result);
-});
-
-test('boolean parser NOT', t => {
-  t.plan(1);
-  const input = 'one NOT another';
-  const result = [{ type: 'bo', from: 3, to: 8, term: 'NOT'}];
   t.deepEqual(extractBoolean(input), result);
 });
 
@@ -386,7 +401,8 @@ test('tokenizer - extract tokens from all parsers', t => {
     {type: 'term', from: 0, to: 3, term: 'one'},
     {type: 'bo', from: 3, to: 4, term: 'AND'},
     {type: 'term', from: 4, to: 9, term: 'two'},
-    {type: 'bo', from: 9, to: 14, term: 'NOT'},
+    {type: 'bo', from: 9, to: 10, term: 'AND'},
+    {type: 'not', from: 10, to: 14, term: 'NOT'},
     {type: 'group', from: 14, to: 21, term: 'group'}
   ];
   const result = tokenizer(str);
