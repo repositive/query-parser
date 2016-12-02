@@ -6,6 +6,7 @@ import extractQuoted from '../../main/parsers/extract-quoted';
 import extractParenthesys from '../../main/parsers/extract-parenthesys';
 import extractLooseWords from '../../main/parsers/extract-loose-words';
 import extractPredicates from '../../main/parsers/extract-predicates';
+import extractNOT from '../../main/parsers/extract-NOT';
 import extractBoolean from '../../main/parsers/extract-explicit-boolean';
 import extractIBoolean from '../../main/parsers/extract-implicit-boolean';
 
@@ -298,7 +299,10 @@ test('boolean parser OR', t => {
 test('boolean parser NOT', t => {
   t.plan(1);
   const input = 'one NOT another';
-  const result = [{ type: 'bo', from: 3, to: 8, term: 'NOT'}];
+  const result = [
+    { type: 'bo', from: 3, to: 4, term: 'AND'},
+    { type: 'bo', from: 4, to: 8, term: 'NOT'}
+  ];
   t.deepEqual(extractBoolean(input), result);
 });
 
@@ -307,6 +311,17 @@ test('boolean parser multiple', t => {
   const input = 'one AND another OR these';
   const result = [{ type: 'bo', from: 3, to: 8, term: 'AND'}, {type: 'bo', from: 15, to: 19, term: 'OR' }];
   t.deepEqual(extractBoolean(input), result);
+});
+
+test('boolean parse implicit spaces before NOT', t => {
+  t.plan(1);
+  const str = 'one AND NOT two';
+  const tokens = [
+    {type: 'bo', from: 4, to: 7, term: 'AND'},
+    {type: 'not', from: 9, to: 11, term: 'NOT'},
+  ];
+  const result = extractBoolean(str);
+  t.deepEqual(result, tokens);
 });
 
 test('boolean parser implicit simple', t => {
@@ -386,9 +401,24 @@ test('tokenizer - extract tokens from all parsers', t => {
     {type: 'term', from: 0, to: 3, term: 'one'},
     {type: 'bo', from: 3, to: 4, term: 'AND'},
     {type: 'term', from: 4, to: 9, term: 'two'},
-    {type: 'bo', from: 9, to: 14, term: 'NOT'},
+    {type: 'bo', from: 9, to: 10, term: 'AND'},
+    {type: 'not', from: 10, to: 14, term: 'NOT'},
     {type: 'group', from: 14, to: 21, term: 'group'}
   ];
   const result = tokenizer(str);
   t.deepEqual(result, tokens);
+});
+
+test('extract starting NOT', t => {
+  t.plan(1);
+  const input = 'NOT glaucoma';
+  const result = [{ type: 'not', from: 0, to: 4, term: 'NOT'}];
+  t.deepEqual(extractNOT(input), result);
+});
+
+test('extract implicit AND NOT', t => {
+  t.plan(1);
+  const input = 'a NOT glaucoma';
+  const result = [{ type: 'not', from: 2, to: 6, term: 'NOT'}];
+  t.deepEqual(extractNOT(input), result);
 });
