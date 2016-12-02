@@ -8,11 +8,13 @@ import extractLooseWords from './extract-loose-words';
 import extractExplicitBoolean from './extract-explicit-boolean';
 import extractImplicitBoolean from './extract-implicit-boolean';
 import extractQuoted from './extract-quoted';
+import extractNOT from "./extract-NOT";
 
 const parsers = [
   extractParenthesys,
   extractPredicates,
   extractQuoted,
+  extractNOT,
   extractExplicitBoolean,
   extractImplicitBoolean,
   extractLooseWords
