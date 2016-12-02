@@ -99,13 +99,33 @@ export function treeBuilder(tokens: Token[], tree: BTree<SearchNode> = null): BT
     else if (f.type === 'filter') {
       return treeBuilder(remaining, {value: {predicate: f.predicate, text: f.term}});
     }
-    else if (f.type === 'bo') {
+    else if (f.type === 'not') {
       const nextTerm = head(remaining);
       return treeBuilder(tail(remaining), {
         value: <BooleanOperator> {operator: f.term},
-        right: treeBuilder([nextTerm]),
-        left: tree
+        right: treeBuilder([nextTerm])
       });
+    }
+    else if (f.type === 'bo') {
+      const nextTerm = head(remaining);
+      if (nextTerm.type === 'not') {
+        const negated = head(tail(remaining));
+        return treeBuilder(tail(tail(remaining)), {
+          value: <BooleanOperator> {operator: f.term},
+          right: {
+            value: { operator: 'NOT'},
+            right: treeBuilder([negated])
+          },
+          left: tree
+        });
+      }
+      else {
+        return treeBuilder(tail(remaining), {
+          value: <BooleanOperator> {operator: f.term},
+          right: treeBuilder([nextTerm]),
+          left: tree
+        });
+      }
     }
     else if (f.type === 'group') {
       return treeBuilder(remaining, parseString(f.term));
