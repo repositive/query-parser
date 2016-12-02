@@ -8,7 +8,7 @@ import extractLooseWords from './extract-loose-words';
 import extractExplicitBoolean from './extract-explicit-boolean';
 import extractImplicitBoolean from './extract-implicit-boolean';
 import extractQuoted from './extract-quoted';
-import extractNOT from "./extract-NOT";
+import extractNOT from './extract-NOT';
 
 const parsers = [
   extractParenthesys,
@@ -95,6 +95,9 @@ export function treeBuilder(tokens: Token[], tree: BTree<SearchNode> = null): BT
     const remaining = tail(tokens);
     if (f.type === 'term') {
       return treeBuilder(remaining, {value: {text: f.term}});
+    }
+    else if (f.type === 'filter') {
+      return treeBuilder(remaining, {value: {predicate: f.predicate, text: f.term}});
     }
     else if (f.type === 'bo') {
       const nextTerm = head(remaining);

@@ -13,7 +13,25 @@ import extractIBoolean from '../../main/parsers/extract-implicit-boolean';
 test('should parse a simple query', (t) => {
   t.plan(1);
   const result = parse('cancer');
-  t.deepEqual({value: { text: 'cancer'}}, result);
+  t.deepEqual(result, {value: { text: 'cancer'}});
+});
+
+test('should parse implicit bo', (t) => {
+  t.plan(1);
+  const result = parse('cancer brain');
+  t.deepEqual(result, {value: {operator: 'AND'}, left: {value: { text: 'cancer'}}, right: {value: {text: 'brain'}}});
+});
+
+test('should parse explicit bo', (t) => {
+  t.plan(1);
+  const result = parse('cancer AND brain');
+  t.deepEqual(result, {value: {operator: 'AND'}, left: {value: { text: 'cancer'}}, right: {value: {text: 'brain'}}});
+});
+
+test('should parse predicates', (t) => {
+  t.plan(1);
+  const result = parse('tissue:brain');
+  t.deepEqual(result, {value: {predicate: 'tissue', text: 'brain'}});
 });
 
 test('parenthesys does not extract other stuff', t => {
