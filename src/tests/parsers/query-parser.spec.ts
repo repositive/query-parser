@@ -1,6 +1,7 @@
 
 import * as test from 'tape';
 import {Token} from '../../main/parsers/base-parser';
+import {BBTree, Filter, Term} from '../../main/b-exp-tree';
 import {tokenStripper, tokenizer, parseString as parse} from '../../main/parsers/query-parser';
 import extractQuoted from '../../main/parsers/extract-quoted';
 import extractParenthesys from '../../main/parsers/extract-parenthesys';
@@ -13,50 +14,48 @@ import extractIBoolean from '../../main/parsers/extract-implicit-boolean';
 test('should parse a simple query', (t) => {
   t.plan(1);
   const result = parse('cancer');
-  t.deepEqual(result, {value: { text: 'cancer'}});
+  const term: Term = {text: 'cancer'};
+  t.deepEqual(result, term);
 });
 
 test('should parse implicit bo', (t) => {
   t.plan(1);
   const result = parse('cancer brain');
-  t.deepEqual(result, {value: {operator: 'AND'}, left: {value: { text: 'cancer'}}, right: {value: {text: 'brain'}}});
+  const tree: BBTree = {value: 'AND', left: { text: 'cancer'}, right: {text: 'brain'}};
+  t.deepEqual(result, tree);
 });
 
 test('should parse explicit bo', (t) => {
   t.plan(1);
   const result = parse('cancer AND brain');
-  t.deepEqual(result, {value: {operator: 'AND'}, left: {value: { text: 'cancer'}}, right: {value: {text: 'brain'}}});
+  const tree: BBTree = {value: 'AND', left: { text: 'cancer'}, right: {text: 'brain'}};
+  t.deepEqual(result, tree);
 });
 
 test('should parse explicit bo', (t) => {
   t.plan(1);
   const result = parse('cancer NOT brain');
-  t.deepEqual(result, {
-    value: {
-      operator: 'AND'
-    },
+  const tree: BBTree = {
+    value: 'AND',
     left: {
-      value: {
-        text: 'cancer'
-      }
+      text: 'cancer'
     },
-    right: {
-      value: {
-        operator: 'NOT'
-      },
+    right: <BBTree> {
+      value: 'NOT',
       right: {
-        value: {
-          text: 'brain'
-        }
-      }
+        text: 'brain'
+      },
+      left: null
     }
-  });
+  };
+  t.deepEqual(result, tree);
 });
 
 test('should parse predicates', (t) => {
   t.plan(1);
   const result = parse('tissue:brain');
-  t.deepEqual(result, {value: {predicate: 'tissue', text: 'brain'}});
+  const filter: Filter = {predicate: 'tissue', text: 'brain'};
+  t.deepEqual(result, filter);
 });
 
 test('parenthesys does not extract other stuff', t => {
