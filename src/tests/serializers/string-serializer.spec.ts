@@ -13,9 +13,7 @@ const simpleTree1: BTreeLeaf = {
 };
 
 const simpleTree2: BBTree = {
-  value: {
-    operator: 'AND'
-  },
+  value: 'AND',
   left: {
     text: 'cancer'
   },
@@ -42,24 +40,16 @@ test('Simple boolean terms', function (t) {
 });
 
 const tree1: BBTree = {
-  value: {
-    operator: 'AND'
-  },
+  value: 'AND',
   left: {
     text: 'glaucoma'
   },
   right: {
-    value: {
-      operator: 'AND'
-    },
+    value: 'AND',
     left: <BBTree> {
-      value: {
-        operator: 'NOT'
-      },
+      value: 'NOT',
       right: {
-        value: {
-          operator: 'OR'
-        },
+        value: 'OR',
         left: {
           predicate: 'assay',
           text: 'X'
@@ -83,36 +73,26 @@ test('Nested NOT and Boolean terms', function (t) {
 });
 
 const complexTree: BBTree = {
-  value: {
-    operator: 'AND'
-  },
+  value: 'AND',
   left: {
     text: 'breast cancer'
   },
   right: <BBTree> {
-    value: {
-      operator: 'NOT'
-    },
+    value: 'NOT',
     right: <BBTree> {
-      value: {
-        operator: 'OR'
-      },
+      value: 'OR',
       left: {
         predicate: 'assay',
         text: 'RNA-Seq'
       },
       right: <BBTree> {
-        value: {
-          operator: 'OR'
-        },
+        value: 'OR',
         left: {
           predicate: 'assay',
           text: 'RNA-seq'
         },
         right: <BBTree> {
-          value: {
-            operator: 'AND'
-          },
+          value: 'AND',
           left: {
             predicate: 'access',
             text: 'Open'
