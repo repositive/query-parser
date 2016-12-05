@@ -12,7 +12,7 @@ export function isBTree<O, T>(o: any): o is BTree<O, T> {
     o.value !== null;
 }
 
-type BTreeLeave<O, T> = BTree<O, T> | T;
+type BTreeLeaf<O, T> = BTree<O, T> | T;
 
 export function fold<O, T, R>(tree: BTree<O, T> | T, f: (R, tree: O | T) => R, acc: R): R {
   if (!tree) return acc;
