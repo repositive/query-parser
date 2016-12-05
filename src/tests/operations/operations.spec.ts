@@ -113,17 +113,17 @@ const tree3: BTree<BooleanOperator, BTreeLeaf> =
   }
 };
 
-test('add filter to simple tree', t => {
+test.skip('add filter to simple tree', t => {
   t.plan(1);
   t.deepEquals(insertFilter('assay', 'RNA-Seq', simpleTree1), simpleTree2);
 });
 
-test('replace existing filters', t => {
+test.skip('replace existing filters', t => {
   t.plan(1);
   t.deepEquals(insertFilter('assay', 'RNA-Seq', tree1), tree2);
 });
 
-test('Add filters to complex tree', t => {
+test.skip('Add filters to complex tree', t => {
   t.plan(1);
   t.deepEquals(insertFilter('assay', 'RNA-Seq', tree1), tree2);
 });
