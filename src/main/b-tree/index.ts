@@ -1,40 +1,66 @@
 import {v4 as uuid} from 'uuid';
 
-export interface BTree<T> {
-  value: T;
-  left?: BTree<T>;
-  right?: BTree<T>;
+export interface BTree<O, T> {
+  value: O;
+  left: BTree<O, T> | T;
+  right: BTree<O, T> | T;
 }
 
-export function fold<T, R>(f: (R, T) => R, tree: BTree<T>, acc: R): R {
+function isBTree<O, T>(o: any): o is BTree<O, T> {
+  return typeof o === 'object' && 
+    o.value !== undefined &&
+    o.value !== null;
+}
+
+type BTreeLeave<O, T> = BTree<O, T> | T;
+
+export function fold<O, T, R>(tree: BTree<O, T> | T, f: (R, tree: O | T) => R, acc: R): R {
   if (!tree) return acc;
-  const newAcc = f(acc, tree.value);
-  return fold(f, tree.right, fold(f, tree.left, newAcc));
+  if (isBTree(tree)) {
+    const newAcc = f(acc, tree.value);
+    return fold(tree.right, f, fold(tree.left, f, newAcc));
+  }
+  else {
+    return f(acc, tree);
+  }
 }
 
-export function map<T, R>(f: (T) => R, tree: BTree<T>): BTree<R> {
-  if (!tree) return null;
-  const newValue = f(tree.value);
-  const left = map(f, tree.left);
-  const right = map(f, tree.right);
-  let result = <BTree<R>> {};
-  result.value = newValue;
-  if (left) result.left = left;
-  if (right) result.right = right;
-  return result;
+export function filter<O, T>(tree: BTree<O, T> | T, f: (tree: O | T) => boolean): BTree<O, T> {
+  return fold(tree, (acc, tree) => {
+    if (f(tree)) {
+      return tree
+    }
+    else {
+      return acc;
+    }
+  }, null);
 }
 
-export default class BTreeImp<T> implements BTree<T> {
+//export function map<T, R>(f: (T) => R, tree: T): BTree<R, R> {
+//  if (!tree) return null;
+//  else if (isBTree(tree)) {
+//    const newValue = f(tree.value);
+//    const left = map(f, tree.left);
+//    const right = map(f, tree.right);
+//    let result = <BTree<R, R>> {};
+//    return result;
+//  }
+//  else {
+//    return f(tree);
+//  }
+//}
+
+export default class BTreeImp<O, T> implements BTree<O, T> {
   _id: string;
-  value: T;
-  left: BTreeImp<T>;
-  right: BTreeImp<T>;
+  value: O;
+  left: BTreeImp<O, T> | T;
+  right: BTreeImp<O, T> | T;
 
-  constructor(value: T, l?: BTree<T>, r?: BTree<T>) {
+  constructor(value: O, l?: BTree<O, T> | T, r?: BTree<O, T> | T) {
     this._id = uuid();
     this.value = value;
-    this.left = l ? BTreeImp.fromJS(l) : null;
-    this.right = r ? BTreeImp.fromJS(r) : null;
+    this.left = isBTree(l) ? BTreeImp.fromJS(l) : l || null;
+    this.right = isBTree(r) ? BTreeImp.fromJS(r) : r || null;
     Object.freeze(this);
   }
 
