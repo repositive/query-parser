@@ -1,8 +1,8 @@
 import {BTree, fold, filter} from '../b-tree/index';
-import {BooleanOperator, Filter, Term, isFilter} from '../b-exp-tree';
+import {BooleanOperator, BTreeLeaf, Filter, Term, isFilter} from '../b-exp-tree';
 
 
-export function filterExists(predicate: string, term: string, tree: BTree<BooleanOperator, Term>): Boolean {
+export function filterExists(predicate: string, term: string, tree: BTree<BooleanOperator, BTreeLeaf>): Boolean {
   return filter(tree, (value) => {
     if (isFilter(value)) {
       return value.predicate === predicate && value.text === term;
@@ -11,8 +11,12 @@ export function filterExists(predicate: string, term: string, tree: BTree<Boolea
   }) !== null;
 }
 
-export function predicateExists(predicate: string, tree: BTree<BooleanOperator, Term>): Boolean {
+export function predicateExists(predicate: string, tree: BTree<BooleanOperator, BTreeLeaf>): Boolean {
   return filter(tree, (value) => isFilter(value) && value.predicate === predicate) !== null;
+}
+
+export function insertFilter(predicate: string, term: string, tree: BTree<BooleanOperator, BTreeLeaf> | BTreeLeaf): BTree<BooleanOperator, BTreeLeaf> {
+  return null;
 }
 
 //export function insertFilter(predicate: string, term: string, tree: BTree<BooleanOperator, Term>): BTree<BooleanOperator, Term> {

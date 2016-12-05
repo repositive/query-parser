@@ -1,3 +1,5 @@
+import {BTree} from './b-tree';
+
 export interface Operator {
   operator: string;
 }
@@ -33,5 +35,7 @@ export function isFilter(o: any): o is Filter {
 }
 
 export type BTreeLeaf = Term | Filter;
+
+export type BBTree = BTree<BooleanOperator, BTreeLeaf>;
 
 export type SearchNode = Term | BooleanOperator | Filter;

@@ -1,120 +1,98 @@
 import * as test from 'tape';
 import {BTree} from '../../main/b-tree/index';
-import {SearchNode} from '../../main/b-exp-tree';
+import {BooleanOperator, BTreeLeaf} from '../../main/b-exp-tree';
 import {insertFilter} from '../../main/operations/insert-filter'
 
 
-const simpleTree1:BTree<SearchNode> = {
+const simpleTree1: BTreeLeaf = {
+  text: 'cancer'
+};
+
+const simpleTree2: BTree<BooleanOperator, BTreeLeaf> = {
   value: {
+    operator: 'AND'
+  },
+  left: {
     text: 'cancer'
-  }
-};
-
-const simpleTree2:BTree<SearchNode> = {
-  value: {
-    operator: 'AND'
-  },
-  left: {
-    value: {
-      text: 'cancer'
-    }
   },
   right: {
-    value: {
-      text: 'RNA-Seq',
-      predicate: 'assay'
-    }
+    text: 'RNA-Seq',
+    predicate: 'assay'
   }
 };
 
-const tree1:BTree<SearchNode> = {
+const tree1: BTree<BooleanOperator, BTreeLeaf> = {
   value: {
     operator: 'AND'
   },
   left: {
-    value: {
-      text: 'glaucoma'
-    }
+    text: 'glaucoma'
   },
   right: {
     value: {
       operator: 'AND'
     },
-    left: {
+    left: <BTree<BooleanOperator, BTreeLeaf>> {
       value: {
         operator: 'NOT'
       },
       right: {
-        value: {
-          predicate: 'assay',
-          text: 'X'
-        }
+        predicate: 'assay',
+        text: 'X'
       }
     },
     right: {
-      value: {
-        predicate: 'collection',
-        text: 'X'
-      }
+      predicate: 'collection',
+      text: 'X'
     }
   }
 };
 
-const tree2:BTree<SearchNode> = {
+const tree2: BTree<BooleanOperator, BTreeLeaf> = {
   value: {
     operator: 'AND'
   },
   left: {
-    value: {
-      text: 'glaucoma'
-    }
+    text: 'glaucoma'
   },
   right: {
     value: {
       operator: 'AND'
     },
-    left: {
+    left: <BTree<BooleanOperator, BTreeLeaf>> {
       value: {
         operator: 'NOT'
       },
       right: {
-        value: {
-          predicate: 'assay',
-          text: 'RNA-Seq'
-        }
+        predicate: 'assay',
+        text: 'RNA-Seq'
       }
     },
     right: {
-      value: {
-        predicate: 'collection',
-        text: 'X'
-      }
+      predicate: 'collection',
+      text: 'X'
     }
   }
 };
 
 
-const tree3:BTree<SearchNode> =
+const tree3: BTree<BooleanOperator, BTreeLeaf> =
 {
   value: {
     operator: 'AND'
   },
   left: {
-    value: {
-      predicate: 'access',
-      text: 'open'
-    }
+    predicate: 'access',
+    text: 'open'
   },
   right: {
     value: {
       operator: 'AND'
     },
     left: {
-      value: {
-        text: 'glaucoma'
-      }
+      text: 'glaucoma'
     },
-    right: {
+    right: <BTree<BooleanOperator, BTreeLeaf>> {
       value: {
         operator: 'AND'
       },
@@ -123,17 +101,13 @@ const tree3:BTree<SearchNode> =
           operator: 'NOT'
         },
         right: {
-          value: {
-            predicate: 'assay',
-            text: 'RNA-Seq'
-          }
+          predicate: 'assay',
+          text: 'RNA-Seq'
         }
       },
       right: {
-        value: {
-          predicate: 'collection',
-          text: 'X'
-        }
+        predicate: 'collection',
+        text: 'X'
       }
     }
   }
