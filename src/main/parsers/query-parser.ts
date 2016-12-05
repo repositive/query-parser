@@ -103,7 +103,7 @@ export function treeBuilder(tokens: Token[], tree: BTree<BooleanOperator, BTreeL
     else if (f.type === 'not') {
       const nextTerm = head(remaining);
       return treeBuilder(tail(remaining), {
-        value: <BooleanOperator> {operator: f.term},
+        value: <BooleanOperator> f.term,
         left: null,
         right: treeBuilder([nextTerm])
       });
@@ -113,9 +113,9 @@ export function treeBuilder(tokens: Token[], tree: BTree<BooleanOperator, BTreeL
       if (nextTerm.type === 'not') {
         const negated = head(tail(remaining));
         return treeBuilder(tail(tail(remaining)), {
-          value: <BooleanOperator> {operator: f.term},
+          value: <BooleanOperator> f.term,
           right: {
-            value: { operator: 'NOT'},
+            value: 'NOT',
             left: null,
             right: treeBuilder([negated])
           },
@@ -124,7 +124,7 @@ export function treeBuilder(tokens: Token[], tree: BTree<BooleanOperator, BTreeL
       }
       else {
         return treeBuilder(tail(remaining), {
-          value: <BooleanOperator> {operator: f.term},
+          value: <BooleanOperator> f.term,
           right: treeBuilder([nextTerm]),
           left: tree
         });

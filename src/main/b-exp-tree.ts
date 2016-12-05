@@ -1,17 +1,10 @@
 import {BTree} from './b-tree';
 
-export interface Operator {
-  operator: string;
-}
-
-export interface BooleanOperator extends Operator {
-  operator: 'AND' | 'OR' | 'NOT';
-}
+export type BooleanOperator = 'AND' | 'OR' | 'NOT';
 
 export function isBooleanOperator(o: any): o is BooleanOperator {
-  return typeof o === 'object' &&
-    typeof o.operator === 'string' &&
-    ['AND', 'OR', 'NOT'].indexOf(o.operator) !== -1;
+    typeof o === 'string' &&
+    ['AND', 'OR', 'NOT'].indexOf(o) !== -1;
 }
 
 export interface Term {

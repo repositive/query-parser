@@ -22,7 +22,7 @@ export function toElasticQuery(tree:BTree<BooleanOperator, BTreeLeaf>): any {
       if (right) children.push(right);
       return {
         bool: {
-          [ops[tree.value.operator]]: children
+          [ops[tree.value]]: children
         }
       }
     }

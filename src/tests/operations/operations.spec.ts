@@ -9,9 +9,7 @@ const simpleTree1: BTreeLeaf = {
 };
 
 const simpleTree2: BTree<BooleanOperator, BTreeLeaf> = {
-  value: {
-    operator: 'AND'
-  },
+  value: 'AND',
   left: {
     text: 'cancer'
   },
@@ -22,20 +20,14 @@ const simpleTree2: BTree<BooleanOperator, BTreeLeaf> = {
 };
 
 const tree1: BTree<BooleanOperator, BTreeLeaf> = {
-  value: {
-    operator: 'AND'
-  },
+  value: 'AND',
   left: {
     text: 'glaucoma'
   },
   right: {
-    value: {
-      operator: 'AND'
-    },
+    value: 'AND',
     left: <BTree<BooleanOperator, BTreeLeaf>> {
-      value: {
-        operator: 'NOT'
-      },
+      value: 'NOT',
       right: {
         predicate: 'assay',
         text: 'X'
@@ -49,20 +41,14 @@ const tree1: BTree<BooleanOperator, BTreeLeaf> = {
 };
 
 const tree2: BTree<BooleanOperator, BTreeLeaf> = {
-  value: {
-    operator: 'AND'
-  },
+  value: 'AND',
   left: {
     text: 'glaucoma'
   },
   right: {
-    value: {
-      operator: 'AND'
-    },
+    value: 'AND',
     left: <BTree<BooleanOperator, BTreeLeaf>> {
-      value: {
-        operator: 'NOT'
-      },
+      value: 'NOT',
       right: {
         predicate: 'assay',
         text: 'RNA-Seq'
@@ -78,28 +64,20 @@ const tree2: BTree<BooleanOperator, BTreeLeaf> = {
 
 const tree3: BTree<BooleanOperator, BTreeLeaf> =
 {
-  value: {
-    operator: 'AND'
-  },
+  value: 'AND',
   left: {
     predicate: 'access',
     text: 'open'
   },
   right: {
-    value: {
-      operator: 'AND'
-    },
+    value: 'AND',
     left: {
       text: 'glaucoma'
     },
     right: <BTree<BooleanOperator, BTreeLeaf>> {
-      value: {
-        operator: 'AND'
-      },
+      value: 'AND',
       left: {
-        value: {
-          operator: 'NOT'
-        },
+        value: 'NOT',
         right: {
           predicate: 'assay',
           text: 'RNA-Seq'

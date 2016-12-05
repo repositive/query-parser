@@ -13,8 +13,8 @@ export function toBoolString(tree: BTree<BooleanOperator, BTreeLeaf> | BTreeLeaf
 
     // 2. Value is operator
     if (isBooleanOperator(tree.value)) {
-      if (tree.value.operator === 'NOT') return `${tree.value.operator} ${toBoolString(tree.right)}`;
-      return `(${toBoolString(tree.left)} ${tree.value.operator} ${toBoolString(tree.right)})`
+      if (tree.value === 'NOT') return `${tree.value} ${toBoolString(tree.right)}`;
+      return `(${toBoolString(tree.left)} ${tree.value} ${toBoolString(tree.right)})`
     }
 }
 
