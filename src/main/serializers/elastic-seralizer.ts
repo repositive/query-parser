@@ -16,8 +16,10 @@ export function toElasticQuery(tree:BTree<BooleanOperator, BTreeLeaf>): any {
     // 1. Value is filter or text
     if (isBTree(tree)) {
       let children = [];
-      children.push(build(tree.left));
-      children.push(build(tree.right));
+      const left = build(tree.left);
+      const right = build(tree.right);
+      if (left) children.push(left);
+      if (right) children.push(right);
       return {
         bool: {
           [ops[tree.value.operator]]: children

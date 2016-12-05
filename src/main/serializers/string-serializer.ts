@@ -1,5 +1,5 @@
 import {BTree, isBTree} from "../b-tree/index";
-import {BooleanOperator, BTreeLeaf, isFilter, isTerm} from '../b-exp-tree';
+import {BooleanOperator, BTreeLeaf, isFilter, isTerm, isBooleanOperator} from '../b-exp-tree';
 /**
  * Created by dennis on 29/11/2016.
  */
@@ -12,7 +12,7 @@ export function toBoolString(tree: BTree<BooleanOperator, BTreeLeaf> | BTreeLeaf
     if (isTerm(tree)) return quotes(tree.text);
 
     // 2. Value is operator
-    if (isBTree(tree)) {
+    if (isBooleanOperator(tree.value)) {
       if (tree.value.operator === 'NOT') return `${tree.value.operator} ${toBoolString(tree.right)}`;
       return `(${toBoolString(tree.left)} ${tree.value.operator} ${toBoolString(tree.right)})`
     }
