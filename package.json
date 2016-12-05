@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "@types/ramda": "0.0.2",
-    "ramda": "^0.22.1"
+    "@types/uuid": "^2.0.29",
+    "ramda": "^0.22.1",
+    "uuid": "^3.0.1"
   }
 }

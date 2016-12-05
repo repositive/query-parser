@@ -5,4 +5,7 @@ import BTree from './b-tree';
 
 //const parsed = parser('cancer NOT (brain OR lung)');
 
-console.log(new BTree('plus') instanceof BTree);
+const left = new BTree('left');
+const tree = new BTree('plus', left);
+const parent = new BTree('NOT', null, tree);
+console.log(parent);
