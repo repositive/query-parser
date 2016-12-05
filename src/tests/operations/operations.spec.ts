@@ -1,5 +1,6 @@
 import * as test from 'tape';
-import {BTree, SearchNode} from '../../main/b-tree/index';
+import {BTree} from '../../main/b-tree/index';
+import {SearchNode} from '../../main/b-exp-tree';
 import {insertFilter} from '../../main/operations/insert-filter'
 
 

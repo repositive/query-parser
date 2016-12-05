@@ -1,5 +1,6 @@
 import {head, tail, flatten, concat} from 'ramda';
-import {BTree, SearchNode, BooleanOperator} from '../b-tree/index';
+import {BTree} from '../b-tree/index';
+import {SearchNode, BooleanOperator} from '../b-exp-tree';
 import {Token} from './base-parser';
 
 import extractParenthesys from './extract-parenthesys';

@@ -1,4 +1,5 @@
-import {BTree, SearchNode} from '../b-tree/index';
+import {BTree} from '../b-tree/index';
+import {SearchNode} from '../b-exp-tree';
 import {fold, map} from '../b-tree/functions'
 
 
