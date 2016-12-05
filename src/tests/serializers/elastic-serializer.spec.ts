@@ -68,36 +68,26 @@ const ES1 = {
 };
 
 const complexTree: BTree<BooleanOperator, BTreeLeaf> = {
-  value: {
-    operator: 'AND'
-  },
+  value: 'AND',
   left: {
     text: 'breast cancer'
   },
   right: <BTree<BooleanOperator, BTreeLeaf>>{
-    value: {
-      operator: 'NOT'
-    },
+    value: 'NOT',
     right: <BTree<BooleanOperator, BTreeLeaf>>{
-      value: {
-        operator: 'OR'
-      },
+      value: 'OR',
       left: {
         predicate: 'assay',
         text: 'RNA-Seq'
       },
       right: <BTree<BooleanOperator, BTreeLeaf>> {
-        value: {
-          operator: 'OR'
-        },
+        value: 'OR',
         left: {
           predicate: 'assay',
           text: 'RNA-seq'
         },
         right: <BTree<BooleanOperator, BTreeLeaf>> {
-          value: {
-            operator: 'AND'
-          },
+          value: 'AND',
           left: {
             predicate: 'access',
             text: 'Open'
