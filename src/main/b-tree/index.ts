@@ -25,10 +25,10 @@ export function fold<O, T, R>(tree: BTree<O, T> | T, f: (R, tree: O | T) => R, a
   }
 }
 
-export function filter<O, T>(tree: BTree<O, T> | T, f: (tree: O | T) => boolean): BTree<O, T> {
-  return fold(tree, (acc, tree) => {
-    if (f(tree)) {
-      return tree
+export function filter<O, T>(tree: BTree<O, T> | T, f: (val: O | T) => boolean): BTree<O, T> {
+  return fold(tree, (acc, val) => {
+    if (f(val)) {
+      return val
     }
     else {
       return acc;
@@ -65,14 +65,18 @@ export default class BTreeImp<O, T> implements BTree<O, T> {
   }
 
   fold<R>(f: (R, T) => R, acc: R): R {
-    return fold(f, this, acc);
+    return fold(this, f, acc);
   }
 
-  map<R>(f: (T) => R): BTree<R> {
-    return map(f, this);
+  filter(f: (val: O | T) => boolean) {
+    return filter(this, f);
   }
 
-  static fromJS<T>(o: BTree<T>): BTreeImp<T> {
+  //map<R>(f: (T) => R): BTree<R> {
+  //  return map(f, this);
+  //}
+
+  static fromJS<O, T>(o: BTree<O, T>): BTreeImp<O, T> {
     return o instanceof BTreeImp ? o : new BTreeImp(o.value, o.left, o.right);
   }
 }
