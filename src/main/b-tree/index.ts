@@ -6,7 +6,7 @@ export interface BTree<O, T> {
   right: BTree<O, T> | T;
 }
 
-function isBTree<O, T>(o: any): o is BTree<O, T> {
+export function isBTree<O, T>(o: any): o is BTree<O, T> {
   return typeof o === 'object' && 
     o.value !== undefined &&
     o.value !== null;

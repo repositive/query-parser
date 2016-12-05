@@ -32,4 +32,6 @@ export function isFilter(o: any): o is Filter {
     typeof o.predicate === 'string';
 }
 
+export type BTreeLeaf = Term | Filter;
+
 export type SearchNode = Term | BooleanOperator | Filter;

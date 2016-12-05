@@ -1,22 +1,20 @@
-import {BTree} from "../b-tree/index";
-import {SearchNode, isFilter, isTerm, isBooleanOperator} from '../b-exp-tree';
+import {BTree, isBTree} from "../b-tree/index";
+import {BooleanOperator, BTreeLeaf, isFilter, isTerm} from '../b-exp-tree';
 /**
  * Created by dennis on 29/11/2016.
  */
-export function toBoolString(tree:BTree<SearchNode>): string {
+export function toBoolString(tree: BTree<BooleanOperator, BTreeLeaf> | BTreeLeaf): string {
   /*
    Stringify query object into Boolean Algebra string:
    */
-    const value = tree.value;
-
     // 1. Value is filter or text
-    if (isFilter(value)) return `${value.predicate}:${quotes(value.text)}`;
-    if (isTerm(value)) return quotes(value.text);
+    if (isFilter(tree)) return `${tree.predicate}:${quotes(tree.text)}`;
+    if (isTerm(tree)) return quotes(tree.text);
 
     // 2. Value is operator
-    if (isBooleanOperator(value)) {
-      if (value.operator === 'NOT') return `${value.operator} ${toBoolString(tree.right)}`;
-      return `(${toBoolString(tree.left)} ${value.operator} ${toBoolString(tree.right)})`
+    if (isBTree(tree)) {
+      if (tree.value.operator === 'NOT') return `${tree.value.operator} ${toBoolString(tree.right)}`;
+      return `(${toBoolString(tree.left)} ${tree.value.operator} ${toBoolString(tree.right)})`
     }
 }
 
