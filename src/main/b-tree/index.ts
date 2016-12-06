@@ -23,6 +23,35 @@ export function fold<O, T, R>(tree: BTree<O, T> | T, f: (R, tree: O | T) => R, a
   }
 }
 
+export function map<O, T, OR, TR>(tree: BTree<O, T> | T, f: (tree: BTree<O,T> | T, left?: BTree<OR,TR> | TR, right?: BTree<OR,TR> | TR) => BTree<OR,TR> | TR): BTree<OR,TR> | TR {
+    if (isBTree(tree)) {
+      const left = map(tree.left, f);
+      const right = map(tree.right, f);
+      return f(tree, left, right)
+    }
+    else {
+      return f(tree);
+    }
+}
+
+export function mapLeafs<O,T>(tree: BTree<O,T> | T, f: (leaf: T) => T): BTree<O,T> | T {
+  if (isBTree(tree)) {
+  return {
+      value: tree.value,
+      left: mapLeafs(tree.left, f),
+      right: mapLeafs(tree.right, f)
+    };
+  } else {
+    return f(tree);
+  }
+}
+
+// export function map<O,T>(f: (tree: BTree<O, T> | T) => BTree<O, T> | T, tree: BTree<O,T> | T): BTree<O, T> | T {
+//   return {
+//
+//   }
+// }
+
 export function filter<O, T>(tree: BTree<O, T> | T, f: (val: O | T) => boolean): BTree<O, T> {
   return fold(tree, (acc, val) => {
     if (f(val)) {
@@ -47,6 +76,7 @@ export function filter<O, T>(tree: BTree<O, T> | T, f: (val: O | T) => boolean):
 //    return f(tree);
 //  }
 //}
+
 
 export default class BTreeImp<O, T> implements BTree<O, T> {
   _id: string;
