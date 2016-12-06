@@ -48,18 +48,6 @@ export function mapLeafs<O,T>(tree: BTree<O,T> | T, f: (leaf: T) => T): BTree<O,
   }
 }
 
-// export function mapPath<O,T>(tree: BTree<O,T> | T, f: (tree: BTree<O,T>) => BTree<O,T>, path: string[]): BTree<O,T> | T {
-//   if (path.length === 0) return tree;
-// }
-
-// export function getPath<O,T>(tree: )
-
-// export function map<O,T>(f: (tree: BTree<O, T> | T) => BTree<O, T> | T, tree: BTree<O,T> | T): BTree<O, T> | T {
-//   return {
-//
-//   }
-// }
-
 export function filter<O, T>(tree: BTree<O, T> | T, f: (val: BTree<O,T> | T) => boolean): (BTree<O, T> | T)[] {
   return fold(tree, (acc, val) => {
     if (f(val)) {
@@ -70,21 +58,6 @@ export function filter<O, T>(tree: BTree<O, T> | T, f: (val: BTree<O,T> | T) => 
     }
   }, []);
 }
-
-//export function map<T, R>(f: (T) => R, tree: T): BTree<R, R> {
-//  if (!tree) return null;
-//  else if (isBTree(tree)) {
-//    const newValue = f(tree.value);
-//    const left = map(f, tree.left);
-//    const right = map(f, tree.right);
-//    let result = <BTree<R, R>> {};
-//    return result;
-//  }
-//  else {
-//    return f(tree);
-//  }
-//}
-
 
 export default class BTreeImp<O, T> implements BTree<O, T> {
   _id: string;
@@ -107,10 +80,6 @@ export default class BTreeImp<O, T> implements BTree<O, T> {
   filter(f: (val: BTree<O,T> | T) => boolean) {
     return filter(this, f);
   }
-
-  //map<R>(f: (T) => R): BTree<R> {
-  //  return map(f, this);
-  //}
 
   static fromJS<O, T>(o: BTree<O, T>): BTreeImp<O, T> {
     return o instanceof BTreeImp ? o : new BTreeImp(o.value, o.left, o.right);
