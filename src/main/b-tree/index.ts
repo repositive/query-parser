@@ -1,4 +1,5 @@
 import {v4 as uuid} from 'uuid';
+import {append} from 'ramda';
 
 export interface BTree<O, T> {
   value: O;
@@ -7,15 +8,16 @@ export interface BTree<O, T> {
 }
 
 export function isBTree<O, T>(o: any): o is BTree<O, T> {
-  return typeof o === 'object' && 
+  return o &&
+    typeof o === 'object' &&
     o.value !== undefined &&
     o.value !== null;
 }
 
-export function fold<O, T, R>(tree: BTree<O, T> | T, f: (R, tree: O | T) => R, acc: R): R {
+export function fold<O, T, R>(tree: BTree<O, T> | T, f: (R, tree: BTree<O, T> | T) => R, acc: R): R {
   if (!tree) return acc;
   if (isBTree(tree)) {
-    const newAcc = f(acc, tree.value);
+    const newAcc = f(acc, tree);
     return fold(tree.right, f, fold(tree.left, f, newAcc));
   }
   else {
@@ -46,21 +48,27 @@ export function mapLeafs<O,T>(tree: BTree<O,T> | T, f: (leaf: T) => T): BTree<O,
   }
 }
 
+// export function mapPath<O,T>(tree: BTree<O,T> | T, f: (tree: BTree<O,T>) => BTree<O,T>, path: string[]): BTree<O,T> | T {
+//   if (path.length === 0) return tree;
+// }
+
+// export function getPath<O,T>(tree: )
+
 // export function map<O,T>(f: (tree: BTree<O, T> | T) => BTree<O, T> | T, tree: BTree<O,T> | T): BTree<O, T> | T {
 //   return {
 //
 //   }
 // }
 
-export function filter<O, T>(tree: BTree<O, T> | T, f: (val: O | T) => boolean): BTree<O, T> {
+export function filter<O, T>(tree: BTree<O, T> | T, f: (val: BTree<O,T> | T) => boolean): (BTree<O, T> | T)[] {
   return fold(tree, (acc, val) => {
     if (f(val)) {
-      return val
+      return append(val, acc);
     }
     else {
       return acc;
     }
-  }, null);
+  }, []);
 }
 
 //export function map<T, R>(f: (T) => R, tree: T): BTree<R, R> {
@@ -96,7 +104,7 @@ export default class BTreeImp<O, T> implements BTree<O, T> {
     return fold(this, f, acc);
   }
 
-  filter(f: (val: O | T) => boolean) {
+  filter(f: (val: BTree<O,T> | T) => boolean) {
     return filter(this, f);
   }
 
