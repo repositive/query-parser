@@ -27,6 +27,10 @@ export function removeNodeByID(tree: BBTree | BTreeLeaf, id: string): BBTree | B
   });
 }
 
+export function getFilters(tree: BBTree | BTreeLeaf): Filter[] {
+  return <Filter[]> filter(tree, isFilter);
+}
+
 export function removeFilter(tree: BBTree | BTreeLeaf, predicate: string, text: string): BBTree | BTreeLeaf {
   const filtered = filter(tree, val => {
     return isFilter(val) && val.text === text && val.predicate === predicate;

@@ -1,8 +1,7 @@
 import * as test from 'tape';
 import {BTree} from '../../main/b-tree/index';
 import {BooleanOperator, BTreeLeaf, BBTree} from '../../main/b-exp-tree';
-import {insertFilter} from '../../main/operations/insert-filter'
-import {getPath, addFilter, removeNodeByID, removeFilter} from '../../main/operations/filters';
+import {getPath, addFilter, removeNodeByID, removeFilter, getFilters} from '../../main/operations/filters';
 
 
 const simpleTree1: BTreeLeaf = {
@@ -188,17 +187,17 @@ const twoOrs: BBTree = {
 
 test.skip('add filter to simple tree', t => {
   t.plan(1);
-  t.deepEquals(insertFilter('assay', 'RNA-Seq', simpleTree1), simpleTree2);
+  t.deepEquals(addFilter(simpleTree1, 'assay', 'RNA-Seq'), simpleTree2);
 });
 
 test.skip('replace existing filters', t => {
   t.plan(1);
-  t.deepEquals(insertFilter('assay', 'RNA-Seq', tree1), tree2);
+  t.deepEquals(addFilter(tree1, 'assay', 'RNA-Seq'), tree2);
 });
 
 test.skip('Add filters to complex tree', t => {
   t.plan(1);
-  t.deepEquals(insertFilter('assay', 'RNA-Seq', tree1), tree2);
+  t.deepEquals(addFilter(tree1, 'assay', 'RNA-Seq'), tree2);
 });
 
 test('Should return path to id', t => {
@@ -225,4 +224,19 @@ test.skip('remove filters', t => {
   const res = removeFilter(treeWithIDs, 'collection', 'X');
   console.log(JSON.stringify(res,null,2));
   t.deepEquals(treeWithIDs, res);
+});
+
+test('getFilters', t => {
+  t.plan(1);
+  const filters = getFilters(treeWithIDs);
+  console.log(filters);
+  t.deepEquals(filters, [{
+    _id: '5',
+    predicate: 'assay',
+    text: 'X'
+  },{
+    _id: '4',
+    predicate: 'collection',
+    text: 'X'
+  }])
 });
