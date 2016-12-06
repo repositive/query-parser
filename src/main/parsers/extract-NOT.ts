@@ -6,7 +6,7 @@ export default function extractNOT(input: string, tokens: Token[] = [], i: numbe
   const match = input.match(/(^NOT\s|\sNOT\s)/);
 
   if (match) {
-    const from = match[0].startsWith('N') ? match.index : match.index + 1; // Space in front of NOT -> leave space
+    const from = match[0].indexOf('N') === 0 ? match.index : match.index + 1; // Space in front of NOT -> leave space
     const to = match.index + match[0].length;
     const newTokens = concat(tokens, <Token[]> [{
       type: 'not',

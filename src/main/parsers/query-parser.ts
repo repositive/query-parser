@@ -21,12 +21,12 @@ const parsers = [
   extractLooseWords
 ];
 
-interface Range {
+export interface Range {
   from: number;
   to: number;
 }
 
-interface StringRange extends Range {
+export interface StringRange extends Range {
   term: string;
 }
 
