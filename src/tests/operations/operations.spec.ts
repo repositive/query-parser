@@ -1,7 +1,8 @@
 import * as test from 'tape';
 import {BTree} from '../../main/b-tree/index';
-import {BooleanOperator, BTreeLeaf} from '../../main/b-exp-tree';
+import {BooleanOperator, BTreeLeaf, BBTree} from '../../main/b-exp-tree';
 import {insertFilter} from '../../main/operations/insert-filter'
+import {getPath} from '../../main/operations/filters';
 
 
 const simpleTree1: BTreeLeaf = {
@@ -39,6 +40,8 @@ const tree1: BTree<BooleanOperator, BTreeLeaf> = {
     }
   }
 };
+
+
 
 const tree2: BTree<BooleanOperator, BTreeLeaf> = {
   value: 'AND',
@@ -91,6 +94,62 @@ const tree3: BTree<BooleanOperator, BTreeLeaf> =
   }
 };
 
+const treeWithIDs: BBTree = {
+  _id: '1',
+  value: 'AND',
+  left: {
+    text: 'glaucoma'
+  },
+  right: {
+    _id: '2',
+    value: 'AND',
+    left: {
+      _id: '3',
+      value: 'NOT',
+      left: null,
+      right: {
+        _id: '5',
+        predicate: 'assay',
+        text: 'X'
+      }
+    },
+    right: {
+      _id: '4',
+      predicate: 'collection',
+      text: 'X'
+    }
+  }
+};
+
+const twoOrs: BBTree = {
+  _id: '1',
+  value: 'AND',
+  left: {
+    _id: '2',
+    value: 'OR',
+    left: {
+      _id: '3',
+      text: 'X'
+    },
+    right: {
+      _id: '4',
+      text: 'Y'
+    }
+  },
+  right: {
+    _id: '5',
+    value: 'OR',
+    left: {
+      _id: '6',
+      text: 'Z'
+    },
+    right: {
+      _id: '7',
+      text: 'A'
+    }
+  }
+};
+
 test.skip('add filter to simple tree', t => {
   t.plan(1);
   t.deepEquals(insertFilter('assay', 'RNA-Seq', simpleTree1), simpleTree2);
@@ -106,6 +165,9 @@ test.skip('Add filters to complex tree', t => {
   t.deepEquals(insertFilter('assay', 'RNA-Seq', tree1), tree2);
 });
 
-
-console.log(JSON.stringify(insertFilter('assay', 'Y', tree1), null, 2));
-console.log(JSON.stringify(insertFilter('test', 'Y', tree1), null, 2));
+test('Should return path to id', t => {
+  t.plan(3);
+  t.deepEquals(['1','2','3'], getPath(treeWithIDs, '3'));
+  t.deepEquals(['1','2','3','5'], getPath(treeWithIDs, '5'));
+  t.deepEquals(['1','5','7'], getPath(twoOrs, '7'));
+});

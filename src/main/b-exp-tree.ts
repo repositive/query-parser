@@ -8,6 +8,7 @@ export function isBooleanOperator(o: any): o is BooleanOperator {
 }
 
 export interface Term {
+  _id?: string;
   text: string;
 }
 
@@ -17,6 +18,7 @@ export function isTerm(o: any): o is Term {
 }
 
 export interface Filter {
+  _id?: string;
   predicate: string;
   text: string;
 }
@@ -29,6 +31,8 @@ export function isFilter(o: any): o is Filter {
 
 export type BTreeLeaf = Term | Filter;
 
-export type BBTree = BTree<BooleanOperator, BTreeLeaf>;
+export interface BBTree extends BTree<BooleanOperator, BTreeLeaf> {
+  _id?: string;
+}
 
 export type SearchNode = Term | BooleanOperator | Filter;

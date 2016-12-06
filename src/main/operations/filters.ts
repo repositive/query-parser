@@ -1,12 +1,24 @@
 // import {BTree, default as BTreeImp} from '../b-tree/index';
 // import {SearchNode} from '../b-exp-tree';
 // import {fold} from '../b-tree/index';
-// import {concat} from 'ramda';
+import {append} from 'ramda';
 //
-// export function getPath<O, T>(id: string, tree: BTreeImp<O, T> | T, acc: string[]): string[] {
-//   if (tree['_id'] !== id) return getPath(id, tree['left'], concat(acc, [id]));
-//   else return acc;
-// }
+
+import {BTreeLeaf, BBTree} from "../b-exp-tree";
+import {isBTree} from "../b-tree/index";
+export function getPath(tree: BBTree | BTreeLeaf, id: string, acc: string[] = []) {
+  if (tree._id === id) {
+    return append(tree._id, acc);
+  }
+  else if(isBTree(tree)) {
+    const newAcc = append(tree._id, acc);
+    return (tree.left ? getPath(tree.left, id, newAcc) : null) || (tree.right ? getPath(tree.right, id, newAcc) : null)
+  }
+  else {
+    return null;
+  }
+}
+
 //
 // function remove<O, T>(id: string, tree: BTree<O, T>) {
 //   // Get path
