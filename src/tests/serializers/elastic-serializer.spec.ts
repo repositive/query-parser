@@ -1,7 +1,7 @@
 import * as test from 'tape';
 import {toElasticQuery} from "../../main/serializers/elastic-seralizer";
-import {BTree, SearchNode} from "../../main/b-tree/index";
-
+import {BTree} from "../../main/b-tree/index";
+import {BooleanOperator, BTreeLeaf} from '../../main/b-exp-tree';
 
 /*
  ############################################################################
@@ -67,54 +67,34 @@ const ES1 = {
   }
 };
 
-const complexTree:BTree<SearchNode> = {
-  value: {
-    operator: 'AND'
-  },
+const complexTree: BTree<BooleanOperator, BTreeLeaf> = {
+  value: 'AND',
   left: {
-    value: {
-      text: 'breast cancer'
-    }
+    text: 'breast cancer'
   },
-  right: {
-    value: {
-      operator: 'NOT'
-    },
-    right: {
-      value: {
-        operator: 'OR'
-      },
+  right: <BTree<BooleanOperator, BTreeLeaf>>{
+    value: 'NOT',
+    right: <BTree<BooleanOperator, BTreeLeaf>>{
+      value: 'OR',
       left: {
-        value: {
-          predicate: 'assay',
-          text: 'RNA-Seq'
-        }
+        predicate: 'assay',
+        text: 'RNA-Seq'
       },
-      right: {
-        value: {
-          operator: 'OR'
-        },
+      right: <BTree<BooleanOperator, BTreeLeaf>> {
+        value: 'OR',
         left: {
-          value: {
-            predicate: 'assay',
-            text: 'RNA-seq'
-          }
+          predicate: 'assay',
+          text: 'RNA-seq'
         },
-        right: {
-          value: {
-            operator: 'AND'
-          },
+        right: <BTree<BooleanOperator, BTreeLeaf>> {
+          value: 'AND',
           left: {
-            value: {
-              predicate: 'access',
-              text: 'Open'
-            }
+            predicate: 'access',
+            text: 'Open'
           },
           right: {
-            value: {
-              predicate: 'properties.tissue',
-              text: 'breast'
-            }
+            predicate: 'properties.tissue',
+            text: 'breast'
           }
         }
       }

@@ -1,5 +1,6 @@
 import {head, tail, flatten, concat} from 'ramda';
-import {BTree, SearchNode, BooleanOperator} from '../b-tree/index';
+import {BTree} from '../b-tree/index';
+import {BTreeLeaf, BooleanOperator} from '../b-exp-tree';
 import {Token} from './base-parser';
 
 import extractParenthesys from './extract-parenthesys';
@@ -88,21 +89,22 @@ export function tokenizer(input: string): Token[] {
   });
 }
 
-export function treeBuilder(tokens: Token[], tree: BTree<SearchNode> = null): BTree<SearchNode> {
+export function treeBuilder(tokens: Token[], tree: BTree<BooleanOperator, BTreeLeaf> | BTreeLeaf = null): BTree<BooleanOperator, BTreeLeaf> | BTreeLeaf {
   const f = <Token> head(tokens);
   if (f) {
 
     const remaining = tail(tokens);
     if (f.type === 'term') {
-      return treeBuilder(remaining, {value: {text: f.term}});
+      return treeBuilder(remaining, {text: f.term});
     }
     else if (f.type === 'filter') {
-      return treeBuilder(remaining, {value: {predicate: f.predicate, text: f.term}});
+      return treeBuilder(remaining, {predicate: f.predicate, text: f.term});
     }
     else if (f.type === 'not') {
       const nextTerm = head(remaining);
       return treeBuilder(tail(remaining), {
-        value: <BooleanOperator> {operator: f.term},
+        value: <BooleanOperator> f.term,
+        left: null,
         right: treeBuilder([nextTerm])
       });
     }
@@ -111,9 +113,10 @@ export function treeBuilder(tokens: Token[], tree: BTree<SearchNode> = null): BT
       if (nextTerm.type === 'not') {
         const negated = head(tail(remaining));
         return treeBuilder(tail(tail(remaining)), {
-          value: <BooleanOperator> {operator: f.term},
+          value: <BooleanOperator> f.term,
           right: {
-            value: { operator: 'NOT'},
+            value: 'NOT',
+            left: null,
             right: treeBuilder([negated])
           },
           left: tree
@@ -121,7 +124,7 @@ export function treeBuilder(tokens: Token[], tree: BTree<SearchNode> = null): BT
       }
       else {
         return treeBuilder(tail(remaining), {
-          value: <BooleanOperator> {operator: f.term},
+          value: <BooleanOperator> f.term,
           right: treeBuilder([nextTerm]),
           left: tree
         });
@@ -136,7 +139,7 @@ export function treeBuilder(tokens: Token[], tree: BTree<SearchNode> = null): BT
   }
 }
 
-export function parseString(input: string): BTree<SearchNode> {
+export function parseString(input: string): BTree<BooleanOperator, BTreeLeaf> | BTreeLeaf {
   const tokens = tokenizer(input);
   return treeBuilder(tokens);
 }

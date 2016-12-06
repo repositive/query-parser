@@ -1,6 +1,6 @@
 import * as test from 'tape';
-import {toBoolString} from "../../main/serializers/string-serializer";
-import {BTree, SearchNode} from "../../main/b-tree/index";
+import {toBoolString} from '../../main/serializers/string-serializer';
+import {BBTree, BTreeLeaf} from '../../main/b-exp-tree';
 
 /*
  ############################################################################
@@ -8,29 +8,20 @@ import {BTree, SearchNode} from "../../main/b-tree/index";
  ############################################################################
  */
 
-const simpleTree1:BTree<SearchNode> = {
-  value: {
-    text: 'cancer'
-  }
+const simpleTree1: BTreeLeaf = {
+  text: 'cancer'
 };
 
-const simpleTree2:BTree<SearchNode> = {
-  value: {
-    operator: 'AND'
-  },
+const simpleTree2: BBTree = {
+  value: 'AND',
   left: {
-    value: {
-      text: 'cancer'
-    }
+    text: 'cancer'
   },
   right: {
-    value: {
-      text: 'RNA-Seq',
-      predicate: 'assay'
-    }
+    text: 'RNA-Seq',
+    predicate: 'assay'
   }
 };
-
 
 test('Should return string', function (t) {
   t.plan(1);
@@ -48,105 +39,67 @@ test('Simple boolean terms', function (t) {
   t.equal(toBoolString(simpleTree2), '(cancer AND assay:RNA-Seq)');
 });
 
-
-const tree1:BTree<SearchNode> = {
-  value: {
-    operator: 'AND'
-  },
+const tree1: BBTree = {
+  value: 'AND',
   left: {
-    value: {
-      text: 'glaucoma'
-    }
+    text: 'glaucoma'
   },
   right: {
-    value: {
-      operator: 'AND'
-    },
-    left: {
-      value: {
-        operator: 'NOT'
-      },
+    value: 'AND',
+    left: <BBTree> {
+      value: 'NOT',
       right: {
-        value: {
-          operator: 'OR'
-        },
+        value: 'OR',
         left: {
-          value: {
-            predicate: 'assay',
-            text: 'X'
-          }
+          predicate: 'assay',
+          text: 'X'
         },
         right: {
-          value: {
-            predicate: 'assay',
-            text: 'Y'
-          }
+          predicate: 'assay',
+          text: 'Y'
         }
       }
     },
     right: {
-      value: {
-        predicate: 'collection',
-        text: 'X'
-      }
+      predicate: 'collection',
+      text: 'X'
     }
   }
 };
-
 
 test('Nested NOT and Boolean terms', function (t) {
   t.plan(1);
   t.equal(toBoolString(tree1), '(glaucoma AND (NOT (assay:X OR assay:Y) AND collection:X))');
 });
 
-const complexTree:BTree<SearchNode> = {
-  value: {
-    operator: 'AND'
-  },
+const complexTree: BBTree = {
+  value: 'AND',
   left: {
-    value: {
-      text: 'breast cancer'
-    }
+    text: 'breast cancer'
   },
-  right: {
-    value: {
-      operator: 'NOT'
-    },
-    right: {
-      value: {
-        operator: 'OR'
-      },
+  right: <BBTree> {
+    value: 'NOT',
+    right: <BBTree> {
+      value: 'OR',
       left: {
-        value: {
-          predicate: 'assay',
-          text: 'RNA-Seq'
-        }
+        predicate: 'assay',
+        text: 'RNA-Seq'
       },
-      right: {
-        value: {
-          operator: 'OR'
-        },
+      right: <BBTree> {
+        value: 'OR',
         left: {
-          value: {
-            predicate: 'assay',
-            text: 'RNA-seq'
-          }
+          predicate: 'assay',
+          text: 'RNA-seq'
         },
-        right: {
-          value: {
-            operator: 'AND'
-          },
+        right: <BBTree> {
+          value: 'AND',
           left: {
-            value: {
-              predicate: 'access',
-              text: 'Open'
-            }
+            predicate: 'access',
+            text: 'Open'
           },
           right: {
-            value: {
-              predicate: 'properties.tissue',
-              text: 'breast'
-            }
+            predicate: 'properties.tissue',
+            text: 'breast'
           }
         }
       }
