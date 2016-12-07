@@ -48,7 +48,7 @@ export function addFilter(tree: BBTree | BTreeLeaf, predicate: string, text: str
   if (exists.length > 0) {
     return tree; // Or throw exception
   } else if (filtered.length === 0) {
-     return new BTreeImp(<BooleanOperator>'AND', tree, <Filter> { text: text, predicate: predicate });
+     return new BTreeImp(<BooleanOperator>'AND', <Filter> { text: text, predicate: predicate }, tree);
   } else {
     const pred = filtered[0];
     return <BBTree> map(tree, (t, l, r) => {

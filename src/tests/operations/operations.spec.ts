@@ -1,7 +1,9 @@
 import * as test from 'tape';
-import {BTree} from '../../main/b-tree/index';
-import {BooleanOperator, BTreeLeaf, BBTree} from '../../main/b-exp-tree';
+import {BTree, isBTree} from '../../main/b-tree/index';
+import {BooleanOperator, BTreeLeaf, BBTree, isTerm, isFilter} from '../../main/b-exp-tree';
 import {getPath, addFilter, removeNodeByID, removeFilter, getFilters} from '../../main/operations/filters';
+import {toBoolString} from "../../main/serializers/string-serializer";
+import {parseString} from "../../main/parsers/query-parser";
 
 
 const simpleTree1: BTreeLeaf = {
@@ -207,10 +209,29 @@ test('Should return path to id', t => {
   t.deepEquals(['1','5','7'], getPath(twoOrs, '7'));
 });
 
-test.skip('Add predicates', t => {
+test.skip('Add existing predicates', t => {
   t.plan(1);
   const res = addFilter(treeWithIDs, 'assay', 'Y');
   t.deepEquals(treeWithIDs, res);
+});
+
+function getDepth(tree: BBTree | BTreeLeaf): number {
+  if (isTerm(tree)) return 1;
+  if (isBTree(tree)) {
+    return Math.max(1 + getDepth(tree.left), 1 + getDepth(tree.right))
+  }
+  return 0;
+}
+
+test('Add new predicates', t => {
+  t.plan(3);
+  const res = <BBTree> addFilter(treeWithIDs, 'test', 'X');
+  const dres = getDepth(res);
+  t.equals(dres, getDepth(treeWithIDs) + 1);
+  t.assert(isFilter(res.left));
+  const tree = parseString('cancer AND breast');
+  const newTree = addFilter(tree, 'assay', 'RNA-Seq');
+  t.equals(toBoolString(newTree), '(assay:RNA-Seq AND (cancer AND breast))');
 });
 
 test.skip('Remove nodes', t => {
@@ -219,17 +240,15 @@ test.skip('Remove nodes', t => {
   t.deepEquals(treeWithIDs, res);
 });
 
-test.skip('remove filters', t => {
+test('remove filters', t => {
   t.plan(1);
-  const res = removeFilter(treeWithIDs, 'collection', 'X');
-  console.log(JSON.stringify(res,null,2));
-  t.deepEquals(treeWithIDs, res);
+  const res = <BBTree> removeFilter(treeWithIDs, 'collection', 'X');
+  t.equals(getDepth(res), getDepth(treeWithIDs) - 1)
 });
 
 test('getFilters', t => {
   t.plan(1);
   const filters = getFilters(treeWithIDs);
-  console.log(filters);
   t.deepEquals(filters, [{
     _id: '5',
     predicate: 'assay',
