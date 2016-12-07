@@ -13,7 +13,8 @@ export interface Term {
 }
 
 export function isTerm(o: any): o is Term {
-  return typeof o === 'object' &&
+  return o &&
+    typeof o === 'object' &&
     typeof o.text === 'string';
 }
 
@@ -24,7 +25,8 @@ export interface Filter {
 }
 
 export function isFilter(o: any): o is Filter {
-  return typeof o === 'object' &&
+  return o &&
+    typeof o === 'object' &&
     typeof o.text === 'string' &&
     typeof o.predicate === 'string';
 }
