@@ -4,10 +4,10 @@ export interface BTree<O, T> {
     right: BTree<O, T> | T;
 }
 export declare function isBTree<O, T>(o: any): o is BTree<O, T>;
-export declare function fold<O, T, R>(tree: BTree<O, T> | T, f: (R, tree: O | T) => R, acc: R): R;
+export declare function fold<O, T, R>(tree: BTree<O, T> | T, f: (R, tree: BTree<O, T> | T) => R, acc: R): R;
 export declare function map<O, T, OR, TR>(tree: BTree<O, T> | T, f: (tree: BTree<O, T> | T, left?: BTree<OR, TR> | TR, right?: BTree<OR, TR> | TR) => BTree<OR, TR> | TR): BTree<OR, TR> | TR;
 export declare function mapLeafs<O, T>(tree: BTree<O, T> | T, f: (leaf: T) => T): BTree<O, T> | T;
-export declare function filter<O, T>(tree: BTree<O, T> | T, f: (val: O | T) => boolean): BTree<O, T>;
+export declare function filter<O, T>(tree: BTree<O, T> | T, f: (val: BTree<O, T> | T) => boolean): (BTree<O, T> | T)[];
 export default class BTreeImp<O, T> implements BTree<O, T> {
     _id: string;
     value: O;
@@ -15,6 +15,6 @@ export default class BTreeImp<O, T> implements BTree<O, T> {
     right: BTreeImp<O, T> | T;
     constructor(value: O, l?: BTree<O, T> | T, r?: BTree<O, T> | T);
     fold<R>(f: (R, T) => R, acc: R): R;
-    filter(f: (val: O | T) => boolean): BTree<O, T | BTreeImp<O, T>>;
+    filter(f: (val: BTree<O, T> | T) => boolean): (T | BTree<O, T>)[];
     static fromJS<O, T>(o: BTree<O, T>): BTreeImp<O, T>;
 }
