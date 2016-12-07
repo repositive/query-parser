@@ -29,6 +29,11 @@ test('Should return string', function (t) {
   t.equal(typeof result, 'string');
 });
 
+test('empty query', t => {
+  t.plan(1);
+  t.equals(toBoolString(null), '');
+});
+
 test('Single text terms', function (t) {
   t.plan(1);
   t.equal(toBoolString(simpleTree1), 'cancer');

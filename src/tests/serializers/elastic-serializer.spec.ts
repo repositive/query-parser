@@ -106,3 +106,14 @@ test('ES - should create correct object', function (t) {
   t.plan(1);
   t.equal(JSON.stringify(toElasticQuery(complexTree)), JSON.stringify(ES1));
 });
+
+const emptyQuery = {
+  "query": {
+    "match_all": {}
+  }
+};
+
+test('Handle null requests', t => {
+  t.plan(1);
+  t.deepEquals(emptyQuery, toElasticQuery(null));
+});
