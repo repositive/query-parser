@@ -1,0 +1,40 @@
+"use strict";
+var test = require('tape');
+var index_1 = require("../../main/b-tree/index");
+var query_parser_1 = require("../../main/parsers/query-parser");
+var b_exp_tree_1 = require("../../main/b-exp-tree");
+var tree = query_parser_1.parseString('cancer AND (brain OR breast)');
+var tree2 = query_parser_1.parseString('cancer AND (changed OR breast)');
+test('map identity', function (t) {
+    t.plan(2);
+    t.deepEquals(tree, index_1.map(tree, function (t) { return t; }));
+    var res = index_1.map(tree, function (t, l, r) {
+        if (b_exp_tree_1.isTerm(t) && t.text === 'brain') {
+            return {
+                text: 'changed'
+            };
+        }
+        else if (index_1.isBTree(t)) {
+            return {
+                value: t.value,
+                right: r,
+                left: l
+            };
+        }
+        else {
+            return t;
+        }
+    });
+    t.deepEquals(tree2, res);
+});
+test('mapLeaf', function (t) {
+    t.plan(1);
+    var res = index_1.mapLeafs(tree, function (l) {
+        if (l.text === 'brain')
+            return { text: 'changed' };
+        else
+            return l;
+    });
+    t.deepEquals(res, tree2);
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYi10cmVlLnNwZWMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvdGVzdHMvYi10cmVlL2ItdHJlZS5zcGVjLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxJQUFZLElBQUksV0FBTSxNQUFNLENBQUMsQ0FBQTtBQUM3QixzQkFBcUMseUJBQXlCLENBQUMsQ0FBQTtBQUMvRCw2QkFBMEIsaUNBQWlDLENBQUMsQ0FBQTtBQUM1RCwyQkFBcUIsdUJBQXVCLENBQUMsQ0FBQTtBQUU3QyxJQUFNLElBQUksR0FBRywwQkFBVyxDQUFDLDhCQUE4QixDQUFDLENBQUM7QUFDekQsSUFBTSxLQUFLLEdBQUcsMEJBQVcsQ0FBQyxnQ0FBZ0MsQ0FBQyxDQUFDO0FBRTVELElBQUksQ0FBQyxjQUFjLEVBQUUsVUFBQSxDQUFDO0lBQ3BCLENBQUMsQ0FBQyxJQUFJLENBQUMsQ0FBQyxDQUFDLENBQUM7SUFDVixDQUFDLENBQUMsVUFBVSxDQUFDLElBQUksRUFBRSxXQUFHLENBQUMsSUFBSSxFQUFFLFVBQUEsQ0FBQyxJQUFJLE9BQUEsQ0FBQyxFQUFELENBQUMsQ0FBQyxDQUFDLENBQUM7SUFDdEMsSUFBTSxHQUFHLEdBQUcsV0FBRyxDQUFDLElBQUksRUFBRSxVQUFDLENBQUMsRUFBRSxDQUFDLEVBQUUsQ0FBQztRQUM1QixFQUFFLENBQUMsQ0FBQyxtQkFBTSxDQUFDLENBQUMsQ0FBQyxJQUFJLENBQUMsQ0FBQyxJQUFJLEtBQUssT0FBTyxDQUFDLENBQUMsQ0FBQztZQUNwQyxNQUFNLENBQUM7Z0JBQ0wsSUFBSSxFQUFFLFNBQVM7YUFDaEIsQ0FBQTtRQUNILENBQUM7UUFBQyxJQUFJLENBQUMsRUFBRSxDQUFBLENBQUMsZUFBTyxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQztZQUNyQixNQUFNLENBQUM7Z0JBQ0wsS0FBSyxFQUFFLENBQUMsQ0FBQyxLQUFLO2dCQUNkLEtBQUssRUFBRSxDQUFDO2dCQUNSLElBQUksRUFBRSxDQUFDO2FBQ1IsQ0FBQztRQUNKLENBQUM7UUFBQyxJQUFJLENBQUMsQ0FBQztZQUNOLE1BQU0sQ0FBQyxDQUFDLENBQUM7UUFDWCxDQUFDO0lBQ0gsQ0FBQyxDQUFDLENBQUM7SUFDSCxDQUFDLENBQUMsVUFBVSxDQUFDLEtBQUssRUFBRSxHQUFHLENBQUMsQ0FBQztBQUMzQixDQUFDLENBQUMsQ0FBQztBQUVILElBQUksQ0FBQyxTQUFTLEVBQUUsVUFBQSxDQUFDO0lBQ2YsQ0FBQyxDQUFDLElBQUksQ0FBQyxDQUFDLENBQUMsQ0FBQztJQUNWLElBQU0sR0FBRyxHQUFHLGdCQUFRLENBQUMsSUFBSSxFQUFFLFVBQUEsQ0FBQztRQUMxQixFQUFFLENBQUMsQ0FBQyxDQUFDLENBQUMsSUFBSSxLQUFLLE9BQU8sQ0FBQztZQUFDLE1BQU0sQ0FBQyxFQUFFLElBQUksRUFBRSxTQUFTLEVBQUUsQ0FBQztRQUNuRCxJQUFJO1lBQUMsTUFBTSxDQUFDLENBQUMsQ0FBQztJQUNoQixDQUFDLENBQUMsQ0FBQztJQUNILENBQUMsQ0FBQyxVQUFVLENBQUMsR0FBRyxFQUFFLEtBQUssQ0FBQyxDQUFDO0FBQzNCLENBQUMsQ0FBQyxDQUFDIn0=
