@@ -40,5 +40,7 @@ export function toElasticQuery(tree:BTree<BooleanOperator, BTreeLeaf>): any {
 
   }
 
-  return { query: build(tree) };
+  let q = build(tree);
+  if (!q) q = { 'match_all': {} };
+  return { query: q };
 }
