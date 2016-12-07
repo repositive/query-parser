@@ -2,6 +2,7 @@ import {head, tail, flatten, concat} from 'ramda';
 import {BTree} from '../b-tree/index';
 import {BTreeLeaf, BooleanOperator} from '../b-exp-tree';
 import {Token} from './base-parser';
+import {v4 as uuid} from 'uuid';
 
 import extractParenthesys from './extract-parenthesys';
 import extractPredicates from './extract-predicates';
@@ -95,14 +96,19 @@ export function treeBuilder(tokens: Token[], tree: BTree<BooleanOperator, BTreeL
 
     const remaining = tail(tokens);
     if (f.type === 'term') {
-      return treeBuilder(remaining, {text: f.term});
+      return treeBuilder(remaining, {
+        _id: uuid(),
+        text: f.term
+      });
     }
     else if (f.type === 'filter') {
-      return treeBuilder(remaining, {predicate: f.predicate, text: f.term});
+      return treeBuilder(remaining, {_id: uuid(), predicate: f.predicate, text: f.term}); //TODO: Add id
     }
     else if (f.type === 'not') {
       const nextTerm = head(remaining);
       return treeBuilder(tail(remaining), {
+        //TODO: Add id
+        _id: uuid(),
         value: <BooleanOperator> f.term,
         left: null,
         right: treeBuilder([nextTerm])
@@ -113,6 +119,8 @@ export function treeBuilder(tokens: Token[], tree: BTree<BooleanOperator, BTreeL
       if (nextTerm.type === 'not') {
         const negated = head(tail(remaining));
         return treeBuilder(tail(tail(remaining)), {
+          //TODO: Add id
+          _id: uuid(),
           value: <BooleanOperator> f.term,
           right: {
             value: 'NOT',
@@ -124,6 +132,7 @@ export function treeBuilder(tokens: Token[], tree: BTree<BooleanOperator, BTreeL
       }
       else {
         return treeBuilder(tail(remaining), {
+          _id: uuid(),
           value: <BooleanOperator> f.term,
           right: treeBuilder([nextTerm]),
           left: tree
