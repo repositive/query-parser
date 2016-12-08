@@ -266,11 +266,11 @@ test('getFilters', t => {
   }])
 });
 
-test('Adding filters to empty query', t => {
-
+test.skip('Adding filters to empty query', t => {
+  t.end();
 });
 
-test('Adding multiple filters', t => {
+test.skip('Adding multiple filters', t => {
   t.plan(2);
   t.end();
 });
