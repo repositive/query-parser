@@ -265,3 +265,12 @@ test('getFilters', t => {
     text: 'X'
   }])
 });
+
+test('Adding filters to empty query', t => {
+
+});
+
+test('Adding multiple filters', t => {
+  t.plan(2);
+  t.end();
+});
