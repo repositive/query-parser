@@ -1,6 +1,6 @@
 import * as test from 'tape';
 import {BTree, isBTree} from '../../main/b-tree/index';
-import {BooleanOperator, BTreeLeaf, BBTree, isTerm, isFilter} from '../../main/b-exp-tree';
+import {BooleanOperator, BTreeLeaf, BBTree, isTerm, isFilter, Filter} from '../../main/b-exp-tree';
 import {getPath, addFilter, removeNodeByID, removeFilter, getFilters} from '../../main/operations/filters';
 import {toBoolString} from "../../main/serializers/string-serializer";
 import {parseString} from "../../main/parsers/query-parser";
@@ -266,7 +266,13 @@ test('getFilters', t => {
   }])
 });
 
-test.skip('Adding filters to empty query', t => {
+test('Adding filters to empty query', t => {
+  t.plan(3);
+  const emptyTree = null;
+  const newTree = <Filter> addFilter(emptyTree, 'assay', 'WGS');
+  t.assert(isFilter(newTree));
+  t.assert(newTree.text, 'WGS');
+  t.assert(newTree.predicate, 'assay');
   t.end();
 });
 
