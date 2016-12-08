@@ -231,7 +231,7 @@ test('Add new predicates', t => {
   t.assert(isFilter(res.left));
   const tree = parseString('cancer AND breast');
   const newTree = addFilter(tree, 'assay', 'RNA-Seq');
-  t.equals(toBoolString(newTree), '(assay:RNA-Seq AND (cancer AND breast))');
+  t.equals(toBoolString(newTree), 'assay:RNA-Seq cancer breast');
 });
 
 test('Remove nodes', t => {
@@ -244,12 +244,12 @@ test('remove filters', t => {
   t.plan(2);
   const res = <BBTree> removeFilter(treeWithIDs, 'collection', 'X');
   t.equals(getDepth(res), getDepth(treeWithIDs) - 1);
-  const original = '(assay:RNA-Seq AND (cancer AND breast))';
+  const original = 'assay:RNA-Seq cancer breast';
   const tree = parseString(original);
   const treeString = toBoolString(tree);
   const removed = removeFilter(tree, 'assay', 'RNA-Seq');
   const removedString = toBoolString(removed);
-  t.equals(removedString, '(cancer AND breast)');
+  t.equals(removedString, 'cancer breast');
 });
 
 test('getFilters', t => {
