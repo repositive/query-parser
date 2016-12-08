@@ -41,7 +41,7 @@ test('Single text terms', function (t) {
 
 test('Simple boolean terms', function (t) {
   t.plan(1);
-  t.equal(toBoolString(simpleTree2), '(cancer AND assay:RNA-Seq)');
+  t.equal(toBoolString(simpleTree2), 'cancer assay:RNA-Seq');
 });
 
 const tree1: BBTree = {
@@ -74,7 +74,7 @@ const tree1: BBTree = {
 
 test('Nested NOT and Boolean terms', function (t) {
   t.plan(1);
-  t.equal(toBoolString(tree1), '(glaucoma AND (NOT (assay:X OR assay:Y) AND collection:X))');
+  t.equal(toBoolString(tree1), 'glaucoma NOT (assay:X OR assay:Y) collection:X');
 });
 
 const complexTree: BBTree = {
@@ -112,7 +112,7 @@ const complexTree: BBTree = {
   }
 };
 
-const str = '("breast cancer" AND NOT (assay:RNA-Seq OR (assay:RNA-seq OR (access:Open AND properties.tissue:breast))))';
+const str = '"breast cancer" NOT (assay:RNA-Seq OR assay:RNA-seq OR (access:Open properties.tissue:breast))';
 
 test('String - Complex Tree', function (t) {
   t.plan(1);

@@ -1,5 +1,5 @@
 import {v4 as uuid} from 'uuid';
-import {append} from 'ramda';
+import {append, concat} from 'ramda';
 
 export interface BTree<O, T> {
   value: O;
@@ -14,14 +14,13 @@ export function isBTree<O, T>(o: any): o is BTree<O, T> {
     o.value !== null;
 }
 
-export function fold<O, T, R>(tree: BTree<O, T> | T, f: (R, tree: BTree<O, T> | T) => R, acc: R): R {
+export function fold<O, T, R>(tree: BTree<O, T> | T, f: (tree: BTree<O, T> | T, l?: R, r?: R) => R, acc: R): R {
   if (!tree) return acc;
   if (isBTree(tree)) {
-    const newAcc = f(acc, tree);
-    return fold(tree.right, f, fold(tree.left, f, newAcc));
+    return f(tree, fold(tree.left, f, acc), fold(tree.right, f, acc));
   }
   else {
-    return f(acc, tree);
+    return f(tree, acc, acc);
   }
 }
 
@@ -49,7 +48,8 @@ export function mapLeafs<O,T>(tree: BTree<O,T> | T, f: (leaf: T) => T): BTree<O,
 }
 
 export function filter<O, T>(tree: BTree<O, T> | T, f: (val: BTree<O,T> | T) => boolean): (BTree<O, T> | T)[] {
-  return fold(tree, (acc, val) => {
+  return fold(tree, (val, l, r) => {
+    const acc = concat(l, r);
     if (f(val)) {
       return append(val, acc);
     }
