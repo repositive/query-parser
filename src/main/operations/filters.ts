@@ -2,6 +2,7 @@ import {append} from 'ramda';
 
 import {BTreeLeaf, BBTree, BooleanOperator, isTerm, isFilter, Filter} from "../b-exp-tree";
 import {isBTree, map, filter, default as BTreeImp} from "../b-tree/index";
+import {v4 as uuid } from 'uuid';
 
 export function getPath(tree: BBTree | BTreeLeaf, id: string, acc: string[] = []) {
   if (tree._id === id) {
@@ -49,12 +50,15 @@ export function addFilter(tree: BBTree | BTreeLeaf, predicate: string, text: str
   if (exists.length > 0) {
     return tree; // Or throw exception
   } else if (filtered.length === 0) {
-     return new BTreeImp(<BooleanOperator>'AND', <Filter> { text: text, predicate: predicate }, tree);
+    if (!tree)
+      return <Filter> { _id: uuid(), text: text, predicate: predicate };
+    else
+      return new BTreeImp(<BooleanOperator>'AND', <Filter> { _id: uuid(), text: text, predicate: predicate }, tree);
   } else {
     const pred = filtered[0];
     return <BBTree> map(tree, (t, l, r) => {
       if (isFilter(t) && t._id === pred._id) {
-        return <BBTree> new BTreeImp(<BooleanOperator>'OR', <Filter> { text: text, predicate: predicate }, t);
+        return <BBTree> new BTreeImp(<BooleanOperator>'OR', <Filter> { _id: uuid(), text: text, predicate: predicate }, t);
       }
       else if (isBTree(t)) {
         return new BTreeImp(t.value, l, r);
