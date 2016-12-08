@@ -4,7 +4,7 @@ export interface BTree<O, T> {
     right: BTree<O, T> | T;
 }
 export declare function isBTree<O, T>(o: any): o is BTree<O, T>;
-export declare function fold<O, T, R>(tree: BTree<O, T> | T, f: (R, tree: BTree<O, T> | T) => R, acc: R): R;
+export declare function fold<O, T, R>(tree: BTree<O, T> | T, f: (tree: BTree<O, T> | T, l?: R, r?: R) => R, acc: R): R;
 export declare function map<O, T, OR, TR>(tree: BTree<O, T> | T, f: (tree: BTree<O, T> | T, left?: BTree<OR, TR> | TR, right?: BTree<OR, TR> | TR) => BTree<OR, TR> | TR): BTree<OR, TR> | TR;
 export declare function mapLeafs<O, T>(tree: BTree<O, T> | T, f: (leaf: T) => T): BTree<O, T> | T;
 export declare function filter<O, T>(tree: BTree<O, T> | T, f: (val: BTree<O, T> | T) => boolean): (BTree<O, T> | T)[];

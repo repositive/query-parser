@@ -1,10 +1,24 @@
 import * as test from 'tape';
-import {map, isBTree, mapLeafs} from "../../main/b-tree/index";
+import {map, isBTree, BTree, filter, mapLeafs} from "../../main/b-tree/index";
 import {parseString} from "../../main/parsers/query-parser";
-import {isTerm} from "../../main/b-exp-tree";
+import {isTerm, BBTree, BTreeLeaf, Term} from "../../main/b-exp-tree";
 
-const tree = parseString('cancer AND (brain OR breast)');
+const tree = <any> parseString('cancer AND (brain OR breast)');
 const tree2 = parseString('cancer AND (changed OR breast)');
+
+test('filter', t => {
+  t.plan(4);
+  const result = <any> filter(tree, (t) => {
+    if (isBTree(t)) {
+      return isTerm(t.left) && t.left.text === 'brain';
+    }
+    else return false;
+  });
+  t.equals(result.length, 1);
+  t.deepEquals(result[0].left, tree.right.left);
+  t.deepEquals(result[0].right, tree.right.right);
+  t.deepEquals(result[0].value, tree.right.value);
+})
 
 //TODO: Resolve test problems with ids
 test.skip('map identity', t => {
