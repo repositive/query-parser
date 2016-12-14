@@ -1,7 +1,7 @@
 
 import * as test from 'tape';
 import {Token} from '../../main/parsers/base-parser';
-import {BBTree, Filter, Term} from '../../main/b-exp-tree';
+import {Filter, Term} from '../../main/b-exp-tree';
 import {tokenStripper, tokenizer, parseString as parse} from '../../main/parsers/query-parser';
 import extractQuoted from '../../main/parsers/extract-quoted';
 import extractParenthesys from '../../main/parsers/extract-parenthesys';
@@ -18,40 +18,29 @@ test.skip('should parse a simple query', (t) => {
   t.deepEqual(result, term);
 });
 
-//TODO: Resolve test problems with ids
-test.skip('should parse implicit bo', (t) => {
-  t.plan(1);
-  const result = parse('cancer brain');
-  const tree: BBTree = {value: 'AND', left: { text: 'cancer'}, right: {text: 'brain'}};
-  t.deepEqual(result, tree);
+test('should parse implicit bo', (t) => {
+  t.plan(3);
+  const result: any = parse('cancer brain');
+  t.equal(result.value, 'AND');
+  t.equal(result.left.text, 'cancer');
+  t.equal(result.right.text, 'brain');
 });
 
-//TODO: Resolve test problems with ids
-test.skip('should parse explicit bo', (t) => {
-  t.plan(1);
-  const result = parse('cancer AND brain');
-  const tree: BBTree = {value: 'AND', left: { text: 'cancer'}, right: {text: 'brain'}};
-  t.deepEqual(result, tree);
+test('should parse explicit bo', (t) => {
+  t.plan(3);
+  const result: any = parse('cancer AND brain');
+  t.equal(result.value, 'AND');
+  t.equal(result.left.text, 'cancer');
+  t.equal(result.right.text, 'brain');
 });
 
-//TODO: Resolve test problems with ids
-test.skip('should parse explicit bo', (t) => {
-  t.plan(1);
-  const result = parse('cancer NOT brain');
-  const tree: BBTree = {
-    value: 'AND',
-    left: {
-      text: 'cancer'
-    },
-    right: <BBTree> {
-      value: 'NOT',
-      right: {
-        text: 'brain'
-      },
-      left: null
-    }
-  };
-  t.deepEqual(result, tree);
+test('should parse explicit bo', (t) => {
+  t.plan(4);
+  const result: any = parse('cancer NOT brain');
+  t.equal(result.value, 'AND');
+  t.equal(result.left.text, 'cancer');
+  t.equal(result.right.value, 'NOT');
+  t.equal(result.right.right.text, 'brain');
 });
 
 test('should parse predicates', (t) => {
