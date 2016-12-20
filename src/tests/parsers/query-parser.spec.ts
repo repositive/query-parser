@@ -1,7 +1,7 @@
 
 import * as test from 'tape';
 import {Token} from '../../main/parsers/base-parser';
-import {Filter, Term} from '../../main/b-exp-tree';
+import {Filter, Term, BBTree, isFilter} from '../../main/b-exp-tree';
 import {tokenStripper, tokenizer, parseString as parse} from '../../main/parsers/query-parser';
 import extractQuoted from '../../main/parsers/extract-quoted';
 import extractParenthesys from '../../main/parsers/extract-parenthesys';
@@ -10,6 +10,7 @@ import extractPredicates from '../../main/parsers/extract-predicates';
 import extractNOT from '../../main/parsers/extract-NOT';
 import extractBoolean from '../../main/parsers/extract-explicit-boolean';
 import extractIBoolean from '../../main/parsers/extract-implicit-boolean';
+import {isBTree} from "../../main/b-tree/index";
 
 test.skip('should parse a simple query', (t) => {
   t.plan(1);
@@ -50,6 +51,17 @@ test('should parse predicates', (t) => {
   t.equals(result.predicate, 'tissue');
   t.assert(result.hasOwnProperty('text'));
   t.equals(result.text, 'brain');
+});
+
+test('should parser multiple quotes assay filters', t => {
+  t.plan(6);
+  const res = <BBTree> parse('assay:"Transcription Profiling by Array" OR assay:"Transcription Profiling by Array"');
+  t.assert(isBTree(res));
+  t.equals(res.value, 'OR');
+  t.assert(isFilter(res.left));
+  t.assert(isFilter(res.right));
+  t.equals(res.left['text'], 'Transcription Profiling by Array');
+  t.equals(res.right['text'], 'Transcription Profiling by Array');
 });
 
 test('parenthesys does not extract other stuff', t => {
@@ -194,11 +206,16 @@ test('parse predicates from longer string', function (t) {
 });
 
 test('parse multiple predicates', function (t) {
-  t.plan(1);
+  t.plan(2);
   const result = extractPredicates('glioblastoma assay:RNA-Seq assay:RNA-seq');
   t.deepEquals(result, [
     {type: 'filter', from: 13, to: 26, term: 'RNA-Seq', predicate: 'assay'},
     {type: 'filter', from: 27, to: 40, term: 'RNA-seq', predicate: 'assay'}
+  ]);
+  const multiple = extractPredicates('assay:"Transcription Profiling by Array" OR assay:"Transcription Profiling by Array"');
+  t.deepEquals(multiple, [
+    {type: 'filter', from: 0, to: 40, term: 'Transcription Profiling by Array', predicate: 'assay'},
+    {type: 'filter', from: 44, to: 84, term: 'Transcription Profiling by Array', predicate: 'assay'}
   ]);
 });
 
@@ -220,7 +237,7 @@ test('predicate parsing should support quoted terms', function (t) {
   t.deepEquals(result, [
     {type: 'filter', from: 0, to: 31, term: 'Whole Genome Sequencing', predicate: 'assay'}
   ]);
-  result = extractPredicates('glioblastoma assay : RNA-Seq assay:RNA-seq assay : "Whole Genome Sequencing" AND');
+  result = extractPredicates('glioblastoma assay : RNA-Seq assay:RNA-seq assay : "Whole Genome Sequencing" "test quotes" AND');
   t.deepEquals(
     result,
     [
@@ -230,6 +247,7 @@ test('predicate parsing should support quoted terms', function (t) {
     ]
   );
 });
+
 
 test('predicate parsing should be robust to empty strings', function (t) {
   t.plan(1);
