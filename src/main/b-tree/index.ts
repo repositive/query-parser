@@ -24,15 +24,8 @@ export function fold<O, T, R>(tree: BTree<O, T> | T, f: (tree: BTree<O, T> | T, 
   }
 }
 
-export function map<O, T, OR, TR>(tree: BTree<O, T> | T, f: (tree: BTree<O,T> | T, left?: BTree<OR,TR> | TR, right?: BTree<OR,TR> | TR) => BTree<OR,TR> | TR): BTree<OR,TR> | TR {
-    if (isBTree(tree)) {
-      const left = map(tree.left, f);
-      const right = map(tree.right, f);
-      return f(tree, left, right)
-    }
-    else {
-      return f(tree);
-    }
+export function map<O, T, OR, TR>(tree: BTree<O, T> | T, f: (tree: BTree<O, T> | T, left?: BTree<OR, TR> | TR, right?: BTree<OR, TR> | TR) => BTree<OR, TR> | TR): BTree<OR, TR> | TR {
+  return fold(tree, f, null);
 }
 
 export function mapLeafs<O,T>(tree: BTree<O,T> | T, f: (leaf: T) => T): BTree<O,T> | T {
@@ -47,7 +40,7 @@ export function mapLeafs<O,T>(tree: BTree<O,T> | T, f: (leaf: T) => T): BTree<O,
   }
 }
 
-export function filter<O, T>(tree: BTree<O, T> | T, f: (val: BTree<O,T> | T) => boolean): (BTree<O, T> | T)[] {
+export function filter<O, T>(tree: BTree<O, T> | T, f: (val: BTree<O, T> | T) => boolean): (BTree<O, T> | T)[] {
   return fold(tree, (val, l, r) => {
     const acc = concat(l, r);
     if (f(val)) {
