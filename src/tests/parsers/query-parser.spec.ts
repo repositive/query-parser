@@ -10,6 +10,7 @@ import extractPredicates from '../../main/parsers/extract-predicates';
 import extractNOT from '../../main/parsers/extract-NOT';
 import extractBoolean from '../../main/parsers/extract-explicit-boolean';
 import extractIBoolean from '../../main/parsers/extract-implicit-boolean';
+import {isBTree} from "../../main/b-tree/index";
 
 test.skip('should parse a simple query', (t) => {
   t.plan(1);
@@ -53,10 +54,14 @@ test('should parse predicates', (t) => {
 });
 
 test('should parser multiple quotes assay filters', t => {
-  t.plan(1);
-  const res = <Filter> parse('assay:"Transcription Profiling by Array" OR assay:"Transcription Profiling by Array"');
-  console.log(res);
-  t.assert(isFilter(res));
+  t.plan(6);
+  const res = <BBTree> parse('assay:"Transcription Profiling by Array" OR assay:"Transcription Profiling by Array"');
+  t.assert(isBTree(res));
+  t.equals(res.value, 'OR');
+  t.assert(isFilter(res.left));
+  t.assert(isFilter(res.right));
+  t.equals(res.left['text'], 'Transcription Profiling by Array');
+  t.equals(res.right['text'], 'Transcription Profiling by Array');
 });
 
 test('parenthesys does not extract other stuff', t => {
@@ -208,10 +213,9 @@ test('parse multiple predicates', function (t) {
     {type: 'filter', from: 27, to: 40, term: 'RNA-seq', predicate: 'assay'}
   ]);
   const multiple = extractPredicates('assay:"Transcription Profiling by Array" OR assay:"Transcription Profiling by Array"');
-  console.log(multiple);
   t.deepEquals(multiple, [
-    {type: 'filter', from: 13, to: 26, term: 'RNA-Seq', predicate: 'assay'},
-    {type: 'filter', from: 27, to: 40, term: 'RNA-seq', predicate: 'assay'}
+    {type: 'filter', from: 0, to: 40, term: 'Transcription Profiling by Array', predicate: 'assay'},
+    {type: 'filter', from: 44, to: 84, term: 'Transcription Profiling by Array', predicate: 'assay'}
   ]);
 });
 
@@ -233,7 +237,7 @@ test('predicate parsing should support quoted terms', function (t) {
   t.deepEquals(result, [
     {type: 'filter', from: 0, to: 31, term: 'Whole Genome Sequencing', predicate: 'assay'}
   ]);
-  result = extractPredicates('glioblastoma assay : RNA-Seq assay:RNA-seq assay : "Whole Genome Sequencing" AND');
+  result = extractPredicates('glioblastoma assay : RNA-Seq assay:RNA-seq assay : "Whole Genome Sequencing" "test quotes" AND');
   t.deepEquals(
     result,
     [
