@@ -1,7 +1,7 @@
 
 import * as test from 'tape';
 import {Token} from '../../main/parsers/base-parser';
-import {Filter, Term} from '../../main/b-exp-tree';
+import {Filter, Term, BBTree, isFilter} from '../../main/b-exp-tree';
 import {tokenStripper, tokenizer, parseString as parse} from '../../main/parsers/query-parser';
 import extractQuoted from '../../main/parsers/extract-quoted';
 import extractParenthesys from '../../main/parsers/extract-parenthesys';
@@ -50,6 +50,13 @@ test('should parse predicates', (t) => {
   t.equals(result.predicate, 'tissue');
   t.assert(result.hasOwnProperty('text'));
   t.equals(result.text, 'brain');
+});
+
+test('should parser multiple quotes assay filters', t => {
+  t.plan(1);
+  const res = <Filter> parse('assay:"Transcription Profiling by Array" OR assay:"Transcription Profiling by Array"');
+  console.log(res);
+  t.assert(isFilter(res));
 });
 
 test('parenthesys does not extract other stuff', t => {
@@ -194,9 +201,15 @@ test('parse predicates from longer string', function (t) {
 });
 
 test('parse multiple predicates', function (t) {
-  t.plan(1);
+  t.plan(2);
   const result = extractPredicates('glioblastoma assay:RNA-Seq assay:RNA-seq');
   t.deepEquals(result, [
+    {type: 'filter', from: 13, to: 26, term: 'RNA-Seq', predicate: 'assay'},
+    {type: 'filter', from: 27, to: 40, term: 'RNA-seq', predicate: 'assay'}
+  ]);
+  const multiple = extractPredicates('assay:"Transcription Profiling by Array" OR assay:"Transcription Profiling by Array"');
+  console.log(multiple);
+  t.deepEquals(multiple, [
     {type: 'filter', from: 13, to: 26, term: 'RNA-Seq', predicate: 'assay'},
     {type: 'filter', from: 27, to: 40, term: 'RNA-seq', predicate: 'assay'}
   ]);
@@ -230,6 +243,7 @@ test('predicate parsing should support quoted terms', function (t) {
     ]
   );
 });
+
 
 test('predicate parsing should be robust to empty strings', function (t) {
   t.plan(1);
