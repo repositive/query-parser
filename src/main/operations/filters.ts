@@ -43,7 +43,7 @@ export function removeFilter(tree: BBTree | BTreeLeaf, predicate: string, text: 
 
 export function addFilter(tree: BBTree | BTreeLeaf, predicate: string, text: string): BBTree | BTreeLeaf {
   const filtered = <Filter[]> filter(tree, (t => {
-    return isFilter(t) && t.predicate === predicate
+    return isFilter(t) && t.predicate === predicate;
   }));
 
   const exists = filtered.filter(f => f.text === text);
