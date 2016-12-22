@@ -1,16 +1,17 @@
 
 expression "expression"
-  =  head:term op:(OR/AND) tail:expression {
+  =  start? head:term op:(OR/AND) tail:expression end? {
       return {
         value: op,
         left: head,
         right: tail
       };
     }
-  / term
+  / start? t:term end? { return t }
 
 nest "nested expression"
-  = "(" _? expr:expression _? ")" { return expr; }
+  = start? "(" _? expr:expression _? ")" end? { return expr; }
+
 
 term "term"
   = filter
@@ -29,7 +30,7 @@ negate "negation"
 AND "and"
   = _ "AND" _ {return "AND"}
   / _ "and" _ {return "AND"}
-  / _? "+" _? {return "AND"}
+  / _ "+" _? {return "AND"}
   / _ {return "AND"}
 
 OR "or"
@@ -40,11 +41,12 @@ NOT "not"
  = "NOT" _ {return "NOT"}
  / "not" _ {return "NOT"}
  / _? "-" _? {return "NOT"}
+ / _? "!" _? {return "NOT"}
 
 identifier "identifier"
-  = i:([a-zA-Z0-9_\-]+ / quoted) {return { text: i.join('')} }
+  = i:([a-zA-Z0-9\u007F-\uFFFF_@'\/\\+\&\.<>\-]+ / quoted) {return { text: i.join('')} }
 
-quoted = ["] id:[a-zA-Z0-9\-_() ]+ ["] {return id}
+quoted = ["] id:[^"]+ ["] {return id}
 
 filter = p:identifier _? [:] _? t:(identifier/quoted) {
   return {
@@ -53,5 +55,11 @@ filter = p:identifier _? [:] _? t:(identifier/quoted) {
   }
 }
 
+start
+  =  $_?
+
+end
+  = _?!.
+
 _ "whitespace"
-  = [ \t\n\r]+
+  = [ \t\n\r,?]+
