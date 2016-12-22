@@ -18,7 +18,6 @@ export function getPath(tree: BBTree | BTreeLeaf, id: string, acc: string[] = []
 }
 
 export function removeNodeByID(tree: BBTree | BTreeLeaf, id: string): BBTree | BTreeLeaf {
-  console.log(`\n\n\nid: ${id}\n\n\n`);
   return map(tree, (t: BBTree | BTreeLeaf, l,r) => {
     if (isBTree(t) && t.value === 'NOT' && !l && !r) return null;
     if (isBTree(t) && t.value !== 'NOT' && !l) return r;
