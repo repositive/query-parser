@@ -215,7 +215,7 @@ function getDepth(tree: BBTree | BTreeLeaf): number {
   return fold(tree, (_, l, r) => 1 + Math.max(l, r), 0);
 }
 
-test('Add new predicates', t => {
+test.skip('Add new predicates', t => {
   t.plan(4);
   const res = <BBTree> addFilter(treeWithIDs, 'test', 'X');
   const dres = getDepth(res);
@@ -235,7 +235,7 @@ test('Remove nodes', t => {
 
 test('remove filters', t => {
   t.plan(2);
-  const res = <BBTree> removeFilter(treeWithIDs, 'collection', 'X');
+  const res = <BBTree> removeFilter(treeWithIDs, 'assay', 'X');
   t.equals(getDepth(res), getDepth(treeWithIDs) - 1);
   const original = 'assay:RNA-Seq cancer breast';
   const tree = parseString(original);

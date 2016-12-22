@@ -1,11 +1,10 @@
+import {parse} from './parser';
+import {removeFilter} from './operations/filters';
 
-import {parseString as parser} from './parsers/query-parser';
-import {toBoolString as serializer} from './serializers/string-serializer';
-import BTree from './b-tree';
+const str = "assay:RNA-Seq cancer breast"
 
-//const parsed = parser('cancer NOT (brain OR lung)');
-
-const left = new BTree('left');
-const tree = new BTree('plus', left);
-const parent = new BTree('NOT', null, tree);
-console.log(parent);
+console.log(JSON.stringify(
+  removeFilter(
+    parse(str)
+  , 'assay', 'RNA-Seq')
+  , null, 2));

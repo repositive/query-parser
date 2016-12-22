@@ -12,6 +12,8 @@ import extractImplicitBoolean from './extract-implicit-boolean';
 import extractQuoted from './extract-quoted';
 import extractNOT from './extract-NOT';
 
+import {parse} from '../parser';
+
 const parsers = [
   extractParenthesys,
   extractPredicates,
@@ -149,6 +151,5 @@ export function treeBuilder(tokens: Token[], tree: BTree<BooleanOperator, BTreeL
 }
 
 export function parseString(input: string): BTree<BooleanOperator, BTreeLeaf> | BTreeLeaf {
-  const tokens = tokenizer(input);
-  return treeBuilder(tokens);
+  return parse(input);
 }
