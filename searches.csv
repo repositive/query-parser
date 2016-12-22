@@ -1,0 +1,2485 @@
+# ----------------------------------------
+# All Web Site Data
+# Top Events
+# 20160301-20161220
+# ----------------------------------------
+Event Label,Total Events,Unique Events,Event Value,Avg. Value
+cancer,149,117,0,0.00
+(not set),58,53,0,0.00
+breast cancer,39,33,0,0.00
+prostate cancer,24,19,0,0.00
+melanoma,22,19,0,0.00
+prostate,20,17,0,0.00
+alzheimer,15,13,0,0.00
+diabetes,14,12,0,0.00
+glioblastoma,14,11,0,0.00
+psoriasis,14,12,0,0.00
+methylation,13,10,0,0.00
+pdx,13,10,0,0.00
+exome,12,8,0,0.00
+aging,11,8,0,0.00
+dna methylation brain,11,4,0,0.00
+autism,10,7,0,0.00
+liver cancer,10,4,0,0.00
+snp,10,8,0,0.00
+Trans-Omics for Precision Medicine,10,1,0,0.00
+23andme,9,8,0,0.00
+blue light,9,9,0,0.00
+breast,9,9,0,0.00
+colon cancer,9,7,0,0.00
+"""liver cancer""",8,2,0,0.00
+ALS,8,7,0,0.00
+COPD,8,6,0,0.00
+dandruff,8,5,0,0.00
+DCIS,8,4,0,0.00
+pancreatic cancer,8,6,0,0.00
+schizophrenia,8,8,0,0.00
+test,8,7,0,0.00
+asthma,7,4,0,0.00
+bladder,7,3,0,0.00
+brain,7,7,0,0.00
+Cancer,7,6,0,0.00
+CLL,7,5,0,0.00
+ductal carcinoma in situ invasion expression rna,7,1,0,0.00
+id:8f214dcc-f203-45e2-9281-b6b042fd8434,7,1,0,0.00
+ovarian cancer,7,7,0,0.00
+PDX,7,7,0,0.00
+single cell,7,5,0,0.00
+tcga,7,5,0,0.00
+TDP-43,7,4,0,0.00
+WGS,7,3,0,0.00
+*,6,4,0,0.00
+aml,6,3,0,0.00
+brca1,6,5,0,0.00
+BRCA1,6,6,0,0.00
+copd,6,5,0,0.00
+depression,6,4,0,0.00
+glioblastoma MRI,6,1,0,0.00
+liver,6,6,0,0.00
+lymphoma,6,3,0,0.00
+melanocytes,6,2,0,0.00
+PO5067,6,1,0,0.00
+rett syndrome,6,4,0,0.00
+"""chinese control data""",5,3,0,0.00
+aldosterone producing adenoma,5,2,0,0.00
+breast cancer stroma,5,2,0,0.00
+COPD blood,5,3,0,0.00
+cornea,5,4,0,0.00
+coronary,5,5,0,0.00
+dbgap,5,4,0,0.00
+EGA,5,4,0,0.00
+gastric cancer,5,3,0,0.00
+glioblastoma MGMT,5,1,0,0.00
+gwas,5,4,0,0.00
+leukemia,5,5,0,0.00
+lung,5,4,0,0.00
+lung cancer,5,5,0,0.00
+microbiome,5,5,0,0.00
+multiple myeloma,5,3,0,0.00
+mycobacterium,5,3,0,0.00
+skin,5,5,0,0.00
+skin microbiome,5,3,0,0.00
+zika,5,4,0,0.00
+als,4,4,0,0.00
+alzheimer's,4,3,0,0.00
+AML,4,4,0,0.00
+brca2,4,3,0,0.00
+breast cancer methylation,4,2,0,0.00
+collection:9c42af0e-85b8-4b7e-80ed-355564a4eff1,4,1,0,0.00
+colorectal cancer,4,4,0,0.00
+control,4,4,0,0.00
+corpasome,4,4,0,0.00
+dementia,4,3,0,0.00
+dna methylation,4,3,0,0.00
+ductal carcinoma in situ,4,2,0,0.00
+fibromyalgia,4,2,0,0.00
+genomes unzipped,4,1,0,0.00
+HCT116,4,4,0,0.00
+HCT116 RNAseq,4,3,0,0.00
+hepatocellular carcinoma,4,3,0,0.00
+human,4,4,0,0.00
+IBD,4,4,0,0.00
+id:9ad38288-cdbc-4853-b6ef-9123818ff1b1,4,1,0,0.00
+long non-coding RNA,4,3,0,0.00
+magic*,4,3,0,0.00
+MCF7,4,3,0,0.00
+MEK inhibitor,4,1,0,0.00
+metagenomics,4,4,0,0.00
+multiple sclerosis,4,4,0,0.00
+myopathy,4,4,0,0.00
+NASH,4,4,0,0.00
+obesity,4,4,0,0.00
+osteoarthritis,4,4,0,0.00
+pancreatic,4,4,0,0.00
+Pancreatic cancer,4,2,0,0.00
+Parkinson,4,4,0,0.00
+Pik3ca AND Cancer,4,1,0,0.00
+population,4,4,0,0.00
+rheumatoid arthritis,4,3,0,0.00
+SRA,4,3,0,0.00
+stroke,4,4,0,0.00
+TARDBP,4,3,0,0.00
+TCGA,4,4,0,0.00
+temperature splicing,4,3,0,0.00
+THL*,4,3,0,0.00
+triple negative breast cancer,4,4,0,0.00
+Yarrowia,4,1,0,0.00
+"""bowel cancer""",3,2,0,0.00
+"""DNA methylation""",3,1,0,0.00
+"""methylation""",3,1,0,0.00
+1000 genomes,3,3,0,0.00
+23 and me,3,2,0,0.00
+A Selective Sweep on a Deleterious Mutation in CPT1A in Arctic Populations,3,1,0,0.00
+acne,3,3,0,0.00
+ageing,3,3,0,0.00
+alspac,3,1,0,0.00
+Alzheimer,3,3,0,0.00
+alzheimers,3,3,0,0.00
+array,3,3,0,0.00
+asthma child,3,1,0,0.00
+asthma child -gut,3,1,0,0.00
+atopic dermatitis,3,3,0,0.00
+autism gwas,3,1,0,0.00
+bipolar disorder,3,3,0,0.00
+Bladder,3,2,0,0.00
+bowel cancer,3,3,0,0.00
+BRCA2,3,3,0,0.00
+Breast cancer,3,1,0,0.00
+breast cancer er+,3,2,0,0.00
+cancer exome,3,2,0,0.00
+cancer methylome system,3,1,0,0.00
+cancer NGS,3,3,0,0.00
+chip-seq,3,3,0,0.00
+ctcf liver,3,2,0,0.00
+DCIS breast,3,3,0,0.00
+dendritic cells,3,2,0,0.00
+ductal carcinoma in situ invasion mrna,3,1,0,0.00
+dyslexia,3,2,0,0.00
+ECLIPSE,3,3,0,0.00
+ega,3,3,0,0.00
+esophageal,3,1,0,0.00
+expression,3,3,0,0.00
+F box,3,1,0,0.00
+fecal,3,2,0,0.00
+germ cell tumor,3,2,0,0.00
+GSE71812,3,1,0,0.00
+HCC1143,3,2,0,0.00
+heart,3,3,0,0.00
+Hi-C,3,2,0,0.00
+human wgs,3,3,0,0.00
+id:ea992e6a-f3ca-41ad-85aa-1e4528b39a0e,3,1,0,0.00
+indian,3,2,0,0.00
+inflammatory bowel disease,3,3,0,0.00
+ingelsson,3,2,0,0.00
+inner ear,3,1,0,0.00
+intellectual,3,1,0,0.00
+Interleukin,3,1,0,0.00
+japanese data,3,1,0,0.00
+keratinocytes,3,3,0,0.00
+kidney cancer,3,2,0,0.00
+LTED,3,3,0,0.00
+Lung cancer,3,3,0,0.00
+lymph,3,1,0,0.00
+male,3,3,0,0.00
+MCF-7,3,3,0,0.00
+metatranscriptomics,3,3,0,0.00
+methycancer,3,2,0,0.00
+Mioncoseq,3,2,0,0.00
+NA12878,3,2,0,0.00
+neuroblastoma,3,3,0,0.00
+nopho,3,3,0,0.00
+normal,3,2,0,0.00
+ob/ob,3,2,0,0.00
+obesity adipose tissue,3,3,0,0.00
+oral microbiome,3,2,0,0.00
+paraganglioma,3,3,0,0.00
+red light,3,3,0,0.00
+rett disease,3,1,0,0.00
+rna-seq,3,2,0,0.00
+sleep,3,3,0,0.00
+sox17,3,1,0,0.00
+stephen bradley,3,2,0,0.00
+stomach,3,2,0,0.00
+tdp-43,3,3,0,0.00
+therapy,3,3,0,0.00
+type 2 diabetes,3,3,0,0.00
+uk10k,3,3,0,0.00
+UK10K,3,1,0,0.00
+vcap,3,2,0,0.00
+virome,3,2,0,0.00
+wgs,3,3,0,0.00
+whole genome sequencing,3,2,0,0.00
+whole genome sequencing cancer,3,1,0,0.00
+"""*""",2,1,0,0.00
+"""breast cancer"" AND ""cell line""",2,2,0,0.00
+"""breast cancer"" AND ""mutation""",2,1,0,0.00
+"""chinese control data",2,1,0,0.00
+"""colorectal cancer""",2,1,0,0.00
+"""general population"" AND expression",2,1,0,0.00
+"""NGS methylation""",2,1,0,0.00
+(cachexia or sarcopenia),2,1,0,0.00
+/,2,1,0,0.00
+"/""breast cancer"" AND ""cell line""/",2,2,0,0.00
+23andMe,2,2,0,0.00
+27252488,2,1,0,0.00
+3'UTR,2,1,0,0.00
+450K,2,1,0,0.00
+Adhd,2,1,0,0.00
+adipose tissue mesenchymal stem cell,2,1,0,0.00
+alpha 1 antitrypsin deficiency,2,1,0,0.00
+als exome,2,2,0,0.00
+Alzheimer's,2,2,0,0.00
+amyotrophic lateral sclerosis,2,2,0,0.00
+antibiotic resistance,2,1,0,0.00
+AR,2,2,0,0.00
+"AR or ""androgen receptor""",2,1,0,0.00
+arabidopsis,2,2,0,0.00
+assay:*array* (cachexia or sarcopenia),2,1,0,0.00
+atac-seq,2,1,0,0.00
+autoimmune,2,2,0,0.00
+aza vcap,2,1,0,0.00
+bcr,2,2,0,0.00
+"bladder AND ( assay:RNA-Seq OR assay:""Transcription Profiling by Array"" OR assay:""Microarray Gene Expression"" OR assay:""Expression profiling by array"" OR assay:""RNA-seq of Coding RNA"" OR assay:""Expression-Array"" OR assay:""RNA-seq"" OR assay:""RNA-seq of non Coding RNA"" OR assay:""RNA Microarray"" OR assay:""Small RNA-seq"" OR assay:""Transcription Profiling by RT-PCR"" OR assay:""Rna-Seq"" OR assay:""Single Cell RNA-seq"" )",2,2,0,0.00
+bowel GWAS,2,1,0,0.00
+BRAC1,2,1,0,0.00
+braf,2,2,0,0.00
+brain cancer,2,1,0,0.00
+Brain eQTL,2,1,0,0.00
+brain expression data,2,1,0,0.00
+brain expression data huntington,2,1,0,0.00
+brain expression huntington,2,1,0,0.00
+brca,2,2,0,0.00
+breast cancer dna methylation,2,1,0,0.00
+breast cancer ER+,2,1,0,0.00
+breast cancer fusion,2,2,0,0.00
+breast cancer subtyping affymetrix,2,2,0,0.00
+cancer AND stage,2,1,0,0.00
+cancer breast,2,2,0,0.00
+cancer hotspot ion,2,1,0,0.00
+cancer lung,2,2,0,0.00
+cancer ngs,2,2,0,0.00
+cancer prostate,2,2,0,0.00
+cardiomyocytes,2,2,0,0.00
+cardiovascular,2,2,0,0.00
+ccrcc,2,2,0,0.00
+cediranib,2,1,0,0.00
+celiac,2,2,0,0.00
+cervical cancer,2,1,0,0.00
+ChIA-PET,2,2,0,0.00
+Chickungunya,2,1,0,0.00
+chinese control,2,2,0,0.00
+chinese control data,2,2,0,0.00
+cholangiocarcinoma,2,1,0,0.00
+cirbp,2,2,0,0.00
+circular rna,2,1,0,0.00
+clinvar,2,2,0,0.00
+CNV,2,2,0,0.00
+cognitive behavioural therapy,2,2,0,0.00
+collection:622d5735-0688-4584-a269-29f30bae5d36,2,1,0,0.00
+collection:6ec03795-00ca-49aa-a274-d41f9f334607,2,1,0,0.00
+collection:9c42af0e-85b8-4b7e-80ed-355564a4eff1 skin,2,1,0,0.00
+collection:e853a7f3-eed6-4942-a823-b5164820e4a2 collection:9c42af0e-85b8-4b7e-80ed-355564a4eff1,2,1,0,0.00
+colon cancer AND NOT (mice OR mouse),2,1,0,0.00
+colon cancer AND NOT mice,2,1,0,0.00
+colon cancer bisulfite,2,1,0,0.00
+colorectal matched,2,1,0,0.00
+colorectal stage II,2,1,0,0.00
+COPD ECLIPSE,2,1,0,0.00
+COPD sputem,2,1,0,0.00
+copy number variation,2,2,0,0.00
+corpas,2,1,0,0.00
+cortex,2,2,0,0.00
+crohn,2,2,0,0.00
+crohn's,2,2,0,0.00
+CTCF,2,2,0,0.00
+cyanobacteria,2,1,0,0.00
+cytogenetics,2,1,0,0.00
+danish,2,1,0,0.00
+"datasource:""Methylation Data""",2,1,0,0.00
+datasource:05d233ba-7aca-47c1-ac6c-ec566be02bab,2,1,0,0.00
+dengue,2,2,0,0.00
+diabetes obese human,2,1,0,0.00
+dinitromethylamine,2,1,0,0.00
+dlbcl,2,1,0,0.00
+drosophila,2,2,0,0.00
+ductal carcinoma in situ invasion mrna sequencing,2,1,0,0.00
+ear,2,1,0,0.00
+Ebola,2,1,0,0.00
+EGFR,2,2,0,0.00
+elderly,2,1,0,0.00
+ENCODE,2,2,0,0.00
+enhancer,2,1,0,0.00
+epigenome,2,1,0,0.00
+epilepsy,2,2,0,0.00
+eQTL,2,2,0,0.00
+eQTL brain,2,1,0,0.00
+ERP000178,2,1,0,0.00
+estrogen,2,2,0,0.00
+european,2,1,0,0.00
+expression data,2,2,0,0.00
+expression quantitative trait loci,2,1,0,0.00
+fibrosis,2,2,0,0.00
+follicular lymphoma,2,1,0,0.00
+FOXP2,2,2,0,0.00
+framingham,2,1,0,0.00
+fusion,2,2,0,0.00
+GBM,2,1,0,0.00
+gene expression dendritic cells,2,1,0,0.00
+gene fusion,2,1,0,0.00
+genemic data,2,1,0,0.00
+genome,2,2,0,0.00
+genome human,2,1,0,0.00
+Genome-wide differential gene expression,2,1,0,0.00
+Genomes_unzipped*,2,2,0,0.00
+geo,2,2,0,0.00
+GEO,2,1,0,0.00
+gerp,2,1,0,0.00
+GIAB,2,2,0,0.00
+gigadb,2,2,0,0.00
+gis,2,2,0,0.00
+glioblastoma IDH,2,1,0,0.00
+glioblastoma MGMT imaging,2,1,0,0.00
+glioblastoma MGMT MRI,2,1,0,0.00
+glioma,2,2,0,0.00
+glutaredoxin,2,1,0,0.00
+GPL96,2,1,0,0.00
+GSE59114,2,1,0,0.00
+gut microbiome,2,2,0,0.00
+GWAS,2,2,0,0.00
+h3k27ac,2,2,0,0.00
+h3k27ac brain,2,1,0,0.00
+han chinese,2,2,0,0.00
+Han MHC,2,1,0,0.00
+hdac4,2,1,0,0.00
+head and neck,2,2,0,0.00
+head and neck cancer,2,2,0,0.00
+healthy obese,2,1,0,0.00
+HG-U133A mast cells,2,1,0,0.00
+HIV,2,2,0,0.00
+HIV pol,2,1,0,0.00
+HMEC-human mammary epithelial cells,2,1,0,0.00
+HMEC-Human Mammary Epithelial Cells,2,1,0,0.00
+human aging,2,1,0,0.00
+huntington,2,2,0,0.00
+IBS,2,2,0,0.00
+IBS GWAS,2,2,0,0.00
+id:8f214dcc-f203-45e2-9281-b6b042fd843,2,1,0,0.00
+immune,2,2,0,0.00
+impact,2,1,0,0.00
+India,2,2,0,0.00
+insulin resistance,2,2,0,0.00
+insulin resistance liver,2,2,0,0.00
+Intellectual disability,2,1,0,0.00
+interleukin,2,2,0,0.00
+itp,2,1,0,0.00
+kemmeren,2,1,0,0.00
+kidney,2,2,0,0.00
+leishmania,2,1,0,0.00
+lithium,2,2,0,0.00
+liver biopsy,2,1,0,0.00
+liver cancer WGS,2,1,0,0.00
+liver diabetes,2,2,0,0.00
+liver fibrosis,2,1,0,0.00
+lnc-RNA,2,1,0,0.00
+locus coeruleus,2,2,0,0.00
+long non-coding RNAs,2,2,0,0.00
+lted breast cancer,2,2,0,0.00
+lupus,2,1,0,0.00
+lymphoma exome,2,1,0,0.00
+m58,2,1,0,0.00
+macrophage,2,2,0,0.00
+mammary gland,2,1,0,0.00
+masturbation,2,2,0,0.00
+mCF7 lied breast cancer,2,1,0,0.00
+MDS exome sequencing,2,2,0,0.00
+MECP2 cancer,2,2,0,0.00
+medulloblastoma,2,1,0,0.00
+melanoma AND patient,2,1,0,0.00
+melanoma immunotherapy steroid,2,1,0,0.00
+mesenchymal stem cell,2,1,0,0.00
+metagenome,2,2,0,0.00
+metahit,2,1,0,0.00
+metastatic breast cancer PIK3CA inhibitor,2,1,0,0.00
+MHC,2,2,0,0.00
+Microbiome,2,2,0,0.00
+microrna plasma cancer qpcr,2,1,0,0.00
+mitophagy,2,1,0,0.00
+monocyte,2,2,0,0.00
+mouse,2,2,0,0.00
+mouse breast cancer,2,1,0,0.00
+mri,2,2,0,0.00
+muscle,2,2,0,0.00
+mycobacterium proteomics,2,1,0,0.00
+na12878,2,1,0,0.00
+nafld,2,2,0,0.00
+Native,2,1,0,0.00
+neuro*,2,2,0,0.00
+neurodegeneration,2,2,0,0.00
+ngs data sets,2,1,0,0.00
+ngsmethdb,2,2,0,0.00
+nitric oxide,2,2,0,0.00
+NM_10071,2,1,0,0.00
+Noonan,2,1,0,0.00
+nrf2,2,1,0,0.00
+obese adipose tissue,2,2,0,0.00
+obese mice,2,2,0,0.00
+oral,2,2,0,0.00
+oral cancer,2,1,0,0.00
+P2RX7,2,2,0,0.00
+pancreatic cancer rna seq,2,1,0,0.00
+PGP,2,2,0,0.00
+pheochromocytoma,2,2,0,0.00
+pi3k inhibitor,2,2,0,0.00
+pi3k inhibitor breast cancer,2,2,0,0.00
+pickard,2,1,0,0.00
+Pickard,2,2,0,0.00
+PIK3CA,2,1,0,0.00
+"PIK3CA ""breast cancer""",2,1,0,0.00
+placenta,2,2,0,0.00
+polyAseq,2,1,0,0.00
+pouch colon,2,2,0,0.00
+Primary site: Breast,2,1,0,0.00
+PRJEB2124,2,1,0,0.00
+prolapse,2,1,0,0.00
+prost,2,2,0,0.00
+"prostate cancer (assay:RNA-Seq OR assay:""Microarray Gene Expression"" OR assay:Chip-seq)",2,1,0,0.00
+prostate methylation,2,2,0,0.00
+qatar,2,2,0,0.00
+quantseq,2,2,0,0.00
+radiation,2,2,0,0.00
+recurrent glioblastoma,2,2,0,0.00
+retina,2,2,0,0.00
+Rett syndrome,2,2,0,0.00
+rhabdomyosarcoma,2,1,0,0.00
+Ribizero,2,1,0,0.00
+SCLC,2,2,0,0.00
+sequencing,2,2,0,0.00
+SLE lupus,2,1,0,0.00
+small cell lung cancer,2,2,0,0.00
+small cell lung carcinoma,2,1,0,0.00
+smoke,2,2,0,0.00
+sox11,2,2,0,0.00
+sperm,2,1,0,0.00
+splicing temperature,2,2,0,0.00
+statin,2,2,0,0.00
+sting,2,2,0,0.00
+T2D,2,2,0,0.00
+TBL1XR1,2,1,0,0.00
+tcf3,2,1,0,0.00
+TDP43,2,2,0,0.00
+telomerase,2,2,0,0.00
+temperature,2,2,0,0.00
+thyroid,2,2,0,0.00
+topmed,2,1,0,0.00
+tp53,2,2,0,0.00
+transplant,2,1,0,0.00
+turkish genomes,2,2,0,0.00
+uric acid,2,2,0,0.00
+USP30,2,2,0,0.00
+uv,2,2,0,0.00
+uv light,2,2,0,0.00
+uveal melanoma,2,1,0,0.00
+vcap methylation,2,2,0,0.00
+Virus,2,1,0,0.00
+vision,2,1,0,0.00
+vitiligo,2,2,0,0.00
+WGS human,2,2,0,0.00
+whole genome,2,2,0,0.00
+whole genome sequencing cancer germline control,2,1,0,0.00
+whole genome sequencing leukemia,2,1,0,0.00
+"!""Not Available""",1,1,0,0.00
+"!""Not Available"" brain",1,1,0,0.00
+"!""Not Available"" brain alzheimer",1,1,0,0.00
+"""(datasource.short_name:IN_SILICO_DB AND NOT assay:""Whole Exome"") OR datasource.short_name:XPRESSOMICS OR datasource.short_name:GEO OR (datasource.short_name:GXA AND NOT assay:Proteomics) OR (datasource.short_name:ARRAY_EXPRESS AND (assay:""Transcription Profiling by Array"" OR assay:""RNA-seq of Coding RNA"" OR assay:""RNA-seq of non Coding RNA"")) OR (datasource.short_name:SRA AND assay:RNA-Seq) OR (datasource.short_name:DBGAP AND assay:RNA_Seq) OR datasource.short_name:ALLEN_INSTITUTE""",1,1,0,0.00
+"""bladder"" AND (datarouce.short_name: GEO OR datarouce.short_name: IN_SILICO_DB OR datarouce.short_name: XPRESSOMICS OR datarouce.short_name: GXA)",1,1,0,0.00
+"""bladder"" AND (datasource.short_name: GEO OR datasource.short_name: IN_SILICO_DB OR datasource.short_name: XPRESSOMICS OR datasource.short_name: GXA)",1,1,0,0.00
+"""bladder"" AND datarouce.short_name: GEO",1,1,0,0.00
+"""bladder"" AND datarouce.short_name: GEO OR datarouce.short_name: IN_SILICO_DB OR datarouce.short_name: XPRESSOMICS OR datarouce.short_name: GXA",1,1,0,0.00
+"""bowl cancer""",1,1,0,0.00
+"""bowle cancer""",1,1,0,0.00
+"""breast cancer""",1,1,0,0.00
+"""breast cancer"" AND ""cnv""",1,1,0,0.00
+"""breast cancer"" AND ""copy number""",1,1,0,0.00
+"""breast cancer"" AND ""copy number"" patient",1,1,0,0.00
+"""breast cancer"" AND ""CT imaging""",1,1,0,0.00
+"""breast cancer"" AND ""CT""",1,1,0,0.00
+"""breast cancer"" AND ""imaging""",1,1,0,0.00
+"""breast cancer"" AND PIK3CA",1,1,0,0.00
+"""breast cancer"" AND PIK3CA whole genome sequence",1,1,0,0.00
+"""breast cancer"" foxa1",1,1,0,0.00
+"""Chinese control data""",1,1,0,0.00
+"""chinese control data"" brain",1,1,0,0.00
+"""chinese genome data""",1,1,0,0.00
+"""chinese reference data""",1,1,0,0.00
+"""Chinese reference data""",1,1,0,0.00
+"""chip-exo""",1,1,0,0.00
+"""congenital heart""",1,1,0,0.00
+"""congenital heart"" !(""Comparative DNA methylation and gene expression analysis identifies novel genes for structural congenital heart diseases"")",1,1,0,0.00
+"""Costello syndrome""",1,1,0,0.00
+"""DNA methylaiton""",1,1,0,0.00
+"""general population"" AND expression AND axon",1,1,0,0.00
+"""general population"" AND expression AND neuro",1,1,0,0.00
+"""general population"" AND expression AND neuro*",1,1,0,0.00
+"""general population"" AND expression AND neuron",1,1,0,0.00
+"""general population"" AND expression AND neuronal",1,1,0,0.00
+"""hepatocellular carcinoma""",1,1,0,0.00
+"""liver cancer"" alcohol",1,1,0,0.00
+"""liver cancer"" alcoholic",1,1,0,0.00
+"""liver cancer"" WGS",1,1,0,0.00
+"""london school of hygiene""",1,1,0,0.00
+"""lung cancer""",1,1,0,0.00
+"""mammary gland""",1,1,0,0.00
+"""metastatic breast cancer"" AND ""mutation""",1,1,0,0.00
+"""metastatic breast cancer"" AND PIK3CA",1,1,0,0.00
+"""Methylation Data""",1,1,0,0.00
+"""methylation"" T2D",1,1,0,0.00
+"""MICROBIOME""",1,1,0,0.00
+"""neural crest""",1,1,0,0.00
+"""neural crest"" p300",1,1,0,0.00
+"""pancreas cancer""",1,1,0,0.00
+"""pancreatic cancer""",1,1,0,0.00
+"""pancretic cancer""",1,1,0,0.00
+"""patient-derived xenografts""",1,1,0,0.00
+"""patient-derived xenogragts""",1,1,0,0.00
+"""prostate cancer""",1,1,0,0.00
+"""prostate cancer"" and ""adverse""",1,1,0,0.00
+"""prostte cancer""",1,1,0,0.00
+"""Rett syndrome"" AND ""control""",1,1,0,0.00
+"""rheumatoid arthritis""",1,1,0,0.00
+"""Son_Faecal_Metagenome""",1,1,0,0.00
+"""STEVEN_KEATING"" AND ""TMZ""",1,1,0,0.00
+"""STEVEN*"" AND ""MICROBIOME""",1,1,0,0.00
+"""TDP-43"" OR ""TDP43"" OR ""TARDBP"" OR ""ENSG00000120948"" OR ""ENSMUSG00000041459""",1,1,0,0.00
+"""traumatic brain injury""",1,1,0,0.00
+"""traumatic brain injury@",1,1,0,0.00
+"""whole RNA""",1,1,0,0.00
+"(datasource.short_name:IN_SILICO_DB AND NOT assay:""Whole Exome"") OR datasource.short_name:XPRESSOMICS OR datasource.short_name:GEO OR (datasource.short_name:GXA AND NOT assay:Proteomics) OR (datasource.short_name:ARRAY_EXPRESS AND (assay:""Transcription Profiling by Array"" OR assay:""RNA-seq of Coding RNA"" OR assay:""RNA-seq of non Coding RNA"")) OR (datasource.short_name:SRA AND assay:RNA-Seq) OR (datasource.short_name:DBGAP AND assay:RNA_Seq) OR datasource.short_name:ALLEN_INSTITUTE",1,1,0,0.00
+"(id: 8f214dcc-f203-45e2-9281-b6b042fd8434 OR id: 6f60b6e2-10f9-466a-88ad-856113d5477c OR datasource.short_name: METAGENOMICS OR (datasource.short_name: PGP AND microbiome) OR (datasource.short_name: GIGADB AND microbiome) OR (datasource.short_name: DBGAP AND description: ""study design: metagenomics"") OR (datasource.short_name: SRA AND (""human microbiome project"" OR ""human gut metagenome""))",1,1,0,0.00
+*asia,1,1,0,0.00
+010071,1,1,0,0.00
+019120,1,1,0,0.00
+1000 genome,1,1,0,0.00
+1000 Genomes Northern European groups,1,1,0,0.00
+1000genomes,1,1,0,0.00
+1000Genomes Northern European groups,1,1,0,0.00
+1000k,1,1,0,0.00
+10071,1,1,0,0.00
+1411h,1,1,0,0.00
+15490,1,1,0,0.00
+15q13,1,1,0,0.00
+16p12,1,1,0,0.00
+16p13,1,1,0,0.00
+16p13.11,1,1,0,0.00
+16q12,1,1,0,0.00
+16s,1,1,0,0.00
+1958,1,1,0,0.00
+1q21,1,1,0,0.00
+1q21.1,1,1,0,0.00
+2102,1,1,0,0.00
+2102ep,1,1,0,0.00
+218211_s_at,1,1,0,0.00
+2D reads Data From 45 yr Old Caucasian Male,1,1,0,0.00
+3' quantseq,1,1,0,0.00
+30x coverage,1,1,0,0.00
+5-aza-dC,1,1,0,0.00
+5-aza-dC prostate,1,1,0,0.00
+5'hydroxymethylation,1,1,0,0.00
+5hmC,1,1,0,0.00
+60 years,1,1,0,0.00
+60 years acute leukemia,1,1,0,0.00
+629C>A,1,1,0,0.00
+69 genomics,1,1,0,0.00
+768769e768,1,1,0,0.00
+a,1,1,0,0.00
+A,1,1,0,0.00
+A549 Sample,1,1,0,0.00
+Aalborg,1,1,0,0.00
+Aarhus,1,1,0,0.00
+ABCB4,1,1,0,0.00
+ACCESSIBLE CHROMATIN,1,1,0,0.00
+Acute Myeloid leukemia,1,1,0,0.00
+adhd,1,1,0,0.00
+Adipose,1,1,0,0.00
+adipose diabetes,1,1,0,0.00
+adipose tissue bone marrow mesenchymal stem cell,1,1,0,0.00
+adipose tissue mesenchymal stem cell immune,1,1,0,0.00
+adrenal venous,1,1,0,0.00
+adrenoleukodystrophy,1,1,0,0.00
+adverse drug events,1,1,0,0.00
+adverse events,1,1,0,0.00
+adverse eventsx,1,1,0,0.00
+aerts,1,1,0,0.00
+affymatrix plus 2 array,1,1,0,0.00
+affymetrix,1,1,0,0.00
+affymetrix breast cancer subtyping,1,1,0,0.00
+African american,1,1,0,0.00
+AFRICAN AMERICAN SNPS,1,1,0,0.00
+African human,1,1,0,0.00
+agammaglobulinemia,1,1,0,0.00
+age,1,1,0,0.00
+agiing,1,1,0,0.00
+Agilent,1,1,0,0.00
+aging fibroblasts,1,1,0,0.00
+aging RNA sequencing,1,1,0,0.00
+aging RNA sequencing human,1,1,0,0.00
+aging RNA sequencing human blood,1,1,0,0.00
+aging RNAseq,1,1,0,0.00
+aging RNAseq human blood,1,1,0,0.00
+aging vascular,1,1,0,0.00
+AKT,1,1,0,0.00
+alcohol,1,1,0,0.00
+alcohol consumption,1,1,0,0.00
+alcohol intake,1,1,0,0.00
+Alcohol Ramsey,1,1,0,0.00
+Alcohol RNA-seq,1,1,0,0.00
+Alcohol RNA-seq Human liver,1,1,0,0.00
+"Alcohol, miRNA",1,1,0,0.00
+ALDOB,1,1,0,0.00
+Allen,1,1,0,0.00
+alpha 1 antitrypsin AND E366K,1,1,0,0.00
+alpha 1 antitrypsin AND Z alelle,1,1,0,0.00
+alpha 1 antitrypsin AND Z mutation,1,1,0,0.00
+"alpha 1 antitrypsin deficiency AND ""Z""",1,1,0,0.00
+alpha 1 antitrypsin deficiency AND emphysema,1,1,0,0.00
+alpha 1 antitrypsin deficiency AND Z,1,1,0,0.00
+alpha 1 antitrypsin OR SERPIN AND E366K,1,1,0,0.00
+ALSAPC,1,1,0,0.00
+alt,1,1,0,0.00
+ALT vs telomerase,1,1,0,0.00
+alternative lengthening of telomeres,1,1,0,0.00
+altzheimer,1,1,0,0.00
+altzheimer's,1,1,0,0.00
+altzheimers,1,1,0,0.00
+alzheimer brain,1,1,0,0.00
+alzheimer brain RNA,1,1,0,0.00
+alzheimer human,1,1,0,0.00
+alzheimer's disease,1,1,0,0.00
+Alzheimer's disease,1,1,0,0.00
+Alzheimer's disease blood,1,1,0,0.00
+Alzheimer's disease blood miRNA,1,1,0,0.00
+Alzheimer's disease blood RNA,1,1,0,0.00
+alzheimers and nrf2,1,1,0,0.00
+aml child,1,1,0,0.00
+aml children,1,1,0,0.00
+aml h3k27ac,1,1,0,0.00
+aml pediatric,1,1,0,0.00
+AML RNA sequencing,1,1,0,0.00
+AML sequencing,1,1,0,0.00
+aml sweden,1,1,0,0.00
+AMPA,1,1,0,0.00
+ampk,1,1,0,0.00
+ampliseq cancer hotspot,1,1,0,0.00
+ampullary,1,1,0,0.00
+Amuloid,1,1,0,0.00
+amyotrophic lateral sclarosis,1,1,0,0.00
+Anderson,1,1,0,0.00
+androgen receptor,1,1,0,0.00
+ANEMIA,1,1,0,0.00
+angioedema,1,1,0,0.00
+animal,1,1,0,0.00
+antibio,1,1,0,0.00
+antibiotic,1,1,0,0.00
+antioxidants,1,1,0,0.00
+antioxidants keratincoytes,1,1,0,0.00
+antioxidants skin,1,1,0,0.00
+APP,1,1,0,0.00
+arab,1,1,0,0.00
+arabidopsis recombinant,1,1,0,0.00
+arabidopsis RIL,1,1,0,0.00
+arabidopsis whole genome,1,1,0,0.00
+arabidopsis whole genome MAGIC,1,1,0,0.00
+arabidopsis whole genome recombinant,1,1,0,0.00
+arabidopsis whole genome RIL,1,1,0,0.00
+ARRA,1,1,0,0.00
+array agilent,1,1,0,0.00
+array data sets,1,1,0,0.00
+array pancreas,1,1,0,0.00
+ARRAY_EXPRESS,1,1,0,0.00
+Array_Express RNA,1,1,0,0.00
+Arrayexpress: E-GEOD-41559,1,1,0,0.00
+arrayxpress,1,1,0,0.00
+artritis,1,1,0,0.00
+asda,1,1,0,0.00
+asian,1,1,0,0.00
+asian wide genome data,1,1,0,0.00
+Assay: WGS,1,1,0,0.00
+assay:*array*,1,1,0,0.00
+assay:*array* cachectic,1,1,0,0.00
+assay:*array* liver cachectic,1,1,0,0.00
+assay:*microarray*,1,1,0,0.00
+assay:*RNA*,1,1,0,0.00
+assay:MeDIP-seq primary immune deficiency,1,1,0,0.00
+assay:RNA-Seq AND (telomerase OR ALT),1,1,0,0.00
+assay:WGS,1,1,0,0.00
+assay:WGS !(metagenomic OR faecal OR fecal),1,1,0,0.00
+assay:WGS !(metagenomic OR faecal OR fecal) C_elegans,1,1,0,0.00
+"assay:WGS !(metagenomic OR microbiome OR faecal OR fecal OR ""Study of Major Depression in Chinese women"" OR ""Moleculo short reads and long synthetic reads"")",1,1,0,0.00
+"assay:WGS !(metagenomic OR microbiome OR faecal OR fecal OR ""Study of Major Depression in Chinese women"")",1,1,0,0.00
+"assay:WGS !(metagenomic OR microbiome OR faecal OR fecal OR ""Study of Major Depression in Chinese women"") ""Moleculo short reads and long synthetic reads""",1,1,0,0.00
+assay:WGS !(metagenomic OR microbiome OR faecal OR fecal),1,1,0,0.00
+"assay:WGS !(metagenomic OR microbiome OR faecal OR fecal) ""Study of Major Depression in Chinese women""",1,1,0,0.00
+assay:WGS !metagenomic,1,1,0,0.00
+assay:WGS !metgagenomic,1,1,0,0.00
+Asthma,1,1,0,0.00
+"asthma ""whole genome sequencing""",1,1,0,0.00
+"asthma NOT ""whole genome sequencing""",1,1,0,0.00
+asthma whole genome,1,1,0,0.00
+astma,1,1,0,0.00
+astra,1,1,0,0.00
+astrazeneca,1,1,0,0.00
+ATAC,1,1,0,0.00
+ATAC-seq,1,1,0,0.00
+atac-seq rheumatoid arthritis,1,1,0,0.00
+atherosclerosis,1,1,0,0.00
+atopic dermatitis blue light,1,1,0,0.00
+atopic dermatitis corticosteroids,1,1,0,0.00
+atopic dermatitisblue light,1,1,0,0.00
+ATP7B,1,1,0,0.00
+austism,1,1,0,0.00
+australian,1,1,0,0.00
+Autism,1,1,0,0.00
+autism genetic resource exchange,1,1,0,0.00
+autism gwas dbgap,1,1,0,0.00
+Autoimmune Arthiritis,1,1,0,0.00
+autoimmune arthritis,1,1,0,0.00
+autophagy,1,1,0,0.00
+autophagy neurodegenerative,1,1,0,0.00
+axon,1,1,0,0.00
+axon -instruments,1,1,0,0.00
+axon -instruments population,1,1,0,0.00
+AZ,1,1,0,0.00
+aza prostate,1,1,0,0.00
+aza prostate methylation,1,1,0,0.00
+azacytidine,1,1,0,0.00
+azacytidine prostate,1,1,0,0.00
+azacytidine prostet,1,1,0,0.00
+B-cell,1,1,0,0.00
+baboon,1,1,0,0.00
+bardet-biedl,1,1,0,0.00
+bbs8,1,1,0,0.00
+Bergen,1,1,0,0.00
+biliary,1,1,0,0.00
+biologic,1,1,0,0.00
+biologic rheumatoid,1,1,0,0.00
+biology,1,1,0,0.00
+biopsies dermatitis,1,1,0,0.00
+biopsies uv,1,1,0,0.00
+bipolar,1,1,0,0.00
+birt hogg dube,1,1,0,0.00
+Bisulfite,1,1,0,0.00
+Bisulfite human,1,1,0,0.00
+bisulfite rna-seq,1,1,0,0.00
+bisulfite sequencing,1,1,0,0.00
+"bladder ( assay:RNA-Seq OR assay:""Microarray Gene Expression"")",1,1,0,0.00
+"bladder AND ( assay:RNA-Seq OR assay:""Microarray Gene Expression"")",1,1,0,0.00
+bladder gene expression,1,1,0,0.00
+Blau syndrome,1,1,0,0.00
+blod cancer,1,1,0,0.00
+Blood,1,1,0,0.00
+blood illumina ht-12,1,1,0,0.00
+Blood illumina ht-12,1,1,0,0.00
+blood illumina ht012,1,1,0,0.00
+blue,1,1,0,0.00
+blue dendritic cells,1,1,0,0.00
+blue eyes,1,1,0,0.00
+blue fibroblasts,1,1,0,0.00
+blue light light,1,1,0,0.00
+blueprint,1,1,0,0.00
+Blueprint,1,1,0,0.00
+bortezomib multiple myeloma,1,1,0,0.00
+bostob,1,1,0,0.00
+boston,1,1,0,0.00
+bowel disease,1,1,0,0.00
+bowel WTCCC,1,1,0,0.00
+bowl,1,1,0,0.00
+bpa,1,1,0,0.00
+BPA,1,1,0,0.00
+"BPA, ChIP seq",1,1,0,0.00
+"BPA, ChIP-seq",1,1,0,0.00
+br1,1,1,0,0.00
+bra1,1,1,0,0.00
+BRAC,1,1,0,0.00
+BRACA1,1,1,0,0.00
+brachyury,1,1,0,0.00
+brain alzheimer,1,1,0,0.00
+brain expression,1,1,0,0.00
+brain expression data huntingtons,1,1,0,0.00
+brain expression data nerodegenerative,1,1,0,0.00
+brain expression data neurodegenerative,1,1,0,0.00
+brain expression hungtington,1,1,0,0.00
+brain expression rna seq microarray,1,1,0,0.00
+Brain gene expression,1,1,0,0.00
+brain huntington,1,1,0,0.00
+brain RNA sequencing,1,1,0,0.00
+brain RNA sequencing human,1,1,0,0.00
+brain tumor,1,1,0,0.00
+brain tumour,1,1,0,0.00
+brazil,1,1,0,0.00
+BRCA,1,1,0,0.00
+BRCA1 breast cancer,1,1,0,0.00
+brca2 prostate,1,1,0,0.00
+brd4,1,1,0,0.00
+Breast,1,1,0,0.00
+breast cancer affymetrix,1,1,0,0.00
+"breast cancer AND ""mutation""",1,1,0,0.00
+Breast Cancer cell lines,1,1,0,0.00
+breast cancer chimerascan,1,1,0,0.00
+breast cancer er,1,1,0,0.00
+breast cancer er positive,1,1,0,0.00
+breast cancer er+ mCF&,1,1,0,0.00
+breast cancer er+ mCF7,1,1,0,0.00
+breast cancer er+ whim,1,1,0,0.00
+breast cancer foxa1,1,1,0,0.00
+breast cancer h3k27ac,1,1,0,0.00
+breast cancer human methylation,1,1,0,0.00
+breast cancer india,1,1,0,0.00
+breast cancer methylation 450k,1,1,0,0.00
+breast cancer methylation expression,1,1,0,0.00
+breast cancer pdx,1,1,0,0.00
+breast cancer resistance,1,1,0,0.00
+breast cancer RNA,1,1,0,0.00
+breast cancer rna seq,1,1,0,0.00
+breast cancer subtyping Affymetrix,1,1,0,0.00
+breast cancer survival,1,1,0,0.00
+breast cancer tcga variants,1,1,0,0.00
+Breast cancer tumours,1,1,0,0.00
+breast cancer wgs,1,1,0,0.00
+breast cnacer,1,1,0,0.00
+breast neoplasm,1,1,0,0.00
+BREAST PDX,1,1,0,0.00
+breast to lung cancer metastasis,1,1,0,0.00
+breast variant,1,1,0,0.00
+breastcancer,1,1,0,0.00
+brillita,1,1,0,0.00
+british samples,1,1,0,0.00
+BTK,1,1,0,0.00
+C279M,1,1,0,0.00
+C9orf72,1,1,0,0.00
+cachectic,1,1,0,0.00
+cacner,1,1,0,0.00
+CAGGCTGCACGTTCTTGCTGGAGCCAGGGCTAGTCACAGATGAGCATCCTCACCAATAAA,1,1,0,0.00
+cambodia,1,1,0,0.00
+CANCER,1,1,0,0.00
+cancer AND,1,1,0,0.00
+cancer AND prostate,1,1,0,0.00
+cancer AND RNA-Seq,1,1,0,0.00
+cancer AND stage[titl],1,1,0,0.00
+cancer AND tomato,1,1,0,0.00
+cancer brain,1,1,0,0.00
+cancer breast tumour,1,1,0,0.00
+cancer case control,1,1,0,0.00
+cancer cebpb,1,1,0,0.00
+cancer celll lines,1,1,0,0.00
+cancer cells,1,1,0,0.00
+cancer circular RNAs,1,1,0,0.00
+Cancer colon,1,1,0,0.00
+Cancer colon china,1,1,0,0.00
+Cancer colon usa,1,1,0,0.00
+cancer control,1,1,0,0.00
+cancer control human,1,1,0,0.00
+cancer creb,1,1,0,0.00
+cancer hotspot,1,1,0,0.00
+cancer hotspot panel,1,1,0,0.00
+cancer in circular RNAs,1,1,0,0.00
+cancer long noncoding RNA,1,1,0,0.00
+Cancer ngs,1,1,0,0.00
+CANCER NGS,1,1,0,0.00
+cancer ngs mirna,1,1,0,0.00
+cancer NOT tumour,1,1,0,0.00
+cancer OR prostate,1,1,0,0.00
+cancer OR tomato,1,1,0,0.00
+cancer OR tumour,1,1,0,0.00
+cancer paired samples,1,1,0,0.00
+cancer phenotype,1,1,0,0.00
+cancer resistance,1,1,0,0.00
+cancer rna seq,1,1,0,0.00
+cancer RNA-seq,1,1,0,0.00
+cancer stem cell,1,1,0,0.00
+cancer stem cells,1,1,0,0.00
+cancer stroma,1,1,0,0.00
+cancer telaml,1,1,0,0.00
+cancer telomere,1,1,0,0.00
+cancer wgs,1,1,0,0.00
+"cancer, brain",1,1,0,0.00
+"cancer, breast",1,1,0,0.00
+capace-1,1,1,0,0.00
+cardio-facial-cutaneous,1,1,0,0.00
+cardiofaciocutaneous,1,1,0,0.00
+cardiomyopathy,1,1,0,0.00
+cardiotoxicity,1,1,0,0.00
+"cardiovascular ""B cells""",1,1,0,0.00
+cardiovascular b cells,1,1,0,0.00
+cardiovascular blood,1,1,0,0.00
+cardiovascular disease,1,1,0,0.00
+cardiovascular gender,1,1,0,0.00
+case,1,1,0,0.00
+CCAM,1,1,0,0.00
+CD38,1,1,0,0.00
+cdx2,1,1,0,0.00
+cell cycle proteins involving in gene fusion,1,1,0,0.00
+cell differentiation,1,1,0,0.00
+cell line,1,1,0,0.00
+cellular aging,1,1,0,0.00
+cellular aging methylation,1,1,0,0.00
+centenarian,1,1,0,0.00
+centenarian 450K,1,1,0,0.00
+cep290,1,1,0,0.00
+cerebrospinal fluid,1,1,0,0.00
+CEU,1,1,0,0.00
+cfpac-1,1,1,0,0.00
+cftr,1,1,0,0.00
+Cftr,1,1,0,0.00
+CFTR,1,1,0,0.00
+champions,1,1,0,0.00
+CHEK2 mutations,1,1,0,0.00
+CHEK2 p.I157T,1,1,0,0.00
+chicken lethal,1,1,0,0.00
+Chikungunya,1,1,0,0.00
+childhood obesity,1,1,0,0.00
+childrenofthe90s,1,1,0,0.00
+china,1,1,0,0.00
+chinese,1,1,0,0.00
+Chinese control,1,1,0,0.00
+Chinese control data rett,1,1,0,0.00
+chinese data,1,1,0,0.00
+chinese genome,1,1,0,0.00
+chinese genome cancer,1,1,0,0.00
+Chinnaiyan,1,1,0,0.00
+chip,1,1,0,0.00
+chip-exo,1,1,0,0.00
+Chip-seq,1,1,0,0.00
+Chip-seq Arabidopsis,1,1,0,0.00
+Chip-seq H3K4me3,1,1,0,0.00
+Chip-seq maize,1,1,0,0.00
+Chip-seq meiosis,1,1,0,0.00
+Chip-seq MLH,1,1,0,0.00
+Chip-seq MLH1,1,1,0,0.00
+Chip-seq rice,1,1,0,0.00
+Chip-seq tomato,1,1,0,0.00
+Chip-seq Zea mays,1,1,0,0.00
+chm13,1,1,0,0.00
+cholesterol anaemia,1,1,0,0.00
+cholesterol anemia,1,1,0,0.00
+cholesterol*,1,1,0,0.00
+chordoma,1,1,0,0.00
+"chr9:27,546,542",1,1,0,0.00
+chrna3,1,1,0,0.00
+chromosome 8p23.1,1,1,0,0.00
+chromosome segregation snp,1,1,0,0.00
+chromosome snp,1,1,0,0.00
+chronic lymphocytic leukemia,1,1,0,0.00
+Chronic Lymphocytic Leukemia,1,1,0,0.00
+Chroococcidiopsis,1,1,0,0.00
+cigarette,1,1,0,0.00
+cilnvar,1,1,0,0.00
+circRNA,1,1,0,0.00
+circular rba,1,1,0,0.00
+circular RNAs,1,1,0,0.00
+circulating DNA,1,1,0,0.00
+circulating DNA cancer,1,1,0,0.00
+circulating tumour DNA,1,1,0,0.00
+circulating tumour DNA gastric cancer,1,1,0,0.00
+cirps,1,1,0,0.00
+cirrhosis,1,1,0,0.00
+cirrhosis sarcopenia,1,1,0,0.00
+cisplatin ovarian,1,1,0,0.00
+cisplatin ovarian cancer,1,1,0,0.00
+CKD,1,1,0,0.00
+clinical,1,1,0,0.00
+clinical exome,1,1,0,0.00
+cll,1,1,0,0.00
+cloaca,1,1,0,0.00
+clostridium difficile microbiome,1,1,0,0.00
+cnacer breast,1,1,0,0.00
+CNN,1,1,0,0.00
+cognitive,1,1,0,0.00
+cognitive therapy,1,1,0,0.00
+collection: 68232993-cb35-4fc6-9123-7797cb68c688 AND dbgap,1,1,0,0.00
+collection: 68232993-cb35-4fc6-9123-7797cb68c688 AND estonian,1,1,0,0.00
+collection: 68232993-cb35-4fc6-9123-7797cb68c688 AND gig,1,1,0,0.00
+collection: 68232993-cb35-4fc6-9123-7797cb68c688 AND giga*,1,1,0,0.00
+collection: 68232993-cb35-4fc6-9123-7797cb68c688 AND GIGADB,1,1,0,0.00
+collection: 9c42af0e,1,1,0,0.00
+collection: 9c42af0e*,1,1,0,0.00
+collection: presonal*,1,1,0,0.00
+"collection:""*methylation*""",1,1,0,0.00
+collection:*methylation*,1,1,0,0.00
+collection:*microbiome*,1,1,0,0.00
+collection:6ec03795-00ca-49aa-a274-d41f9f334607 AND IBS,1,1,0,0.00
+collection:9c42af0e-85b8-4b7e-80ed-355564a4eff1 soriasys,1,1,0,0.00
+collection:9c42af0e-85b8-4b7e-80ed-355564a4eff1 vcu,1,1,0,0.00
+collection:9c42af0e*,1,1,0,0.00
+collection:e853a7f3-eed6-4942-a823-b5164820e4a2,1,1,0,0.00
+collection:e853a7f3-eed6-4942-a823-b5164820e4a2 collection:9c42af0e-85b8-4b7e-80ed-355564a4eff1 temperature,1,1,0,0.00
+collection:e853a7f3-eed6-4942-a823-b5164820e4a2 temperature,1,1,0,0.00
+collection:methy*,1,1,0,0.00
+collection:methylation,1,1,0,0.00
+collection:microbiome,1,1,0,0.00
+collection:xpressomics,1,1,0,0.00
+collection:XPRESSOMICS,1,1,0,0.00
+"collections:""methylation""",1,1,0,0.00
+collections:622d5735-0688-4584-a269-29f30bae5d36,1,1,0,0.00
+coloadenocarcinoma,1,1,0,0.00
+coloadenocarcinoma bisulfite,1,1,0,0.00
+colon,1,1,0,0.00
+colon adenocarcinoma,1,1,0,0.00
+colon cancer AND NOT mice AND NOT mouse,1,1,0,0.00
+colonadenocarcinoma,1,1,0,0.00
+"colorectal ""stage i""",1,1,0,0.00
+colorectal cancer ffpe,1,1,0,0.00
+colorectal cancer methylation bisulfite,1,1,0,0.00
+colorectal ffpe,1,1,0,0.00
+colorectal stage i,1,1,0,0.00
+colorectal stage ii ffpe,1,1,0,0.00
+colorectal stage II untreated,1,1,0,0.00
+colorectal untreated,1,1,0,0.00
+competitive endogenous rna,1,1,0,0.00
+congenital heart,1,1,0,0.00
+Congenital of Glycosylation Disorder,1,1,0,0.00
+control datasets,1,1,0,0.00
+control muscle,1,1,0,0.00
+"COPD ""whole genome sequencing""",1,1,0,0.00
+copd blood,1,1,0,0.00
+COPD blood plus 2,1,1,0,0.00
+COPD soutium,1,1,0,0.00
+copd sputum,1,1,0,0.00
+COPD sputum,1,1,0,0.00
+Copenhagen,1,1,0,0.00
+Copy number variation,1,1,0,0.00
+cornea eye,1,1,0,0.00
+corneal,1,1,0,0.00
+corneocytes,1,1,0,0.00
+coronary blood,1,1,0,0.00
+coronary disease,1,1,0,0.00
+coronary heart disease,1,1,0,0.00
+corposome,1,1,0,0.00
+corticosteroids,1,1,0,0.00
+cosmic,1,1,0,0.00
+Costello,1,1,0,0.00
+cpg mutation,1,1,0,0.00
+cpg sites,1,1,0,0.00
+CPO,1,1,0,0.00
+crestor,1,1,0,0.00
+creyghton,1,1,0,0.00
+cribp,1,1,0,0.00
+CRISPR,1,1,0,0.00
+crohn's ATAC-seq,1,1,0,0.00
+crohn's disease,1,1,0,0.00
+CROWNBIO,1,1,0,0.00
+csl,1,1,0,0.00
+CTCF liver,1,1,0,0.00
+curcumin,1,1,0,0.00
+cyanobacteria mars,1,1,0,0.00
+cyanobacteria space,1,1,0,0.00
+cystic fibrosis,1,1,0,0.00
+dantrolene,1,1,0,0.00
+data,1,1,0,0.00
+dataset:6f60b6e2-10f9-466a-88ad-856113d5477c,1,1,0,0.00
+datasource: 0caaad97-3df9-4a14-ad37-b77ddbc6d4db AND FUS KO,1,1,0,0.00
+datasource: 0caaad97-3df9-4a14-ad37-b77ddbc6d4db AND FUS KO mRNA sequencing and anti-FUS RNA immunoprecipitation sequencing,1,1,0,0.00
+datasource: 6df081ee-95e1-4c89-ac3b-5cbe58b76d80,1,1,0,0.00
+"datasource:""Methylation*""",1,1,0,0.00
+datasource:6ec03795-00ca-49aa-a274-d41f9f334607 AND IBS,1,1,0,0.00
+datasource:6ec03795-00ca-49aa-a274-d41f9f334607 AND RA,1,1,0,0.00
+datasource:6ec03795-00ca-49aa-a274-d41f9f334607 AND RA OR rheumatoid arthritis,1,1,0,0.00
+datasource:6ec03795-00ca-49aa-a274-d41f9f334607 AND rheumatoid arthritis,1,1,0,0.00
+datasource:Methylation,1,1,0,0.00
+datasource:Methylation*,1,1,0,0.00
+datasource:sra,1,1,0,0.00
+datasource:SRA,1,1,0,0.00
+datasource:xpressomics,1,1,0,0.00
+datasource:XPRESSOMICS,1,1,0,0.00
+datasource.short_name: SRA,1,1,0,0.00
+"datasource.short_name:IN_SILICO_DB AND NOT assay:""Whole Exome"" OR datasource.short_name:XPRESSOMICS OR datasource.short_name:GEO OR datasource.short_name:GXA AND NOT assay:Proteomics OR datasource.short_name:ARRAY_EXPRESS AND assay:""Transcription Profiling by Array"" OR assay:""RNA-seq of Coding RNA"" OR assay:""RNA-seq of non Coding RNA"" OR datasource.short_name:SRA AND assay:RNA-Seq OR datasource.short_name:DBGAP AND assay:RNA_Seq OR datasource.short_name:ALLEN_INSTITUTE",1,1,0,0.00
+DBGAP,1,1,0,0.00
+DCIS human,1,1,0,0.00
+DCIS human grade,1,1,0,0.00
+decipher,1,1,0,0.00
+DECODE,1,1,0,0.00
+deleteome,1,1,0,0.00
+Dementia,1,1,0,0.00
+dementia alzheimer,1,1,0,0.00
+dementia alzheimers,1,1,0,0.00
+dementia down,1,1,0,0.00
+dendritic,1,1,0,0.00
+dendritic cells gpl570,1,1,0,0.00
+dendritic cells gpl96,1,1,0,0.00
+dermatitis,1,1,0,0.00
+dermatits,1,1,0,0.00
+deubiquitin,1,1,0,0.00
+deubiquitinating,1,1,0,0.00
+di george,1,1,0,0.00
+di-nitromethylamine,1,1,0,0.00
+Diabetes,1,1,0,0.00
+Diabetes and cohort and SNP,1,1,0,0.00
+diabetes liver,1,1,0,0.00
+diabetes obese human adipose,1,1,0,0.00
+diabetes time series,1,1,0,0.00
+diabetes type 2,1,1,0,0.00
+Diabetic Nephropathy,1,1,0,0.00
+Diabetic Nephropathy SNP,1,1,0,0.00
+diagnosis rare disease,1,1,0,0.00
+diauxic,1,1,0,0.00
+dicer1,1,1,0,0.00
+diet challenge,1,1,0,0.00
+diet intervention,1,1,0,0.00
+dinitro methylamine,1,1,0,0.00
+dinitrose methy lamine,1,1,0,0.00
+dinitrose methylamine,1,1,0,0.00
+dinitrosemethylamine,1,1,0,0.00
+dinitrosethylamine,1,1,0,0.00
+DISC1,1,1,0,0.00
+diversity,1,1,0,0.00
+DLBCL,1,1,0,0.00
+dlbcl exome,1,1,0,0.00
+dlx1,1,1,0,0.00
+"DNA AND ""methylation""",1,1,0,0.00
+DNA binding protein 43,1,1,0,0.00
+DNA methylation,1,1,0,0.00
+dna methylation parus major,1,1,0,0.00
+dna repair,1,1,0,0.00
+dna sharing,1,1,0,0.00
+DNA-Seq,1,1,0,0.00
+DNAase,1,1,0,0.00
+DNAase-seq,1,1,0,0.00
+DNAmeth,1,1,0,0.00
+DNase I,1,1,0,0.00
+docetaxel snp,1,1,0,0.00
+dog,1,1,0,0.00
+donation,1,1,0,0.00
+dopa neurons iPSC,1,1,0,0.00
+down syndromes,1,1,0,0.00
+DPP4,1,1,0,0.00
+DR246,1,1,0,0.00
+DRD2,1,1,0,0.00
+drug,1,1,0,0.00
+druge protein interaction,1,1,0,0.00
+druge resistance,1,1,0,0.00
+duchenne,1,1,0,0.00
+ductal carcinoma,1,1,0,0.00
+Ductal carcinoma in situ,1,1,0,0.00
+"ductal carcinoma in situ (NOT assay: ""Transciption Profiling by Array""))",1,1,0,0.00
+ductal carcinoma in situ (NOT microarray),1,1,0,0.00
+"ductal carcinoma in situ AND NOT (assay: ""Transciption Profiling by Array""))",1,1,0,0.00
+"ductal carcinoma in situ AND NOT (assay: ""Transcription Profiling by Array""",1,1,0,0.00
+"ductal carcinoma in situ AND NOT (assay: ""Transcription Profiling by Array"" )",1,1,0,0.00
+"ductal carcinoma in situ AND NOT (assay: ""Transcription Profiling by Array"" ) OR (assay: ""Bisulfite-Seq"")",1,1,0,0.00
+"ductal carcinoma in situ AND NOT (assay: ""Transcription Profiling by Array"" OR (assay: ""Biosulfite-Seq"")",1,1,0,0.00
+"ductal carcinoma in situ AND NOT (assay: ""Transcription Profiling by Array"")",1,1,0,0.00
+"ductal carcinoma in situ AND NOT (assay: ""Transcription Profiling by Array""))",1,1,0,0.00
+ductal carcinoma in situ invasion,1,1,0,0.00
+ductal carcinoma in situ invasion expression,1,1,0,0.00
+ductal carcinoma in situ invasion expression mrna sequencing,1,1,0,0.00
+ductal carcinoma in situ invasion rna,1,1,0,0.00
+ductal carcinoma in situ invision expression rna,1,1,0,0.00
+ductal carcinoma in situ RNA-Seq,1,1,0,0.00
+dystonia,1,1,0,0.00
+e,1,1,0,0.00
+E-GEOD-20361,1,1,0,0.00
+E-GEOD-41559,1,1,0,0.00
+E-GEOD-55699,1,1,0,0.00
+E-MEXP-2308,1,1,0,0.00
+E-MTAB,1,1,0,0.00
+E-MTAB-3604,1,1,0,0.00
+E-MTAB-5075,1,1,0,0.00
+e2a,1,1,0,0.00
+e2a knockdown,1,1,0,0.00
+E2F1 Chip,1,1,0,0.00
+E2F1 CHip,1,1,0,0.00
+E2F1 Chip BREAST,1,1,0,0.00
+E2F1 Chip ER NEG,1,1,0,0.00
+E2F1 Chip ER NEGATIVE,1,1,0,0.00
+E2F1 Chip ER-VE,1,1,0,0.00
+E8,1,1,0,0.00
+E8 3pa,1,1,0,0.00
+ea992e6a-f3ca-41ad-85aa-1e4528b39a0e,1,1,0,0.00
+early onset alzheimer,1,1,0,0.00
+eczema,1,1,0,0.00
+eczema blue light,1,1,0,0.00
+eczema corticosteroids,1,1,0,0.00
+Edc4,1,1,0,0.00
+EGA has:discussion,1,1,0,0.00
+EGAN00001170630,1,1,0,0.00
+egas,1,1,0,0.00
+egdp,1,1,0,0.00
+egfr,1,1,0,0.00
+Elimination of HIV-1 Genomes from Human T-lymphoid Cells,1,1,0,0.00
+Elimination of HIV-1 Genomes from Human T-lymphoid Cells by CRISPR/ Cas9 Gene Editing,1,1,0,0.00
+embryo,1,1,0,0.00
+embryonic,1,1,0,0.00
+embryonic chimp,1,1,0,0.00
+embryonic gorilla,1,1,0,0.00
+ENCSR032SCO,1,1,0,0.00
+encyclopedia,1,1,0,0.00
+endometrial cancer,1,1,0,0.00
+endometriosis,1,1,0,0.00
+enhancer h3k4me1,1,1,0,0.00
+enhancer ido amit,1,1,0,0.00
+epg5,1,1,0,0.00
+epidemiological,1,1,0,0.00
+Epidermolysis Bullosa,1,1,0,0.00
+epigenetics,1,1,0,0.00
+epigenome*,1,1,0,0.00
+epigenomics,1,1,0,0.00
+epithelia cancer,1,1,0,0.00
+eQTL genome wide,1,1,0,0.00
+eQTL genome wide brain,1,1,0,0.00
+erbb2,1,1,0,0.00
+eritrocyte rna-seq,1,1,0,0.00
+erythrocyte rna-seq,1,1,0,0.00
+erytrhocyte rna-seq,1,1,0,0.00
+esophag,1,1,0,0.00
+esser,1,1,0,0.00
+estonian,1,1,0,0.00
+ESTONIAN,1,1,0,0.00
+Estonian Biocentre,1,1,0,0.00
+Estonian Biocentre Human Genome Diversity Panel,1,1,0,0.00
+ESTONIAN*,1,1,0,0.00
+Ethnicity: White,1,1,0,0.00
+Ethnicity:White,1,1,0,0.00
+etv6,1,1,0,0.00
+etv6-runx1,1,1,0,0.00
+ETV6-RUNX1,1,1,0,0.00
+etv6-runx1 rna-seq,1,1,0,0.00
+eucalyptus,1,1,0,0.00
+exac,1,1,0,0.00
+EXOME,1,1,0,0.00
+exome autism,1,1,0,0.00
+exome cancer,1,1,0,0.00
+exome control,1,1,0,0.00
+exome healthy controls,1,1,0,0.00
+exome trio,1,1,0,0.00
+expression patterns,1,1,0,0.00
+Expression profiling,1,1,0,0.00
+expression quantitative trait loci brain,1,1,0,0.00
+expression rna seq microarray,1,1,0,0.00
+eye cornea,1,1,0,0.00
+ezh,1,1,0,0.00
+fairfax,1,1,0,0.00
+FANTOM,1,1,0,0.00
+Faslodex fulvestrant,1,1,0,0.00
+fat challenge,1,1,0,0.00
+Fbxl17,1,1,0,0.00
+Fbxo7,1,1,0,0.00
+FBXW7,1,1,0,0.00
+FBXW7 mutations in PDX,1,1,0,0.00
+fecal metagenomic,1,1,0,0.00
+feces,1,1,0,0.00
+feces Inflammatory bowel disease,1,1,0,0.00
+ffpe and ff,1,1,0,0.00
+ffpe rna-seq,1,1,0,0.00
+FHS,1,1,0,0.00
+fibroblast,1,1,0,0.00
+fibroblasts,1,1,0,0.00
+fibromylgia,1,1,0,0.00
+fiji,1,1,0,0.00
+flcn,1,1,0,0.00
+flu,1,1,0,0.00
+follicular lymphoma ig,1,1,0,0.00
+follicular lymphoma ighv,1,1,0,0.00
+Framingham heart study,1,1,0,0.00
+free,1,1,0,0.00
+free wgs data,1,1,0,0.00
+frmpd4,1,1,0,0.00
+frontotemporal dementia,1,1,0,0.00
+FTD,1,1,0,0.00
+full genome,1,1,0,0.00
+full genome human,1,1,0,0.00
+full human genome,1,1,0,0.00
+funding,1,1,0,0.00
+FUS,1,1,0,0.00
+FUS KO mRNA sequencing and anti-FUS RNA immunoprecipitation sequencing,1,1,0,0.00
+FUS minor intron,1,1,0,0.00
+fusion and mutation,1,1,0,0.00
+G6PD,1,1,0,0.00
+gallbladder,1,1,0,0.00
+ganglioglioma,1,1,0,0.00
+gastric cancer ct DNA,1,1,0,0.00
+gastric cancer RNF43,1,1,0,0.00
+gastrin releasing peptide,1,1,0,0.00
+gastro intestinal tumor,1,1,0,0.00
+gaucher,1,1,0,0.00
+GBE1,1,1,0,0.00
+gbm,1,1,0,0.00
+gdsc,1,1,0,0.00
+geenivaramu,1,1,0,0.00
+gemcitabine pancreatic cancer?,1,1,0,0.00
+gene,1,1,0,0.00
+gene expression,1,1,0,0.00
+gene expression Framingham,1,1,0,0.00
+gene expression in whole blood Framinham,1,1,0,0.00
+Gene expression profiles in hereditary breast cancer.,1,1,0,0.00
+Gene expression profiling of enforced,1,1,0,0.00
+gene expression skin dendritic cells,1,1,0,0.00
+gene fusion in gastric cance,1,1,0,0.00
+gene fusion in gastric cancer,1,1,0,0.00
+general population,1,1,0,0.00
+general population AND expression,1,1,0,0.00
+Genome,1,1,0,0.00
+genome data,1,1,0,0.00
+genome in a bottle,1,1,0,0.00
+genome of the netherlands,1,1,0,0.00
+genome sequence,1,1,0,0.00
+Genome sequence of YH,1,1,0,0.00
+genomes,1,1,0,0.00
+genomic data,1,1,0,0.00
+genomic determinants cancer,1,1,0,0.00
+genotype,1,1,0,0.00
+germ cell tumour,1,1,0,0.00
+germline,1,1,0,0.00
+gestational diabetes,1,1,0,0.00
+giga,1,1,0,0.00
+GIGA,1,1,0,0.00
+giga*,1,1,0,0.00
+GigaDB,1,1,0,0.00
+GIGADB,1,1,0,0.00
+gigadb*,1,1,0,0.00
+GLIMOA,1,1,0,0.00
+glioblastoma ChIP-seq,1,1,0,0.00
+glioblastoma TERT,1,1,0,0.00
+glioblastome rna seq,1,1,0,0.00
+glua2,1,1,0,0.00
+glucocorticoid,1,1,0,0.00
+Glucocorticoid,1,1,0,0.00
+glycan,1,1,0,0.00
+glycomics,1,1,0,0.00
+Glycosylation,1,1,0,0.00
+Glycosylation Disorder,1,1,0,0.00
+GM12878,1,1,0,0.00
+Gm12878 methylation,1,1,0,0.00
+GoT2D,1,1,0,0.00
+göteborg,1,1,0,0.00
+gothenburg,1,1,0,0.00
+gout,1,1,0,0.00
+GPL570,1,1,0,0.00
+grade DCIS,1,1,0,0.00
+GREB1,1,1,0,0.00
+green light,1,1,0,0.00
+grey platelet,1,1,0,0.00
+growth arrested keratinocytes,1,1,0,0.00
+grpr,1,1,0,0.00
+gse*,1,1,0,0.00
+GSE15490,1,1,0,0.00
+GSE38994,1,1,0,0.00
+GSE47051,1,1,0,0.00
+GSE6532,1,1,0,0.00
+GSM1143786,1,1,0,0.00
+gtex,1,1,0,0.00
+gut fibroblast,1,1,0,0.00
+gut microbiome healthy europe,1,1,0,0.00
+gut microbiome metagenome,1,1,0,0.00
+gut microbiome metagenomics,1,1,0,0.00
+gwas cardiovascular,1,1,0,0.00
+gwas dementia,1,1,0,0.00
+gwas heart,1,1,0,0.00
+gwas respiratory,1,1,0,0.00
+H. pylori infection,1,1,0,0.00
+H2AX,1,1,0,0.00
+h3k27ac aml,1,1,0,0.00
+H3K27ac AND K562,1,1,0,0.00
+h3k27ac rhesus,1,1,0,0.00
+h3k27ac rheumatoid arthritis,1,1,0,0.00
+Hackney,1,1,0,0.00
+hair,1,1,0,0.00
+hair follicles,1,1,0,0.00
+han,1,1,0,0.00
+han chinease,1,1,0,0.00
+han chinese gigadb,1,1,0,0.00
+Han-MHC,1,1,0,0.00
+hapmap,1,1,0,0.00
+hbec cells,1,1,0,0.00
+HCC explant,1,1,0,0.00
+HDAC,1,1,0,0.00
+hdl,1,1,0,0.00
+"hdl, smoke",1,1,0,0.00
+healthy human methylation NGS data,1,1,0,0.00
+healthy male,1,1,0,0.00
+healthy obese human,1,1,0,0.00
+healthy testicles,1,1,0,0.00
+heamopoetic stem cell,1,1,0,0.00
+hearing,1,1,0,0.00
+hearing loss,1,1,0,0.00
+heart disease,1,1,0,0.00
+heart tissue,1,1,0,0.00
+HEK293,1,1,0,0.00
+HEK293T,1,1,0,0.00
+Helsinki,1,1,0,0.00
+hematopoietic stem progenitor,1,1,0,0.00
+hepatitis b,1,1,0,0.00
+her2,1,1,0,0.00
+Her2,1,1,0,0.00
+hereditary fructose intolerance,1,1,0,0.00
+herg,1,1,0,0.00
+herpes,1,1,0,0.00
+HG-U133A,1,1,0,0.00
+HG-U133A corneocells,1,1,0,0.00
+HG-U133A corneocytes,1,1,0,0.00
+HG-U133A corneum,1,1,0,0.00
+HG-U133A dendritic cells,1,1,0,0.00
+HG-U133A macrophages,1,1,0,0.00
+HG-U133A melanocytes,1,1,0,0.00
+HG-U133A monocytes,1,1,0,0.00
+HG-U133A spinous,1,1,0,0.00
+HG-U133Acorneocytes,1,1,0,0.00
+HG-U133Amast cells,1,1,0,0.00
+hGH,1,1,0,0.00
+hi-c,1,1,0,0.00
+hic,1,1,0,0.00
+hic data,1,1,0,0.00
+high methylation,1,1,0,0.00
+Hirschsprung,1,1,0,0.00
+hirshsrpung,1,1,0,0.00
+histone epigenetics,1,1,0,0.00
+histone modification,1,1,0,0.00
+histone modification AND K562,1,1,0,0.00
+hiv,1,1,0,0.00
+HIV full genome,1,1,0,0.00
+Hlrcc,1,1,0,0.00
+HMEc,1,1,0,0.00
+HMEC- mammary epithelial cells,1,1,0,0.00
+hmeseal,1,1,0,0.00
+hnRNPC,1,1,0,0.00
+hnrnpk,1,1,0,0.00
+hnrnpq,1,1,0,0.00
+hodgkin,1,1,0,0.00
+Hoed,1,1,0,0.00
+holoprosencephaly,1,1,0,0.00
+homosexual,1,1,0,0.00
+horizon,1,1,0,0.00
+HPB-ALL,1,1,0,0.00
+hpde,1,1,0,0.00
+HPDE cell line,1,1,0,0.00
+HT29,1,1,0,0.00
+htert immortalized human cell line,1,1,0,0.00
+https://discover.repositive.io/datasets/search?q=datasource%3A6ec03795-00ca-49aa-a274-d41f9f334607%20AND%20RA%20OR%20rheumatoid%20arthritis GWAS,1,1,0,0.00
+hu6c3f34,1,1,0,0.00
+huAF469C,1,1,0,0.00
+human AND hair,1,1,0,0.00
+human AND skin,1,1,0,0.00
+human brain,1,1,0,0.00
+human brain aging,1,1,0,0.00
+human breast epithelial cell,1,1,0,0.00
+human DCIS,1,1,0,0.00
+human exome,1,1,0,0.00
+human genome gut epithelium,1,1,0,0.00
+human gut microbiome,1,1,0,0.00
+human immune cells,1,1,0,0.00
+human liver,1,1,0,0.00
+human methylation,1,1,0,0.00
+human methylation aging,1,1,0,0.00
+human methylation NGS data,1,1,0,0.00
+human phenotype ontology,1,1,0,0.00
+human population,1,1,0,0.00
+human sperm,1,1,0,0.00
+human SUV420H2,1,1,0,0.00
+human tumors control,1,1,0,0.00
+Huntington's,1,1,0,0.00
+hydroxy,1,1,0,0.00
+hydroxy methylation,1,1,0,0.00
+hydroxy-methylated,1,1,0,0.00
+hydroxy-methylation,1,1,0,0.00
+hypercholesterol anaemia,1,1,0,0.00
+hypercholesterol*,1,1,0,0.00
+hypercholesterolemia,1,1,0,0.00
+hyperholesterol,1,1,0,0.00
+hypertrophic cardiomyopathy,1,1,0,0.00
+ibd,1,1,0,0.00
+IBD and crohn and ulcerative colitis,1,1,0,0.00
+IBD or crohn or ulcerative colitis,1,1,0,0.00
+IBD twin,1,1,0,0.00
+Icat,1,1,0,0.00
+iceland asthma,1,1,0,0.00
+id: 2b2974cd-d970-4db2-8d60-1bf1b95fe02a,1,1,0,0.00
+"id: 8f214dcc-f203-45e2-9281-b6b042fd8434 OR id: 6f60b6e2-10f9-466a-88ad-856113d5477c OR datasource.short_name: METAGENOMICS OR (datasource.short_name: PGP AND microbiome) OR (datasource.short_name: GIGADB AND microbiome) OR (datasource.short_name: DBGAP AND description: ""study design: metagenomics"") OR (datasource.short_name: SRA AND (""human microbiome project"" OR ""human gut metagenome""))",1,1,0,0.00
+id: b5dadf3d-b13b-4408-84f5-0851b2179412,1,1,0,0.00
+id: be553c7a-13dd-40a5-adbf-31b118f6bde4,1,1,0,0.00
+id:9ad37b3c-3b08-4f69-9968-696d5990111a,1,1,0,0.00
+ideopathic,1,1,0,0.00
+idiopathic,1,1,0,0.00
+idopathic pulmonary fibrosis,1,1,0,0.00
+iga nephropathy,1,1,0,0.00
+ihec,1,1,0,0.00
+IHEC,1,1,0,0.00
+il10,1,1,0,0.00
+Illumina,1,1,0,0.00
+illumina ht-12,1,1,0,0.00
+immmune,1,1,0,0.00
+immune rnaseq,1,1,0,0.00
+immuno,1,1,0,0.00
+immuno-oncology,1,1,0,0.00
+immunodeficiency,1,1,0,0.00
+immunodeficiency 24,1,1,0,0.00
+immunodeficiency myocardial infarct,1,1,0,0.00
+immunophenotype,1,1,0,0.00
+immunotherapy,1,1,0,0.00
+immunre,1,1,0,0.00
+impact prostate,1,1,0,0.00
+indian reference,1,1,0,0.00
+indian reference data,1,1,0,0.00
+Infectious bronchitis,1,1,0,0.00
+inflammation,1,1,0,0.00
+Inflammatory bowel disease,1,1,0,0.00
+inflammatory bowel disease ulcerative colitis,1,1,0,0.00
+inflammatory bowel disorder,1,1,0,0.00
+influenza,1,1,0,0.00
+inherited cancer,1,1,0,0.00
+inherited disorder,1,1,0,0.00
+inhibitor treated transcriptome,1,1,0,0.00
+inhibitor treated transcriptome - cell line,1,1,0,0.00
+inhibitor treated transcriptome immune,1,1,0,0.00
+inner,1,1,0,0.00
+inner ear morphogenesis,1,1,0,0.00
+insulin,1,1,0,0.00
+integrated gene catalog,1,1,0,0.00
+Intellectual,1,1,0,0.00
+intellectual AND disability,1,1,0,0.00
+intellectual NOT disability,1,1,0,0.00
+intelletucal,1,1,0,0.00
+interferon-gamma,1,1,0,0.00
+interleuchin,1,1,0,0.00
+Interleukin 6,1,1,0,0.00
+interleukin IL 6 snp,1,1,0,0.00
+Interleukin stomach,1,1,0,0.00
+interval,1,1,0,0.00
+intestinal,1,1,0,0.00
+intestine fibroblast,1,1,0,0.00
+IODINE,1,1,0,0.00
+ion ampliseq cancer hotspot,1,1,0,0.00
+ion cancer hotspot,1,1,0,0.00
+ion torrent,1,1,0,0.00
+iPS and differentiated,1,1,0,0.00
+iPS and differentiated and neuron,1,1,0,0.00
+iPS and differentiated human,1,1,0,0.00
+iPSC neural differentiated human,1,1,0,0.00
+iPSC-derived dopaminergic neurons,1,1,0,0.00
+IRF1,1,1,0,0.00
+IRF10,1,1,0,0.00
+IRF2,1,1,0,0.00
+IRF3,1,1,0,0.00
+IRF5,1,1,0,0.00
+IRF6,1,1,0,0.00
+IRF7,1,1,0,0.00
+IRF8,1,1,0,0.00
+IRF9,1,1,0,0.00
+irritable bowel syndrome,1,1,0,0.00
+irritable bowel syndrome and gwas,1,1,0,0.00
+irritable bowel syndrome GWAS,1,1,0,0.00
+Jackson,1,1,0,0.00
+JAK2,1,1,0,0.00
+japanese,1,1,0,0.00
+japanese data bank,1,1,0,0.00
+JAX,1,1,0,0.00
+Jessica Nordlund,1,1,0,0.00
+JNK keratinocytes,1,1,0,0.00
+jostins,1,1,0,0.00
+k562,1,1,0,0.00
+kado,1,1,0,0.00
+kado*,1,1,0,0.00
+Karolinska,1,1,0,0.00
+kcnk9,1,1,0,0.00
+kcnkp,1,1,0,0.00
+kemmeren et al,1,1,0,0.00
+kemmeren Patrick,1,1,0,0.00
+keratincoytes,1,1,0,0.00
+keratinocytes blue light,1,1,0,0.00
+keratoconus,1,1,0,0.00
+knockdown,1,1,0,0.00
+korean,1,1,0,0.00
+kras,1,1,0,0.00
+kt pickard,1,1,0,0.00
+Kuopio,1,1,0,0.00
+lactase,1,1,0,0.00
+Landrum MJ,1,1,0,0.00
+LAPC4,1,1,0,0.00
+lca,1,1,0,0.00
+lcor,1,1,0,0.00
+lcorl,1,1,0,0.00
+lenalidomide,1,1,0,0.00
+LEOPARD,1,1,0,0.00
+leptin gene deficient mice,1,1,0,0.00
+leptin receptor deficient mouse model,1,1,0,0.00
+Leucegene: AML sequencing,1,1,0,0.00
+leukoplakia,1,1,0,0.00
+li fraumeni,1,1,0,0.00
+lichen plan,1,1,0,0.00
+lichen plan snips,1,1,0,0.00
+"lichen plan, scc",1,1,0,0.00
+"lichen plan, scc snips",1,1,0,0.00
+light,1,1,0,0.00
+light fibroblasts,1,1,0,0.00
+light keratinocytes,1,1,0,0.00
+lightkeratinocytes,1,1,0,0.00
+lincs,1,1,0,0.00
+Linkoping,1,1,0,0.00
+Linköping,1,1,0,0.00
+Linkping,1,1,0,0.00
+lithium ageing,1,1,0,0.00
+liver cancer ChIP-seq,1,1,0,0.00
+liver cancer DEN,1,1,0,0.00
+liver cancer dinitrosethylamine,1,1,0,0.00
+liver cancer explant,1,1,0,0.00
+liver cancer human,1,1,0,0.00
+liver cancer mouse,1,1,0,0.00
+liver cancer RNA-seq,1,1,0,0.00
+liver cancer transplant,1,1,0,0.00
+liver cancer viral,1,1,0,0.00
+liver cirrhosis,1,1,0,0.00
+liver explant,1,1,0,0.00
+liver fibrosis UCHL1,1,1,0,0.00
+liver insulin receptor knock out,1,1,0,0.00
+liver insulin resistance,1,1,0,0.00
+liver MCD,1,1,0,0.00
+liver MCD diet,1,1,0,0.00
+liver thyroid,1,1,0,0.00
+liver transplant,1,1,0,0.00
+lnc-RNAs,1,1,0,0.00
+lncap,1,1,0,0.00
+lncap 450k,1,1,0,0.00
+london,1,1,0,0.00
+long non-coding,1,1,0,0.00
+long non-coding development,1,1,0,0.00
+long non-coding development whole rna,1,1,0,0.00
+long non-coding eye,1,1,0,0.00
+long non-coding retina,1,1,0,0.00
+long non-coding RNA blood,1,1,0,0.00
+longevity,1,1,0,0.00
+longitudinal,1,1,0,0.00
+longitudinal CD4 HIV,1,1,0,0.00
+longitudinal cholesterol,1,1,0,0.00
+longitudinal HIV,1,1,0,0.00
+low grade DCIS,1,1,0,0.00
+low MN1,1,1,0,0.00
+low-grade prostate cancer,1,1,0,0.00
+lshtm,1,1,0,0.00
+lted breast camcer,1,1,0,0.00
+LTED CELL,1,1,0,0.00
+LTED cell lines,1,1,0,0.00
+lund,1,1,0,0.00
+lund university,1,1,0,0.00
+lung adenocarcinoma,1,1,0,0.00
+Lung cancer chemotherapy,1,1,0,0.00
+lung cancer rna seq,1,1,0,0.00
+lung cancer rna-seq,1,1,0,0.00
+lung cancer survival,1,1,0,0.00
+lung fibrosis,1,1,0,0.00
+lung injury,1,1,0,0.00
+Lupus,1,1,0,0.00
+lupus RNA-seq,1,1,0,0.00
+lyme,1,1,0,0.00
+Lymphoblastic,1,1,0,0.00
+lynphoma,1,1,0,0.00
+MACF7,1,1,0,0.00
+macrophage rnaseq,1,1,0,0.00
+macrophages,1,1,0,0.00
+macrophages epigenetics,1,1,0,0.00
+macular dystrophy,1,1,0,0.00
+magic,1,1,0,0.00
+MAGIC,1,1,0,0.00
+maize,1,1,0,0.00
+malay,1,1,0,0.00
+male masturbation,1,1,0,0.00
+manuel corpas,1,1,0,0.00
+manuel viotti,1,1,0,0.00
+MAP17 T helper,1,1,0,0.00
+marfan,1,1,0,0.00
+marfan fbn1,1,1,0,0.00
+mast cells,1,1,0,0.00
+Maternal Exercise during Pregnancy Increases BDNF Levels and Cell Numbers in the Hippocampal Formation but Not in the Cerebral Cortex of Adult Rat Offspring,1,1,0,0.00
+MCD,1,1,0,0.00
+mcf-7,1,1,0,0.00
+mcf-7 h3k27ac,1,1,0,0.00
+mcf7,1,1,0,0.00
+Mcf7,1,1,0,0.00
+MCF7 AFTER 3H,1,1,0,0.00
+MCF7 breast cancer cells transcriptomic,1,1,0,0.00
+MCF7 breast cancer cells transcriptomic profil,1,1,0,0.00
+mCF7 lted breast cancer,1,1,0,0.00
+mda-mb-231,1,1,0,0.00
+MDA-MB-231,1,1,0,0.00
+MDAMB231,1,1,0,0.00
+mdamcf7,1,1,0,0.00
+mdr2,1,1,0,0.00
+mds,1,1,0,0.00
+MDS,1,1,0,0.00
+mecp2,1,1,0,0.00
+MECP2,1,1,0,0.00
+MeDIP,1,1,0,0.00
+MeDIP Cancer,1,1,0,0.00
+MeDIP-seq,1,1,0,0.00
+MeDIP-seq + Cancer,1,1,0,0.00
+MEF,1,1,0,0.00
+Mek inhibitor transcriptome,1,1,0,0.00
+mek inhibitor treated,1,1,0,0.00
+melanoma AND immune,1,1,0,0.00
+melanoma AND patient AND stem cell,1,1,0,0.00
+melanoma AND patient NOT cell line,1,1,0,0.00
+melanoma AND vitamin,1,1,0,0.00
+melanoma AND vitamin D,1,1,0,0.00
+melanoma checkpoint,1,1,0,0.00
+melanoma ipilimumab,1,1,0,0.00
+melanoma nivolumab,1,1,0,0.00
+melanoma patient,1,1,0,0.00
+melanoma patients,1,1,0,0.00
+melanoma steroid,1,1,0,0.00
+Meningioma Exome,1,1,0,0.00
+menon,1,1,0,0.00
+mental illness,1,1,0,0.00
+mental illness micro array,1,1,0,0.00
+Metabolic Syndrome,1,1,0,0.00
+metabolic syndrome liver,1,1,0,0.00
+metabolism,1,1,0,0.00
+metabolomics,1,1,0,0.00
+metabolomics diabetes,1,1,0,0.00
+metabolomics OGTT,1,1,0,0.00
+METABRIC,1,1,0,0.00
+metacardis,1,1,0,0.00
+metagenome smoke,1,1,0,0.00
+metagenomics cigarette,1,1,0,0.00
+metagenomics smoke,1,1,0,0.00
+metaproteomics,1,1,0,0.00
+metastasis,1,1,0,0.00
+metastatic breast cancer PIK3CA,1,1,0,0.00
+metastatic prostate cancer,1,1,0,0.00
+Methylation,1,1,0,0.00
+methylation aging,1,1,0,0.00
+methylation aging fibroblasts,1,1,0,0.00
+methylation breast,1,1,0,0.00
+methylation expression correlation,1,1,0,0.00
+methylation rna-seq,1,1,0,0.00
+methylation rrbs,1,1,0,0.00
+methylation transcriptome,1,1,0,0.00
+methylation transposable,1,1,0,0.00
+methylation transposable element,1,1,0,0.00
+methylome,1,1,0,0.00
+mexico,1,1,0,0.00
+MGMT imaging,1,1,0,0.00
+MHC target sequence for psoriasis study,1,1,0,0.00
+MIBG,1,1,0,0.00
+michigan,1,1,0,0.00
+micro array,1,1,0,0.00
+microarray,1,1,0,0.00
+microarray psoriasis,1,1,0,0.00
+Microbiome 16S,1,1,0,0.00
+Microbiome 16S BMI,1,1,0,0.00
+Microbiome AND 16S,1,1,0,0.00
+Microbiome AND 16S AND Age,1,1,0,0.00
+Microbiome IBD,1,1,0,0.00
+microbiome Inflammatory bowel disease,1,1,0,0.00
+microbiome psoriasis,1,1,0,0.00
+microbiota,1,1,0,0.00
+microcephaly,1,1,0,0.00
+Microdeletion Syndrome,1,1,0,0.00
+micropapillary breast,1,1,0,0.00
+microrna,1,1,0,0.00
+microrna plasma,1,1,0,0.00
+microrna plasma cancer,1,1,0,0.00
+microrna plasma qpcr,1,1,0,0.00
+microrna serum qpcr,1,1,0,0.00
+mieloma,1,1,0,0.00
+miR-302,1,1,0,0.00
+miR-371,1,1,0,0.00
+miRNA,1,1,0,0.00
+miRNA NK,1,1,0,0.00
+miRNA oncoclogy,1,1,0,0.00
+miRNA oncology,1,1,0,0.00
+miRNA onoclogy,1,1,0,0.00
+miRNA toxicology,1,1,0,0.00
+Mitochondria,1,1,0,0.00
+mitochondrial,1,1,0,0.00
+mitochondrial dna,1,1,0,0.00
+mitotic snp,1,1,0,0.00
+MN1,1,1,0,0.00
+Mobile genes,1,1,0,0.00
+Mobile genes in the human microbiome,1,1,0,0.00
+Mobile genes in the human microbiome are structured from global to individual scales,1,1,0,0.00
+mold,1,1,0,0.00
+MOLT-4,1,1,0,0.00
+Monocyte,1,1,0,0.00
+monocyte rnaseq,1,1,0,0.00
+Monocyte t cells,1,1,0,0.00
+mother twin,1,1,0,0.00
+motor neuron disease,1,1,0,0.00
+mouse brain,1,1,0,0.00
+mouse rna-seq,1,1,0,0.00
+MRI,1,1,0,0.00
+MS,1,1,0,0.00
+mTB,1,1,0,0.00
+MTB_JAX,1,1,0,0.00
+mtdna,1,1,0,0.00
+Multi-level Support Vector Regression,1,1,0,0.00
+multiple chemical sensitivity,1,1,0,0.00
+Multiple Myeloma,1,1,0,0.00
+multiple myeloma + bortezomib,1,1,0,0.00
+multiple myeloma and bortexomib,1,1,0,0.00
+multiple myeloma and bortezomib,1,1,0,0.00
+multiple myeloma bortezomib,1,1,0,0.00
+multiple myeloma DNA,1,1,0,0.00
+multiple myeloma expression data,1,1,0,0.00
+myasthenia gravis,1,1,0,0.00
+myb,1,1,0,0.00
+mycobacterium tuberculosis,1,1,0,0.00
+myelodysplasia,1,1,0,0.00
+myelodysplastic syndrome,1,1,0,0.00
+myeloid leukemia,1,1,0,0.00
+myeloid pancreatic cancer,1,1,0,0.00
+myeloma,1,1,0,0.00
+myocardial infarction,1,1,0,0.00
+myocd,1,1,0,0.00
+myopathy centronuclear,1,1,0,0.00
+NA04025,1,1,0,0.00
+NA06891,1,1,0,0.00
+NA06894,1,1,0,0.00
+NA06896,1,1,0,0.00
+NA06910,1,1,0,0.00
+na18507,1,1,0,0.00
+NA20231,1,1,0,0.00
+NA20237,1,1,0,0.00
+NA20239,1,1,0,0.00
+naaladl2,1,1,0,0.00
+nanopore,1,1,0,0.00
+narcolepsy,1,1,0,0.00
+nasopharyngeal cancer,1,1,0,0.00
+nasopharyngeal cancer normal,1,1,0,0.00
+neoblast,1,1,0,0.00
+NEPC,1,1,0,0.00
+nephritis,1,1,0,0.00
+nephronectin,1,1,0,0.00
+neruoblastoma,1,1,0,0.00
+NETWORKS LUNG CANCER,1,1,0,0.00
+neural crest,1,1,0,0.00
+neural crest RNA-seq,1,1,0,0.00
+neurodegenerative,1,1,0,0.00
+neuronal,1,1,0,0.00
+neuropathy,1,1,0,0.00
+NFKB,1,1,0,0.00
+ngs,1,1,0,0.00
+"NGS ""methylation""",1,1,0,0.00
+ngs ageing,1,1,0,0.00
+ngs aging,1,1,0,0.00
+ngs analysis,1,1,0,0.00
+"NGS AND ""methylation""",1,1,0,0.00
+ngs comparison,1,1,0,0.00
+NHEK,1,1,0,0.00
+NIPT,1,1,0,0.00
+nitric oxide and inflammation,1,1,0,0.00
+nitric oxide apoptosis,1,1,0,0.00
+nitric oxide cell death,1,1,0,0.00
+nitric oxide differentiation,1,1,0,0.00
+nitric oxide keratinocytes,1,1,0,0.00
+nitric oxide proliferation,1,1,0,0.00
+nitric oxide skin,1,1,0,0.00
+nitric oxide stem cells,1,1,0,0.00
+NK cell rnaseq,1,1,0,0.00
+NK rnaseq,1,1,0,0.00
+nmnat,1,1,0,0.00
+nmnat2,1,1,0,0.00
+no cancer,1,1,0,0.00
+nod2,1,1,0,0.00
+NOD2,1,1,0,0.00
+non coding mutations leukemia,1,1,0,0.00
+non-coding variation,1,1,0,0.00
+non-coding variation in schizophrenia,1,1,0,0.00
+normal breast,1,1,0,0.00
+normal human cells,1,1,0,0.00
+normal tox,1,1,0,0.00
+normal toxicity,1,1,0,0.00
+Northern European groups,1,1,0,0.00
+not cancer,1,1,0,0.00
+NOT mousecolon cancer AND NOT mice AND,1,1,0,0.00
+Novershtern,1,1,0,0.00
+npnt,1,1,0,0.00
+NPY,1,1,0,0.00
+NR3C1,1,1,0,0.00
+ns025f,1,1,0,0.00
+nucleotide database,1,1,0,0.00
+nutrigenomics,1,1,0,0.00
+ob/ob mice,1,1,0,0.00
+ob/ob rat,1,1,0,0.00
+ob\ob,1,1,0,0.00
+ob\ob mice,1,1,0,0.00
+obese diabetes,1,1,0,0.00
+obese diabetics,1,1,0,0.00
+obese mice liver,1,1,0,0.00
+obesity adipose tissue human,1,1,0,0.00
+obesity liver,1,1,0,0.00
+oct2,1,1,0,0.00
+Odense,1,1,0,0.00
+OGTT,1,1,0,0.00
+olfactory,1,1,0,0.00
+olfactory AND human,1,1,0,0.00
+olfactory AND human AND skin,1,1,0,0.00
+oligodendroglioma,1,1,0,0.00
+ontology,1,1,0,0.00
+open share dna database,1,1,0,0.00
+oral microbiome v5,1,1,0,0.00
+Oslo,1,1,0,0.00
+osteoarthritis AND cartilage,1,1,0,0.00
+osteoarthritis knee,1,1,0,0.00
+osteoarthritis OS6,1,1,0,0.00
+osteosarcoma,1,1,0,0.00
+Oulu,1,1,0,0.00
+ovarian cancer control,1,1,0,0.00
+ovarian cancer resistant,1,1,0,0.00
+p,1,1,0,0.00
+p53,1,1,0,0.00
+P53,1,1,0,0.00
+p53 !mouse,1,1,0,0.00
+p53 ChIPseq,1,1,0,0.00
+P53 chipseq,1,1,0,0.00
+pacific biosciences,1,1,0,0.00
+paclitaxel snp,1,1,0,0.00
+paired samples,1,1,0,0.00
+paired tumour healthy sample,1,1,0,0.00
+paired tumour normal sample,1,1,0,0.00
+paired tumour normal samples,1,1,0,0.00
+Pakinson,1,1,0,0.00
+pancreas,1,1,0,0.00
+Pancreas,1,1,0,0.00
+pancreas normal,1,1,0,0.00
+pancreati cancer,1,1,0,0.00
+pancreatic agenesis,1,1,0,0.00
+pancreatic ductal adenocarcinoma,1,1,0,0.00
+Pancreatic neoplasm,1,1,0,0.00
+papillary thyroid cancer,1,1,0,0.00
+papillary thyroid carcinoma,1,1,0,0.00
+papua,1,1,0,0.00
+papuan,1,1,0,0.00
+parkinson,1,1,0,0.00
+Parkinson AND RNAseq,1,1,0,0.00
+Parkinson autophagy,1,1,0,0.00
+Parkinson disease,1,1,0,0.00
+Parkinson RNAseq,1,1,0,0.00
+Parkinson substantia nigra,1,1,0,0.00
+Parkinson substantia nigra postmortem,1,1,0,0.00
+parkinson's,1,1,0,0.00
+Parkinson's disease,1,1,0,0.00
+Paroxysmal neurological disorders,1,1,0,0.00
+parus major,1,1,0,0.00
+parvalbumin,1,1,0,0.00
+patient derived,1,1,0,0.00
+patient-derived xenografts,1,1,0,0.00
+PBMC,1,1,0,0.00
+pcbp3,1,1,0,0.00
+pcpb3,1,1,0,0.00
+pdhb,1,1,0,0.00
+PDx,1,1,0,0.00
+pdx breast cancer,1,1,0,0.00
+PDX breast cancer,1,1,0,0.00
+pdx colon,1,1,0,0.00
+PDX FBXw7,1,1,0,0.00
+pdx gastric,1,1,0,0.00
+pediatric,1,1,0,0.00
+Pediatric cancer,1,1,0,0.00
+penis,1,1,0,0.00
+People of british isles,1,1,0,0.00
+personal,1,1,0,0.00
+personal genome,1,1,0,0.00
+petacc,1,1,0,0.00
+Pfeiffer syndrome,1,1,0,0.00
+pgp,1,1,0,0.00
+"PGP !(microbiome OR ""Complete Genomics"" OR 23andMe)",1,1,0,0.00
+"PGP !(microbiome OR ""Complete Genomics"" OR 23andMe) Illumina",1,1,0,0.00
+"PGP !(microbiome OR ""Complete Genomics"")",1,1,0,0.00
+"PGP !(microbiome OR ""Complete Genomics"") 23andMe",1,1,0,0.00
+PGP !microbiome,1,1,0,0.00
+"PGP ""Complete Genomics""",1,1,0,0.00
+pharmacogenomics,1,1,0,0.00
+PharmGKB,1,1,0,0.00
+phenotype ontology,1,1,0,0.00
+phospho-ATK,1,1,0,0.00
+phosphoATK,1,1,0,0.00
+phototherapy,1,1,0,0.00
+phototherapy psoriasis,1,1,0,0.00
+phytophthora infestans,1,1,0,0.00
+pig,1,1,0,0.00
+Pik3ca,1,1,0,0.00
+"PIK3CA AND ""mutation""",1,1,0,0.00
+"PIK3CA AND ""wgs""",1,1,0,0.00
+"PIK3CA AND ""whole genome sequence""",1,1,0,0.00
+Pik3ca AND Breast,1,1,0,0.00
+PIK3CA breast cancer,1,1,0,0.00
+plasma,1,1,0,0.00
+plasmid,1,1,0,0.00
+polycystic kidney,1,1,0,0.00
+population snp,1,1,0,0.00
+ppb,1,1,0,0.00
+Precision Medicine,1,1,0,0.00
+primary immune deficiency,1,1,0,0.00
+PRJ123456,1,1,0,0.00
+project grandiose,1,1,0,0.00
+prolapse array,1,1,0,0.00
+prolapse array endometriosis,1,1,0,0.00
+promoter region,1,1,0,0.00
+prosopagnoisa,1,1,0,0.00
+prosopagnosia,1,1,0,0.00
+prostate cancer (assay:'RNA-Seq'),1,1,0,0.00
+"prostate cancer (assay:""Microarray Gene Expression"" OR assay:""RNA-Seq"")",1,1,0,0.00
+"prostate cancer (assay:""Microarray Gene Expression"" OR assay:RNA-Seq OR assay:ChIP-Seq OR assay:ChIP-seq OR African)",1,1,0,0.00
+"prostate cancer (assay:""Microarray Gene Expression"" OR assay:RNA-Seq OR assay:ChIP-Seq OR assay:ChIP-seq)",1,1,0,0.00
+"prostate cancer (assay:""Microarray Gene Expression"" OR assay:RNA-Seq OR assay:ChIP-Seq OR assay:ChIP-seq) AND African",1,1,0,0.00
+"prostate cancer (assay:""Microarray Gene Expression"" OR assay:RNA-Seq OR assay:ChIP-Seq)",1,1,0,0.00
+prostate cancer (assay:ChIP-seq OR assay:Microarray Gene Expression OR assay:RNA-Seq),1,1,0,0.00
+prostate cancer (assay:ChIP-Seq OR assay:Microarray Gene Expression OR assay:RNA-seq),1,1,0,0.00
+prostate cancer (assay:ChIP-Seq OR assay:Microarray Gene Expression OR assay:RNA-Seq),1,1,0,0.00
+prostate cancer (assay:ChIP-Seq OR assay:microarray OR assay:RNA-Seq),1,1,0,0.00
+prostate cancer (assay:ChIP-Seq OR assay:Microarray OR assay:RNA-Seq),1,1,0,0.00
+prostate cancer (assay:ChIP-Seq OR assy:microarray OR RNA-Seq),1,1,0,0.00
+prostate cancer (assay:ChIP-Seq OR microarray OR RNA-Seq),1,1,0,0.00
+prostate cancer (assay:Chipseq OR microarray OR RNA-Seq),1,1,0,0.00
+prostate cancer (assay:Chipseq OR microarray OR rnaseq),1,1,0,0.00
+prostate cancer (assay:Chipseq OR microarray),1,1,0,0.00
+prostate cancer (assay:Microarray Gene Expression OR assay:RNA-Seq),1,1,0,0.00
+"prostate cancer (assay:RNA-Seq OR assay:""Microarray Gene Expression"" OR assay:ChIP-Seq OR assay:ChIP-seq)",1,1,0,0.00
+"prostate cancer (assay:RNA-Seq OR assay:""Microarray Gene Expression"" OR assay:Chip-Seq)",1,1,0,0.00
+"prostate cancer (assay:RNA-Seq OR assay:""Microarray Gene Expression"" OR assay:ChIp-seq)",1,1,0,0.00
+"prostate cancer (assay:RNA-Seq OR assay:""Microarray Gene Expression"" OR assay:ChIp-Seq)",1,1,0,0.00
+"prostate cancer (assay:RNA-Seq OR assay:""Microarray Gene Expression"" OR assay:ChIP-seq)",1,1,0,0.00
+"prostate cancer (assay:RNA-Seq OR assay:""Microarray Gene Expression"" OR assay:ChIP-Seq)",1,1,0,0.00
+"prostate cancer (assay:RNA-Seq OR assay:""Microarray Gene Expression"")",1,1,0,0.00
+prostate cancer (assay:RNA-Seq OR Microarray),1,1,0,0.00
+prostate cancer (assay:RNA-Seq),1,1,0,0.00
+prostate cancer adverse events,1,1,0,0.00
+prostate cancer AND (assay:ChIP-Seq OR microarray OR RNA-Seq),1,1,0,0.00
+prostate cancer androgen castrate,1,1,0,0.00
+prostate cancer biopsy,1,1,0,0.00
+prostate tumor biopsy,1,1,0,0.00
+prostate tumour biopsy,1,1,0,0.00
+prostate] methylation,1,1,0,0.00
+proste,1,1,0,0.00
+prostrate,1,1,0,0.00
+protein protein interaction,1,1,0,0.00
+Proteomics,1,1,0,0.00
+psoriasis biologics,1,1,0,0.00
+psoriasis biopsy,1,1,0,0.00
+psoriasis blue light,1,1,0,0.00
+psoriasis corticoesteroids,1,1,0,0.00
+psoriasis corticosteroids,1,1,0,0.00
+psoriasis esteroids,1,1,0,0.00
+psoriasis IL17,1,1,0,0.00
+psoriasis inflammation,1,1,0,0.00
+psoriasis t cells,1,1,0,0.00
+psoriasis TNFa,1,1,0,0.00
+psoriasis uv,1,1,0,0.00
+psoriatic,1,1,0,0.00
+pten,1,1,0,0.00
+pulmonary fibrosis,1,1,0,0.00
+pulmonary fibrosis glutaredoxin,1,1,0,0.00
+pulmonsry fibrosis,1,1,0,0.00
+punch biopsies atopic,1,1,0,0.00
+punch biopsies dermatitis,1,1,0,0.00
+punch biopsies phototherapy,1,1,0,0.00
+punch biopsies uv,1,1,0,0.00
+punch biopsis phototherapy,1,1,0,0.00
+qatar wgs,1,1,0,0.00
+qiagen,1,1,0,0.00
+r,1,1,0,0.00
+Rab5c,1,1,0,0.00
+radiation and melanoma,1,1,0,0.00
+rare,1,1,0,0.00
+rare disease,1,1,0,0.00
+RASL-seq,1,1,0,0.00
+reactive oxygen species,1,1,0,0.00
+reactive oxygen species and inflammation,1,1,0,0.00
+reactive oxygen species cell death,1,1,0,0.00
+reactive oxygen species differentiation,1,1,0,0.00
+reactive oxygen species keratinocytes,1,1,0,0.00
+reactive oxygen species proliferation,1,1,0,0.00
+reactive oxygen species skin,1,1,0,0.00
+reactive oxygen species stem cells,1,1,0,0.00
+receptor,1,1,0,0.00
+rectal cancer,1,1,0,0.00
+rectal prolapse,1,1,0,0.00
+renal carcinoma,1,1,0,0.00
+renal cell,1,1,0,0.00
+renal cell clear cell,1,1,0,0.00
+Repository: XPRESS,1,1,0,0.00
+retina human,1,1,0,0.00
+retinitis pigmentosa,1,1,0,0.00
+rett,1,1,0,0.00
+Rett AND syndrome,1,1,0,0.00
+Rett OR syndrome,1,1,0,0.00
+Rett Syndrome,1,1,0,0.00
+Rett syndrome AND control,1,1,0,0.00
+Rett syndrome Chinese control,1,1,0,0.00
+Rett syndrome control,1,1,0,0.00
+Reykjavik,1,1,0,0.00
+rhabdomyosarcoma exome,1,1,0,0.00
+rhabdomyosarcoma sequencing,1,1,0,0.00
+rhabdosarcoma exome,1,1,0,0.00
+rhabdosarcoma WES,1,1,0,0.00
+rheumatoid,1,1,0,0.00
+rheumatoid arthritis GWAS,1,1,0,0.00
+rheumatoid arthritis h3k27ac,1,1,0,0.00
+rheumatoid arthritis WTCC,1,1,0,0.00
+rheumatoid arthritis WTCCC,1,1,0,0.00
+rhumatoid artrithis,1,1,0,0.00
+ribozero,1,1,0,0.00
+Ribozero,1,1,0,0.00
+riccombeni,1,1,0,0.00
+RIL arabidopsis,1,1,0,0.00
+RIL arabidopsis NGS,1,1,0,0.00
+RIP-Tag,1,1,0,0.00
+RNA binding,1,1,0,0.00
+rna methylation,1,1,0,0.00
+rna seq,1,1,0,0.00
+RNA seq 786-O,1,1,0,0.00
+RNA seq cell line,1,1,0,0.00
+rna-se,1,1,0,0.00
+RNA-seq,1,1,0,0.00
+RNA-Seq,1,1,0,0.00
+RNA-seq 786-O,1,1,0,0.00
+RNA-seq sunitinib,1,1,0,0.00
+RNAseq,1,1,0,0.00
+RNAseq data,1,1,0,0.00
+RNAseq data MCF7,1,1,0,0.00
+rosuvastatin,1,1,0,0.00
+RP11,1,1,0,0.00
+RPMI-8402,1,1,0,0.00
+rs123,1,1,0,0.00
+ruvbl1,1,1,0,0.00
+ruvbl2,1,1,0,0.00
+RXR,1,1,0,0.00
+S,1,1,0,0.00
+SAGE,1,1,0,0.00
+Saliva,1,1,0,0.00
+Sall2,1,1,0,0.00
+san antonio family heart study,1,1,0,0.00
+sarcopenic,1,1,0,0.00
+saudi,1,1,0,0.00
+sbrt,1,1,0,0.00
+schimic AND stroke,1,1,0,0.00
+schizo,1,1,0,0.00
+Schizophrenia,1,1,0,0.00
+schleroderma,1,1,0,0.00
+Schmiegelow,1,1,0,0.00
+sclc,1,1,0,0.00
+scn1a,1,1,0,0.00
+scoiliosis,1,1,0,0.00
+scoliosis,1,1,0,0.00
+selumetinib,1,1,0,0.00
+sequencing human,1,1,0,0.00
+SERPINA,1,1,0,0.00
+sex,1,1,0,0.00
+sex addiction,1,1,0,0.00
+sfpq,1,1,0,0.00
+sgvp,1,1,0,0.00
+sharma,1,1,0,0.00
+sharma menon,1,1,0,0.00
+sharma prostate,1,1,0,0.00
+shelterin,1,1,0,0.00
+shh,1,1,0,0.00
+shotgun metagenomics,1,1,0,0.00
+sibling,1,1,0,0.00
+simons genome diversity project,1,1,0,0.00
+simons genomes diversity project,1,1,0,0.00
+single cell brain transcriptome,1,1,0,0.00
+single cell islet,1,1,0,0.00
+single cell rna sequencing,1,1,0,0.00
+Single cell RNA_Seq in aging of hematopoietic stem and progenitor cells,1,1,0,0.00
+single cell sequencing,1,1,0,0.00
+six6,1,1,0,0.00
+Sjogren's,1,1,0,0.00
+skeletal muscle,1,1,0,0.00
+skin biopsies uv,1,1,0,0.00
+skin biopsy,1,1,0,0.00
+skin microbiome AD,1,1,0,0.00
+skin microbiome pasteur,1,1,0,0.00
+skin microbiome pasteuyr,1,1,0,0.00
+skin microbiome pathoquest,1,1,0,0.00
+skin microbiome phi29,1,1,0,0.00
+skin omics,1,1,0,0.00
+skinomics,1,1,0,0.00
+SLE lupus RNA-seq,1,1,0,0.00
+SLE RNA-seq,1,1,0,0.00
+small cell,1,1,0,0.00
+small cell lung cancer inhibitor,1,1,0,0.00
+small cell lung cancer selumetinib,1,1,0,0.00
+smoke metagenomic,1,1,0,0.00
+SMS,1,1,0,0.00
+snip,1,1,0,0.00
+snip genotyping,1,1,0,0.00
+snip project,1,1,0,0.00
+SNP,1,1,0,0.00
+SNP chip,1,1,0,0.00
+snp diabetes,1,1,0,0.00
+snp diabetes ingelsson,1,1,0,0.00
+SNP individual melanoma,1,1,0,0.00
+SNP t2d,1,1,0,0.00
+SNP type 2 diabetes,1,1,0,0.00
+snps on illumina chip,1,1,0,0.00
+snup,1,1,0,0.00
+social,1,1,0,0.00
+Social,1,1,0,0.00
+Social Entrepreneurship,1,1,0,0.00
+something that returns zero results,1,1,0,0.00
+species,1,1,0,0.00
+Sperm,1,1,0,0.00
+Sperm chip,1,1,0,0.00
+spermatogonia,1,1,0,0.00
+spinach,1,1,0,0.00
+splice temperature,1,1,0,0.00
+splicing,1,1,0,0.00
+sports,1,1,0,0.00
+sputem COPD data,1,1,0,0.00
+sra,1,1,0,0.00
+SRA039286,1,1,0,0.00
+SRA205317,1,1,0,0.00
+SRP062971,1,1,0,0.00
+SRP068862,1,1,0,0.00
+SRR019120,1,1,0,0.00
+SRR062415,1,1,0,0.00
+SRS019120,1,1,0,0.00
+SRX302634,1,1,0,0.00
+Startcodon,1,1,0,0.00
+STAT1,1,1,0,0.00
+STAT1 chip-seq,1,1,0,0.00
+STAT1 ChIPseq,1,1,0,0.00
+statin gwas,1,1,0,0.00
+stem cell,1,1,0,0.00
+steve*,1,1,0,0.00
+steven,1,1,0,0.00
+stimulator of interferon genes,1,1,0,0.00
+stimulator of interferon gens,1,1,0,0.00
+stomach cancer,1,1,0,0.00
+stomach cancer nutrition,1,1,0,0.00
+stomach cancer snp,1,1,0,0.00
+stomach cancer snp interleukin,1,1,0,0.00
+stomach cancer treatment,1,1,0,0.00
+stomach interleuchin,1,1,0,0.00
+stomach interleukin,1,1,0,0.00
+stomach interleukin IL 6 snp,1,1,0,0.00
+stomach italian,1,1,0,0.00
+stomach italy,1,1,0,0.00
+STR,1,1,0,0.00
+sudden cardiac death,1,1,0,0.00
+sunitinib,1,1,0,0.00
+suraj,1,1,0,0.00
+surui human,1,1,0,0.00
+syndrome,1,1,0,0.00
+systemic identification,1,1,0,0.00
+systemic identification of genomic determinants,1,1,0,0.00
+systemic identification of genomic markers,1,1,0,0.00
+t cells,1,1,0,0.00
+T cells,1,1,0,0.00
+t cells nitric oxide,1,1,0,0.00
+t cells reactive oxygen species,1,1,0,0.00
+t2d,1,1,0,0.00
+t2d microbiota,1,1,0,0.00
+T790M,1,1,0,0.00
+tabanid flies,1,1,0,0.00
+taenia,1,1,0,0.00
+taenia solium,1,1,0,0.00
+taneia,1,1,0,0.00
+targetted RNAseq,1,1,0,0.00
+tasmanian devil,1,1,0,0.00
+taxane response,1,1,0,0.00
+taxane snp,1,1,0,0.00
+tbi,1,1,0,0.00
+tcam2,1,1,0,0.00
+tcf3 knockdown,1,1,0,0.00
+Tcga,1,1,0,0.00
+tcga ngs,1,1,0,0.00
+TDP,1,1,0,0.00
+tdp-4,1,1,0,0.00
+TDP-43 | TARDBP | TDP43,1,1,0,0.00
+tdp43,1,1,0,0.00
+tel-aml1,1,1,0,0.00
+TEL-AML1,1,1,0,0.00
+telomerase prostate,1,1,0,0.00
+telomere prostate,1,1,0,0.00
+temp-seq,1,1,0,0.00
+temp=-seq,1,1,0,0.00
+temperat,1,1,0,0.00
+tes,1,1,0,0.00
+testicles,1,1,0,0.00
+testicular health,1,1,0,0.00
+testicular healthy,1,1,0,0.00
+testicular tissue control,1,1,0,0.00
+testies,1,1,0,0.00
+text,1,1,0,0.00
+TGx,1,1,0,0.00
+THL,1,1,0,0.00
+throat,1,1,0,0.00
+THURMAN RE,1,1,0,0.00
+thyroid cancer,1,1,0,0.00
+thyroid cancer ngs,1,1,0,0.00
+thyroid cancer rna seq,1,1,0,0.00
+thyroid hormone liver,1,1,0,0.00
+thyroid hormone receptor liver,1,1,0,0.00
+thyroid liver,1,1,0,0.00
+thyroid microrna,1,1,0,0.00
+thyroid receptor alpha liver,1,1,0,0.00
+thyroid regulated genes,1,1,0,0.00
+thyroid regulated genes in liver,1,1,0,0.00
+TIA1,1,1,0,0.00
+TIARA,1,1,0,0.00
+time course,1,1,0,0.00
+time course RNA-seq,1,1,0,0.00
+time lapse,1,1,0,0.00
+TIP49a,1,1,0,0.00
+tissue specific expression data,1,1,0,0.00
+tissue specific expression data healthy,1,1,0,0.00
+title: mold,1,1,0,0.00
+"title: PIK3CA AND description: ""breast cancer""",1,1,0,0.00
+title:cancer,1,1,0,0.00
+title:dyslexia,1,1,0,0.00
+title:glioma,1,1,0,0.00
+tmd,1,1,0,0.00
+tmem173,1,1,0,0.00
+tnf,1,1,0,0.00
+tox21,1,1,0,0.00
+toxcast,1,1,0,0.00
+toxicity,1,1,0,0.00
+toxicity nanostring,1,1,0,0.00
+toxicity RASL-seq,1,1,0,0.00
+toxicogenomics,1,1,0,0.00
+TP53,1,1,0,0.00
+"Tp53 ""chipseq""",1,1,0,0.00
+tp53 AND CHIP-seq OR RNA-seq,1,1,0,0.00
+Tp53 chipseq,1,1,0,0.00
+tp53 or p53 or p63 or p73,1,1,0,0.00
+tp53 or p53 or p63 or p73 AND ChIP-Seq,1,1,0,0.00
+tp63,1,1,0,0.00
+tpx,1,1,0,0.00
+training,1,1,0,0.00
+trans-acting DNA binding protein 43,1,1,0,0.00
+transactive response DNA binding protein 43,1,1,0,0.00
+transcription factor elk1,1,1,0,0.00
+Transcriptional Profiling in Dermatology,1,1,0,0.00
+transcriptome,1,1,0,0.00
+Transcriptome,1,1,0,0.00
+transcriptomics data of normal breast,1,1,0,0.00
+transcripts,1,1,0,0.00
+transit keratinocytes,1,1,0,0.00
+transpant,1,1,0,0.00
+trap assa,1,1,0,0.00
+trap assay,1,1,0,0.00
+trastuzumab,1,1,0,0.00
+trastuzumab N9831,1,1,0,0.00
+trimethylation,1,1,0,0.00
+trimethylation macrophages,1,1,0,0.00
+trimethylayion,1,1,0,0.00
+triple negative,1,1,0,0.00
+Tromso,1,1,0,0.00
+Tromsö,1,1,0,0.00
+Trondheim,1,1,0,0.00
+tuberculosis,1,1,0,0.00
+tumor,1,1,0,0.00
+tumors,1,1,0,0.00
+tumors control,1,1,0,0.00
+tunisia,1,1,0,0.00
+Turkish,1,1,0,0.00
+twin,1,1,0,0.00
+twins,1,1,0,0.00
+twins mother,1,1,0,0.00
+type 1 diabetes,1,1,0,0.00
+Type 2 Diabetes and SNP,1,1,0,0.00
+type 2 diabetes liver,1,1,0,0.00
+Type 2 diabetes liver,1,1,0,0.00
+type 2 diabetes liver human,1,1,0,0.00
+Type two diabetes,1,1,0,0.00
+Type two diabetes liver,1,1,0,0.00
+UCHL1,1,1,0,0.00
+UCSC*,1,1,0,0.00
+UCSU*,1,1,0,0.00
+uk,1,1,0,0.00
+ukbiobank,1,1,0,0.00
+ulcerative colitis,1,1,0,0.00
+ulcerative colitis antibody,1,1,0,0.00
+ulcerative colitis biologic,1,1,0,0.00
+ultraviolet human,1,1,0,0.00
+ultraviolet human keratinocytes,1,1,0,0.00
+ultraviolet keratinocytes,1,1,0,0.00
+ultraviolet light,1,1,0,0.00
+ultraviolet light psoriasis,1,1,0,0.00
+ultraviolet skin,1,1,0,0.00
+Umeå,1,1,0,0.00
+Uppsala,1,1,0,0.00
+uppsala university,1,1,0,0.00
+urate,1,1,0,0.00
+urinary tract infection,1,1,0,0.00
+USP,1,1,0,0.00
+USP7,1,1,0,0.00
+uterine,1,1,0,0.00
+uterine cancer,1,1,0,0.00
+uterine neoplasia,1,1,0,0.00
+uterine neoplasms,1,1,0,0.00
+uv dendritic cells,1,1,0,0.00
+uv psoriasis,1,1,0,0.00
+uv t cells,1,1,0,0.00
+uv tcells,1,1,0,0.00
+uva psoriasis,1,1,0,0.00
+UVB keratinocytes,1,1,0,0.00
+uvb psoriasis,1,1,0,0.00
+uveal cancer,1,1,0,0.00
+uveal melanoma bap1,1,1,0,0.00
+uveal melanoma gnaq,1,1,0,0.00
+van Dijk,1,1,0,0.00
+variant calling,1,1,0,0.00
+variant database,1,1,0,0.00
+variants,1,1,0,0.00
+VCaP,1,1,0,0.00
+vcap 450k,1,1,0,0.00
+vcap epigenetc,1,1,0,0.00
+vcap epigenetic,1,1,0,0.00
+vcap histone,1,1,0,0.00
+vcap me,1,1,0,0.00
+vcap methyl,1,1,0,0.00
+vcap methylated,1,1,0,0.00
+VCaP methylation,1,1,0,0.00
+vcf,1,1,0,0.00
+VCF,1,1,0,0.00
+vegan,1,1,0,0.00
+VEGFA,1,1,0,0.00
+velo-cardial-facial,1,1,0,0.00
+velo-cardio-facial,1,1,0,0.00
+venous thromboembolism,1,1,0,0.00
+vguonh,1,1,0,0.00
+vici syndrome,1,1,0,0.00
+viotti,1,1,0,0.00
+waldenstrom,1,1,0,0.00
+warpharin,1,1,0,0.00
+warpharin pharmacogenetics,1,1,0,0.00
+watkins,1,1,0,0.00
+wellcome trust,1,1,0,0.00
+WGBS,1,1,0,0.00
+wgs cancer germline controls,1,1,0,0.00
+wgs cancer normal controls,1,1,0,0.00
+WGS cohort,1,1,0,0.00
+WGS liver,1,1,0,0.00
+WGS personal,1,1,0,0.00
+WGS summary,1,1,0,0.00
+whim18,1,1,0,0.00
+whim20,1,1,0,0.00
+whole blood,1,1,0,0.00
+whole genome sequence,1,1,0,0.00
+Whole Genome Sequence,1,1,0,0.00
+whole genome sequencing all,1,1,0,0.00
+whole genome sequencing cancer germline controls,1,1,0,0.00
+whole genome sequencing cancer normal controla,1,1,0,0.00
+whole genome sequencing cancer paired control,1,1,0,0.00
+whole genome sequencing diagnosis,1,1,0,0.00
+whole genome sequencing lung cancer,1,1,0,0.00
+whole genome sequencing neuroblastoma,1,1,0,0.00
+whole genome sequencing paediatric cancer,1,1,0,0.00
+whole genome sequnecing,1,1,0,0.00
+whole genomes,1,1,0,0.00
+whole RNA,1,1,0,0.00
+wnt,1,1,0,0.00
+wnt8,1,1,0,0.00
+wnt8a,1,1,0,0.00
+xbra,1,1,0,0.00
+xenograft,1,1,0,0.00
+xpress,1,1,0,0.00
+XPRESS,1,1,0,0.00
+y chromozome,1,1,0,0.00
+Yarrowia lipolytica,1,1,0,0.00
+yeast expression data,1,1,0,0.00
+yoruba,1,1,0,0.00
+zebra,1,1,0,0.00
+zebrafish,1,1,0,0.00
+Zecchini prostate,1,1,0,0.00
+zica,1,1,0,0.00
+zika virus,1,1,0,0.00
+"temp=-seq",1,1,0,0.00
+εγα,1,1,0,0.00
