@@ -34,16 +34,19 @@ export function getFilters(tree: BBTree | BTreeLeaf): Filter[] {
 }
 
 export function removeFilter(tree: BBTree | BTreeLeaf, predicate: string, text: string): BBTree | BTreeLeaf {
-  const filtered = filter(tree, val => {
-    return isFilter(val) && val.text === text && val.predicate === predicate;
+
+  return map(tree, (t: BBTree | BTreeLeaf, l, r) => {
+    if (isFilter(t) && t.text === text && t.predicate === predicate) return null;
+    if (isBTree(t) && t.value !== null && !l && !r) return null;
+    if (isBTree(t) && t.value !== 'NOT' && (!l || !r)) return l || r;
+    if (isBTree(t)) return {value: t.value, right: r, left: l};
+    return t;
   });
-  if (filtered.length === 0) return tree;
-  return removeNodeByID(tree, (<Filter> filtered[0])._id);
 }
 
 export function addFilter(tree: BBTree | BTreeLeaf, predicate: string, text: string): BBTree | BTreeLeaf {
   const filtered = <Filter[]> filter(tree, (t => {
-    return isFilter(t) && t.predicate === predicate
+    return isFilter(t) && t.predicate === predicate;
   }));
 
   const exists = filtered.filter(f => f.text === text);

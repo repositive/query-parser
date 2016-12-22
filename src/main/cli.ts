@@ -1,11 +1,44 @@
+import {parse} from './parser';
+import {BBTree} from './b-exp-tree';
+import {removeFilter} from './operations/filters';
 
-import {parseString as parser} from './parsers/query-parser';
-import {toBoolString as serializer} from './serializers/string-serializer';
-import BTree from './b-tree';
+const str = "assay:RNA-Seq cancer breast"
 
-//const parsed = parser('cancer NOT (brain OR lung)');
+const treeWithIDs: BBTree = {
+  _id: '1',
+  value: 'AND',
+  left: {
+    _id: '7',
+    text: 'glaucoma'
+  },
+  right: {
+    _id: '2',
+    value: 'AND',
+    left: {
+      _id: '3',
+      value: 'NOT',
+      left: null,
+      right: {
+        _id: '8',
+        value: 'AND',
+        left: {
+          _id: '9',
+          text: 'new!'
+        },
+        right: {
+          _id: '5',
+          predicate: 'assay',
+          text: 'X'
+        }
+      }
+    },
+    right: {
+      _id: '4',
+      predicate: 'collection',
+      text: 'X'
+    }
+  }
+};
 
-const left = new BTree('left');
-const tree = new BTree('plus', left);
-const parent = new BTree('NOT', null, tree);
-console.log(parent);
+console.log(JSON.stringify(
+  removeFilter(treeWithIDs, 'collection', 'X'), null, 2));

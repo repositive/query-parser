@@ -8,9 +8,9 @@
     "test": "test"
   },
   "scripts": {
-    "setup": "npm i && rm -fr dist && tsc",
-    "start": "nodemon --watch src --watch package.json -e ts,json -q -x 'rm -fr dist && echo \"\\n============\\nCOMPILING...\\n============\\n\\n\" && tsc --outDir dist || return 0 && node dist/main/cli.js'",
-    "test": "nodemon --watch src --watch package.json -e ts,json -q -x 'rm -fr dist && echo \"\\n============\\nCOMPILING...\\n============\\n\\n\" && tsc --outDir dist || return 0 && tape \"dist/tests/**/*.js\"'"
+    "setup": "npm i && rm -fr dist && tsc && pegjs -o dist/main/parser.js src/main/parser.pegjs",
+    "start": "nodemon --watch src --watch package.json -e ts,json,pegjs -q -x 'rm -fr dist && echo \"\\n============\\nCOMPILING...\\n============\\n\\n\" && tsc --outDir dist || return 0 && pegjs -o dist/main/parser.js src/main/parser.pegjs || return 0 && node dist/main/cli.js'",
+    "test": "nodemon --watch src --watch package.json -e ts,json,pegjs -q -x 'rm -fr dist && echo \"\\n============\\nCOMPILING...\\n============\\n\\n\" && tsc --outDir dist || return 0 && pegjs -o dist/main/parser.js src/main/parser.pegjs || return 0 && tape \"dist/tests/**/*.js\"'"
   },
   "author": "",
   "license": "ISC",
@@ -21,8 +21,10 @@
     "typescript": "latest"
   },
   "dependencies": {
+    "@types/pegjs": "^0.10.0",
     "@types/ramda": "0.0.2",
     "@types/uuid": "^2.0.29",
+    "pegjs": "^0.10.0",
     "ramda": "^0.22.1",
     "uuid": "^3.0.1"
   }

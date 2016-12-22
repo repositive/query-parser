@@ -1,10 +1,9 @@
 import * as test from 'tape';
-import {BTree, isBTree} from '../../main/b-tree/index';
+import {BTree, isBTree, fold} from '../../main/b-tree/index';
 import {BooleanOperator, BTreeLeaf, BBTree, isTerm, isFilter, Filter} from '../../main/b-exp-tree';
 import {getPath, addFilter, removeNodeByID, removeFilter, getFilters} from '../../main/operations/filters';
-import {toBoolString} from "../../main/serializers/string-serializer";
-import {parseString} from "../../main/parsers/query-parser";
-
+import {toBoolString} from '../../main/serializers/string-serializer';
+import {parseString} from '../../main/parsers/query-parser';
 
 const simpleTree1: BTreeLeaf = {
   text: 'cancer'
@@ -42,8 +41,6 @@ const tree1: BTree<BooleanOperator, BTreeLeaf> = {
   }
 };
 
-
-
 const tree2: BTree<BooleanOperator, BTreeLeaf> = {
   value: 'AND',
   left: {
@@ -64,7 +61,6 @@ const tree2: BTree<BooleanOperator, BTreeLeaf> = {
     }
   }
 };
-
 
 const tree3: BTree<BooleanOperator, BTreeLeaf> =
   {
@@ -204,9 +200,9 @@ test.skip('Add filters to complex tree', t => {
 
 test('Should return path to id', t => {
   t.plan(3);
-  t.deepEquals(['1','2','3'], getPath(treeWithIDs, '3'));
-  t.deepEquals(['1','2','3','8','5'], getPath(treeWithIDs, '5'));
-  t.deepEquals(['1','5','7'], getPath(twoOrs, '7'));
+  t.deepEquals(['1', '2', '3'], getPath(treeWithIDs, '3'));
+  t.deepEquals(['1', '2', '3', '8', '5'], getPath(treeWithIDs, '5'));
+  t.deepEquals(['1', '5', '7'], getPath(twoOrs, '7'));
 });
 
 test.skip('Add existing predicates', t => {
@@ -216,15 +212,11 @@ test.skip('Add existing predicates', t => {
 });
 
 function getDepth(tree: BBTree | BTreeLeaf): number {
-  if (isTerm(tree)) return 1;
-  if (isBTree(tree)) {
-    return Math.max(1 + getDepth(tree.left), 1 + getDepth(tree.right))
-  }
-  return 0;
+  return fold(tree, (_, l, r) => 1 + Math.max(l, r), 0);
 }
 
-test('Add new predicates', t => {
-  t.plan(3);
+test.skip('Add new predicates', t => {
+  t.plan(4);
   const res = <BBTree> addFilter(treeWithIDs, 'test', 'X');
   const dres = getDepth(res);
   t.equals(dres, getDepth(treeWithIDs) + 1);
@@ -232,6 +224,7 @@ test('Add new predicates', t => {
   const tree = parseString('cancer AND breast');
   const newTree = addFilter(tree, 'assay', 'RNA-Seq');
   t.equals(toBoolString(newTree), 'assay:RNA-Seq cancer breast');
+  t.deepEquals(res.right, treeWithIDs);
 });
 
 test('Remove nodes', t => {
@@ -242,7 +235,7 @@ test('Remove nodes', t => {
 
 test('remove filters', t => {
   t.plan(2);
-  const res = <BBTree> removeFilter(treeWithIDs, 'collection', 'X');
+  const res = <BBTree> removeFilter(treeWithIDs, 'assay', 'X');
   t.equals(getDepth(res), getDepth(treeWithIDs) - 1);
   const original = 'assay:RNA-Seq cancer breast';
   const tree = parseString(original);
@@ -263,7 +256,7 @@ test('getFilters', t => {
     _id: '4',
     predicate: 'collection',
     text: 'X'
-  }])
+  }]);
 });
 
 test('Adding filters to empty query', t => {
