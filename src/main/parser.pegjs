@@ -8,6 +8,7 @@ expression "expression"
       };
     }
   / start? t:term end? { return t }
+  / empty
 
 nest "nested expression"
   = start? "(" _? expr:expression _? ")" end? { return expr; }
@@ -18,7 +19,6 @@ term "term"
   / negate
   / identifier
   / nest
-  / empty
 
 negate "negation"
   = _? op:NOT _? tail: term {

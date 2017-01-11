@@ -425,6 +425,9 @@ function peg$parse(input, options) {
         peg$currPos = s0;
         s0 = peg$FAILED;
       }
+      if (s0 === peg$FAILED) {
+        s0 = peg$parseempty();
+      }
     }
     peg$silentFails--;
     if (s0 === peg$FAILED) {
@@ -529,9 +532,6 @@ function peg$parse(input, options) {
         s0 = peg$parseidentifier();
         if (s0 === peg$FAILED) {
           s0 = peg$parsenest();
-          if (s0 === peg$FAILED) {
-            s0 = peg$parseempty();
-          }
         }
       }
     }
