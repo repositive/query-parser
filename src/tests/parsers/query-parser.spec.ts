@@ -12,10 +12,24 @@ import extractBoolean from '../../main/parsers/extract-explicit-boolean';
 import extractIBoolean from '../../main/parsers/extract-implicit-boolean';
 import {isBTree} from "../../main/b-tree/index";
 
-test.skip('should parse a simple query', (t) => {
+test('should parse a simple query', (t) => {
   t.plan(1);
   const result = parse('cancer');
   const term: Term = {text: 'cancer'};
+  t.deepEqual(result, term);
+});
+
+test('should parse simple query with special chars', (t) => {
+  t.plan(1);
+  const result = parse('qo/qa');
+  const term: Term = {text: 'qo/qa'};
+  t.deepEqual(result, term);
+});
+
+test('should parse empty query', (t) => {
+  t.plan(1);
+  const result = parse('');
+  const term = {};
   t.deepEqual(result, term);
 });
 

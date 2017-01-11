@@ -18,6 +18,7 @@ term "term"
   / negate
   / identifier
   / nest
+  / empty
 
 negate "negation"
   = _? op:NOT _? tail: term {
@@ -60,6 +61,10 @@ start
 
 end
   = _?!.
+
+empty = start end {
+  return  {}
+}
 
 _ "whitespace"
   = [ \t\n\r,?]+
