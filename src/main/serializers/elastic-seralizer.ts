@@ -28,8 +28,9 @@ export function toElasticQuery(tree:BTree<BooleanOperator, BTreeLeaf>): any {
     }
     else if(isTerm(tree)) {
       const key = isFilter(tree) ? tree.predicate : '_all';
+      const type = /\s/.test(tree.text) ? 'match_phrase' : 'match';
       return {
-        match: {
+        [type]: {
           [key]: tree.text
         }
       }
