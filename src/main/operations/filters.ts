@@ -57,22 +57,4 @@ export function addFilter(tree: BBTree | BTreeLeaf, predicate: string, text: str
     else
       return new BTreeImp(<BooleanOperator>'AND', <Filter> { _id: uuid(), text: text, predicate: predicate }, tree);
   }
-  // } else if (filtered.length === 0) {
-  //   if (!tree)
-  //     return <Filter> { _id: uuid(), text: text, predicate: predicate };
-  //   else
-  //     return new BTreeImp(<BooleanOperator>'AND', <Filter> { _id: uuid(), text: text, predicate: predicate }, tree);
-  // } else {
-  //   const pred = filtered[0];
-  //   return <BBTree> map(tree, (t, l, r) => {
-  //     if (isFilter(t) && t._id === pred._id) {
-  //       return <BBTree> new BTreeImp(<BooleanOperator>'OR', <Filter> { _id: uuid(), text: text, predicate: predicate }, t);
-  //     }
-  //     else if (isBTree(t)) {
-  //       return new BTreeImp(t.value, l, r);
-  //     } else if (isTerm(t)) {
-  //       return t;
-  //     }
-  //   });
-  // }
 }
