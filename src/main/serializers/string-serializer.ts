@@ -1,5 +1,5 @@
-import {BTree, isBTree, fold} from "../b-tree/index";
-import {BooleanOperator, BTreeLeaf, isFilter, isTerm, isBooleanOperator} from '../b-exp-tree';
+import {BTree, isBTree, fold} from '../b-tree/index';
+import {BooleanOperator, BTreeLeaf, isFilter, isTerm} from '../b-exp-tree';
 
 function shouldWrap(tree: BTree<BooleanOperator, BTreeLeaf>, branch: string): boolean {
   return isBTree(tree[branch]) && tree[branch].value !== 'NOT' && tree[branch].value !== tree.value;
@@ -19,7 +19,7 @@ export function toBoolString(tree: BTree<BooleanOperator, BTreeLeaf> | BTreeLeaf
       const nR = shouldWrap(elem, 'right') ? `(${r})` : r;
 
       if (elem.value === 'NOT') {
-        return `${elem.value} ${nR}`
+        return `${elem.value} ${nR}`;
       }
       else if(elem.value === 'AND') {
         return `${nL} ${nR}`;
@@ -35,8 +35,8 @@ export function toBoolString(tree: BTree<BooleanOperator, BTreeLeaf> | BTreeLeaf
       return quotes(elem.text);
     }
     else {
-      return l + r
+      return l + r;
     }
-  
-  }, '')
+
+  }, '');
 }

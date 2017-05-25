@@ -6,7 +6,7 @@ export default function extractLooseWords(input: string, acc: Token[] = []): Tok
     const from = input.indexOf(w);
     return <Token> {
       type: 'term',
-      from: from,
+      from,
       to: from + w.length,
       term: w
     };

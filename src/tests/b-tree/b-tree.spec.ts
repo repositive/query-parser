@@ -1,7 +1,7 @@
 import * as test from 'tape';
-import {map, isBTree, BTree, filter, mapLeafs} from "../../main/b-tree/index";
-import {parseString} from "../../main/parsers/query-parser";
-import {isTerm, BBTree, BTreeLeaf, Term} from "../../main/b-exp-tree";
+import {map, isBTree, filter, mapLeafs} from '../../main/b-tree/index';
+import {parseString} from '../../main/parsers/query-parser';
+import {isTerm} from '../../main/b-exp-tree';
 
 const tree = <any> parseString('cancer AND (brain OR breast)');
 const tree2 = parseString('cancer AND (changed OR breast)');
@@ -18,7 +18,7 @@ test('filter', t => {
   t.deepEquals(result[0].left, tree.right.left);
   t.deepEquals(result[0].right, tree.right.right);
   t.deepEquals(result[0].value, tree.right.value);
-})
+});
 
 //TODO: Resolve test problems with ids
 test.skip('map identity', t => {
@@ -28,7 +28,7 @@ test.skip('map identity', t => {
     if (isTerm(t) && t.text === 'brain') {
       return {
         text: 'changed'
-      }
+      };
     } else if(isBTree(t)) {
       return {
         value: t.value,

@@ -10,7 +10,8 @@
   "scripts": {
     "setup": "npm i && rm -fr dist && tsc && pegjs -o dist/main/parser.js src/main/parser.pegjs",
     "make": "rm -fr dist && tsc && pegjs -o dist/main/parser.js src/main/parser.pegjs",
-    "test": "nyc tape \"dist/tests/**/*.js\"",
+    "test": "nyc --reporter=lcov tape \"dist/tests/**/*.js\"",
+    "lint": "tslint -c tslint.json src/**/*.ts",
     "start": "nodemon --watch src --watch package.json -e ts,json,pegjs -q -x 'rm -fr dist && echo \"\\n============\\nCOMPILING...\\n============\\n\\n\" && tsc --outDir dist || return 0 && pegjs -o dist/main/parser.js src/main/parser.pegjs || return 0 && node dist/main/cli.js'",
     "testdev": "nodemon --watch src --watch package.json -e ts,json,pegjs -q -x 'rm -fr dist && echo \"\\n============\\nCOMPILING...\\n============\\n\\n\" && tsc --outDir dist || return 0 && pegjs -o dist/main/parser.js src/main/parser.pegjs || return 0 && tape \"dist/tests/**/*.js\"'"
   },

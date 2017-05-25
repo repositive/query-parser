@@ -1,7 +1,7 @@
 import {append} from 'ramda';
 
-import {BTreeLeaf, BBTree, BooleanOperator, isTerm, isFilter, Filter} from "../b-exp-tree";
-import {isBTree, map, filter, default as BTreeImp} from "../b-tree/index";
+import {BTreeLeaf, BBTree, BooleanOperator, isTerm, isFilter, Filter} from '../b-exp-tree';
+import {isBTree, map, filter, default as BTreeImp} from '../b-tree/index';
 import {v4 as uuid } from 'uuid';
 
 export function getPath(tree: BBTree | BTreeLeaf, id: string, acc: string[] = []) {
@@ -10,7 +10,7 @@ export function getPath(tree: BBTree | BTreeLeaf, id: string, acc: string[] = []
   }
   else if(isBTree(tree)) {
     const newAcc = append(tree._id, acc);
-    return (tree.left ? getPath(tree.left, id, newAcc) : null) || (tree.right ? getPath(tree.right, id, newAcc) : null)
+    return (tree.left ? getPath(tree.left, id, newAcc) : null) || (tree.right ? getPath(tree.right, id, newAcc) : null);
   }
   else {
     return null;
@@ -53,14 +53,14 @@ export function addFilter(tree: BBTree | BTreeLeaf, predicate: string, text: str
     return tree; // Or throw exception
   } else if (filtered.length === 0) {
     if (!tree)
-      return <Filter> { _id: uuid(), text: text, predicate: predicate };
+      return <Filter> { _id: uuid(), text, predicate };
     else
-      return new BTreeImp(<BooleanOperator>'AND', <Filter> { _id: uuid(), text: text, predicate: predicate }, tree);
+      return new BTreeImp(<BooleanOperator>'AND', <Filter> { _id: uuid(), text, predicate }, tree);
   } else {
     const pred = filtered[0];
     return <BBTree> map(tree, (t, l, r) => {
       if (isFilter(t) && t._id === pred._id) {
-        return <BBTree> new BTreeImp(<BooleanOperator>'OR', <Filter> { _id: uuid(), text: text, predicate: predicate }, t);
+        return <BBTree> new BTreeImp(<BooleanOperator>'OR', <Filter> { _id: uuid(), text, predicate }, t);
       }
       else if (isBTree(t)) {
         return new BTreeImp(t.value, l, r);

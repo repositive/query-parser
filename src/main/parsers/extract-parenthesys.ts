@@ -43,7 +43,7 @@ export default function extractParenthesys(input: string, acc: Token[] = []): To
     const from = input.indexOf(`(${g})`);
     return <Token> {
       type: 'group',
-      from: from,
+      from,
       to: from + g.length + 2,
       term: g
     };

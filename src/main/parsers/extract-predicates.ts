@@ -1,5 +1,5 @@
 import {Token} from './base-parser';
-import {append, head, tail} from 'ramda';
+import {append} from 'ramda';
 /**
  * Created by dennis on 01/12/2016.
  */

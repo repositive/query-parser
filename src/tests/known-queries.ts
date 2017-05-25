@@ -3,8 +3,8 @@
  */
 
 import * as parse from 'csv-parse';
-import {readFileSync} from "fs";
-import {parseString} from "../main/parsers/query-parser";
+import {readFileSync} from 'fs';
+import {parseString} from '../main/parsers/query-parser';
 
 console.log('###########################################################\n');
 console.log('Starting test of former queries...');

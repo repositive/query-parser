@@ -38,7 +38,7 @@ export default function extractQuoted(input: string, acc: Token[] = []) {
     const from = input.indexOf(w);
     return {
       type: 'term',
-      from: from,
+      from,
       to: from + w.length,
       term: w.replace(/\"/g, '')
     };

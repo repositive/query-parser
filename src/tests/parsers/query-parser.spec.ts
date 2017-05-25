@@ -10,7 +10,7 @@ import extractPredicates from '../../main/parsers/extract-predicates';
 import extractNOT from '../../main/parsers/extract-NOT';
 import extractBoolean from '../../main/parsers/extract-explicit-boolean';
 import extractIBoolean from '../../main/parsers/extract-implicit-boolean';
-import {isBTree} from "../../main/b-tree/index";
+import {isBTree} from '../../main/b-tree/index';
 
 test('should parse a simple query', (t) => {
   t.plan(1);
@@ -39,7 +39,7 @@ test('should parse implicit or bo', (t) => {
   t.equal(result.value, 'OR');
   t.equal(result.left.text, 'cancer');
   t.equal(result.right.text, 'brain');
-})
+});
 
 test('should parse implicit bo', (t) => {
   t.plan(3);

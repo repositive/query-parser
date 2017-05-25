@@ -1,6 +1,6 @@
 import * as test from 'tape';
-import {BTree, isBTree, fold} from '../../main/b-tree/index';
-import {BooleanOperator, BTreeLeaf, BBTree, isTerm, isFilter, Filter} from '../../main/b-exp-tree';
+import {BTree, fold} from '../../main/b-tree/index';
+import {BooleanOperator, BTreeLeaf, BBTree, isFilter, Filter} from '../../main/b-exp-tree';
 import {getPath, addFilter, removeNodeByID, removeFilter, getFilters} from '../../main/operations/filters';
 import {toBoolString} from '../../main/serializers/string-serializer';
 import {parseString} from '../../main/parsers/query-parser';

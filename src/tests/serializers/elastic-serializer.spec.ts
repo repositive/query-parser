@@ -1,6 +1,6 @@
 import * as test from 'tape';
-import {toElasticQuery} from "../../main/serializers/elastic-seralizer";
-import {BTree} from "../../main/b-tree/index";
+import {toElasticQuery} from '../../main/serializers/elastic-seralizer';
+import {BTree} from '../../main/b-tree/index';
 import {BooleanOperator, BTreeLeaf} from '../../main/b-exp-tree';
 
 /*
@@ -10,44 +10,44 @@ import {BooleanOperator, BTreeLeaf} from '../../main/b-exp-tree';
  */
 
 const ES1 = {
-  "query": {
-    "bool": {
-      "must": [
+  'query': {
+    'bool': {
+      'must': [
         {
-          "match": {
-            "_all": "breast cancer"
+          'match': {
+            '_all': 'breast cancer'
           }
         },
         {
-          "bool": {
-            "must_not": [
+          'bool': {
+            'must_not': [
               {
-                "bool": {
-                  "should": [
+                'bool': {
+                  'should': [
                     {
-                      "match": {
-                        "assay": "RNA-Seq"
+                      'match': {
+                        'assay': 'RNA-Seq'
                       }
                     },
                     {
-                      "bool": {
-                        "should": [
+                      'bool': {
+                        'should': [
                           {
-                            "match": {
-                              "assay": "RNA-seq"
+                            'match': {
+                              'assay': 'RNA-seq'
                             }
                           },
                           {
-                            "bool": {
-                              "must": [
+                            'bool': {
+                              'must': [
                                 {
-                                  "match": {
-                                    "access": "Open"
+                                  'match': {
+                                    'access': 'Open'
                                   }
                                 },
                                 {
-                                  "match": {
-                                    "properties.tissue": "breast"
+                                  'match': {
+                                    'properties.tissue': 'breast'
                                   }
                                 }
                               ]
@@ -108,8 +108,8 @@ test('ES - should create correct object', function (t) {
 });
 
 const emptyQuery = {
-  "query": {
-    "match_all": {}
+  'query': {
+    'match_all': {}
   }
 };
 

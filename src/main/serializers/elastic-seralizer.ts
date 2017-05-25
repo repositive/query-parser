@@ -1,5 +1,5 @@
-import {BTree, isBTree} from "../b-tree/index";
-import {BooleanOperator, BTreeLeaf, isFilter, isTerm, isBooleanOperator} from '../b-exp-tree';
+import {BTree, isBTree} from '../b-tree/index';
+import {BooleanOperator, BTreeLeaf, isFilter, isTerm} from '../b-exp-tree';
 /**
  * Created by dennis on 30/11/2016.
  */
@@ -15,7 +15,7 @@ export function toElasticQuery(tree:BTree<BooleanOperator, BTreeLeaf>): any {
 
     // 1. Value is filter or text
     if (isBTree(tree)) {
-      let children = [];
+      const children = [];
       const left = build(tree.left);
       const right = build(tree.right);
       if (left) children.push(left);
@@ -24,7 +24,7 @@ export function toElasticQuery(tree:BTree<BooleanOperator, BTreeLeaf>): any {
         bool: {
           [ops[tree.value]]: children
         }
-      }
+      };
     }
     else if(isTerm(tree)) {
       const key = isFilter(tree) ? tree.predicate : '_all';
@@ -32,7 +32,7 @@ export function toElasticQuery(tree:BTree<BooleanOperator, BTreeLeaf>): any {
         match: {
           [key]: tree.text
         }
-      }
+      };
     }
     else {
       return null;
