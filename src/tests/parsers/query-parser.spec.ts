@@ -33,6 +33,14 @@ test('should parse empty query', (t) => {
   t.deepEqual(result, term);
 });
 
+test('should parse implicit or bo', (t) => {
+  t.plan(3);
+  const result: any = parse('cancer or brain');
+  t.equal(result.value, 'OR');
+  t.equal(result.left.text, 'cancer');
+  t.equal(result.right.text, 'brain');
+})
+
 test('should parse implicit bo', (t) => {
   t.plan(3);
   const result: any = parse('cancer brain');

@@ -2,3 +2,5 @@
 node_modules
 typings
 .idea
+.nyc_output
+coverage
