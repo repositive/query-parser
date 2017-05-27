@@ -11,31 +11,30 @@ export function toElasticQuery(tree:BTree<BooleanOperator, BTreeLeaf>): any {
     NOT: 'must_not'
   };
 
-  function build(tree:BTree<BooleanOperator, BTreeLeaf> | BTreeLeaf): any {
+  function build(_tree: BTree<BooleanOperator, BTreeLeaf> | BTreeLeaf): any {
 
     // 1. Value is filter or text
-    if (isBTree(tree)) {
+    if (isBTree(_tree)) {
       const children = [];
-      const left = build(tree.left);
-      const right = build(tree.right);
+      const left = build(_tree.left);
+      const right = build(_tree.right);
       if (left) children.push(left);
       if (right) children.push(right);
       return {
         bool: {
-          [ops[tree.value]]: children
+          [ops[_tree.value]]: children
         }
       };
-    }
-    else if(isTerm(tree)) {
-      const key = isFilter(tree) ? tree.predicate : '_all';
+    } else if(isTerm(_tree)) {
+      const key = isFilter(_tree) ? _tree.predicate : '_all';
+      const type = /\s/.test(_tree.text) ? 'match_phrase' : 'match';
       return {
-        match: {
-          [key]: tree.text
+        [type]: {
+          [key]: _tree.text
         }
       };
-    }
-    else {
-      return null;
+    } else {
+      return undefined;
     }
 
   }

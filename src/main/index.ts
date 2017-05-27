@@ -3,7 +3,7 @@
  */
 
 import {parse} from './parser';
-export * from './serializers/elastic-seralizer';
+export * from './serializers/elastic-serializer';
 export * from './serializers/string-serializer';
 export * from './parser';
 export * from './operations/filters';

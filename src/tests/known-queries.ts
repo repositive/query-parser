@@ -23,7 +23,7 @@ records.on('data', d => {
       parseString(query);
     } catch (e) {
       crashes++;
-      console.log(`Crashes: ${crashes}`);
+      console.log(`Crashes: ${query}`);
     }
   }
 });
