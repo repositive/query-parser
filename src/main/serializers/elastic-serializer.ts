@@ -3,7 +3,7 @@ import {BooleanOperator, BTreeLeaf, isFilter, isTerm} from '../b-exp-tree';
 /**
  * Created by dennis on 30/11/2016.
  */
-export function toElasticQuery(tree:BTree<BooleanOperator, BTreeLeaf>): any {
+export function toElasticQuery(tree:BTree<BooleanOperator, BTreeLeaf> | BTreeLeaf): any {
 
   const ops = {
     AND: 'must',

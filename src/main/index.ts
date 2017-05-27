@@ -9,5 +9,3 @@ export * from './parser';
 export * from './operations/filters';
 
 export const parseString = parse;
-
-module.exports = this;
