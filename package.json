@@ -28,7 +28,7 @@
     "pegjs": "^0.10.0",
     "tape": "^4.6.3",
     "tslint": "^5.3.2",
-    "typescript": "latest"
+    "typescript": "^2.0.0"
   },
   "dependencies": {
     "@types/ramda": "0.0.2",
