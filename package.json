@@ -10,13 +10,22 @@
   "scripts": {
     "setup": "npm i && rm -fr dist && tsc && pegjs -o dist/main/parser.js src/main/parser.pegjs",
     "make": "rm -fr dist && tsc && pegjs -o dist/main/parser.js src/main/parser.pegjs",
-    "test": "nyc --reporter=lcov tape \"dist/tests/**/*.js\"",
+    "test": "nyc tape $(find dist -name '*.js') | tap-spec",
     "lint": "tslint -c tslint.json src/**/*.ts",
     "start": "nodemon --watch src --watch package.json -e ts,json,pegjs -q -x 'rm -fr dist && echo \"\\n============\\nCOMPILING...\\n============\\n\\n\" && tsc --outDir dist || return 0 && pegjs -o dist/main/parser.js src/main/parser.pegjs || return 0 && node dist/main/cli.js'",
     "testdev": "nodemon --watch src --watch package.json -e ts,json,pegjs -q -x 'rm -fr dist && echo \"\\n============\\nCOMPILING...\\n============\\n\\n\" && tsc --outDir dist || return 0 && pegjs -o dist/main/parser.js src/main/parser.pegjs || return 0 && tape \"dist/tests/**/*.js\"'"
   },
-  "author": "",
-  "license": "ISC",
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "exclude": [
+      "**/*.spec.js",
+      "**/*.d.ts"
+    ]
+  },
+  "author": "Repositive Team",
+  "license": "MIT",
   "devDependencies": {
     "@repositive/typescript": "^1.1.2",
     "@types/csv-parse": "^1.1.6",
@@ -26,6 +35,7 @@
     "nodemon": "latest",
     "nyc": "^10.3.2",
     "pegjs": "^0.10.0",
+    "tap-spec": "^4.1.1",
     "tape": "^4.6.3",
     "tslint": "^5.3.2",
     "typescript": "^2.0.0"

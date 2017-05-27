@@ -3,7 +3,7 @@ import {BTree} from './b-tree';
 export type BooleanOperator = 'AND' | 'OR' | 'NOT';
 
 export function isBooleanOperator(o: any): o is BooleanOperator {
-    return typeof o === 'string' &&
+  return typeof o === 'string' &&
     ['AND', 'OR', 'NOT'].indexOf(o) !== -1;
 }
 
