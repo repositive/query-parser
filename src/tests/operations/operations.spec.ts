@@ -3,7 +3,7 @@ import {BTree, fold} from '../../main/b-tree/index';
 import {BooleanOperator, BTreeLeaf, BBTree, isFilter, Filter} from '../../main/b-exp-tree';
 import {getPath, addFilter, removeNodeByID, removeFilter, getFilters} from '../../main/operations/filters';
 import {toBoolString} from '../../main/serializers/string-serializer';
-import {parseString} from '../../main/parsers/query-parser';
+import {parseString} from '../../main';
 
 const simpleTree1: BTreeLeaf = {
   text: 'cancer'

@@ -4,7 +4,7 @@
 
 import * as parse from 'csv-parse';
 import {readFileSync} from 'fs';
-import {parseString} from '../main/parsers/query-parser';
+import {parseString} from '../main';
 
 console.log('###########################################################\n');
 console.log('Starting test of former queries...');

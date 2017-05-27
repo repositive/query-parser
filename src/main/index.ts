@@ -2,9 +2,12 @@
  * Created by dennis on 30/11/2016.
  */
 
+import {parse} from './parser';
 export * from './serializers/elastic-seralizer';
 export * from './serializers/string-serializer';
-export * from './parsers/query-parser';
+export * from './parser';
 export * from './operations/filters';
+
+export const parseString = parse;
 
 module.exports = this;

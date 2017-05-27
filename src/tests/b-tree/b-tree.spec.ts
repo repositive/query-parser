@@ -1,6 +1,6 @@
 import * as test from 'tape';
 import {map, isBTree, filter, mapLeafs} from '../../main/b-tree/index';
-import {parseString} from '../../main/parsers/query-parser';
+import {parseString} from '../../main';
 import {isTerm} from '../../main/b-exp-tree';
 
 const tree = <any> parseString('cancer AND (brain OR breast)');
