@@ -2,3 +2,8 @@
 src
 .nyc_output
 coverage
+circle.yml
+docker-compose.yml
+searches.csv
+tsconfig.json
+tslint.json
