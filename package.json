@@ -22,7 +22,7 @@
     ]
   },
   "author": "Repositive Team",
-  "license": "MIT",
+  "license": "LGPL-3.0+",
   "devDependencies": {
     "@repositive/typescript": "^1.1.2",
     "@types/csv-parse": "^1.1.6",
