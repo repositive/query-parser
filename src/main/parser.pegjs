@@ -13,10 +13,8 @@ expression "expression"
 nest "nested expression"
   = start? "(" _? expr:expression _? ")" end? { return expr; }
 
-
 term "term"
-  = range 
-  / property_exists
+  = property_exists
   / filter
   / negate
   / identifier
@@ -49,9 +47,6 @@ NOT "not"
 identifier "identifier"
   = i:([a-zA-Z0-9\u007F-\uFFFF_@'\/\\+\&\.<>\-]+ / quoted) {return { text: i.join('')} }
 
-pidentifier "predicate identifier"
-  = i:([a-zA-Z0-9\u007F-\uFFFF_@'\/\\+\&\<>-]+ / quoted) {return { text: i.join('')} }
-
 quoted = ["] id:[^"]+ ["] {return id}
 
 property_exists = p:identifier _? [:] "*" { return {exists: p.text}}
@@ -63,29 +58,6 @@ filter = p:identifier _? [:] _? c:relation? t:identifier {
     text: t.text
   }
 }
-
-range
-  = p:identifier _? [:] _? "*" _? [.][.] _? t:pidentifier {
-    return {
-      predicate: p.text,
-      relation: "lte",
-      text: t.text
-    }
-  }
-  / p:identifier _? [:] _? t:pidentifier _? [.][.] _? "*" {
-    return {
-      predicate: p.text,
-      relation: "gte",
-      text: t.text
-    }
-  }
-  / p:identifier _? [:] _? t1:pidentifier _? [.][.] _? t2:pidentifier {
-    return {
-      predicate: p.text,
-      from: t1.text,
-      to: t2.text
-    }
-  }
 
 start
   =  $_?
