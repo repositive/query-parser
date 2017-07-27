@@ -1,7 +1,8 @@
 # @repositive/query-parser
 
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL%20v3-blue.svg)](https://choosealicense.com/licenses/lgpl-3.0/)  
-[![npm version](https://badge.fury.io/js/%40repositive%2Fquery-parser.svg)](https://badge.fury.io/js/%40repositive%2Fquery-parser)
+[![npm version](https://badge.fury.io/js/%40repositive%2Fquery-parser.svg)](https://badge.fury.io/js/%40repositive%2Fquery-parser)  
+[![CircleCI](https://circleci.com/gh/repositive/query-parser.svg?style=svg)](https://circleci.com/gh/repositive/query-parser)  
 
 * [Installation](#installation)
 * [Available Serializers](#available-serializers)
