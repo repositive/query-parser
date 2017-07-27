@@ -1,7 +1,22 @@
+{
+  var uuid = require('uuid').v4;
+}
+
+/**
+* All nodes have following fields:
+* Node {
+*   _id: string;
+*   _type: string;
+* }
+*
+* Types: 'expression', 'negation', 'token', 'filter', 'existence'
+*/
 
 expression "expression"
   =  start? head:term op:(OR/AND) tail:expression end? {
       return {
+        _id: uuid(),
+        _type: 'expression',
         value: op,
         left: head,
         right: tail
@@ -23,6 +38,8 @@ term "term"
 negate "negation"
   = _? op:NOT _? tail: term {
     return {
+      _id: uuid(),
+      _type: 'negation',
       value: op,
       right: tail
     }
@@ -45,17 +62,31 @@ NOT "not"
  / _? "!" _? {return "NOT"}
 
 identifier "identifier"
-  = i:([a-zA-Z0-9\u007F-\uFFFF_@'\/\\+\&\.<>\-]+ / quoted) {return { text: i.join('')} }
+  = i:([a-zA-Z0-9\u007F-\uFFFF_@'\/\\+\&\.<>\-]+ / quoted) {
+    return {
+      _id: uuid(),
+      _type: 'token',
+      value: i.join('')
+    }
+  }
 
 quoted = ["] id:[^"]+ ["] {return id}
 
-property_exists = p:identifier _? [:] "*" { return {exists: p.text}}
+property_exists = p:identifier _? [:] "*" {
+  return {
+    _id: uuid(),
+    _type: 'existence',
+    predicate: p.value
+  }
+}
 
 filter = p:identifier _? [:] _? c:relation? t:identifier {
   return {
-    predicate: p.text,
+    _id: uuid(),
+    _type: 'filter',
+    predicate: p.value,
     relation: c || 'eq',
-    text: t.text
+    value: t.value
   }
 }
 
