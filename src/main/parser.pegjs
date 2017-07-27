@@ -15,7 +15,9 @@ nest "nested expression"
 
 
 term "term"
-  = filter
+  = range 
+  / property_exists
+  / filter
   / negate
   / identifier
   / nest
@@ -47,14 +49,43 @@ NOT "not"
 identifier "identifier"
   = i:([a-zA-Z0-9\u007F-\uFFFF_@'\/\\+\&\.<>\-]+ / quoted) {return { text: i.join('')} }
 
+pidentifier "predicate identifier"
+  = i:([a-zA-Z0-9\u007F-\uFFFF_@'\/\\+\&\<>-]+ / quoted) {return { text: i.join('')} }
+
 quoted = ["] id:[^"]+ ["] {return id}
 
-filter = p:identifier _? [:] _? t:(identifier/quoted) {
+property_exists = p:identifier _? [:] "*" { return {exists: p.text}}
+
+filter = p:identifier _? [:] _? c:relation? t:identifier {
   return {
     predicate: p.text,
+    relation: c || 'eq',
     text: t.text
   }
 }
+
+range
+  = p:identifier _? [:] _? "*" _? [.][.] _? t:pidentifier {
+    return {
+      predicate: p.text,
+      relation: "lte",
+      text: t.text
+    }
+  }
+  / p:identifier _? [:] _? t:pidentifier _? [.][.] _? "*" {
+    return {
+      predicate: p.text,
+      relation: "gte",
+      text: t.text
+    }
+  }
+  / p:identifier _? [:] _? t1:pidentifier _? [.][.] _? t2:pidentifier {
+    return {
+      predicate: p.text,
+      from: t1.text,
+      to: t2.text
+    }
+  }
 
 start
   =  $_?
@@ -65,6 +96,25 @@ end
 empty = start end {
   return  {}
 }
+
+relation
+  = exact
+  / gte
+  / lte
+  / ne
+  / eq
+  / gt
+  / lt
+
+eq "equals" = _? "=" _? {return "eq"}
+exact "exact match" = _? "==" _? {return "exact"}
+gt "greater than" = _? ">" _? {return "gt"}
+lt "less than" = _? "<" _? {return "lt"}
+gte "greater than equals" = _? ">=" _? {return "gte"}
+lte "less than equals" = _? "<=" _? {return "lte"}
+ne "not equals"
+  = _? "!=" _? {return "ne"}
+  / _? "!" _? {return "ne"}
 
 _ "whitespace"
   = [ \t\n\r,?]+
