@@ -1,12 +1,12 @@
 import {v4 as uuid} from 'uuid';
-import {isNode} from './node';
-import {__, merge, equals, lensProp, allPass, contains, is, pipe, append, concat} from 'ramda';
+import {isNode, _type} from './node';
+import {__, merge, equals, lensProp, view, allPass, contains, is, pipe, append, concat} from 'ramda';
 
 export type BooleanOperator = 'AND' | 'OR' | 'NOT';
 
-export const isBooleanOperator = allPass([
+export const isExpressionOperator = allPass([
   is(String),
-  contains(__, ['AND', 'OR', 'NOT']) as any
+  contains(__, ['AND', 'OR']) as any
 ]) as (o: any) => o is BooleanOperator
 
 // expression , negation, token, filter, existence
@@ -17,16 +17,20 @@ export interface Expression<L extends Node, R extends Node> extends Node {
   right: R;
 }
 
-const expressionType = pipe(lensProp('_type'), equals('expression'));
-const expressionValue = pipe(lensProp('value'), isBooleanOperator);
-const expressionRight = pipe(lensProp('left'), isNode);
-const expressionLeft = pipe(lensProp('right'), isNode);
+
+export const _expressionTypeCheck = pipe(view(_type), equals('expression'));
+export const value = lensProp('value');
+export const _expressionValueCheck = pipe(view(value), isExpressionOperator);
+export const left = lensProp('left');
+export const _expressionLeftCheck = pipe(view(left), isNode);
+export const right = lensProp('right');
+export const _expressionRightCheck = pipe(view(right), isNode);
 export const isExpression = allPass([
   isNode,
-  expressionType,
-  expressionValue,
-  expressionLeft,
-  expressionRight
+  _expressionTypeCheck,
+  _expressionValueCheck,
+  _expressionLeftCheck,
+  _expressionRightCheck
 ]) as (o: any) => o is Expression<Node, Node>
 
 
