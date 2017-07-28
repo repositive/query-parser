@@ -8,7 +8,7 @@
 * [Available Serializers](#available-serializers)
 * [Usage](#usage)
 
-The purpose of this library is to transform a search string to a intermediary tokenized data structure that can be used to perform analysis on the search input or as an intermediate structure to translate the query into other DSLs or query structures.
+The purpose of this library is to transform a search string to a tokenized data structure that can be used to perform analysis on the search input or as an intermediate structure to translate the query into other DSLs or query structures.
 
 **Features:**
 - Basic boolean algebra operators (`AND`, `OR`, `NOT`)
