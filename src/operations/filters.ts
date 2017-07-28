@@ -1,9 +1,9 @@
 // import {append} from 'ramda';
-// 
+//
 // import {BTreeLeaf, BBTree, BooleanOperator, isFilter, Filter} from '../b-exp-tree';
 // import {isBTree, map, filter, default as BTreeImp} from '../b-tree/index';
 // import {v4 as uuid } from 'uuid';
-// 
+//
 // export function getPath(tree: BBTree | BTreeLeaf, id: string, acc: string[] = []) {
 //   if (tree._id === id) {
 //     return append(tree._id, acc);
@@ -14,7 +14,7 @@
 //     return undefined;
 //   }
 // }
-// 
+//
 // export function removeNodeByID(tree: BBTree | BTreeLeaf, id: string): BBTree | BTreeLeaf {
 //   return map(tree, (t: BBTree | BTreeLeaf, l,r) => {
 //     if (isBTree(t) && t.value === 'NOT' && !l && !r) return undefined;
@@ -25,13 +25,13 @@
 //     return t;
 //   });
 // }
-// 
+//
 // export function getFilters(tree: BBTree | BTreeLeaf): Filter[] {
 //   return <Filter[]> filter(tree, isFilter);
 // }
-// 
+//
 // export function removeFilter(tree: BBTree | BTreeLeaf, predicate: string, text: string): BBTree | BTreeLeaf {
-// 
+//
 //   return map(tree, (t: BBTree | BTreeLeaf, l, r) => {
 //     if (isFilter(t) && t.text === text && t.predicate === predicate) return undefined;
 //     if (isBTree(t) && t.value !== undefined && !l && !r) return undefined;
@@ -40,12 +40,12 @@
 //     return t;
 //   });
 // }
-// 
+//
 // export function addFilter(tree: BBTree | BTreeLeaf, predicate: string, text: string): BBTree | BTreeLeaf {
 //   const filtered = <Filter[]> filter(tree, (t => {
 //     return isFilter(t) && t.predicate === predicate;
 //   }));
-// 
+//
 //   const exists = filtered.filter(f => f.text === text);
 //   if (exists.length > 0) {
 //     return tree; // Or throw exception
@@ -54,6 +54,6 @@
 //       return <Filter> { _id: uuid(), text, predicate };
 //     else
 //       return new BTreeImp(<BooleanOperator>'AND', <Filter> { _id: uuid(), text, predicate }, tree);
-// 
+//
 //   }
 // }

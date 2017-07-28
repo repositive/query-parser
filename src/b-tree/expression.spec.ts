@@ -12,7 +12,7 @@ test('Expression', (t: Test) => {
   t.notOk(_expressionTypeCheck({_type: 'another'}), 'If type if not "expression" typeCheck returns false');
 
   ['AND', 'OR'].forEach(value => {
-    t.ok(_expressionValueCheck({value}), `${value} passes the valueCheck`)
+    t.ok(_expressionValueCheck({value}), `${value} passes the valueCheck`);
   });
 
   t.notOk(_expressionValueCheck({}), 'The check for value returns false if the object does not have the property');

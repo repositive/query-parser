@@ -4,11 +4,11 @@ import {v4 as uuid} from 'uuid';
 
 import {isObj, _nodeIdCheck, _nodeTypeCheck, isNode} from './node';
 
-test('isNode', (t: Test) => {
+test('Node', (t: Test) => {
 
   t.ok(isObj({}), 'isObj detect objects');
   t.ok(isObj({key: 'v'}), 'isObj detect non empty objects');
-  t.notOk(isObj(null), 'isObj does not match null');
+  t.notOk(isObj(undefined), 'isObj does not match null');
 
   t.ok(_nodeIdCheck({_id: uuid()}), '_idCheck checks that _id of an object is string');
   t.notOk(_nodeIdCheck({}), '_idCheck fails if the object does not have the property');
@@ -21,7 +21,7 @@ test('isNode', (t: Test) => {
   t.ok(isNode({_id: uuid(), _type: ''}), 'If its a node isNode returns true');
 
   t.notOk(isNode({}), 'If its not a node isNode returns false');
-  t.notOk(isNode(null), 'If its null isNode returns false');
+  t.notOk(isNode(undefined), 'If its null isNode returns false');
 
   t.end();
 });

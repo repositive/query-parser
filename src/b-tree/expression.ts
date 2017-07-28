@@ -7,7 +7,7 @@ export type BooleanOperator = 'AND' | 'OR' | 'NOT';
 export const isExpressionOperator = allPass([
   is(String),
   contains(__, ['AND', 'OR']) as any
-]) as (o: any) => o is BooleanOperator
+]) as (o: any) => o is BooleanOperator;
 
 // expression , negation, token, filter, existence
 export interface Expression<L extends Node, R extends Node> extends Node {
@@ -31,13 +31,13 @@ export const isExpression = allPass([
   _expressionValueCheck,
   _expressionLeftCheck,
   _expressionRightCheck
-]) as (o: any) => o is Expression<Node, Node>
+]) as (o: any) => o is Expression<Node, Node>;
 
 
 export function fold<O>(node: Node, f: (node: Node, l?: O, r?: O) => O, acc: O): O {
   if (!node) {
     return acc;
-  } if (isExpression(node)) {
+  } else if (isExpression(node)) {
     return f(node, fold(node.left, f, acc), fold(node.right, f, acc));
   } else {
     return f(node, acc, acc);
@@ -45,7 +45,7 @@ export function fold<O>(node: Node, f: (node: Node, l?: O, r?: O) => O, acc: O):
 }
 
 export function map<O extends Node>(node: Node, f: (tree: Node, left?: Node, right?: Node) => O): O {
-  return fold<O>(node, f, null);
+  return fold<O>(node, f, undefined);
 }
 
 export function mapLeafs(node: Node, f: (leaf: Node) => Node): Node {
@@ -65,8 +65,7 @@ export function filter(node: Node, f: (val: Node) => boolean): Node[] {
     const acc = concat(l, r);
     if (f(val)) {
       return append(val, acc);
-    }
-    else {
+    } else {
       return acc;
     }
   }, []);

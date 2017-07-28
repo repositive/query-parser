@@ -4,15 +4,15 @@
 //  * Created by dennis on 30/11/2016.
 //  */
 // export function toElasticQuery(tree:BTree<BooleanOperator, BTreeLeaf> | BTreeLeaf): any {
-// 
+//
 //   const ops = {
 //     AND: 'must',
 //     OR: 'should',
 //     NOT: 'must_not'
 //   };
-// 
+//
 //   function build(_tree: BTree<BooleanOperator, BTreeLeaf> | BTreeLeaf): any {
-// 
+//
 //     // 1. Value is filter or text
 //     if (isBTree(_tree)) {
 //       const children = [];
@@ -36,9 +36,9 @@
 //     } else {
 //       return undefined;
 //     }
-// 
+//
 //   }
-// 
+//
 //   let q = build(tree);
 //   if (!q) q = { 'match_all': {} };
 //   return { query: q };
