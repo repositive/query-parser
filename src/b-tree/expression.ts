@@ -1,5 +1,5 @@
 import {v4 as uuid} from 'uuid';
-import {isNode, _type} from './node';
+import {isNode, _type, Node} from './node';
 import {__, merge, equals, lensProp, view, allPass, contains, is, pipe, append, concat} from 'ramda';
 
 export type BooleanOperator = 'AND' | 'OR' | 'NOT';
@@ -35,9 +35,7 @@ export const isExpression = allPass([
 
 
 export function fold<O>(node: Node, f: (node: Node, l?: O, r?: O) => O, acc: O): O {
-  if (!node) {
-    return acc;
-  } else if (isExpression(node)) {
+  if (isExpression(node)) {
     return f(node, fold(node.left, f, acc), fold(node.right, f, acc));
   } else {
     return f(node, acc, acc);
