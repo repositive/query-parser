@@ -21,7 +21,12 @@
     ]
   },
   "author": "Repositive Team",
-  "license": "MIT",
+  "license": "LGPL-3.0+",
+  "homepage": "https://github.com/repositive/query-parser",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/repositive/query-parser.git"
+  },
   "devDependencies": {
     "@repositive/typescript": "1.1.2",
     "@types/csv-parse": "1.1.9",
