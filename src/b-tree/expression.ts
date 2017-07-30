@@ -34,16 +34,12 @@ export const isExpression = allPass([
 ]) as (o: any) => o is Expression<Node, Node>;
 
 
-export function fold<O>(node: Node, f: (node: Node, l?: O, r?: O) => O, acc: O): O {
+export function fold<O>(node: Node, f: (node: Node, l?: O, r?: O) => O, acc: O = undefined): O {
   if (isExpression(node)) {
     return f(node, fold(node.left, f, acc), fold(node.right, f, acc));
   } else {
     return f(node, acc, acc);
   }
-}
-
-export function map<O extends Node>(node: Node, f: (tree: Node, left?: Node, right?: Node) => O): O {
-  return fold<O>(node, f, undefined);
 }
 
 export function mapLeafs(node: Node, f: (leaf: Node) => Node): Node {
