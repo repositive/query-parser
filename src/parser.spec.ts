@@ -1,22 +1,28 @@
 
 import * as test from 'tape';
-import {isNode, isToken, isExpression, depth, Node, Token} from './b-tree';
+import {isNode, isToken, isNegation, isExpression, depth, Node, Token} from './b-tree';
 import {parse} from './parser';
 
 test('Parser', (t) => {
   t.deepEquals(parse(''), {}, 'Parses empty string to empty object');
+
+  // Token
   t.ok(isToken(parse('cancer')), 'The result of "cancer" is a node');
   t.ok((parse('cancer') as Token).fuzzy, 'The result of "cancer" is fuzzy');
   t.equal(depth(parse('cancer') as Node), 1, 'The depth of "cancer" is 1');
   t.ok(isToken(parse('"breast cancer"')), 'The result of "\"breeast cancer\"" is a token');
   t.notOk((parse('"cancer"') as Token).fuzzy, 'The result of "\"cancer\"" is fuzzy');
 
+  // Expression
   t.ok(isExpression(parse('lung AND cancer')), 'The result of "lung AND cqancer" is an expression');
   t.equal(depth(parse('lung AND cancer') as Node), 3, 'The depth of "lung AND cancer" is 3');
   t.ok(isExpression(parse('lung cancer')), 'The result of "lung cancer" is an expression');
   t.equal(depth(parse('lung cancer') as Node), 3, 'The depth of "lung cancer" is 3');
   t.ok(isExpression(parse('lung OR cancer')), 'The result of "lung OR cancer" is an expression');
   t.equal(depth(parse('lung OR cancer') as Node), 3, 'The depth of "lung OR cancer" is 3');
+
+  // Negation
+  t.ok(isNegation(parse('not lung')), 'Negation returns true for "not lung"');
 
   t.end();
 });
