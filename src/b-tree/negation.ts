@@ -5,13 +5,15 @@ import {pipe, equals, view, allPass} from 'ramda';
 export const _negationTypeCheck = pipe(view(_type), equals('negation'));
 export const _negationValueCheck = pipe(view(value), isNode);
 
-export interface Negation extends Node {
+export interface Negation<T extends Node> extends Node {
   _type: 'negation';
-  value: Token;
+  value: T;
 }
 
-export const isNegation = allPass([
-  isNode,
-  _negationTypeCheck,
-  _negationValueCheck
-]) as (o: any) => o is Negation;
+export const isNegation = function (o: any, f: ((o: any) => boolean) = isNode) {
+  return allPass([
+    isNode,
+    _negationTypeCheck,
+    pipe(view(value), f)
+  ])(o);
+} as <T extends Node> (o: any, f?: (o: any) => o is T) => o is Negation<T>;
