@@ -3,7 +3,6 @@ import { Node, isNode, _type } from './node';
 
 export interface Token extends Node {
   _type: 'token';
-  fuzzy: boolean;
   value: string;
 }
 
@@ -16,6 +15,5 @@ export const _tokenFuzzyCheck = pipe(view(fuzzy), is(Boolean));
 export const isToken = allPass([
   isNode,
   _tokenTypeCheck,
-  _tokenValueCheck,
-  _tokenFuzzyCheck
+  _tokenValueCheck
 ]) as (o: any) => o is Token;

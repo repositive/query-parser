@@ -65,7 +65,6 @@ token "token"
       return {
         _id: uuid(),
         _type: 'token',
-        fuzzy: true,
         value: i.join('')
       }
     }
@@ -73,7 +72,6 @@ token "token"
       return {
         _id: uuid(),
         _type: 'token',
-        fuzzy: false,
         value: i.join('')
       }
     }
@@ -93,8 +91,8 @@ filter = p:token _? [:] _? c:relation? v:token {
     _id: uuid(),
     _type: 'filter',
     predicate: p.value,
-    relation: c || 'eq',
-    value: Object.assign({}, v, {fuzzy: c !== 'exact'})
+    relation: c || 'EQ',
+    value: v
   }
 }
 
@@ -117,15 +115,15 @@ relation
   / gt
   / lt
 
-eq "equals" = _? "=" _? {return "eq"}
-exact "exact match" = _? "==" _? {return "exact"}
-gt "greater than" = _? ">" _? {return "gt"}
-lt "less than" = _? "<" _? {return "lt"}
-gte "greater than equals" = _? ">=" _? {return "gte"}
-lte "less than equals" = _? "<=" _? {return "lte"}
+eq "equals" = _? "=" _? {return "EQ"}
+exact "exact match" = _? "==" _? {return "EXACT"}
+gt "greater than" = _? ">" _? {return "GT"}
+lt "less than" = _? "<" _? {return "LT"}
+gte "greater than equals" = _? ">=" _? {return "GTE"}
+lte "less than equals" = _? "<=" _? {return "LTE"}
 ne "not equals"
-  = _? "!=" _? {return "ne"}
-  / _? "!" _? {return "ne"}
+  = _? "!=" _? {return "NE"}
+  / _? "!" _? {return "NE"}
 
 _ "whitespace"
   = [ \t\n\r,?]+

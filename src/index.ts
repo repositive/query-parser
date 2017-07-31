@@ -6,4 +6,5 @@ import { parse } from './parser';
 // export * from './serializers/elastic-serializer';
 // export * from './serializers/string-serializer';
 // export * from './operations/filters';
-
+export * from './b-tree';
+export const parseString = parse;

@@ -7,7 +7,7 @@ import { stub } from 'sinon';
 import { Token, isToken } from './token';
 
 test('Token', (t: Test) => {
-  const tok = {_id: uuid(), fuzzy: true, _type: 'token', value: 'cancer'};
+  const tok = {_id: uuid(), _type: 'token', value: 'cancer'};
 
 
   t.ok(isToken(tok), 'Returns true if is a valid token obj');
