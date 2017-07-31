@@ -25,13 +25,15 @@ export const left = lensProp('left');
 export const _expressionLeftCheck = pipe(view(left), isNode);
 export const right = lensProp('right');
 export const _expressionRightCheck = pipe(view(right), isNode);
-export const isExpression = allPass([
-  isNode,
-  _expressionTypeCheck,
-  _expressionValueCheck,
-  _expressionLeftCheck,
-  _expressionRightCheck
-]) as (o: any) => o is Expression<Node, Node>;
+export const isExpression = function(o: any, l: any = isNode, r: any = isNode) {
+  return allPass([
+    isNode,
+    _expressionTypeCheck,
+    _expressionValueCheck,
+    pipe(view(right), r),
+    pipe(view(left), l)
+  ])(o);
+} as <L extends Node, R extends Node>(o: any, l?: (o: any) => o is L, r?: (o: any) => o is R) => o is Expression<L, R>;
 
 
 export function fold<O>(node: Node, f: (node: Node, l?: O, r?: O) => O, acc: O = undefined): O {
