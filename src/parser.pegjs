@@ -13,7 +13,7 @@
 */
 
 expression "expression"
-  =  start? head:term op:(OR/AND) tail:expression end? {
+  =  start? head:node op:(OR/AND) tail:expression end? {
       return {
         _id: uuid(),
         _type: 'expression',
@@ -22,26 +22,25 @@ expression "expression"
         right: tail
       };
     }
-  / start? t:term end? { return t }
+  / start? t:node end? { return t }
   / empty
 
 nest "nested expression"
   = start? "(" _? expr:expression _? ")" end? { return expr; }
 
-term "term"
+node "node"
   = property_exists
   / filter
   / negate
-  / identifier
+  / token
   / nest
 
 negate "negation"
-  = _? op:NOT _? tail: term {
+  = _? op:NOT _? tail: node {
     return {
       _id: uuid(),
       _type: 'negation',
-      value: op,
-      right: tail
+      value: tail
     }
   }
 
@@ -61,18 +60,27 @@ NOT "not"
  / _? "-" _? {return "NOT"}
  / _? "!" _? {return "NOT"}
 
-identifier "identifier"
-  = i:([a-zA-Z0-9\u007F-\uFFFF_@'\/\\+\&\.<>\-]+ / quoted) {
-    return {
-      _id: uuid(),
-      _type: 'token',
-      value: i.join('')
+token "token"
+  = i:[a-zA-Z0-9\u007F-\uFFFF_@'\/\\+\&\.<>\-]+ {
+      return {
+        _id: uuid(),
+        _type: 'token',
+        fuzzy: true,
+        value: i.join('')
+      }
     }
-  }
+    / i:quoted {
+      return {
+        _id: uuid(),
+        _type: 'token',
+        fuzzy: false,
+        value: i.join('')
+      }
+    }
 
-quoted = ["] id:[^"]+ ["] {return id}
+quoted "quoted" = ["] id:[^"]+ ["] {return id}
 
-property_exists = p:identifier _? [:] "*" {
+property_exists = p:token _? [:] "*" {
   return {
     _id: uuid(),
     _type: 'existence',
@@ -80,13 +88,13 @@ property_exists = p:identifier _? [:] "*" {
   }
 }
 
-filter = p:identifier _? [:] _? c:relation? t:identifier {
+filter = p:token _? [:] _? c:relation? v:token {
   return {
     _id: uuid(),
     _type: 'filter',
     predicate: p.value,
     relation: c || 'eq',
-    value: t.value
+    value: Object.assign({}, v, {fuzzy: c !== 'exact'})
   }
 }
 

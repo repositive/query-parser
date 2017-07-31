@@ -7,7 +7,7 @@ import { stub } from 'sinon';
 import {
   Expression, isExpression, _expressionTypeCheck, _expressionValueCheck,
   _expressionLeftCheck, _expressionRightCheck,
-  fold, mapLeafs, filter
+  fold, mapLeafs, filter, depth
 } from './expression';
 import { Node } from './node';
 
@@ -89,5 +89,11 @@ test('Expression filter', (t: Test) => {
   const result = filter(exp, (n: Node) => n._type === n1._type);
 
   t.deepEquals(result, [n1], 'Returns an array with the matched nodes');
+  t.end();
+});
+
+test('Expression depth', (t: Test) => {
+  t.equals(depth(exp), 3, 'Measures depth of expressions');
+  t.equals(depth(n1), 1, 'Measures depth of single nodes');
   t.end();
 });
