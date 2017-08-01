@@ -2,8 +2,11 @@ import * as test from 'tape';
 import { Test } from 'tape';
 import { v4 as uuid } from 'uuid';
 import { stub } from 'sinon';
-import { Expression } from './expression';
+import { Expression, expression } from './expression';
 import { Node } from './node';
+import { token } from './token';
+import { negation } from './negation';
+import { predicate } from './predicate';
 
 import {fold, mapLeafs, filter, depth, weight, removeNode} from './operations';
 
@@ -58,9 +61,16 @@ test('Operations mapLeafs', (t: Test) => {
 });
 
 test('Operations filter', (t: Test) => {
-  const result = filter(exp, (n: Node) => n._type === n1._type);
+  const expF = expression({
+    value: 'OR',
+    left: expression({value: 'AND', left: token('a'), right: token('b')}),
+    right: negation(predicate({value:'c', key: 'a', relation: '='}))
+  });
 
-  t.deepEquals(result, [n1], 'Returns an array with the matched nodes');
+  t.deepEquals(filter(expF, (e) => e._type === 'expression'), [expF.left, expF], 'Filters expressions');
+  t.deepEquals(filter(expF, (e) => e._type === 'negation'), [expF.right], 'Filters negations');
+  t.deepEquals(filter(expF, (e) => e._type === 'token'), [expF.left.left, expF.left.right], 'Filters tokens');
+  t.deepEquals(filter(expF, (e) => e._type === 'predicate'), [expF.right.value], 'Filters predicates');
   t.end();
 });
 

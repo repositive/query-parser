@@ -3,6 +3,7 @@ import { v4 as uuid } from 'uuid';
 import { isExpression } from './expression';
 import { Predicate, isPredicate } from './predicate';
 import { isNode, Node } from './node';
+import { isNegation } from './negation';
 
 export function fold<O>(node: Node, f: (node: Node, l?: O, r?: O) => O, acc: O = undefined): O {
   if (isExpression(node)) {
@@ -27,7 +28,10 @@ export function mapLeafs(node: Node, f: (leaf: Node) => Node): Node {
 export function filter<N extends Node>(node: Node, f: (val: Node) => boolean): N[] {
   return <N[]> fold(node, (val, l, r) => {
     const acc = concat(l, r);
-    if (f(val)) {
+    if (isNegation(val)) {
+      const current = f(val) ? [val] : [];
+      return concat(concat(acc, current), filter(val.value, f));
+    } else if (f(val)) {
       return append(val, acc);
     } else {
       return acc;
