@@ -7,7 +7,7 @@ import * as csvParse from 'csv-parse';
 import {readFileSync} from 'fs';
 
 test('Parser', (t: Test) => {
-  t.deepEquals(parse(''), {}, 'Parses empty string to empty object');
+  t.deepEquals(parse(''), undefined, 'Parses empty string to undefined');
 
   // Token
   t.ok(isToken(parse('cancer')), 'The result of "cancer" is a node');

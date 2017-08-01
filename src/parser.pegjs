@@ -64,14 +64,6 @@ token "token"
 
 quoted "quoted" = ["] id:[^"]+ ["] {return id}
 
-// property_exists = p:token _? [:] "*" {
-//   return {
-//     _id: uuid(),
-//     _type: 'existence',
-//     predicate: p.value
-//   }
-// }
-
 predicate = p:token _? [:] _? c:relation? v:token {
   return btree.predicate({
     key: p.value,
@@ -87,7 +79,7 @@ end
   = _?!.
 
 empty = start end {
-  return  {}
+  return  undefined
 }
 
 relation
