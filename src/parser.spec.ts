@@ -1,9 +1,12 @@
 
 import * as test from 'tape';
+import { Test } from 'tape';
 import {isNode, isToken, isNegation, isExpression, weight, Node, Token, Predicate, isPredicate} from './b-tree';
 import {parse} from './parser';
+import * as csvParse from 'csv-parse';
+import {readFileSync} from 'fs';
 
-test('Parser', (t) => {
+test('Parser', (t: Test) => {
   t.deepEquals(parse(''), {}, 'Parses empty string to empty object');
 
   // Token
@@ -44,4 +47,33 @@ test('Parser', (t) => {
   t.equals((parse('tissue:==lung') as Predicate).relation, '==', 'Exact works');
 
   t.end();
+});
+
+test('Parser based on platform queries', (t: Test) => {
+
+  const file = readFileSync('./searches.csv');
+  const records = csvParse(file.toString(), { comment: '#', skip_empty_lines: true });
+  let total = 0;
+  let crashes = 0;
+
+  records.on('data', d => {
+    const query = d[0];
+    if (!/[\[\]=\*]/.test(query)) {
+      total++;
+      try {
+        parse(query);
+        t.ok(true, `Parses ${query}`);
+      } catch (e) {
+        crashes++;
+        t.notOk(true, `Breaks on ${query} :: ${e.message}`);
+      }
+    }
+  });
+
+  records.on('end', d => {
+    console.log(`\n\n###################### Test ended! ######################\n`);
+    console.log(`Total: ${total}\nCrashed: ${crashes}\n`);
+    console.log('###########################################################\n\n');
+    t.end();
+  });
 });

@@ -55,7 +55,7 @@ NOT "not"
  / _? "!" _? {return "NOT"}
 
 token "token"
-  = i:[a-zA-Z0-9\u007F-\uFFFF_@'\/\\+\&\.<>\-]+ {
+  = i:[a-zA-Z0-9\u007F-\uFFFF_@'\/\\+\&\.<>\-\|]+ {
       return btree.token(i.join(''));
     }
     / i:quoted {
