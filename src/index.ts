@@ -8,4 +8,5 @@ import { parse } from './parser';
 // export * from './operations/filters';
 export * from './b-tree';
 export * from './serializers/string-serializer';
+export * from './serializers/elastic-serializer';
 export const parseString = parse;
