@@ -5,7 +5,7 @@ import { stub } from 'sinon';
 import { Expression } from './expression';
 import { Node } from './node';
 
-import {fold, mapLeafs, filter, depth, weight} from './operations';
+import {fold, mapLeafs, filter, depth, weight, removeNode} from './operations';
 
 const n1 = {_id: uuid(), _type: 'test1'};
 const n2 = {_id: uuid(), _type: 'test2'};
@@ -73,5 +73,13 @@ test('Operations weight', (t: Test) => {
 test('Operations depth', (t: Test) => {
   t.equals(depth(exp), 2, 'Measures depth of expressions');
   t.equals(depth(n1), 1, 'Measures depth of nodes');
+  t.end();
+});
+
+test('Operations removeNode', (t: Test) => {
+  t.deepEquals(removeNode(exp, exp.left), n2, 'If we remove the left branch we end up with the right branch');
+  t.deepEquals(removeNode(exp, exp.right), n1, 'If we remove the right branch we end up just with the left one');
+  t.deepEquals(removeNode(exp, ''), exp, 'If the Id does not exist do not remove anything and return the same node');
+  t.deepEquals(removeNode(exp, exp.left._id), n2, 'You can also remove the nodes using the node id');
   t.end();
 });
