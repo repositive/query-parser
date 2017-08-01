@@ -91,5 +91,11 @@ test('Operations removeNode', (t: Test) => {
   t.deepEquals(removeNode(exp, exp.right), n1, 'If we remove the right branch we end up just with the left one');
   t.deepEquals(removeNode(exp, ''), exp, 'If the Id does not exist do not remove anything and return the same node');
   t.deepEquals(removeNode(exp, exp.left._id), n2, 'You can also remove the nodes using the node id');
+
+  const expR = expression({value: 'AND', right: negation(token('right')), left: token('left')});
+  t.deepEquals(removeNode(expR, expR.right), expR.left, 'Removes negation node');
+  t.deepEquals(removeNode(expR, expR.right.value), expR.left, 'Removes content of negation node');
+  t.deepEquals(removeNode(expR, expR.left), expR.right, 'Removes non negation node and leave negation node intact');
+
   t.end();
 });

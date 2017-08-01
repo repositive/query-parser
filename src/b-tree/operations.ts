@@ -68,6 +68,16 @@ export function removeNode(node: Node, target: Node | string): Node | undefined 
     } else {
       return newNode.left || newNode.right;
     }
+  } else if(isNegation(node)) {
+    const newNode: any = {
+      ...node,
+      value: removeNode(node.value, target)
+    };
+    if (isNegation(newNode)) {
+      return newNode;
+    } else {
+      return undefined;
+    }
   } else {
     return node;
   }
