@@ -75,8 +75,8 @@ quoted "quoted" = ["] id:[^"]+ ["] {return id}
 predicate = p:token _? [:] _? c:relation? v:token {
   return btree.predicate({
     key: p.value,
-    relation: c || 'EQ',
-    value: v
+    relation: c || '=',
+    value: v.value
   });
 }
 
@@ -99,15 +99,15 @@ relation
   / gt
   / lt
 
-eq "equals" = _? "=" _? {return "EQ"}
-exact "exact match" = _? "==" _? {return "EXACT"}
-gt "greater than" = _? ">" _? {return "GT"}
-lt "less than" = _? "<" _? {return "LT"}
-gte "greater than equals" = _? ">=" _? {return "GTE"}
-lte "less than equals" = _? "<=" _? {return "LTE"}
+eq "equals" = _? "=" _? {return "="}
+exact "exact match" = _? "==" _? {return "=="}
+gt "greater than" = _? ">" _? {return ">"}
+lt "less than" = _? "<" _? {return "<"}
+gte "greater than equals" = _? ">=" _? {return ">="}
+lte "less than equals" = _? "<=" _? {return "<="}
 ne "not equals"
-  = _? "!=" _? {return "NE"}
-  / _? "!" _? {return "NE"}
+  = _? "!=" _? {return "!"}
+  / _? "!" _? {return "!"}
 
 _ "whitespace"
   = [ \t\n\r,?]+

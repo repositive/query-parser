@@ -36,7 +36,7 @@ export const isExpression = function(o: any, l: any = isNode, r: any = isNode) {
 export function expression<L extends Node, R extends Node>({
   value,
   left,
-  right,
+  right
 }: {
   value: ExpressionOperator,
   left: L,

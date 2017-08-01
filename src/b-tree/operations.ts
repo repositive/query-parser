@@ -50,7 +50,6 @@ export function depth(node: Node): number {
 export function removeNode(node: Node, target: Node | string): Node | undefined {
   const id = isNode(target) ? target._id : target;
 
-  console.log(id);
   if (node && node._id === id) {
     return undefined;
   } else if (isExpression(node)) {
@@ -60,7 +59,6 @@ export function removeNode(node: Node, target: Node | string): Node | undefined 
       right: removeNode(node.right, target)
     };
 
-    console.log(newNode);
     if (isExpression(newNode)) {
       return newNode;
     } else {

@@ -6,7 +6,7 @@ import { predicate, isComparativeOperator, isPredicate } from './predicate';
 import { token } from './token';
 
 test('ComparativeOperator', (t: Test) => {
-  ['EXACT', 'NE', 'EQ', 'LT', 'GT', 'LTE', 'GTE'].forEach(k => {
+  ['==', '!', '=', '<', '>', '<=', '>='].forEach(k => {
     t.ok(isComparativeOperator(k), `${k} passes is valid`);
   });
 
@@ -17,9 +17,9 @@ test('ComparativeOperator', (t: Test) => {
 
 test('Filter', (t: Test) => {
   const filter = predicate({
-    relation: 'EQ',
+    relation: '=',
     key: 'test',
-    value: token('cancer')
+    value: 'cancer'
   });
 
   t.ok(isPredicate(filter), 'Returns true when dealing with a correct filter');
