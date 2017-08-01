@@ -1,6 +1,6 @@
 
 import * as test from 'tape';
-import {isNode, isToken, isNegation, isExpression, weight, Node, Token, Filter, isFilter} from './b-tree';
+import {isNode, isToken, isNegation, isExpression, weight, Node, Token, Predicate, isPredicate} from './b-tree';
 import {parse} from './parser';
 
 test('Parser', (t) => {
@@ -25,23 +25,23 @@ test('Parser', (t) => {
   // Negation
   t.ok(isNegation(parse('not lung')), 'Negation returns true for "not lung"');
 
-  // Filter
-  t.ok(isFilter(parse('tissue:lung')), 'isFilter returns true for "tissue:lung"');
-  t.equals((parse('tissue:lung') as Filter).relation, 'EQ', 'Implicit equals works');
-  t.ok(isFilter(parse('tissue:=lung')), 'isFilter returns true for "tissue:=lung"');
-  t.equals((parse('tissue:=lung') as Filter).relation, 'EQ', 'Expclicit equals works');
-  t.ok(isFilter(parse('tissue:<lung')), 'isFilter returns true for "tissue:<lung"');
-  t.equals((parse('tissue:<lung') as Filter).relation, 'LT', 'Less than works');
-  t.ok(isFilter(parse('tissue:>lung')), 'isFilter returns true for "tissue:>lung"');
-  t.equals((parse('tissue:>lung') as Filter).relation, 'GT', 'Greater than works');
-  t.ok(isFilter(parse('tissue:<=lung')), 'isFilter returns true for "tissue:<=lung"');
-  t.equals((parse('tissue:<=lung') as Filter).relation, 'LTE', 'Less than equals works');
-  t.ok(isFilter(parse('tissue:>=lung')), 'isFilter returns true for "tissue:>=lung"');
-  t.equals((parse('tissue:>=lung') as Filter).relation, 'GTE', 'Greater than equals works');
-  t.ok(isFilter(parse('tissue:!lung')), 'isFilter returns true for "tissue:!lung"');
-  t.equals((parse('tissue:!lung') as Filter).relation, 'NE', 'Not equals works');
-  t.ok(isFilter(parse('tissue:==lung')), 'isFilter returns true for "tissue:==lung"');
-  t.equals((parse('tissue:==lung') as Filter).relation, 'EXACT', 'Exact works');
+  // Predicate
+  t.ok(isPredicate(parse('tissue:lung')), 'isPredicate returns true for "tissue:lung"');
+  t.equals((parse('tissue:lung') as Predicate).relation, 'EQ', 'Implicit equals works');
+  t.ok(isPredicate(parse('tissue:=lung')), 'isPredicate returns true for "tissue:=lung"');
+  t.equals((parse('tissue:=lung') as Predicate).relation, 'EQ', 'Expclicit equals works');
+  t.ok(isPredicate(parse('tissue:<lung')), 'isPredicate returns true for "tissue:<lung"');
+  t.equals((parse('tissue:<lung') as Predicate).relation, 'LT', 'Less than works');
+  t.ok(isPredicate(parse('tissue:>lung')), 'isPredicate returns true for "tissue:>lung"');
+  t.equals((parse('tissue:>lung') as Predicate).relation, 'GT', 'Greater than works');
+  t.ok(isPredicate(parse('tissue:<=lung')), 'isPredicate returns true for "tissue:<=lung"');
+  t.equals((parse('tissue:<=lung') as Predicate).relation, 'LTE', 'Less than equals works');
+  t.ok(isPredicate(parse('tissue:>=lung')), 'isPredicate returns true for "tissue:>=lung"');
+  t.equals((parse('tissue:>=lung') as Predicate).relation, 'GTE', 'Greater than equals works');
+  t.ok(isPredicate(parse('tissue:!lung')), 'isPredicate returns true for "tissue:!lung"');
+  t.equals((parse('tissue:!lung') as Predicate).relation, 'NE', 'Not equals works');
+  t.ok(isPredicate(parse('tissue:==lung')), 'isPredicate returns true for "tissue:==lung"');
+  t.equals((parse('tissue:==lung') as Predicate).relation, 'EXACT', 'Exact works');
 
   t.end();
 });

@@ -1,6 +1,7 @@
 import { is, max, append, concat, merge } from 'ramda';
 import { v4 as uuid } from 'uuid';
 import { isExpression } from './expression';
+import { Predicate, isPredicate } from './predicate';
 import { isNode, Node } from './node';
 
 export function fold<O>(node: Node, f: (node: Node, l?: O, r?: O) => O, acc: O = undefined): O {
@@ -23,8 +24,8 @@ export function mapLeafs(node: Node, f: (leaf: Node) => Node): Node {
   }
 }
 
-export function filter(node: Node, f: (val: Node) => boolean): Node[] {
-  return fold(node, (val, l, r) => {
+export function filter<N extends Node>(node: Node, f: (val: Node) => boolean): N[] {
+  return <N[]> fold(node, (val, l, r) => {
     const acc = concat(l, r);
     if (f(val)) {
       return append(val, acc);

@@ -1,7 +1,7 @@
 import {v4 as uuid} from 'uuid';
 import {isNode, _type, Node} from './node';
 import {__, merge, equals, lensProp, view, allPass, contains, is, pipe, append, concat} from 'ramda';
-import { value } from './token';
+import { _value } from './token';
 
 export type ExpressionOperator = 'AND' | 'OR';
 
@@ -10,7 +10,6 @@ export const isExpressionOperator = allPass([
   contains(__, ['AND', 'OR']) as any
 ]) as (o: any) => o is ExpressionOperator;
 
-// expression , negation, token, filter, existence
 export interface Expression<L extends Node, R extends Node> extends Node {
   _type: 'expression';
   value: ExpressionOperator;
@@ -18,19 +17,36 @@ export interface Expression<L extends Node, R extends Node> extends Node {
   right: R;
 }
 
-
 export const _expressionTypeCheck = pipe(view(_type), equals('expression'));
-export const _expressionValueCheck = pipe(view(value), isExpressionOperator);
-export const left = lensProp('left');
-export const _expressionLeftCheck = pipe(view(left), isNode);
-export const right = lensProp('right');
-export const _expressionRightCheck = pipe(view(right), isNode);
+export const _expressionValueCheck = pipe(view(_value), isExpressionOperator);
+export const _left = lensProp('left');
+export const _expressionLeftCheck = pipe(view(_left), isNode);
+export const _right = lensProp('right');
+export const _expressionRightCheck = pipe(view(_right), isNode);
 export const isExpression = function(o: any, l: any = isNode, r: any = isNode) {
   return allPass([
     isNode,
     _expressionTypeCheck,
     _expressionValueCheck,
-    pipe(view(right), r),
-    pipe(view(left), l)
+    pipe(view(_right), r),
+    pipe(view(_left), l)
   ])(o);
 } as <L extends Node, R extends Node>(o: any, l?: (o: any) => o is L, r?: (o: any) => o is R) => o is Expression<L, R>;
+
+export function expression<L extends Node, R extends Node>({
+  value,
+  left,
+  right,
+}: {
+  value: ExpressionOperator,
+  left: L,
+  right: R
+}): Expression<L, R> {
+  return {
+    _id: uuid(),
+    _type: 'expression',
+    value,
+    left,
+    right
+  };
+}

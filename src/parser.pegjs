@@ -1,5 +1,5 @@
 {
-  var uuid = require('uuid').v4;
+  var btree = require('./b-tree');
 }
 
 /**
@@ -9,18 +9,16 @@
 *   _type: string;
 * }
 *
-* Types: 'expression', 'negation', 'token', 'filter', 'existence'
+* Types: 'expression', 'negation', 'token', 'predicate', 'existence'
 */
 
 expression "expression"
   =  start? head:node op:(OR/AND) tail:expression end? {
-      return {
-        _id: uuid(),
-        _type: 'expression',
+      return btree.expression({
         value: op,
         left: head,
         right: tail
-      };
+      });
     }
   / start? t:node end? { return t }
   / empty
@@ -29,19 +27,15 @@ nest "nested expression"
   = start? "(" _? expr:expression _? ")" end? { return expr; }
 
 node "node"
-  = property_exists
-  / filter
+  // = property_exists
+  = predicate
   / negate
   / token
   / nest
 
 negate "negation"
   = _? op:NOT _? tail: node {
-    return {
-      _id: uuid(),
-      _type: 'negation',
-      value: tail
-    }
+    return btree.negation(tail);
   }
 
 AND "and"
@@ -62,38 +56,28 @@ NOT "not"
 
 token "token"
   = i:[a-zA-Z0-9\u007F-\uFFFF_@'\/\\+\&\.<>\-]+ {
-      return {
-        _id: uuid(),
-        _type: 'token',
-        value: i.join('')
-      }
+      return btree.token(i.join(''));
     }
     / i:quoted {
-      return {
-        _id: uuid(),
-        _type: 'token',
-        value: i.join('')
-      }
+      return btree.token(i.join(''));
     }
 
 quoted "quoted" = ["] id:[^"]+ ["] {return id}
 
-property_exists = p:token _? [:] "*" {
-  return {
-    _id: uuid(),
-    _type: 'existence',
-    predicate: p.value
-  }
-}
+// property_exists = p:token _? [:] "*" {
+//   return {
+//     _id: uuid(),
+//     _type: 'existence',
+//     predicate: p.value
+//   }
+// }
 
-filter = p:token _? [:] _? c:relation? v:token {
-  return {
-    _id: uuid(),
-    _type: 'filter',
-    predicate: p.value,
+predicate = p:token _? [:] _? c:relation? v:token {
+  return btree.predicate({
+    key: p.value,
     relation: c || 'EQ',
     value: v
-  }
+  });
 }
 
 start

@@ -3,12 +3,12 @@ import {Test} from 'tape';
 import {v4 as uuid} from 'uuid';
 import { stub } from 'sinon';
 
-import { Negation, isNegation } from './negation';
+import { Negation, isNegation, negation } from './negation';
+import { token } from './token';
 
 test('Negation', (t: Test) => {
-  const tok = {_id: uuid(), _type: 'negation', value: {_type: '', _id: uuid()}};
 
-  t.ok(isNegation(tok), 'Returns true if its a valid negation');
+  t.ok(isNegation(negation(token('cancer'))), 'Returns true if its a valid negation');
 
   t.end();
 });

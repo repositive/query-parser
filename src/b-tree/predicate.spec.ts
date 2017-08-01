@@ -2,7 +2,8 @@ import {v4 as uuid} from 'uuid';
 import * as test from 'tape';
 import { Test } from 'tape';
 
-import { isComparativeOperator, isFilter } from './filter';
+import { predicate, isComparativeOperator, isPredicate } from './predicate';
+import { token } from './token';
 
 test('ComparativeOperator', (t: Test) => {
   ['EXACT', 'NE', 'EQ', 'LT', 'GT', 'LTE', 'GTE'].forEach(k => {
@@ -15,19 +16,13 @@ test('ComparativeOperator', (t: Test) => {
 });
 
 test('Filter', (t: Test) => {
-  const filter = {
-    _id: uuid(),
-    _type: 'filter',
+  const filter = predicate({
     relation: 'EQ',
-    predicate: 'test',
-    value: {
-      _id: uuid(),
-      _type: 'token',
-      value: 'value'
-    }
-  };
+    key: 'test',
+    value: token('cancer')
+  });
 
-  t.ok(isFilter(filter), 'Returns true when dealing with a correct filter');
+  t.ok(isPredicate(filter), 'Returns true when dealing with a correct filter');
 
   t.end();
 });
