@@ -1,9 +1,16 @@
 
 import { isExpression, Node, isToken, isPredicate, isNegation } from '../b-tree';
 
-const ops = {
+const expressions = {
   AND: 'must',
   OR: 'should'
+};
+
+const comparison = {
+  '>': 'gt',
+  '<': 'lt',
+  '>=': 'gte',
+  '<=': 'lte'
 };
 
 export function toElasticQuery(tree?: Node): any {
@@ -19,7 +26,7 @@ export function toElasticQuery(tree?: Node): any {
       if (right) children.push(right);
       return {
         bool: {
-          [ops[_tree.value]]: children
+          [expressions[_tree.value]]: children
         }
       };
     } else if (isNegation(_tree)) {
@@ -28,11 +35,36 @@ export function toElasticQuery(tree?: Node): any {
           'must_not': [build(_tree.value)]
         }
       };
-    } else if(isPredicate(_tree)) {
+    } else if(isPredicate(_tree) && comparison[_tree.relation]) {
+      return {
+        range: {
+          [_tree.key]: {
+            [comparison[_tree.relation]]: _tree.value
+          }
+        }
+      };
+    } else if(isPredicate(_tree) && _tree.relation === '=') {
       const type = /\s/.test(_tree.value) ? 'match_phrase' : 'match';
       return {
         [type]: {
           [_tree.key]: _tree.value
+        }
+      };
+    } else if (isPredicate(_tree) && _tree.relation === '==') {
+      return {
+        'term': {
+          [_tree.key]: _tree.value
+        }
+      };
+    } else if (isPredicate(_tree) && _tree.relation === '!') {
+      const type = /\s/.test(_tree.value) ? 'match_phrase' : 'match';
+      return {
+        bool: {
+          'must_not': {
+            [type]: {
+              [_tree.key]: _tree.value
+            }
+          }
         }
       };
     } else if(isToken(_tree)) {
