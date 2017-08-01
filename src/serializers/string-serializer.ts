@@ -1,9 +1,9 @@
 // import {BTree, isBTree, fold} from '../b-tree/index';
 // import {BooleanOperator, BTreeLeaf, isFilter, isTerm} from '../b-exp-tree';
 
-import { isExpression, isPredicate, isToken, Expression, Node, fold } from '../b-tree';
+import { isExpression, isPredicate, isToken, isNegation, Expression, Node, fold } from '../b-tree';
 
-function shouldWrap(tree: Expression<Node, Node>, branch: string): boolean {
+function shouldWrap(tree: any, branch: string): boolean {
   return isExpression(tree[branch]) && tree[branch].value !== tree.value;
 }
 
@@ -25,6 +25,10 @@ export function toBoolString(tree: Node): string {
       } else {
         return `${nL} ${elem.value} ${nR}`;
       }
+    } else if (isNegation(elem)) {
+      const ser = toBoolString(elem.value);
+      const wrapped = shouldWrap(elem, 'value') ? `(${ser})` : ser;
+      return  `NOT ${wrapped}`;
     } else if (isPredicate(elem)) {
       if (elem.relation === '=') {
         return `${elem.key}:${quotes(elem.value)}`;
