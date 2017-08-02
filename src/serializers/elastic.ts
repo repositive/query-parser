@@ -32,7 +32,7 @@ export function toElasticQuery(tree?: Node): any {
     } else if (isNegation(_tree)) {
       return {
         bool: {
-          'must_not': [build(_tree.value)]
+          'must_not': build(_tree.value)
         }
       };
     } else if(isPredicate(_tree) && comparison[_tree.relation]) {
