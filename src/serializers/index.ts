@@ -1,2 +1,2 @@
-export * from './elastic';
+export * from './elastic2';
 export * from './natural';

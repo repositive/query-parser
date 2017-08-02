@@ -1,6 +1,6 @@
 import * as test from 'tape';
 import { Test } from 'tape';
-import { toElasticQuery } from './elastic';
+import { toElasticQuery } from './elastic2';
 import { parse } from '../parser';
 import { pipe } from 'ramda';
 
