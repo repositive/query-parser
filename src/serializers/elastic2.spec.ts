@@ -1,10 +1,10 @@
 import * as test from 'tape';
 import { Test } from 'tape';
-import { toElasticQuery } from './elastic2';
+import { toElastic2 } from './elastic2';
 import { parse } from '../parser';
 import { pipe } from 'ramda';
 
-const toES = pipe(parse, toElasticQuery);
+const toES = pipe(parse, toElastic2);
 
 test('Elastic serializer', (t: Test) => {
   t.deepEquals(toES(''), {query: {match_all: {}}}, 'Serializes empty node as match_all');

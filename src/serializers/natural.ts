@@ -11,7 +11,7 @@ function quotes(text) {
   return /\s+/.test(text) ? `"${text}"` : text;
 }
 
-export function toBoolString(tree: Node): string {
+export function toString(tree: Node): string {
   return fold(tree, (elem, l, r) => {
     if (isExpression(elem)) {
       const nL = shouldWrap(elem, 'left') ? `(${l})` : l;
@@ -22,7 +22,7 @@ export function toBoolString(tree: Node): string {
         return `${nL} ${elem.value} ${nR}`;
       }
     } else if (isNegation(elem)) {
-      const ser = toBoolString(elem.value);
+      const ser = toString(elem.value);
       const wrapped = shouldWrap(elem, 'value') ? `(${ser})` : ser;
       return  `NOT ${wrapped}`;
     } else if (isPredicate(elem)) {

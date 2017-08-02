@@ -13,7 +13,7 @@ const comparison = {
   '<=': 'lte'
 };
 
-export function toElasticQuery(tree?: Node): any {
+export function toElastic2(tree?: Node): any {
 
   function build(_tree?: Node): any {
 
