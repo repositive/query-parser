@@ -8,6 +8,8 @@ import { isNegation } from './negation';
 export function fold<O>(node: Node, f: (node: Node, l?: O, r?: O) => O, acc: O = undefined): O {
   if (isExpression(node)) {
     return f(node, fold(node.left, f, acc), fold(node.right, f, acc));
+  } else if (isNegation(node)) {
+    return f(node, fold(node.value, f, acc), acc);
   } else {
     return f(node, acc, acc);
   }
@@ -28,10 +30,7 @@ export function mapLeafs(node: Node, f: (leaf: Node) => Node): Node {
 export function filter<N extends Node>(node: Node, f: (val: Node) => boolean): N[] {
   return <N[]> fold(node, (val, l, r) => {
     const acc = concat(l, r);
-    if (isNegation(val)) {
-      const current = f(val) ? [val] : [];
-      return concat(concat(acc, current), filter(val.value, f));
-    } else if (f(val)) {
+    if (f(val)) {
       return append(val, acc);
     } else {
       return acc;
@@ -51,7 +50,7 @@ export function depth(node: Node): number {
   }, 0);
 }
 
-export function removeNode(node: Node, target: Node | string): Node | undefined {
+export function remove(node: Node, target: Node | string): Node | undefined {
   const id = isNode(target) ? target._id : target;
 
   if (node && node._id === id) {
@@ -59,8 +58,8 @@ export function removeNode(node: Node, target: Node | string): Node | undefined 
   } else if (isExpression(node)) {
     const newNode: any = {
       ...node,
-      left: removeNode(node.left, target),
-      right: removeNode(node.right, target)
+      left: remove(node.left, target),
+      right: remove(node.right, target)
     };
 
     if (isExpression(newNode)) {
@@ -71,7 +70,7 @@ export function removeNode(node: Node, target: Node | string): Node | undefined 
   } else if(isNegation(node)) {
     const newNode: any = {
       ...node,
-      value: removeNode(node.value, target)
+      value: remove(node.value, target)
     };
     if (isNegation(newNode)) {
       return newNode;
@@ -81,4 +80,19 @@ export function removeNode(node: Node, target: Node | string): Node | undefined 
   } else {
     return node;
   }
+}
+
+export function path(node: Node, target: Node | string): Node[] {
+  const id = isNode(target) ? target._id : target;
+
+  return fold(node, (val, l, r) => {
+    const acc = concat(l, r);
+    if (acc.length > 0) {
+      return append(val, acc);
+    } else if (val._id === id) {
+      return append(val, acc);
+    } else {
+      return acc;
+    }
+  }, []);
 }

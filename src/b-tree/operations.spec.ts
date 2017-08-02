@@ -8,7 +8,7 @@ import { token } from './token';
 import { negation } from './negation';
 import { predicate } from './predicate';
 
-import {fold, mapLeafs, filter, depth, weight, removeNode} from './operations';
+import {fold, mapLeafs, filter, depth, weight, remove, path} from './operations';
 
 const n1 = {_id: uuid(), _type: 'test1'};
 const n2 = {_id: uuid(), _type: 'test2'};
@@ -86,16 +86,24 @@ test('Operations depth', (t: Test) => {
   t.end();
 });
 
-test('Operations removeNode', (t: Test) => {
-  t.deepEquals(removeNode(exp, exp.left), n2, 'If we remove the left branch we end up with the right branch');
-  t.deepEquals(removeNode(exp, exp.right), n1, 'If we remove the right branch we end up just with the left one');
-  t.deepEquals(removeNode(exp, ''), exp, 'If the Id does not exist do not remove anything and return the same node');
-  t.deepEquals(removeNode(exp, exp.left._id), n2, 'You can also remove the nodes using the node id');
+test('Operations remove', (t: Test) => {
+  t.deepEquals(remove(exp, exp.left), n2, 'If we remove the left branch we end up with the right branch');
+  t.deepEquals(remove(exp, exp.right), n1, 'If we remove the right branch we end up just with the left one');
+  t.deepEquals(remove(exp, ''), exp, 'If the Id does not exist do not remove anything and return the same node');
+  t.deepEquals(remove(exp, exp.left._id), n2, 'You can also remove the nodes using the node id');
 
   const expR = expression({value: 'AND', right: negation(token('right')), left: token('left')});
-  t.deepEquals(removeNode(expR, expR.right), expR.left, 'Removes negation node');
-  t.deepEquals(removeNode(expR, expR.right.value), expR.left, 'Removes content of negation node');
-  t.deepEquals(removeNode(expR, expR.left), expR.right, 'Removes non negation node and leave negation node intact');
+  t.deepEquals(remove(expR, expR.right), expR.left, 'Removes negation node');
+  t.deepEquals(remove(expR, expR.right.value), expR.left, 'Removes content of negation node');
+  t.deepEquals(remove(expR, expR.left), expR.right, 'Removes non negation node and leave negation node intact');
+
+  t.end();
+});
+
+test('Operations path', (t: Test) => {
+  const expP = expression({value: 'AND', right: token('r'), left: token('l')});
+  t.deepEquals(path(expP, expP.left), [expP.left, expP], 'Returns the path bottom up from the node');
+  t.deepEquals(path(expP, expP.left._id), [expP.left, expP], 'Path also works with targets string');
 
   t.end();
 });
