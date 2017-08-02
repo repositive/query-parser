@@ -1,2 +1,2 @@
-export * from './elastic.ts';
-export * from './natural.ts';
+export * from './elastic';
+export * from './natural';

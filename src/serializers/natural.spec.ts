@@ -1,6 +1,6 @@
 import * as test from 'tape';
 import { Test } from 'tape';
-import { toBoolString } from './string-serializer';
+import { toBoolString } from './natural';
 import { parse } from '../parser';
 import { pipe } from 'ramda';
 
