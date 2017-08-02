@@ -3,10 +3,6 @@
  */
 
 import { parse } from './parser';
-// export * from './serializers/elastic-serializer';
-// export * from './serializers/string-serializer';
-// export * from './operations/filters';
 export * from './b-tree';
-export * from './serializers/string-serializer';
-export * from './serializers/elastic-serializer';
+export * from './serializers';
 export const parseString = parse;
