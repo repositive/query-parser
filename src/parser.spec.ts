@@ -11,19 +11,19 @@ test('Parser', (t: Test) => {
 
   // Token
   t.ok(isToken(parse('cancer')), 'The result of "cancer" is a node');
-  t.equal(weight(parse('cancer')), 1, 'The weight of "cancer" is 1');
+  t.equal(weight(parse('cancer') as Node), 1, 'The weight of "cancer" is 1');
   t.ok(isToken(parse('"breast cancer"')), 'The result of "\"breeast cancer\"" is a token');
 
   // Expression
   t.ok(isExpression(parse('lung AND cancer')), 'The result of "lung AND cqancer" is an expression');
-  t.equal(weight(parse('lung AND cancer')), 3, 'The weight of "lung AND cancer" is 3');
+  t.equal(weight(parse('lung AND cancer') as Node), 3, 'The weight of "lung AND cancer" is 3');
   t.ok(isExpression(parse('lung cancer')), 'The result of "lung cancer" is an expression');
-  t.equal(weight(parse('lung cancer')), 3, 'The weight of "lung cancer" is 3');
+  t.equal(weight(parse('lung cancer') as Node), 3, 'The weight of "lung cancer" is 3');
   t.ok(isExpression(parse('lung OR cancer')), 'The result of "lung OR cancer" is an expression');
-  t.equal(weight(parse('lung OR cancer')), 3, 'The weight of "lung OR cancer" is 3');
+  t.equal(weight(parse('lung OR cancer') as Node), 3, 'The weight of "lung OR cancer" is 3');
 
   // Nesting
-  t.equal(weight(parse('this (lung OR cancer)')), 5, 'The weight of "this (lung  OR cancer) is 5"');
+  t.equal(weight(parse('this (lung OR cancer)') as Node), 5, 'The weight of "this (lung  OR cancer) is 5"');
 
   // Negation
   t.ok(isNOT(parse('not lung')), 'Negation returns true for "not lung"');
