@@ -10,7 +10,7 @@ function quotes(text) {
   return /\s+/.test(text) ? `"${text}"` : text;
 }
 
-export function toString(tree: Node): string {
+export function toNatural(tree: Node): string {
   return fold(tree, (elem, l, r) => {
     if (isAND(elem) || isOR(elem)) {
       const nL = shouldWrap(elem, 'left') ? `(${l})` : l;
@@ -21,7 +21,7 @@ export function toString(tree: Node): string {
         return `${nL} ${elem._type} ${nR}`;
       }
     } else if (isNOT(elem)) {
-      const ser = toString(elem.negated);
+      const ser = toNatural(elem.negated);
       const wrapped = shouldWrap(elem, 'negated') ? `(${ser})` : ser;
       return  `NOT ${wrapped}`;
     } else if (isPredicate(elem)) {

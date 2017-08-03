@@ -1,11 +1,11 @@
 import * as test from 'tape';
 import { Test } from 'tape';
-import { toString } from './natural';
-import { parse } from '../parser';
+import { toNatural } from './natural';
+import { fromNatural } from '../parsers';
 import { pipe } from 'ramda';
 
 test('String serializer', (t: Test) => {
-  const seriParse = pipe(parse, toString);
+  const seriParse = pipe(fromNatural, toNatural);
   const eqParse = (str: string, msg: string) => t.equals(seriParse(str), str, msg);
   eqParse('', 'Serializes non existing node');
   eqParse('cancer', 'Serializes token');

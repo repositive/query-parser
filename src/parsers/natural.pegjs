@@ -1,5 +1,5 @@
 {
-  var btree = require('./b-tree');
+  var btree = require('../b-tree');
 }
 
 /**
