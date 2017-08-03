@@ -8,7 +8,7 @@ import { token } from './token';
 import { negation } from './negation';
 import { predicate } from './predicate';
 
-import {fold, mapLeafs, filter, depth, weight, remove, path} from './operations';
+import {fold, mapLeafs, filter, depth, weight, remove, path, replace} from './operations';
 
 const n1 = {_id: uuid(), _type: 'test1'};
 const n2 = {_id: uuid(), _type: 'test2'};
@@ -105,5 +105,19 @@ test('Operations path', (t: Test) => {
   t.deepEquals(path(expP, expP.left), [expP.left, expP], 'Returns the path bottom up from the node');
   t.deepEquals(path(expP, expP.left._id), [expP.left, expP], 'Path also works with targets string');
 
+  t.end();
+});
+
+test('Operations replace', (t: Test) => {
+  const expR = expression({value: 'AND', right: token('r'), left: token('l')});
+  const replacement = token('rep');
+
+  t.deepEquals((replace({on: expR, target: expR.left, replacement}) as Expression<Node, Node>).left, replacement, 'Returns the expected node replaced on expression');
+  t.deepEquals(replace({on: expR, target: token('nope'), replacement}), expR, 'If there is nothing to replace return the same node on expression');
+
+  const negR = negation(token('negated'));
+
+  t.deepEquals(replace({on: negR, target: token('nope'), replacement}), negR, 'If there is nothing to replace return the same node on negation');
+  t.deepEquals((replace({on: negR, target: negR.value, replacement}) as any).value, replacement, 'Returns the expected node replaced on negation');
   t.end();
 });

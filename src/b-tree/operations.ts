@@ -1,9 +1,9 @@
 import { is, max, append, concat, merge } from 'ramda';
 import { v4 as uuid } from 'uuid';
-import { isExpression } from './expression';
+import { isExpression, expression } from './expression';
 import { Predicate, isPredicate } from './predicate';
 import { isNode, Node } from './node';
-import { isNegation } from './negation';
+import { isNegation, negation } from './negation';
 
 export function fold<O>(node: Node, f: (node: Node, l?: O, r?: O) => O, acc: O = undefined): O {
   if (isExpression(node)) {
@@ -95,4 +95,30 @@ export function path(node: Node, target: Node | string): Node[] {
       return acc;
     }
   }, []);
+}
+
+export function replace({on, target, replacement}: {on: Node, target: Node, replacement: Node}) {
+  return fold(on, (n, l: Node, r: Node) => {
+    if (n._id === target._id) {
+      return replacement;
+    } else if(isExpression(n)) {
+      if (n.left._id === l._id && n.right._id === r._id) {
+        return n;
+      } else {
+        return expression({
+          value: n.value,
+          left: l,
+          right: r
+        });
+      }
+    } else if (isNegation(n)) {
+      if (n.value._id === l._id) {
+        return n;
+      } else {
+        return negation(l);
+      }
+    } else {
+      return n;
+    }
+  });
 }
