@@ -1,10 +1,9 @@
 import {
-  isExpression, isPredicate, isToken,
-  isNegation, Expression, Node, fold
+  isAND, isNOT, isOR, isPredicate, isToken, Expression, Node, fold
 } from '../b-tree';
 
 function shouldWrap(tree: any, branch: string): boolean {
-  return isExpression(tree[branch]) && tree[branch].value !== tree.value;
+  return (isAND(tree[branch]) || isOR(tree[branch])) && tree[branch]._type !== tree._type;
 }
 
 function quotes(text) {
@@ -13,17 +12,17 @@ function quotes(text) {
 
 export function toString(tree: Node): string {
   return fold(tree, (elem, l, r) => {
-    if (isExpression(elem)) {
+    if (isAND(elem) || isOR(elem)) {
       const nL = shouldWrap(elem, 'left') ? `(${l})` : l;
       const nR = shouldWrap(elem, 'right') ? `(${r})` : r;
-      if(elem.value === 'AND') {
+      if(elem._type === 'AND') {
         return `${nL} ${nR}`;
       } else {
-        return `${nL} ${elem.value} ${nR}`;
+        return `${nL} ${elem._type} ${nR}`;
       }
-    } else if (isNegation(elem)) {
-      const ser = toString(elem.value);
-      const wrapped = shouldWrap(elem, 'value') ? `(${ser})` : ser;
+    } else if (isNOT(elem)) {
+      const ser = toString(elem.negated);
+      const wrapped = shouldWrap(elem, 'negated') ? `(${ser})` : ser;
       return  `NOT ${wrapped}`;
     } else if (isPredicate(elem)) {
       if (elem.relation === '=') {

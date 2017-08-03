@@ -2,20 +2,17 @@ import * as test from 'tape';
 import { Test } from 'tape';
 import { v4 as uuid } from 'uuid';
 import { stub } from 'sinon';
-import { Expression, expression } from './expression';
+import { AND, and, or, not, isExpression, isAND, isNOT, isOR} from './expression';
 import { Node } from './node';
-import { token } from './token';
-import { negation } from './negation';
+import { token, isToken } from './token';
 import { predicate } from './predicate';
 
 import {fold, mapLeafs, filter, depth, weight, remove, path, replace} from './operations';
 
 const n1 = {_id: uuid(), _type: 'test1'};
 const n2 = {_id: uuid(), _type: 'test2'};
-const exp = {
-  _id: uuid(), _type: 'expression',
-  value: 'AND', left: n1, right: n2
-};
+
+const exp = and({left: n1, right: n2});
 
 const n1Res = {_id: uuid(), _type: 'n1res'};
 const n2Res = {_id: uuid(), _type: 'n2res'};
@@ -51,7 +48,7 @@ test('Operations mapLeafs', (t: Test) => {
     .onCall(0).returns(n1Res)
     .onCall(1).returns(n2Res);
 
-  const result = mapLeafs(exp, cb) as Expression<Node, Node>;
+  const result = mapLeafs(exp, cb) as AND<Node, Node>;
 
   t.notEquals(exp._id, result._id, 'The main node changes id');
   t.equals(exp._type, result._type, 'The type of the expression nodes is the same');
@@ -61,16 +58,15 @@ test('Operations mapLeafs', (t: Test) => {
 });
 
 test('Operations filter', (t: Test) => {
-  const expF = expression({
-    value: 'OR',
-    left: expression({value: 'AND', left: token('a'), right: token('b')}),
-    right: negation(predicate({value:'c', key: 'a', relation: '='}))
+  const expF = or({
+    left: and({left: token('a'), right: token('b')}),
+    right: not(predicate({value:'c', key: 'a', relation: '='}))
   });
 
-  t.deepEquals(filter(expF, (e) => e._type === 'expression'), [expF.left, expF], 'Filters expressions');
-  t.deepEquals(filter(expF, (e) => e._type === 'negation'), [expF.right], 'Filters negations');
-  t.deepEquals(filter(expF, (e) => e._type === 'token'), [expF.left.left, expF.left.right], 'Filters tokens');
-  t.deepEquals(filter(expF, (e) => e._type === 'predicate'), [expF.right.value], 'Filters predicates');
+  t.deepEquals(filter(expF, isAND), [expF.left], 'Filters AND');
+  t.deepEquals(filter(expF, isNOT), [expF.right], 'Filters negations');
+  t.deepEquals(filter(expF, isToken), [expF.left.left, expF.left.right], 'Filters tokens');
+  t.deepEquals(filter(expF, (e) => e._type === 'predicate'), [expF.right.negated], 'Filters predicates');
   t.end();
 });
 
@@ -92,16 +88,16 @@ test('Operations remove', (t: Test) => {
   t.deepEquals(remove(exp, ''), exp, 'If the Id does not exist do not remove anything and return the same node');
   t.deepEquals(remove(exp, exp.left._id), n2, 'You can also remove the nodes using the node id');
 
-  const expR = expression({value: 'AND', right: negation(token('right')), left: token('left')});
+  const expR = and({right: not(token('right')), left: token('left')});
   t.deepEquals(remove(expR, expR.right), expR.left, 'Removes negation node');
-  t.deepEquals(remove(expR, expR.right.value), expR.left, 'Removes content of negation node');
+  t.deepEquals(remove(expR, expR.right.negated), expR.left, 'Removes content of negation node');
   t.deepEquals(remove(expR, expR.left), expR.right, 'Removes non negation node and leave negation node intact');
 
   t.end();
 });
 
 test('Operations path', (t: Test) => {
-  const expP = expression({value: 'AND', right: token('r'), left: token('l')});
+  const expP = and({right: token('r'), left: token('l')});
   t.deepEquals(path(expP, expP.left), [expP.left, expP], 'Returns the path bottom up from the node');
   t.deepEquals(path(expP, expP.left._id), [expP.left, expP], 'Path also works with targets string');
 
@@ -109,15 +105,15 @@ test('Operations path', (t: Test) => {
 });
 
 test('Operations replace', (t: Test) => {
-  const expR = expression({value: 'AND', right: token('r'), left: token('l')});
+  const expR = and({right: token('r'), left: token('l')});
   const replacement = token('rep');
 
-  t.deepEquals((replace({on: expR, target: expR.left, replacement}) as Expression<Node, Node>).left, replacement, 'Returns the expected node replaced on expression');
+  t.deepEquals((replace({on: expR, target: expR.left, replacement}) as typeof expR).left, replacement, 'Returns the expected node replaced on expression');
   t.deepEquals(replace({on: expR, target: token('nope'), replacement}), expR, 'If there is nothing to replace return the same node on expression');
 
-  const negR = negation(token('negated'));
+  const negR = not(token('negated'));
 
   t.deepEquals(replace({on: negR, target: token('nope'), replacement}), negR, 'If there is nothing to replace return the same node on negation');
-  t.deepEquals((replace({on: negR, target: negR.value, replacement}) as any).value, replacement, 'Returns the expected node replaced on negation');
+  t.deepEquals((replace({on: negR, target: negR.negated, replacement}) as any).negated, replacement, 'Returns the expected node replaced on negation');
   t.end();
 });

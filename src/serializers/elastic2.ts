@@ -1,5 +1,5 @@
 
-import { isExpression, Node, isToken, isPredicate, isNegation } from '../b-tree';
+import { isAND, isOR, isNOT, Node, isToken, isPredicate, isNegation } from '../b-tree';
 
 const expressions = {
   AND: 'must',
@@ -18,7 +18,7 @@ export function toElastic2(tree?: Node): any {
   function build(_tree?: Node): any {
 
     // 1. Value is filter or text
-    if (isExpression(_tree)) {
+    if (isAND(_tree) || isOR(_tree)) {
       const children = [];
       const left = build(_tree.left);
       const right = build(_tree.right);
@@ -26,13 +26,13 @@ export function toElastic2(tree?: Node): any {
       if (right) children.push(right);
       return {
         bool: {
-          [expressions[_tree.value]]: children
+          [expressions[_tree._type]]: children
         }
       };
-    } else if (isNegation(_tree)) {
+    } else if (isNOT(_tree)) {
       return {
         bool: {
-          'must_not': build(_tree.value)
+          'must_not': build(_tree.negated)
         }
       };
     } else if(isPredicate(_tree) && comparison[_tree.relation]) {

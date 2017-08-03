@@ -14,8 +14,8 @@
 
 expression "expression"
   =  start? head:node op:(OR/AND) tail:expression end? {
-      return btree.expression({
-        value: op,
+      const expression = op === 'AND' ? btree.and : btree.or;
+      return expression({
         left: head,
         right: tail
       });
@@ -35,7 +35,7 @@ node "node"
 
 negate "negation"
   = _? op:NOT _? tail: node {
-    return btree.negation(tail);
+    return btree.not(tail);
   }
 
 AND "and"

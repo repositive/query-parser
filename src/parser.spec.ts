@@ -1,7 +1,7 @@
 
 import * as test from 'tape';
 import { Test } from 'tape';
-import {isNode, isToken, isNegation, isExpression, weight, Node, Token, Predicate, isPredicate} from './b-tree';
+import {isNode, isToken, isNOT, isExpression, weight, Node, Token, Predicate, isPredicate} from './b-tree';
 import {parse} from './parser';
 import * as csvParse from 'csv-parse';
 import {readFileSync} from 'fs';
@@ -26,7 +26,7 @@ test('Parser', (t: Test) => {
   t.equal(weight(parse('this (lung OR cancer)')), 5, 'The weight of "this (lung  OR cancer) is 5"');
 
   // Negation
-  t.ok(isNegation(parse('not lung')), 'Negation returns true for "not lung"');
+  t.ok(isNOT(parse('not lung')), 'Negation returns true for "not lung"');
 
   // Predicate
   t.ok(isPredicate(parse('tissue:lung')), 'isPredicate returns true for "tissue:lung"');
