@@ -15,7 +15,6 @@ const _type = lensProp('_type') as any;
 const _nodeTypeCheck = pipe(view(_type), is(String));
 export const isNode = allPass([
   isObj,
-  Object.isFrozen,
   _nodeIdCheck,
   _nodeTypeCheck
 ]) as (o: any) => o is Node;
