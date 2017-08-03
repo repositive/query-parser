@@ -43,11 +43,11 @@ export function predicate({
   relation: ComparativeOperator,
   value: string
 }): Predicate {
-  return {
+  return Object.freeze({
     _id: uuid(),
-    _type: 'predicate',
+    _type: 'predicate' as 'predicate',
     key,
     relation,
     value
-  };
+  });
 }

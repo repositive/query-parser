@@ -19,9 +19,9 @@ export const isToken = allPass([
 ]) as (o: any) => o is Token;
 
 export function token(value: string): Token {
-  return {
+  return Object.freeze({
     _id: uuid(),
-    _type: 'token',
+    _type: 'token' as 'token',
     value
-  };
+  });
 }

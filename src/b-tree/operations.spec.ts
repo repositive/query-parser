@@ -9,20 +9,17 @@ import { predicate } from './predicate';
 
 import {fold, mapLeafs, filter, depth, weight, remove, path, replace} from './operations';
 
-const n1 = {_id: uuid(), _type: 'test1'};
-const n2 = {_id: uuid(), _type: 'test2'};
+const n1 = token('n1');
+const n2 = token('n2');
 
 const exp = and({left: n1, right: n2});
 
-const n1Res = {_id: uuid(), _type: 'n1res'};
-const n2Res = {_id: uuid(), _type: 'n2res'};
+const n1Res = token('n1res');
+const n2Res = token('n2res');
 
 test('Operations fold', (t: Test) => {
 
-  const result = {
-    _id: uuid(),
-    _type: 'result'
-  };
+  const result = token('result');
 
   const acc = {_id: uuid(), _type: 'acc'};
   const cb = stub()

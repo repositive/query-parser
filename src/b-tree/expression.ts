@@ -34,12 +34,12 @@ export function isAND<L extends Node, R extends Node>( o: any, checks: BranchChe
 }
 
 export function and<L extends Node, R extends Node>({left, right}: {left: L, right: R}): AND<L, R> {
-  return {
+  return Object.freeze({
     _id: uuid(),
-    _type: 'AND',
+    _type: 'AND' as 'AND',
     left,
     right
-  };
+  });
 }
 
 export interface OR<L extends Node, R extends Node> extends Node {
@@ -57,12 +57,12 @@ export function isOR<L extends Node, R extends Node>( o: any, checks: BranchChec
 }
 
 export function or<L extends Node, R extends Node>({left, right}: {left: L, right: R}): OR<L, R> {
-  return {
+  return Object.freeze({
     _id: uuid(),
-    _type: 'OR',
+    _type: 'OR' as 'OR',
     left,
     right
-  };
+  });
 }
 
 export interface NOT<N extends Node> extends Node {
@@ -78,11 +78,11 @@ export function isNOT<N extends Node>( o: any, checkNegated?: (o: any) => o is N
 }
 
 export function not<N extends Node>(negated: N): NOT<N> {
-  return {
+  return Object.freeze({
     _id: uuid(),
-    _type: 'NOT',
+    _type: 'NOT' as 'NOT',
     negated
-  };
+  });
 }
 
 export type Expression = AND<Node, Node> | OR<Node, Node> | NOT<Node>;
