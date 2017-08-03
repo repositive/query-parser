@@ -1,17 +1,17 @@
 import {v4 as uuid} from 'uuid';
-import {isNode, _type, Node} from './node';
+import {isNode, Node} from './node';
 import {__, merge, equals, lensProp, view, allPass, anyPass, contains, is, pipe, append, concat} from 'ramda';
-import { _value } from './token';
 
 export type ExpressionOperator = 'AND' | 'OR';
 
-export const isExpressionOperator = allPass([
+const isExpressionOperator = allPass([
   is(String),
   contains(__, ['AND', 'OR']) as any
 ]) as (o: any) => o is ExpressionOperator;
 
-export const _left = lensProp('left');
-export const _right = lensProp('right');
+const _left = lensProp('left');
+const _right = lensProp('right');
+const _type = lensProp('_type');
 
 export type Check<T> = (o: any) => o is T;
 export interface BranchChecks<L, R> {

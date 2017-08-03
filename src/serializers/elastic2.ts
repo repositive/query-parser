@@ -1,5 +1,5 @@
 
-import { isAND, isOR, isNOT, Node, isToken, isPredicate, isNegation } from '../b-tree';
+import { isAND, isOR, isNOT, Node, isToken, isPredicate} from '../b-tree';
 
 const expressions = {
   AND: 'must',

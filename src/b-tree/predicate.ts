@@ -1,11 +1,11 @@
-import { isNode, _type, Node } from './node';
+import { isNode, Node } from './node';
 import { __, allPass, contains, is, pipe, view, equals, lensProp} from 'ramda';
-import { _value, isToken, Token } from './token';
+import { isToken, Token } from './token';
 import { v4 as uuid } from 'uuid';
 
 export type ComparativeOperator = '==' | '!' | '=' | '<' | '>' | '<=' | '>=';
 
-export const isComparativeOperator = allPass([
+const isComparativeOperator = allPass([
   is(String),
   contains(__, ['==', '!', '=', '<', '>', '<=', '>=']) as any
 ]) as (o: any) => o is ComparativeOperator;
@@ -17,12 +17,14 @@ export interface Predicate extends Node {
   value: string;
 }
 
-export const _filterTypeCheck = pipe(view(_type), equals('predicate'));
-export const _relation = lensProp('relation');
-export const _filterRelationCheck = pipe(view(_relation), isComparativeOperator);
-export const _key = lensProp('key');
-export const _filterPredicateCheck = pipe(view(_key), is(String));
-export const _filterValueCheck = pipe(view(_value), is(String));
+const _type = lensProp('_type');
+const _value = lensProp('value');
+const _filterTypeCheck = pipe(view(_type), equals('predicate'));
+const _relation = lensProp('relation');
+const _filterRelationCheck = pipe(view(_relation), isComparativeOperator);
+const _key = lensProp('key');
+const _filterPredicateCheck = pipe(view(_key), is(String));
+const _filterValueCheck = pipe(view(_value), is(String));
 
 export const isPredicate = allPass([
   isNode,

@@ -1,5 +1,5 @@
 import {is, pipe, view, lensProp, allPass, equals} from 'ramda';
-import { Node, isNode, _type } from './node';
+import { Node, isNode } from './node';
 import { v4 as uuid } from 'uuid';
 
 export interface Token extends Node {
@@ -7,11 +7,10 @@ export interface Token extends Node {
   value: string;
 }
 
-export const _tokenTypeCheck = pipe(view(_type), equals('token'));
-export const _value = lensProp('value');
-export const _tokenValueCheck = pipe(view(_value), is(String));
-export const _fuzzy = lensProp('fuzzy');
-export const _tokenFuzzyCheck = pipe(view(_fuzzy), is(Boolean));
+const _type = lensProp('_type');
+const _tokenTypeCheck = pipe(view(_type), equals('token'));
+const _value = lensProp('value');
+const _tokenValueCheck = pipe(view(_value), is(String));
 
 export const isToken = allPass([
   isNode,
