@@ -18,7 +18,7 @@ The purpose of this library is to transform a search string to a tokenized data 
 - Exact match between quoted strings on non predicated tokens.
   > flower "white daisy"
 - Predicated/Filtered search
-  > family:Asteraceae color:white england
+  > family:Asteraceae population:>100000 england
 
 
 ### Installation
@@ -39,67 +39,85 @@ $ npm i @repositive/query-parser
 
 The library exposes the following functions:
 
+**Tree construction**
+- **token**: `(str: string) => Token`
+- **predicate**: `({key: string, value: string}) => Predicate`
+- **and**: `<L extends Node, R extends  Node>({left: L, right: R}) => AND<L, R>`
+- **or**: `<L extends Node, R extends Node>({left: L, right: R}) => OR<L, R>`
+- **not**: `<N extends Node>(negated: N) => NOT<N>`
+
+**Tools**
+- **fold**: `<R>(node: Node, f: (node: Node, l: R, r: R) => R, R) => R`
+- **filter**: `<R> (node: Node, f: (node: Node) => node is R) => R[]`
+- **path**: `(node: Node, target: Node) => Node[]`
+- **remove**: `(node: Node, target: Node) => Node`
+- **replace**: `({on: Node, target: Node, replacement: Node}) => Node`
+
+
 **Parsing natural language string**
-- **parseString**: `(str: string) => BBTree`  
+- **fromNatural**: `(str: string) => Node`  
   _Parses the current string and returns a boolean binary tree representing the search._
 
-**Filter/Predicate operations**
-- **getFilters**: `(tree: BBTree) => Filter[]`  
-  _Returns an array containing all the filters in the tree._
-- **addFilter**: `(tree: BBTree, predicate: string, text: string) => BBTree`  
-  _Adds a new filter to the tree_
-- **removeFilter**: `(tree: BBTree, predicate: string, text: string) => BBTree`  
-  _Returns a new tree with the matching filter removed. If the filter does not exist it will return the same tree._
-
 **Serialization**
-- **toBoolString**: `(tree: BBTree) => string`  
+- **toNatural**: `(tree: Node) => string`  
   _Serializes a boolean binary tree into a string emulating how a human would write it._
-- **toElasticQuery**: `(tree: BBTree) => any`  
+- **toElastic2**: `(tree: Node) => any`  
   _Serializes the boolean binary tree into a elasticsearch 2.x query._
 
 ```ts
 import QP from 'npm:@repositive/query-parser';
-
+// var QP = require(`@repositive/query-parser`); non ES6
 /**
-* "parseString" will generate the following tree from "is:user Istar NOT profession:developer":
-* {
-*   "value": "AND",
-*   "left": {
-*     "predicate": "is",
-*     "text": "user"
-*   },
-*   "right": {
-*     "value": "AND",
-*     "left": {
-*       "text": "Istar"
-*     },
-*     "right": {
-*       "value": "NOT",
-*       "right": {
-*         "predicate": "profession",
-*         "text": "developer"
-*       }
-*     }
-*   }
-* }
+* "fromNatural" will generate the following tree from "is:user Istar NOT profession:developer":
+* {                            
+*   "_id": "6bd6c61f-eab6-43bc-81d2-97f96c7c5f0a",           
+*   "_type": "AND",            
+*   "left": {                  
+*     "_id": "081c058a-e8cc-4ede-9637-6fd6593d5388",         
+*     "_type": "predicate",    
+*     "key": "is",             
+*     "relation": "=",         
+*     "value": "user"          
+*   },                         
+*   "right": {                 
+*     "_id": "4719c7d4-965a-45cc-8132-87ed3acdc560",         
+*     "_type": "AND",          
+*     "left": {                
+*       "_id": "8c8fae87-3aeb-4298-8f29-baf4c761ca12",       
+*       "_type": "token",      
+*       "value": "Istar"       
+*     },                       
+*     "right": {               
+*       "_id": "b0b49e4a-c2cc-4954-bc1d-b68bad17f441",       
+*       "_type": "NOT",        
+*       "negated": {           
+*         "_id": "323596ca-24fa-4ec5-a7a5-0d4d1ed45645",     
+*         "_type": "predicate",                              
+*         "key": "profession", 
+*         "relation": "=",     
+*         "value": "developer" 
+*       }                      
+*     }                        
+*   }                          
+* }         
 */
-const tree = QP.parseString('is:user Istar NOT profession:developer')
+const tree = QP.fromNatural('is:user Istar NOT profession:developer')
 
-/**
-* "getFilters" will return the following array from the previous tree:
-* [ {predicate: 'is', text: 'user'}, {predicate: 'profession', text: 'developer'}]
+/*
+* We can find the profession predicate using the filter function
+*
 */
-const filters = QP.getFilters(tree);
+const profession = QP.filter(tree, (n) => n.key === 'profession')[0];
 
 /**
-* If we remove the profession filter with "removeFilter" we expect to end with the following tree:
+* If we remove the profession filter with "remove" we expect to end with the following tree:
 * {
 *   value: 'AND',
 *   right: { text: 'Istar' },
 *   left: {predicate: 'is', text: 'user'}
 * }
 */
-const professional = QP.removeFilter(tree, 'profession', 'developer')
+const professional = QP.remove(tree, profession);
 
 /**
 * Adding a new filter (attribute:awesome) to the three will return a new tree with the attribute inserted in the leftmost position
@@ -113,12 +131,11 @@ const professional = QP.removeFilter(tree, 'profession', 'developer')
 *   }
 * }
 */
-const awesome = QP.addFilter(professional, 'attribute', 'awesome');
-
+const awesome = QP.and({left: professional, right: QP.predicate({key: 'attribute', value: 'awesome'}));
 
 /**
 * The serialization value of the new tree using "toBoolString" resembles the text as a human would write it:
-* "attribute:awesome is:user Istar"
+* "is:user Istar attribute: awesome"
 */
-const newQueryString = QP.toBoolString(awesome);
+const newQueryString = QP.toNatural(awesome);
 ```
