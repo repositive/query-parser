@@ -58,14 +58,23 @@ export function remove(node: Node, target: Node | string): Node | undefined {
     const left = remove(node.left, target);
     const right = remove(node.right, target);
     if (isNode(left) && isNode(right)) {
-      return node;
+      if (left._id === node.left._id && right._id === node.right._id) {
+        return node;
+      } else {
+        const exp: any = node._type === 'AND' ? and : or;
+        return exp({left, right});
+      }
     } else {
       return left || right;
     }
   } else if(isNOT(node)) {
     const negated = remove(node.negated, target);
     if (isNode(negated)) {
-      return node;
+      if (negated._id === node.negated._id) {
+        return node;
+      } else {
+        return not(negated);
+      }
     } else {
       return undefined;
     }

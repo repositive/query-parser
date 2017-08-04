@@ -90,6 +90,15 @@ test('Operations remove', (t: Test) => {
   t.deepEquals(remove(expR, expR.right.negated), expR.left, 'Removes content of negation node');
   t.deepEquals(remove(expR, expR.left), expR.right, 'Removes non negation node and leave negation node intact');
 
+  const deepR = and({right: and({right: token('rr'), left: token('ll')}), left: token('b')});
+
+  t.notEqual(remove(deepR, deepR.right.right)._id, deepR._id, 'When removing sub nodes the expression parents change its id');
+  t.deepEqual((remove(deepR, deepR.right.right) as AND<Node, Node>).left, deepR.left, 'When removing sub nodes siblings that are not affected are reused');
+
+  const deepRN = not(and({right: token('r'), left: token('l')}));
+
+  t.notEqual(remove(deepRN, deepRN.negated.right)._id, deepRN._id, 'When removing sub nodes the not parents change its id');
+
   t.end();
 });
 
