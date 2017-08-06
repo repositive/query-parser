@@ -22,6 +22,12 @@ test('Elastic serializer', (t: Test) => {
   t.deepEquals(toES('not this'), {query: {bool: {'must_not': {match: {_all: 'this'}}}}}, 'Negation serializes to must_not of internals');
   t.deepEquals(toES('one test'), {query: {bool: {must: [{match: {_all: 'one'}}, {match: {_all: 'test'}}]}}}, 'AND Expression serializes to must of internals');
   t.deepEquals(toES('one or test'), {query: {bool: {should: [{match: {_all: 'one'}}, {match: {_all: 'test'}}]}}}, 'OR Expression serializes to should of internals');
+
+  t.deepEquals(toES('one*'), {query: {prefix: {_all: 'one'}}}, 'Wildcard on token is serialized with prefix');
+  t.deepEquals(toES('*'), {query: {match: {_all: '*'}}}, 'Total wildcard is matches exact word');
+
+  t.deepEqual(toES('pred:*'), {query: {exists: {field: 'pred'}}}, 'Direct wildcard on predicate checks if the property exists in the document');
+  t.deepEqual(toES('pred:one*'), {query: {prefix: {pred: 'one'}}}, 'Wildcard on predicate checks the prefix of the pred');
   t.end();
 });
 

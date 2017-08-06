@@ -1,4 +1,4 @@
-
+import { ifElse } from 'ramda';
 import { isAND, isOR, isNOT, Node, isToken, isPredicate} from '../b-tree';
 
 const expressions = {
@@ -44,12 +44,28 @@ export function toElastic2(tree?: Node): any {
         }
       };
     } else if(isPredicate(_tree) && _tree.relation === '=') {
-      const type = /\s/.test(_tree.value) ? 'match_phrase' : 'match';
-      return {
-        [type]: {
-          [_tree.key]: _tree.value
-        }
-      };
+      const spaceIndex = _tree.value.indexOf(' ');
+      const wildcardIndex = _tree.value.indexOf('*');
+      if (spaceIndex === -1 && wildcardIndex > 0) {
+        return {
+          prefix: {
+            [_tree.key]: _tree.value.substring(0, _tree.value.length -1)
+          }
+        };
+      } else if (spaceIndex === -1 && wildcardIndex === 0) {
+        return {
+          exists: {
+            field: _tree.key
+          }
+        };
+      } else {
+        const type = spaceIndex > -1 ? 'match_phrase' : 'match';
+        return {
+          [type]: {
+            [_tree.key]: _tree.value
+          }
+        };
+      }
     } else if (isPredicate(_tree) && _tree.relation === '==') {
       return {
         'term': {
@@ -68,12 +84,20 @@ export function toElastic2(tree?: Node): any {
         }
       };
     } else if(isToken(_tree)) {
-      const type = /\s/.test(_tree.value) ? 'match_phrase' : 'match';
-      return {
-        [type]: {
-          '_all': _tree.value
-        }
-      };
+      const spaceIndex = _tree.value.indexOf(' ');
+      const wildcardIndex = _tree.value.indexOf('*');
+
+      const query: any = ifElse(
+        () => spaceIndex > 0,
+        () => ({match_phrase: {_all: _tree.value}}),
+        ifElse(
+          () => wildcardIndex > 0,
+          () => ({prefix: {_all: _tree.value.substring(0, _tree.value.length - 1)}}),
+          () => ({match: {_all: _tree.value}})
+        )
+      );
+
+      return query();
     } else {
       return undefined;
     }
