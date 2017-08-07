@@ -36,11 +36,11 @@ export const isPredicate = allPass([
 
 export function predicate({
   key,
-  relation,
+  relation = '=',
   value
 }: {
   key: string,
-  relation: ComparativeOperator,
+  relation?: ComparativeOperator,
   value: string
 }): Predicate {
   return Object.freeze({
