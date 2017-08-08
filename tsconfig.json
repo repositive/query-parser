@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "target": "es6",
         "module": "commonjs",
         "moduleResolution": "node",
         "isolatedModules": false,
@@ -17,7 +17,11 @@
         "allowJs": false,
         "inlineSourceMap": true
     },
+    "include": [
+      "src/**/*"
+    ],
     "exclude": [
+        "dist",
         "node_modules"
     ],
     "compileOnSave": false,
