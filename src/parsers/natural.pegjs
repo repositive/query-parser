@@ -14,11 +14,15 @@
 
 expression "expression"
   =  start? head:node op:(OR/AND) tail:expression end? {
-      const expression = op === 'AND' ? btree.and : btree.or;
-      return expression({
-        left: head,
-        right: tail
-      });
+      if (head && tail) {
+        const expression = op === 'AND' ? btree.and : btree.or;
+        return expression({
+          left: head,
+          right: tail
+        });
+      } else {
+        return head;
+      }
     }
   / start? t:node end? { return t }
   / empty
@@ -73,7 +77,7 @@ predicate = p:token _? [:] _? c:relation? v:token {
 }
 
 start
-  =  $_?
+  =  _?
 
 end
   = _?!.

@@ -9,6 +9,7 @@ import {readFileSync} from 'fs';
 test('Parser', (t: Test) => {
   t.deepEquals(parse(''), undefined, 'Parses empty string to undefined');
 
+  t.ok(isToken(parse('cancer ')), 'The result of "cancer " is a token');
   // Token
   t.ok(isToken(parse('cancer')), 'The result of "cancer" is a node');
   t.equal(weight(parse('cancer') as Node), 1, 'The weight of "cancer" is 1');
