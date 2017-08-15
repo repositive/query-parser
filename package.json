@@ -31,6 +31,7 @@
   "devDependencies": {
     "@repositive/typescript": "1.1.2",
     "@types/csv-parse": "1.1.9",
+    "@types/es6-shim": "0.31.34",
     "@types/node": "7.0.39",
     "@types/pegjs": "^0.10.0",
     "@types/ramda": "0.0.2",
