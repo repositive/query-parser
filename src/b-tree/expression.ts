@@ -1,5 +1,5 @@
 import {v4 as uuid} from 'uuid';
-import {isNode, Node} from './node';
+import {isNode, NaturalNode, Node} from './node';
 import {__, merge, equals, lensProp, view, allPass, anyPass, contains, is, pipe, append, concat} from 'ramda';
 
 export type ExpressionOperator = 'AND' | 'OR';
@@ -33,8 +33,9 @@ export function isAND<L extends Node, R extends Node>( o: any, checks: BranchChe
   return allPass([isNode, typeCheck, leftCheck, rightCheck])(o);
 }
 
-export function and<L extends Node, R extends Node>({left, right}: {left: L, right: R}): AND<L, R> {
+export function and<L extends Node, R extends Node>({left, right, natural}: {left: L, right: R, natural?: NaturalNode}): AND<L, R> {
   return Object.freeze({
+    ...natural,
     _id: uuid(),
     _type: 'AND' as 'AND',
     left,
@@ -56,8 +57,9 @@ export function isOR<L extends Node, R extends Node>( o: any, checks: BranchChec
   return allPass([isNode, typeCheck, leftCheck, rightCheck])(o);
 }
 
-export function or<L extends Node, R extends Node>({left, right}: {left: L, right: R}): OR<L, R> {
+export function or<L extends Node, R extends Node>({left, right, natural}: {left: L, right: R, natural?: NaturalNode}): OR<L, R> {
   return Object.freeze({
+    ...natural,
     _id: uuid(),
     _type: 'OR' as 'OR',
     left,
@@ -77,8 +79,9 @@ export function isNOT<N extends Node>( o: any, checkNegated?: (o: any) => o is N
   return allPass([isNode, typeCheck, negatedCheck])(o);
 }
 
-export function not<N extends Node>(negated: N): NOT<N> {
+export function not<N extends Node>(negated: N, natural?: NaturalNode): NOT<N> {
   return Object.freeze({
+    ...natural,
     _id: uuid(),
     _type: 'NOT' as 'NOT',
     negated

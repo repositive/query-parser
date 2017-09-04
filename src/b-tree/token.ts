@@ -1,5 +1,5 @@
 import {is, pipe, view, lensProp, allPass, equals} from 'ramda';
-import { Node, isNode } from './node';
+import { Node, NaturalNode, isNode } from './node';
 import { v4 as uuid } from 'uuid';
 
 export interface Token extends Node {
@@ -18,8 +18,9 @@ export const isToken = allPass([
   _tokenValueCheck
 ]) as (o: any) => o is Token;
 
-export function token(value: string): Token {
+export function token(value: string, natural?: NaturalNode): Token {
   return Object.freeze({
+    ...natural,
     _id: uuid(),
     _type: 'token' as 'token',
     value

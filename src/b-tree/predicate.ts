@@ -1,4 +1,4 @@
-import { isNode, Node } from './node';
+import { isNode, NaturalNode, Node } from './node';
 import { __, allPass, contains, is, pipe, view, equals, lensProp} from 'ramda';
 import { isToken, Token } from './token';
 import { v4 as uuid } from 'uuid';
@@ -37,13 +37,16 @@ export const isPredicate = allPass([
 export function predicate({
   key,
   relation = '=',
-  value
+  value,
+  natural
 }: {
   key: string,
   relation?: ComparativeOperator,
-  value: string
+  value: string,
+  natural?: NaturalNode
 }): Predicate {
   return Object.freeze({
+    ...natural,
     _id: uuid(),
     _type: 'predicate' as 'predicate',
     key,

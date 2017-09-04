@@ -13,12 +13,27 @@
 */
 
 expression "expression"
-  =  start? head:node op:(OR/AND) tail:expression end? {
+  =  start: start? head:node op:OR tail:expression end: end? {
       if (head && tail) {
-        const expression = op === 'AND' ? btree.and : btree.or;
-        return expression({
+        return btree.or({
           left: head,
-          right: tail
+          right: tail,
+          natural: {
+           _original: head._original + op + tail._original
+          }
+        });
+      } else {
+        return head;
+      }
+    }
+  /  start: start? head:node op:AND tail:expression end: end? {
+      if (head && tail) {
+        return btree.and({
+          left: head,
+          right: tail,
+          natural: {
+            _original: head._original + op + tail._original
+          }
         });
       } else {
         return head;
@@ -28,7 +43,11 @@ expression "expression"
   / empty
 
 nest "nested expression"
-  = start? "(" _? expr:expression _? ")" end? { return expr; }
+  = start? "(" s1:_? expr:expression s2:_? ")" end? {
+    return Object.freeze(Object.assign({}, expr, {
+      _original: "(" + (s1 || '') + expr._original + (s2 || '') + ")"
+    })); 
+  }
 
 node "node"
   // = property_exists
@@ -38,41 +57,49 @@ node "node"
   / nest
 
 negate "negation"
-  = _? op:NOT _? tail: node {
-    return btree.not(tail);
+  = s1:_? op:NOT s2:_? tail: node {
+    return btree.not(
+      tail,
+      {
+        _original: (s1 || '') + op + (s2 || '') + tail._original
+      }
+    );
   }
 
 AND "and"
-  = _ "AND" _ {return "AND"}
-  / _ "and" _ {return "AND"}
-  / _ "+" _? {return "AND"}
-  / _ {return "AND"}
+  = original: (_ "AND" _) {return original.join('')}
+  / original: (_ "and" _) {return original.join('')}
+  / original: (_ "+" _?) {return original.join('')}
+  / original: (_) {return original}
 
 OR "or"
- = _ "OR" _ {return "OR"}
- / _ "or" _ {return "OR"}
+ = original: (_ "OR" _) {return original.join('')}
+ / original: (_ "or" _) {return original.join('')}
 
 NOT "not"
- = "NOT" _ {return "NOT"}
- / "not" _ {return "NOT"}
- / _? "-" _? {return "NOT"}
- / _? "!" _? {return "NOT"}
+ = original: ("NOT" _) {return original.join('')}
+ / original: ("not" _) {return original.join('')}
+ / original: (_? "-" _?) {return original.join('')}
+ / original: (_? "!" _?) {return original.join('')}
 
 token "token"
   = i:[a-zA-Z0-9\u007F-\uFFFF_@'\/\\+\&\.<>\-\|\*]+ {
-      return btree.token(i.join(''));
+      return btree.token(i.join(''), {_original: i.join('')});
     }
     / i:quoted {
-      return btree.token(i.join(''));
+      return btree.token(i.join(''), {_original: '"' + i.join('') + '"'});
     }
 
 quoted "quoted" = ["] id:[^"]+ ["] {return id}
 
-predicate = p:token _? [:] _? c:relation? v:token {
+predicate = p:token s1:_? [:] s2:_? c:relation? v:token {
   return btree.predicate({
     key: p.value,
-    relation: c || '=',
-    value: v.value
+    relation: (c && c.value) || '=',
+    value: v.value,
+    natural: {
+      _original: p._original + (s1 || '') + ':' + (s2 || '') + ((c && c.original) || '') + v._original
+    }
   });
 }
 
@@ -95,15 +122,15 @@ relation
   / gt
   / lt
 
-eq "equals" = _? "=" _? {return "="}
-exact "exact match" = _? "==" _? {return "=="}
-gt "greater than" = _? ">" _? {return ">"}
-lt "less than" = _? "<" _? {return "<"}
-gte "greater than equals" = _? ">=" _? {return ">="}
-lte "less than equals" = _? "<=" _? {return "<="}
+eq "equals" = original: (_? "=" _?) {return {value:"=", original: original.join('')}}
+exact "exact match" = original: (_? "==" _?) {return {value:"==", original: original.join('')}}
+gt "greater than" = original: (_? ">" _?) {return {value: ">", original: original.join('')}}
+lt "less than" = original: (_? "<" _?) {return {value: "<", original: original.join('')}}
+gte "greater than equals" = original: (_? ">=" _?) {return {value: ">=", original: original.join('')}}
+lte "less than equals" = original:(_? "<=" _?) {return {value: "<=", original: original.join('')}}
 ne "not equals"
-  = _? "!=" _? {return "!"}
-  / _? "!" _? {return "!"}
+  = original: (_? "!=" _?) {return {value: "!", original: original.join('')}}
+  / original: (_? "!" _?) {return {value: "!", original: original.join('')}}
 
 _ "whitespace"
-  = [ \t\n\r,?]+
+  = s: [ \t\n\r,?]+ { return s.join('') }
