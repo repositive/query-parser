@@ -4,13 +4,13 @@ import { isAND, isOR, isNOT, and, or, not } from './expression';
 import { Predicate, isPredicate } from './predicate';
 import { isNode, Node } from './node';
 
-export function fold<O>(node: Node, f: (node: Node, l?: O, r?: O) => O, acc: O = undefined): O {
+export function fold<O>(node: Node, f: (node: Node, l?: O, r?: O, parent?: Node) => O, acc: O = undefined, parent: Node = undefined): O {
   if (isAND(node) || isOR(node)) {
-    return f(node, fold(node.left, f, acc), fold(node.right, f, acc));
+    return f(node, fold(node.left, f, acc, node), fold(node.right, f, acc, node), parent);
   } else if (isNOT(node)) {
-    return f(node, fold(node.negated, f, acc), acc);
+    return f(node, fold(node.negated, f, acc, node), acc, parent);
   } else {
-    return f(node, acc, acc);
+    return f(node, acc, acc, parent);
   }
 }
 
