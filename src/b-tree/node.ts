@@ -7,10 +7,10 @@ export interface NaturalNode {
 }
 
 const _natural = lensProp('_natural');
-const _original = lensProp('original');
-const isNaturalNode = allPass([
+const _original = lensProp('_original');
+export const isNaturalNode = allPass([
   isObj,
-  pipe(view(_original), ifElse(identity, is(String), () => true))
+  pipe(view(_original), is(String))
 ]) as (o: any) => o is NaturalNode;
 
 export interface _Node {
@@ -27,5 +27,5 @@ export const isNode = allPass([
   isObj,
   pipe(view(_id), is(String)),
   pipe(view(_type), is(String)),
-  isNaturalNode
+  pipe(view(_original), ifElse(identity, is(String), () => true))
 ]) as (o: any) => o is Node;
