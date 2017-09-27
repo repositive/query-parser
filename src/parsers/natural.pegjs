@@ -90,7 +90,7 @@ token "token"
       return btree.token(i.join(''), {_original: '"' + i.join('') + '"'});
     }
 
-quoted "quoted" = ["] id:[^"]+ ["] {return id}
+quoted "quoted" = ["] id:[^"]+ ["]? {return id}
 
 predicate = p:token s1:_? [:] s2:_? c:relation? v:token {
   return btree.predicate({
