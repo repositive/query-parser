@@ -1,5 +1,6 @@
-import {fold, isNaturalNode, Node, isNOT, isAND, isOR} from '../b-tree';
-import {toNatural} from '../serializers';
+import {isNaturalNode, Node, isNOT, isAND, isOR} from '../b-tree';
+import {fold} from '../b-tree/operations';
+import {toNatural} from '../serializers/natural';
 
 export interface PositionalNode extends Node {
   from: number;

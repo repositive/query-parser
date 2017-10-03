@@ -2,9 +2,11 @@ import * as test from 'tape';
 import { Test } from 'tape';
 import { fromNatural, PositionalNode, decorateTreeWithNaturalPositions } from '.';
 import { pipe } from 'ramda';
-import { filter, Node, toNatural } from '..';
+import {Node} from '../b-tree';
+import { filter } from '../b-tree/operations';
+import { toNatural } from '../serializers/natural';
 
-test.only('decorateTreeWithNaturalPositions', (t: Test) => {
+test('decorateTreeWithNaturalPositions', (t: Test) => {
 
   const fromNatPos = pipe(fromNatural, decorateTreeWithNaturalPositions, (n: Node) => filter<PositionalNode>(n, (ns: PositionalNode) => ns._type === 'token' || ns._type === 'predicate'));
 

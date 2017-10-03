@@ -1,7 +1,8 @@
 
 import * as test from 'tape';
 import { Test } from 'tape';
-import {isNode, isToken, isNOT, isExpression, weight, Node, Token, Predicate, isPredicate} from '../b-tree';
+import {isNode, isToken, isNOT, isExpression, Node, Token, Predicate, isPredicate} from '../b-tree';
+import {weight} from '../b-tree/operations';
 import {parse} from './natural';
 import * as csvParse from 'csv-parse';
 import {readFileSync} from 'fs';

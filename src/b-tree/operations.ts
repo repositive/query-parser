@@ -1,8 +1,8 @@
 import { is, max, append, concat, merge } from 'ramda';
 import { v4 as uuid } from 'uuid';
-import { isAND, isOR, isNOT, and, or, not } from './expression';
+import { isAND, isOR, isNOT, and, or, not, isNode, Node, isToken } from '../b-tree';
+import { toNatural } from '../serializers';
 import { Predicate, isPredicate } from './predicate';
-import { isNode, Node } from './node';
 
 export function fold<O>(node: Node, f: (node: Node, l?: O, r?: O, parent?: Node) => O, acc: O = undefined, parent: Node = undefined): O {
   if (isAND(node) || isOR(node)) {

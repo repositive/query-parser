@@ -1,6 +1,7 @@
 import {
-  isAND, isNOT, isOR, isPredicate, isToken, Expression, Node, isNaturalNode, fold
+  isAND, isNOT, isOR, isPredicate, isToken, Expression, Node, isNaturalNode
 } from '../b-tree';
+import {fold} from '../b-tree/operations';
 
 function shouldWrap(tree: any, branch: string): boolean {
   return !isNaturalNode(tree[branch]) && (isAND(tree[branch]) || isOR(tree[branch])) && tree[branch]._type !== tree._type;

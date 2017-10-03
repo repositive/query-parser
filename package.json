@@ -6,7 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "setup": "npm i && rm -fr dist && tsc && pegjs -o dist/parsers/natural.js src/parsers/natural.pegjs",
-    "make": "rm -fr dist && tsc && pegjs -o dist/parsers/natural.js src/parsers/natural.pegjs",
+    "make": "rm -fr dist && tsc && pegjs -o dist/parsers/natural.js src/parsers/natural.pegjs && pegjs -o dist/parsers/phrase.js src/parsers/phrase.pegjs",
     "test": "nyc --reporter lcov tape $(find dist -name '*.js') | tap-spec",
     "lint": "tslint -c tslint.json src/**/*.ts",
     "start": "nodemon --watch src --watch package.json -e ts,json,pegjs -q -x 'rm -fr dist && echo \"\\n============\\nCOMPILING...\\n============\\n\\n\" && tsc --outDir dist || return 0 && pegjs -o dist/parsers/natural.js src/parsers/natural.pegjs || return 0 && node dist/main/cli.js'",
@@ -46,7 +46,7 @@
     "tap-spec": "^4.1.1",
     "tape": "^4.6.3",
     "tslint": "5.5.0",
-    "typescript": "2.4.2"
+    "typescript": "2.5.3"
   },
   "dependencies": {
     "ramda": "^0.22.1",
