@@ -10,16 +10,23 @@ test('phrase parse', (t: Test) => {
 
   const loreIpsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'.replace('.', '').replace(',', '').toLowerCase().split(/\s+/);
 
-  function getWord() {
+  function getToken() {
     const index = Math.round(Math.random() * (loreIpsum.length -1));
-    return loreIpsum[index];
+    return {
+      type: 'token',
+      text: loreIpsum[index]
+    };
   }
 
   function getPhrase(type: 'phrase' | 'quoted_phrase' = 'phrase', length: number = Math.round(Math.random() * 10) + 1) {
-    return {
+    const tokens = R.range(1, length + 1).map(getToken);
+    const phrase = {
       type,
-      text: R.range(1, length + 1).map(getWord).join(' ').trim()
+      text: tokens.map(tok => tok.text).join(' ').trim()
     };
+
+    const result = type === 'phrase' ? {...phrase, tokens} : phrase;
+    return result;
   }
 
   const predicateParticles = {
@@ -34,16 +41,27 @@ test('phrase parse', (t: Test) => {
   function getPredicateParticle() {
     const particles = Object.keys(predicateParticles);
     const rand = Math.round(Math.random() * (particles.length -1));
-    return particles[rand];
+    const value = particles[rand];
+    const text = predicateParticles[value];
+    return {
+      type: 'relation',
+      text,
+      value
+    };
   }
 
   function getPredicatePhrase() {
     const rand = Math.round(Math.random());
+    const target = getToken();
+    const relation = getPredicateParticle();
+    const value = rand === 1 ? getToken() : getPhrase('quoted_phrase');
+    const text = `${target.text}:${relation.text}${value.type === 'quoted_phrase' ? `"${value.text}"` : value.text}`;
     const predicate = {
       type: 'predicate',
-      target: getWord(),
-      relation: getPredicateParticle(),
-      value: rand === 1 ? getPhrase('phrase', 1) : getPhrase('quoted_phrase')
+      target,
+      relation,
+      value,
+      text
     };
 
     return predicate;
@@ -63,7 +81,8 @@ test('phrase parse', (t: Test) => {
         if (last && last.type === 'phrase' && p.type === 'phrase') {
           acc[acc.length -1] = {
             type: 'phrase',
-            text: last.text + ' ' + p.text
+            text: last.text + ' ' + p.text,
+            tokens: R.concat(last.tokens, p.tokens)
           };
           return acc;
         } else if (p) {
@@ -75,19 +94,10 @@ test('phrase parse', (t: Test) => {
       []
     );
     return {
-      pieces: pieces.map(p => {
-        if (p.type === 'predicate') {
-          const np = {...p};
-          delete np.text;
-          return np;
-        }
-        return p;
-      }),
+      pieces,
       text: pieces.map((p: any) => {
         if (p.type === 'quoted_phrase') {
           return `"${p.text}"`;
-        } else if (p.type === 'predicate') {
-          return p.target + ':' + predicateParticles[p.relation] + `${p.value.type === 'phrase' ? p.value.text : `"${p.value.text}"`}`;
         } else {
           return p.text;
         }
@@ -95,10 +105,25 @@ test('phrase parse', (t: Test) => {
     };
   }
 
+  function deleteDecorations(e: any) {
+    delete e.id;
+    delete e.position;
+    if (e.type === 'phrase') {
+      e.tokens = e.tokens.map(deleteDecorations);
+    } else if (e.type === 'predicate') {
+      e.value = deleteDecorations(e.value);
+      e.target = deleteDecorations(e.target);
+      e.relation = deleteDecorations(e.relation);
+    }
+
+    return e;
+  }
+
   function mixTests(iterations: number, done: number = 0) {
     const mixed = mixedPhrase();
     try {
-      t.deepEquals(parse(mixed.text), mixed.pieces, 'Parses mixed phrases');
+      const parsed = parse(mixed.text).map(deleteDecorations);
+      t.deepEquals(parsed, mixed.pieces, 'Parses mixed phrases');
       if (done < iterations) {
         return mixTests(iterations, done + 1);
       }
@@ -108,7 +133,7 @@ test('phrase parse', (t: Test) => {
     }
   }
 
-  mixTests(5000);
+  mixTests(1000);
   t.end();
 });
 
