@@ -1,5 +1,7 @@
 import { parse as parseNatural } from './natural';
-import { parse as parsePhrase } from './phrase';
+import * as phrase from './phrase';
 export const fromNatural = parseNatural;
-export const fromPhrase = parsePhrase;
+export const fromPhrase = phrase.parse;
+
+export * from './phrase';
 export * from './natural-operations';

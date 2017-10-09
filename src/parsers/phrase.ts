@@ -6,7 +6,7 @@ export interface Position {
   to: number;
 }
 
-export interface Token {
+export interface PhraseToken {
   id: string;
   type: 'token';
   position: Position;
@@ -18,7 +18,7 @@ export interface Phrase {
   type: 'phrase';
   position: Position;
   text: string;
-  tokens: Token[];
+  tokens: PhraseToken[];
 }
 
 export interface QuotedPhrase {
@@ -35,16 +35,16 @@ export interface Relation {
   position: Position;
 }
 
-export interface Predicate {
+export interface PhrasePredicate {
   id: string;
   type: 'predicate';
   position: Position;
-  target: Token;
+  target: PhraseToken;
   relation: Relation;
-  value: Token | QuotedPhrase;
+  value: PhraseToken | QuotedPhrase;
 }
 
-export function parse(str: string): Array<Phrase | QuotedPhrase | Predicate> {
+export function parse(str: string): Array<Phrase | QuotedPhrase | PhrasePredicate> {
   return [];
   // Implemented in JS
 }
